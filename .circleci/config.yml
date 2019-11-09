@@ -14,7 +14,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
 
       - run: sudo python -m venv venv
-      - run: sudo source venv/bin/activate
+      - run: sudo ./venv/bin/activate
 
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
