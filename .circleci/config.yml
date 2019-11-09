@@ -1,6 +1,13 @@
 # Symboard CircleCI 2.0 config file
 
 version: 2
+
+executors:
+  default:
+    description: The official CircleCI Python Docker image.
+    docker:
+    - image: circleci/python:3.7.2
+
 jobs:
   build:
     steps:
