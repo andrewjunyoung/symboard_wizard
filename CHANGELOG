@@ -1,4 +1,19 @@
+## [0.0.2] - 2019-11-09
+
+### Added
+-  An executable file (main.py) which, when run, outputs a keylayout file.
+-  A file writer that writes keylayout files to the local file system.
+-  The Orchestrator class (to control the program execution).
+-  Info about the command line arguments needed by main.py.
+
+### Changed
+-  Moved and reconfigured config.yml to run some python scripts and to be detected by Circle CI.
+
+### Todo
+-  Run python tests in CI build.
+
 ## [0.0.1] - 2019-10-18
+
 ### Added
 - «CHANGELOG» file.
 - CI pipeline integration using circleCI.
