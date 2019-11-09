@@ -1,5 +1,4 @@
 .mypy_cache/
-.circleci/
 venv/
 tags
 __pycache__
