@@ -10,10 +10,9 @@ jobs:
       - restore_cache:  # ensure this step occurs *before* installing dependencies
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
 
-      - run:
-        command: |
-          python -m venv venv
-          venv/bin/activate
+      - run: |
+        python -m venv venv
+        venv/bin/activate
 
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
@@ -22,8 +21,7 @@ jobs:
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
 
-      - run:
-        command: |
-          cd symboard
-          python -m unittest discover ./test
+      - run: |
+        cd symboard
+        python -m unittest discover ./test
 
