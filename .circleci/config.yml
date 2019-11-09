@@ -1,31 +1,40 @@
 # Symboard CircleCI 2.0 config file
 
 version: 2
+
 jobs:
   build:
     docker:
-      # Python version.
-      - image: circleci/python:3.6.1
-
+      - image: circleci/python:3.7.5
     steps:
       - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:  # ensure this step occurs *before* installing dependencies
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - run: sudo python -m venv venv
+        # - run: venv/bin/activate
 
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
       - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+
+      # - run: cd symboard
+      # - run: sudo python -m unittest discover ./test
+
+      #- run:
+      #    name: install dependencies
+      #    command: |
+      #      python3 -m venv venv
+      #      . venv/bin/activate
+      #      pip install -r requirements.txt
+      #- save_cache:
+      #    paths:
+      #      - ./venv
+      #    key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       # TODO: Run all tests.
