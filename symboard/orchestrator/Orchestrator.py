@@ -4,7 +4,7 @@
               execution and program flow of the Symboard compiler.
 '''
 
-from file_writer.KeylayoutFileWriter import KeylayoutFileWriter
+from symboard.file_writer.KeylayoutFileWriter import KeylayoutFileWriter
 
 class Orchestrator:
 
