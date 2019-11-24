@@ -4,7 +4,7 @@
 command line.
 '''
 
-from symboard.orchestrator.Orchestrator import Orchestrator
+from orchestrator.Orchestrator import Orchestrator
 from argparse import ArgumentParser
 
 def get_parser() -> ArgumentParser:
@@ -29,7 +29,7 @@ def main() -> None:
     args = parser.parse_args()
 
     orchestrator = Orchestrator()
-    orchestrator.run(args.output_file_path[0])
+    orchestrator.run(args.input_file_path[0], args.output_file_path[0])
 
 if __name__ == '__main__':
     # Parse command line args.

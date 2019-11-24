@@ -5,15 +5,18 @@ own, but instead to be inherited from and extended from.
 '''
 
 class Parser:
-    def parse(self, content):
+    @staticmethod
+    def parse(content):
         pass
 
 
 class StringParser(Parser):
-    def parse(self, content: str):
+    @staticmethod
+    def parse(content: str):
         pass
 
 
 class FileParser(Parser):
-    def parse(self, file_path: str):
+    @staticmethod
+    def parse(file_path: str):
         pass

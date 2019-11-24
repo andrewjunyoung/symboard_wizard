@@ -5,17 +5,16 @@ object.
 '''
 
 # Internal imports
-from parsers.base_parsers import StringParser
+from parsers.base_parsers import FileParser
 
 # Third party imports
-from yaml import load
-from mypy import Dict
+from yaml import safe_load
+from typing import Dict
 
 
 class YamlFileParser(FileParser):
-    def parse(self, file_path: str) -> Dict:
-        _file = open(file_path, 'r')
-        contents: str = _file.read()
-        _file.close()
-        return yaml.load(contents)
+    @staticmethod
+    def parse(file_path: str) -> Dict:
+        with open(file_path, 'r') as stream:
+            return safe_load(stream)
 
