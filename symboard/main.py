@@ -4,7 +4,7 @@
 command line.
 '''
 
-from orchestrator.Orchestrator import Orchestrator
+from symboard.orchestrator import Orchestrator
 from argparse import ArgumentParser
 
 def get_parser() -> ArgumentParser:

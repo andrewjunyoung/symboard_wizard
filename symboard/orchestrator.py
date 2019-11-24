@@ -4,8 +4,8 @@
               execution and program flow of the Symboard compiler.
 '''
 
-from file_writer.KeylayoutFileWriter import KeylayoutFileWriter
-from parsers.YamlParser import YamlFileParser
+from symboard.file_writers import KeylayoutFileWriter
+from symboard.parsers import YamlFileParser
 
 class Orchestrator:
 

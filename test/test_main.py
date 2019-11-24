@@ -5,7 +5,7 @@
 
 # Package internal imports
 from symboard.main import main, get_parser
-from symboard.orchestrator.Orchestrator import Orchestrator
+from symboard.orchestrator import Orchestrator
 
 # Third party packages
 from unittest import TestCase
