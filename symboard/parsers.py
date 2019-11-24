@@ -4,6 +4,9 @@
 own, but instead to be inherited from and extended from.
 '''
 
+# Package internal imports
+from symboard.errors import ParserException
+
 # Third party imports
 from yaml import safe_load
 from typing import Dict
@@ -30,5 +33,9 @@ class FileParser(Parser):
 class YamlFileParser(FileParser):
     @staticmethod
     def parse(file_path: str) -> Dict:
-        with open(file_path, 'r') as stream:
-            return safe_load(stream)
+        try:
+            with open(file_path, 'r') as stream:
+                return safe_load(stream)
+        except:
+            raise ParserException('''Parser error: Could not read file contents
+            from {}'''.format(file_path))
