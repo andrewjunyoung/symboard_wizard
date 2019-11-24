@@ -4,8 +4,8 @@
 '''
 
 # Package internal imports
-from main import main, get_parser
-from orchestrator.Orchestrator import Orchestrator
+from symboard.main import main, get_parser
+from symboard.orchestrator import Orchestrator
 
 # Third party packages
 from unittest import TestCase

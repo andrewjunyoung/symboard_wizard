@@ -1,4 +1,4 @@
 .mypy_cache/
 venv/
 tags
-__pycache__
+*__pycache__*
