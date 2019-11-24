@@ -4,3 +4,6 @@ clean:
 tree:
 	tree -I 'docs|bin|lib|venv'
 
+unittest:
+	python -m unittest discover
+
