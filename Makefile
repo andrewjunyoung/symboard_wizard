@@ -7,3 +7,6 @@ tree:
 unittest:
 	python -m unittest discover
 
+coverage:
+	coverage run -m unittest discover
+	coverage html --omit="venv/*"
