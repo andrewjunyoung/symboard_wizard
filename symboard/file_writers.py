@@ -4,32 +4,44 @@
 data to a specified output file.
 '''
 
-# Package internal imports
-from symboard.errors import WriteException
-
 # Third party package imports
 from os.path import exists
+from re import search
+from xml.etree.ElementTree import (
+    Comment as comment,
+    Element as Element,
+    SubElement as SubElement,
+    tostring,
+)
+from datetime import datetime
+
+# Package internal imports
+from symboard.errors import WriteException
+from symboard.keylayouts.keylayouts import Keylayout
+from symboard.settings import VERSION
 
 
 DEFAULT_OUTPUT_PATH = './a.keylayout'
 
 
 class FileWriter:
-    def change_suffix(self, path: str, suffix: str) -> str:
-        # Assert suffix is non null and purely alphanumeric.
-        assert match(r'^[a-zA-Z0-9]+$', suffix) # TODO: Check if can be simplified.
-        result = match(r'^.*(\.(*))$', string)
+    def change_postfix(self, path: str, postfix: str) -> str:
+        # Assert postfix is non null and purely alphanumeric.
+        assert search(r'^\w+$', postfix) is not None
 
-        if no_suffix:
-            return path + suffix
-        elif right_suffix
+        result = search(r'^(.*)(\.(.*))$', path)
+
+        if result is None: # No match.
+            return path + '.' + postfix
+        elif result.group(1) != '.keylayout': # Incorrect postfix.
+            prefix = result.group(0)
+            return prefix + '.' + postfix
+        else: # Correct postfix.
             return path
-        else: # There is a suffix, but it's the wrong one.
-            return path + '.' + suffix
 
         return path
 
-    def write(self):
+    def write(self, object_, output_path: str = DEFAULT_OUTPUT_PATH):
         pass
 
 
@@ -39,94 +51,91 @@ class KeylayoutFileWriter(FileWriter):
         return ''
 
     def write(
-        self, keylayout, Keylayout, output_file_path: str = DEFAULT_OUTPUT_PATH
+        self, keylayout: Keylayout, output_path: str = DEFAULT_OUTPUT_PATH
     ) -> None:
         ''' Given an output file path, creates a file in that file path.
         Assumes the file is not already present. Throws an error if this
         is not true.
         '''
 
-        # Ensure the file has the «.keylayout» suffix.
-        output_path: str = change_suffix(output_path, 'keylayout')
+        # Ensure the file has the «.keylayout» postfix.
+        output_path: str = self.change_postfix(output_path, 'keylayout')
 
-        # Assert that the output_file_path is not already being used by any file
+        # Assert that the output_path is not already being used by any file
         # or directory.
-        if exists(output_file_path):
+        if exists(output_path):
             WriteException()
 
         try:
-            with open() as file_:
-                file_.write(self.contents())
+            with open(output_path, 'w+') as file_:
+                file_.write(self.contents(keylayout))
         except:
             WriteException()
 
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):
-    def contents(self, keylayout: Keylayout) -> List[str]:
-        keyboard = self.keyboard(keylayout)
+    def contents(self, keylayout: Keylayout) -> str:
+        keyboard_elem = self.keyboard(keylayout)
 
-        self.layouts(keylayout, keyboard)
-        self.modifier_map(keylayout, keyboard)
-        self.key_map_set(keylayout, keyboard)
+        self.layouts(keylayout, keyboard_elem)
+        self.modifier_map(keylayout, keyboard_elem)
+        self.key_map_set(keylayout, keyboard_elem)
 
+        # TODO: Write return statement.
+        # TODO: ¿How to incorporate created(); updated()?
         return '\n'.join([
-            self.created(),
-            self.updated(),
-            tostring(keyboard, encoding="UTF-8")
+            tostring(keyboard_elem, encoding="UTF-8")
         ])
 
     def keyboard(self, keylayout: Keylayout) -> Element:
         return Element('keyboard', keylayout.keyboard_attributes())
 
-    def created(self) -> Comment:
-        return Comment('Created by Symboard version {} at {}'.format(
-            VERSION, datetime.utcnow()
-    from numbers import Number
-        ))
-
-    def updated(self) -> Comment:
-        return Comment('Last updated by Symboard version {} at {}'.format(
+    def created(self) -> None:
+        comment('Created by Symboard version {} at {}'.format(
             VERSION, datetime.utcnow()
         ))
 
-    def layouts(self, keylayout: Keylayout, keyboard: Element) -> SubElement:
-        layouts = SubElement(keyboard, 'layouts')
-        [SubElement(layouts, layout.attrib) for layout in keylayout.layouts]
-        return layouts
+    def updated(self) -> None:
+        comment('Last updated by Symboard version {} at {}'.format(
+            VERSION, datetime.utcnow()
+        ))
 
-    def modifier_map(self, keyboard: Element) -> SubElement:
-        modifier_map = SubElement(
+    def layouts(self, keylayout: Keylayout, keyboard: Element) -> None:
+        layouts_elem = SubElement(keyboard, 'layouts')
+        for layout in keylayout.layouts:
+            SubElement(layouts_elem, layout)
+
+    def modifier_map(self, keylayout: Keylayout, keyboard: Element) -> None:
+        modifier_map_elem = SubElement(
             keyboard,
             'modifierMap',
             {
                 'id': 'Modifiers',
-                'defaultIndex': keylayout.modifier_map.default_index,
-            }
+                'defaultIndex': str(keylayout.default_index)
+            },
         )
 
-        for key_map_select, i in enumerate(keylayout.modifier_map):
+        for key_map_select, i in enumerate(keylayout.key_map_select):
             key_map_select_elem = SubElement(
-                modifier_map,
+                modifier_map_elem,
                 'keyMapSelect',
-                {'mapIndex': index},
+                {'mapIndex': str(i)},
             )
             SubElement(
                 key_map_select_elem,
                 'modifier',
-                {'keys': keyboard.keys_to_string(key_map_select.keys)},
+                {'keys': keylayout.key_map_select[i]}
             )
 
-        return modifier_map
-
-    def key_map_set(
-            self, keylayout: Keylayout, keyboard: Element
-    ) -> SubElement:
+    def key_map_set(self, keylayout: Keylayout, keyboard: Element) -> None:
 
         key_map_set_elem = SubElement(keyboard, 'keyMapSet', {'id': 'ANSI'})
-        for key_map, i in enumerate(keyboard.key_map_set):
-            key_map_elem = SubElement(key_map_set_elem, 'key_map', {'index': i})
-            for key, value in keyboard.key_dict.items():
+        for key_map, i in enumerate(keylayout.key_map_select):
+            key_map_elem = SubElement(
+                key_map_set_elem,
+                'key_map',
+                {'index': str(i)},
+            )
+            for key, value in keylayout.key_map[i].items():
                 SubElement(key_map_elem, 'key', {'code': key, 'output': value})
-
-        return key_map_set
 

@@ -4,7 +4,7 @@
 '''
 
 # Package internal imports
-from symboard.file_writers import KeylayoutFileWriter, DEFAULT_OUTPUT_FILE_PATH
+from symboard.file_writers import KeylayoutFileWriter, DEFAULT_OUTPUT_PATH
 from symboard.errors import WriteException
 
 # Third party packages
@@ -15,6 +15,8 @@ import os.path
 
 
 class TestKeylayoutFileWriter(TestCase):
+    def setUp(self):
+        self.keylayout_file_writer = KeylayoutFileWriter()
 
     @patch('symboard.file_writers.exists')
     def test_write_opens_the_output_file_path(self, mock_exists):
@@ -23,7 +25,7 @@ class TestKeylayoutFileWriter(TestCase):
         mock_exists.return_value = False
 
         with patch('builtins.open', mock_open(read_data='data')) as open_:
-            KeylayoutFileWriter.write(output_file_path)
+            self.keylayout_file_writer.write(None, output_file_path)
 
             open_.assert_called_once_with(output_file_path, 'w+')
 
@@ -34,7 +36,7 @@ class TestKeylayoutFileWriter(TestCase):
 
         with patch('builtins.open', mock_open(read_data='data')) as open_:
             with self.assertRaises(WriteException):
-                 KeylayoutFileWriter.write(output_file_path)
+                 self.keylayout_file_writer.write(None, output_file_path)
 
 
     @patch('symboard.file_writers.exists')
@@ -43,9 +45,9 @@ class TestKeylayoutFileWriter(TestCase):
         mock_exists.return_value = False
 
         with patch('builtins.open', mock_open(read_data='data')) as open_:
-            KeylayoutFileWriter.write()
+            self.keylayout_file_writer.write(None)
 
-        open_.assert_called_once_with(DEFAULT_OUTPUT_FILE_PATH, 'w+')
+        open_.assert_called_once_with(DEFAULT_OUTPUT_PATH, 'w+')
 
 
 if __name__ == '__main__':

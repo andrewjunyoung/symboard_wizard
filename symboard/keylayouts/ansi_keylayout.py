@@ -3,23 +3,29 @@
 @description: A class representing the ANSI keylayout.
 '''
 
-from keylayouts.Keylayout import Keylayout
+# Imports from third party packages.
+from typing import Dict, List, Union
+
+# Imports from this package.
+from symboard.keylayouts.keylayouts import Keylayout
 
 
 class AnsiKeylayout(Keylayout):
-    DEFAULT_NAME = 'ANSI keylayout'
+    DEFAULT_NAME: str= 'ANSI keylayout'
     name: str = DEFAULT_NAME
 
-    layouts = {
+    default_index: int = 6
+
+    layouts = [ # TODO: Type signature
         {
-            'first': 0,
-            'last': 17,
+            'first': '0',
+            'last': '17',
             'mapSet': 'ANSI',
             'modifiers': 'Modifiers',
         },
-    }
+    ]
 
-    key_map_select = {
+    key_map_select: Dict[int, str] = {
         0: '',
         1: 'anyShift',
         2: 'anyOption',
@@ -29,7 +35,7 @@ class AnsiKeylayout(Keylayout):
         6: 'anyControl',
     }
 
-    key_dict = {
+    key_dict: Dict[int, Dict[str, str]] = {
         0: {
             '0': 'a',
             '1': 's',
