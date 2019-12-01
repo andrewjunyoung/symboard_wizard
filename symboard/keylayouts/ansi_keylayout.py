@@ -5,8 +5,10 @@
 
 from keylayouts.Keylayout import Keylayout
 
+
 class AnsiKeylayout(Keylayout):
-    name: str = 'ANSI keyboard'
+    DEFAULT_NAME = 'ANSI keylayout'
+    name: str = DEFAULT_NAME
 
     layouts = {
         {
