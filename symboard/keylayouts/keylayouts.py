@@ -20,16 +20,16 @@ class Keylayout:
     default_index: int = 0
 
     # These settings are configured by the child classes of «Keylayout».
-    layouts: List[Union[str, str]] = []
+    layouts: list = [] # TODO: fix type signature.
     key_map_select: Dict[int, str] = {}
     key_map: Dict[int, Dict[str, str]] = {}
 
     def keyboard_attributes(self):
         return {
-            'group': keylayout.group,
-            'id': keylayout.id_,
-            'name': keylayout.name,
-            'maxout': keylayout.maxout,
+            'group': self.group,
+            'id': self.id_,
+            'name': self.name,
+            'maxout': self.maxout,
         }
 
     def __str__(self):
@@ -39,13 +39,13 @@ class Keylayout:
         self,
         group: int,
         id_: int,
-        name: str,
         maxout: int,
+        name: str = DEFAULT_NAME,
         default_index: int = 0
     ):
         self.group = group
         self.id_ = id_
-        self.name = name
         self.maxout = maxout
+        self.name = name
         self.default_index = default_index
 

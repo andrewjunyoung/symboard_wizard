@@ -16,7 +16,10 @@ class AnsiKeylayout(Keylayout):
 
     default_index: int = 6
 
-    layouts = [ # TODO: Type signature
+    def __str__(self):
+        return 'AnsiKeylayout({}, (id: {}))'.format(self.name, self.id_)
+
+    layouts: list = [ # TODO: Fix type signature.
         {
             'first': '0',
             'last': '17',

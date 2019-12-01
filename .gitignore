@@ -4,3 +4,4 @@ htmlcov/
 venv/
 tags
 *__pycache__*
+*.pyc
