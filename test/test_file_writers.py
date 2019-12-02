@@ -4,15 +4,49 @@
 '''
 
 # Package internal imports
-from symboard.file_writers import KeylayoutFileWriter, DEFAULT_OUTPUT_PATH
+from symboard.file_writers import (
+    FileWriter,
+    KeylayoutFileWriter,
+    DEFAULT_OUTPUT_PATH,
+)
 from symboard.errors import WriteException
 
-# Third party packages
+# Imports from third party packages.
 from unittest import TestCase
 from unittest import main as unittest_main
 from unittest.mock import patch, mock_open, MagicMock
 import os.path
 
+
+class TestFileWriter(TestCase):
+    def setUp(self):
+        self.file_writer = FileWriter()
+        self.test_prefix = './hello/file'
+        self.test_postfix = 'keylayout'
+
+    def test_change_postfix_adds_postfix_when_no_match(self):
+        test_path = self.test_prefix
+        expected = self.test_prefix + '.' + self.test_postfix
+
+        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+
+        self.assertEqual(expected, actual)
+
+    def test_change_postfix_corrects_incorrect_postfix(self):
+        test_path = self.test_prefix + '.wrong_postfix'
+        expected = self.test_prefix + '.' + self.test_postfix
+
+        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+
+        self.assertEqual(expected, actual)
+
+    def test_change_postfix_does_nothing_when_correct_postfix(self):
+        test_path = self.test_prefix + '.' + self.test_postfix
+        expected = test_path
+
+        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+
+        self.assertEqual(expected, actual)
 
 class TestKeylayoutFileWriter(TestCase):
     def setUp(self):
