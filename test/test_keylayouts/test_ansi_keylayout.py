@@ -16,16 +16,16 @@ class TestAnsiKeylayout(TestKeylayout):
     def setUp(self):
         self.GROUP = 1
         self.ID = 2
-        self.NAME = '3'
-        self.MAXOUT = 4
+        self.MAXOUT = 3
+        self.NAME = '4'
         self.DEFAULT_INDEX = 5
 
         self.keylayout = AnsiKeylayout(
             self.GROUP,
             self.ID,
-            self.NAME,
             self.MAXOUT,
-            self.DEFAULT_INDEX
+            name = self.NAME,
+            default_index = self.DEFAULT_INDEX
         )
 
     def test_keylayout_str(self):
@@ -43,21 +43,21 @@ class TestAnsiKeyboardIntegration(TestCase):
 
         self.GROUP = 1
         self.ID = 2
-        self.NAME = '3'
-        self.MAXOUT = 4
+        self.MAXOUT = 3
+        self.NAME = '4'
         self.DEFAULT_INDEX = 5
 
         self.ansi_keylayout = AnsiKeylayout(
             self.GROUP,
             self.ID,
-            self.NAME,
             self.MAXOUT,
-            self.DEFAULT_INDEX
+            name = self.NAME,
+            default_index = self.DEFAULT_INDEX
         )
         self.keylayout_xml_file_writer = KeylayoutXMLFileWriter()
 
     def test_output_is_as_expected(self):
-        self.xml_keylayout_file_writer.write(self.ansi_keylayout, self.OUTPUT_PATH)
+        self.keylayout_xml_file_writer.write(self.ansi_keylayout, self.OUTPUT_PATH)
 
         with open(self.EXPECTED_ANSI_KEYLAYOUT_PATH, 'r') as file_:
             expected = file_.read()

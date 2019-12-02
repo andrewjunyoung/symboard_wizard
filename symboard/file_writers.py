@@ -5,7 +5,7 @@ data to a specified output file.
 '''
 
 # Third party package imports
-from os.path import exists
+from os.path import exists, splitext
 from re import search
 from xml.etree.ElementTree import (
     Comment as comment,
@@ -16,7 +16,7 @@ from xml.etree.ElementTree import (
 from datetime import datetime
 
 # Package internal imports
-from symboard.errors import WriteException
+from symboard.errors import WriteException, FileExistsException
 from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION
 
@@ -25,21 +25,14 @@ DEFAULT_OUTPUT_PATH = './a.keylayout'
 
 
 class FileWriter:
-    def change_postfix(self, path: str, postfix: str) -> str:
+    def change_postfix(self, path: str, new_postfix: str) -> str:
         # Assert postfix is non null and purely alphanumeric.
-        assert search(r'^\w+$', postfix) is not None
+        prefix, old_postfix = splitext(path)
 
-        result = search(r'^(.*)(\.(.*))$', path)
-
-        if result is None: # No match.
-            return path + '.' + postfix
-        elif result.group(1) != '.keylayout': # Incorrect postfix.
-            prefix = result.group(0)
-            return prefix + '.' + postfix
+        if old_postfix != new_postfix: # Incorrect or missing postfix.
+            return prefix + '.' + new_postfix
         else: # Correct postfix.
             return path
-
-        return path
 
     def write(self, object_, output_path: str = DEFAULT_OUTPUT_PATH):
         pass
@@ -59,18 +52,18 @@ class KeylayoutFileWriter(FileWriter):
         '''
 
         # Ensure the file has the «.keylayout» postfix.
-        output_path: str = self.change_postfix(output_path, 'keylayout')
+        output_path = self.change_postfix(output_path, 'keylayout')
 
         # Assert that the output_path is not already being used by any file
         # or directory.
         if exists(output_path):
-            WriteException()
+            raise FileExistsException()
 
         try:
             with open(output_path, 'w+') as file_:
                 file_.write(self.contents(keylayout))
         except:
-            WriteException()
+            raise WriteException()
 
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):

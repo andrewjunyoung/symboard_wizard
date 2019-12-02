@@ -17,3 +17,7 @@ class WriteException(BaseSymboardException):
     def __init__(self, msg: str = ''):
         super(WriteException, self).__init__(msg)
 
+
+class FileExistsException(WriteException):
+    def __init__(self, msg: str = ''):
+        super(WriteException, self).__init__(msg)
