@@ -17,6 +17,6 @@ jobs:
       - run:
           name: Run unit tests
           command: |
-            make unittest
+            python3 -m unittest discover -v
 
 
