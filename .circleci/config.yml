@@ -12,33 +12,11 @@ jobs:
           name: Install python dependencies in a venv.
           command: |
             python3 -m venv venv
-            source venv/bin/activate
+            . venv/bin/activate
             pip install -r requirements.txt
       - run:
           name: Run unit tests
-          command: make unittest
-      - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          command: |
+            make unittest
 
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.7/site-packages"
 
-      # - run: cd symboard
-      # - run: sudo python -m unittest discover ./test
-
-      #- run:
-      #    name: install dependencies
-      #    command: |
-      #      python3 -m venv venv
-      #      . venv/bin/activate
-      #      pip install -r requirements.txt
-      #- save_cache:
-      #    paths:
-      #      - ./venv
-      #    key: v1-dependencies-{{ checksum "requirements.txt" }}
-
-      # TODO: Run all tests.
