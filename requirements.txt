@@ -1,5 +1,5 @@
 PyYAML == 5.1.2
-PyYAML == 5.1.2
+Sphinx == 2.2.2
 coverage == 4.5.4
 lxml == 4.4.2
 py == 1.8.0
