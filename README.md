@@ -1,3 +1,5 @@
+Build: [![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=svg)](https://circleci.com/gh/andrewjunyoung/symboard)
+
 # Ṡymβoarð (Symboard)
 
 <!-- vim-markdown-toc GFM -->
