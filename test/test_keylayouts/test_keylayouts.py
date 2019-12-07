@@ -53,10 +53,10 @@ class TestKeylayout(TestCase):
 
     def test_keyboard_attributes(self):
         expected = {
-            'group': self.GROUP,
-            'id': self.ID,
-            'name': self.NAME,
-            'maxout': self.MAXOUT,
+            'group':  str(self.GROUP),
+            'id':     str(self.ID),
+            'name':   str(self.NAME),
+            'maxout': str(self.MAXOUT),
         }
         actual = self.keylayout.keyboard_attributes()
 

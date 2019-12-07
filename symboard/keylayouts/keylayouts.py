@@ -22,14 +22,14 @@ class Keylayout:
     # These settings are configured by the child classes of «Keylayout».
     layouts: list = [] # TODO: fix type signature.
     key_map_select: Dict[int, str] = {}
-    key_map: Dict[int, Dict[str, str]] = {}
+    key_map: Dict[int, Dict[int, str]] = {}
 
     def keyboard_attributes(self):
         return {
-            'group': self.group,
-            'id': self.id_,
-            'name': self.name,
-            'maxout': self.maxout,
+            'group':  str(self.group),
+            'id':     str(self.id_),
+            'name':   str(self.name),
+            'maxout': str(self.maxout),
         }
 
     def __str__(self):

@@ -9,15 +9,20 @@ class BaseSymboardException(BaseException):
 
 
 class ParserException(BaseSymboardException):
-    def __init__(self, msg: str = ''):
-        super(ParserException, self).__init__(msg)
+    pass
 
 
 class WriteException(BaseSymboardException):
-    def __init__(self, msg: str = ''):
-        super(WriteException, self).__init__(msg)
+    pass
 
 
 class FileExistsException(WriteException):
-    def __init__(self, msg: str = ''):
-        super(WriteException, self).__init__(msg)
+    pass
+
+
+class NoneException(BaseSymboardException):
+    pass
+
+
+class ContentsNoneException(NoneException):
+    pass

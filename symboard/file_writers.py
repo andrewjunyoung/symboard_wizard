@@ -1,22 +1,22 @@
-'''
-@author: Andrew J. Young
+'''@author: Andrew J. Young
 @description: A file writer, which given input will output this as formatted
 data to a specified output file.
 '''
 
-# Third party package imports
+# Imports from third party packages.
 from os.path import exists, splitext
 from re import search
-from xml.etree.ElementTree import (
-    Comment as comment,
-    Element as Element,
-    SubElement as SubElement,
+from lxml.etree import (
+    Element,
+    SubElement as sub_element,
     tostring,
 )
 from datetime import datetime
 
-# Package internal imports
-from symboard.errors import WriteException, FileExistsException
+# Package internal imports.
+from symboard.errors import (
+    WriteException, FileExistsException, ContentsNoneException
+)
 from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION
 
@@ -68,67 +68,97 @@ class KeylayoutFileWriter(FileWriter):
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):
     def contents(self, keylayout: Keylayout) -> str:
+        if keylayout is None:
+            raise ContentsNoneException()
+
+        prepend = '\n'.join([
+            self.version(),
+            '<!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">',
+            self.created(),
+            self.updated(),
+        ])
+
         keyboard_elem = self.keyboard(keylayout)
 
         self.layouts(keylayout, keyboard_elem)
         self.modifier_map(keylayout, keyboard_elem)
         self.key_map_set(keylayout, keyboard_elem)
 
-        # TODO: Write return statement.
-        # TODO: ¿How to incorporate created(); updated()?
         return '\n'.join([
-            tostring(keyboard_elem, encoding="UTF-8")
+            prepend,
+            tostring(keyboard_elem, encoding='unicode', pretty_print=True),
         ])
+
 
     def keyboard(self, keylayout: Keylayout) -> Element:
         return Element('keyboard', keylayout.keyboard_attributes())
 
-    def created(self) -> None:
-        comment('Created by Symboard version {} at {}'.format(
-            VERSION, datetime.utcnow()
+    def version(self) -> str:
+        return '<?xml version="1.1" encoding="UTF-8"?>'
+
+    def comment(self, msg: str) -> str:
+        return '<!-- {} -->'.format(msg)
+
+    def created(self) -> str:
+        return self.comment('Created by Symboard version {} at {}'.format(
+            VERSION, datetime.utcnow() # TODO: ISO
         ))
 
-    def updated(self) -> None:
-        comment('Last updated by Symboard version {} at {}'.format(
-            VERSION, datetime.utcnow()
+    def updated(self) -> str:
+        return self.comment('Last updated by Symboard version {} at {}'.format(
+            VERSION, datetime.utcnow() # TODO: ISO
         ))
 
-    def layouts(self, keylayout: Keylayout, keyboard: Element) -> None:
-        layouts_elem = SubElement(keyboard, 'layouts')
-        for layout in keylayout.layouts:
-            SubElement(layouts_elem, layout)
+    def layouts(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        layouts_elem = sub_element(keyboard, 'layouts')
 
-    def modifier_map(self, keylayout: Keylayout, keyboard: Element) -> None:
-        modifier_map_elem = SubElement(
+        # Create children to the layouts_elem
+        for layout_attributes in keylayout.layouts:
+            sub_element(layouts_elem, 'layout', layout_attributes)
+
+        return layouts_elem
+
+    def modifier_map(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        modifier_map_elem = sub_element(
             keyboard,
             'modifierMap',
             {
                 'id': 'Modifiers',
-                'defaultIndex': str(keylayout.default_index)
+                'defaultIndex': str(keylayout.default_index),
             },
         )
 
-        for key_map_select, i in enumerate(keylayout.key_map_select):
-            key_map_select_elem = SubElement(
+        # Create children to the modifier_map_elem
+        for key, value in keylayout.key_map_select.items():
+            key_map_select_elem = sub_element(
                 modifier_map_elem,
                 'keyMapSelect',
-                {'mapIndex': str(i)},
+                {'mapIndex': str(key)},
             )
-            SubElement(
+            sub_element(
                 key_map_select_elem,
                 'modifier',
-                {'keys': keylayout.key_map_select[i]}
+                {'keys': str(value)},
             )
 
-    def key_map_set(self, keylayout: Keylayout, keyboard: Element) -> None:
+        return modifier_map_elem
 
-        key_map_set_elem = SubElement(keyboard, 'keyMapSet', {'id': 'ANSI'})
-        for key_map, i in enumerate(keylayout.key_map_select):
-            key_map_elem = SubElement(
+    def key_map_set(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        key_map_set_elem = sub_element(keyboard, 'keyMapSet', {'id': 'ANSI'})
+
+        # Create children to the key_map_set_elem
+        for i, key_map in keylayout.key_map.items():
+            key_map_elem = sub_element(
                 key_map_set_elem,
-                'key_map',
+                'keyMap',
                 {'index': str(i)},
             )
-            for key, value in keylayout.key_map[i].items():
-                SubElement(key_map_elem, 'key', {'code': key, 'output': value})
+            for code, output in key_map.items():
+                sub_element(
+                    key_map_elem,
+                    'key',
+                    {'code': str(code), 'output': str(output)}
+                )
+
+        return key_map_set_elem
 
