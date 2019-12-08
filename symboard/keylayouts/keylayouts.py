@@ -18,13 +18,13 @@ class Keylayout:
     all keylayouts.
 
     Attributes:
-        DEFAULT_NAME (str): The default name for a keyboard, if no name is
+        _DEFAULT_NAME (str): The default name for a keyboard, if no name is
             provided.
 
         group (int): The group number for the keyboard.
         id_ (int): The unique ID number for the keyboard, which should be some
             random number in the range [..].
-        name (str): The name of the keyboard. Defaults to <DEFAULT_NAME>
+        name (str): The name of the keyboard. Defaults to <_DEFAULT_NAME>
         maxout (int): Todo
         default_index (int): The default index for the keyboard.
 
@@ -38,12 +38,12 @@ class Keylayout:
     # TODO More info on attributes.
 
     # Universal defaults
-    DEFAULT_NAME: str = 'Untitled'
+    _DEFAULT_NAME: str = 'Untitled'
 
     # Universal settings
     group: int = 126
     id_: int = -19341
-    name: str = DEFAULT_NAME
+    name: str = _DEFAULT_NAME
     maxout: int = 1
     default_index: int = 0
 
@@ -77,7 +77,7 @@ class Keylayout:
         group: int,
         id_: int,
         maxout: int,
-        name: str = DEFAULT_NAME,
+        name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):
         self.group = group

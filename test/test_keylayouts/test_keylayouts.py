@@ -29,7 +29,7 @@ class TestKeylayout(TestCase):
         self.assertEqual(keylayout.id_, self.ID)
         self.assertEqual(keylayout.name, self.NAME)
         self.assertEqual(keylayout.maxout, self.MAXOUT)
-        self.assertEqual(keylayout.default_index, 5)
+        self.assertEqual(keylayout.default_index, self.DEFAULT_INDEX)
 
     def test_keylayout_init_without_default_index(self):
         keylayout = Keylayout(self.GROUP, self.ID, self.MAXOUT, name=self.NAME)
@@ -43,7 +43,7 @@ class TestKeylayout(TestCase):
     def test_default_name_is_as_defined_in_the_class(self):
         keylayout = Keylayout(self.GROUP, self.ID, self.MAXOUT)
 
-        self.assertEqual(keylayout.name, Keylayout.DEFAULT_NAME)
+        self.assertEqual(keylayout.name, Keylayout._DEFAULT_NAME)
 
     def test_keylayout_str(self):
         expected = 'Keylayout({}, (id: {}))'.format(self.NAME, self.ID)
