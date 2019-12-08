@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Run unit tests with coverage
           command: |
-            pipenv run $HOME/.local/bin/coverage run -m unittest discover -v
+            pipenv run coverage run -m unittest discover -v
       - store_artifacts:
           path: htmlcov
 
