@@ -4,7 +4,7 @@
 '''
 
 # Package internal imports
-from symboard.main import main, get_parser
+from symboard.main import main, get_arg_parser
 from symboard.orchestrator import Orchestrator
 
 # Third party packages
@@ -15,12 +15,12 @@ import sys
 
 
 class TestMain(TestCase):
-    def test_get_parser_has_correct_args(self):
+    def test_get_arg_parser_has_correct_args(self):
         # Setup.
         testargs = ['python', 'input', 'output']
         with patch.object(sys, 'argv', testargs):
             # Execution.
-            parser = get_parser()
+            parser = get_arg_parser()
             args = parser.parse_args()
 
             # Assertion.

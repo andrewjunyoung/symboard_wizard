@@ -48,7 +48,7 @@ class Keylayout:
     default_index: int = 0
 
     # These settings are configured by the child classes of «Keylayout».
-    layouts: list = [] # TODO: fix type signature.
+    layouts: List[Dict[str, str]] = []
     key_map_select: Dict[int, str] = {}
     key_map: Dict[int, Dict[int, str]] = {}
 

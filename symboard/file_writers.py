@@ -115,6 +115,8 @@ class KeylayoutFileWriter(FileWriter):
 
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):
+    _DATE_FORMAT = "yyyy-MM-dd HH:mm:ss (UTC)"
+
     def contents(self, keylayout: Keylayout) -> str:
         """
         Args:
@@ -131,11 +133,13 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         if keylayout is None:
             raise KeylayoutNoneException()
 
+        now: datetime = datetime.now()
+
         prepend: str = '\n'.join([
             self._version(),
             '<!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">',
-            self._created(),
-            self._updated(),
+            self._created(now),
+            self._updated(now),
         ])
 
         keyboard_elem: Element = self._keyboard(keylayout)
@@ -177,8 +181,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         """
         return '<!-- {} -->'.format(msg)
 
-    def _created(self) -> str:
-        # TODO: Synchronize with «updated»
+    def _created(self, time: datetime) -> str:
         """
         Returns:
             str: A string representing an XML comment containing the version of
@@ -186,19 +189,18 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             comment was created.
         """
         return self._comment('Created by Symboard version {} at {}'.format(
-            VERSION, datetime.utcnow() # TODO: ISO
+            VERSION, time.strftime(self._DATE_FORMAT)
         ))
 
-    def _updated(self) -> str:
+    def _updated(self, time: datetime) -> str:
         """
         Returns:
             str: A string representing an XML comment containing the version of
             symboard which is being used, and the date and time at which the
             comment was created (as this is equal to its last update time).
         """
-        # TODO: Synchronize with «created»
         return self._comment('Last updated by Symboard version {} at {}'.format(
-            VERSION, datetime.utcnow() # TODO: ISO
+            VERSION, time.strftime(self._DATE_FORMAT)
         ))
 
     def _layouts(self, keylayout: Keylayout, keyboard: Element) -> Element:
