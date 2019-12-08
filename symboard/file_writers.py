@@ -16,7 +16,7 @@ from datetime import datetime
 
 # Package internal imports.
 from symboard.errors import (
-    WriteException, FileExistsException, ContentsNoneException
+    WriteException, FileExistsException, KeylayoutNoneException
 )
 from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION, DEFAULT_OUTPUT_PATH
@@ -122,11 +122,11 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             a format that can be read and installed by macOS.
 
         Raises:
-            ContentsNoneException: If <keylayout> is None.
+            KeylayoutNoneException: If <keylayout> is None.
         """
 
         if keylayout is None:
-            raise ContentsNoneException()
+            raise KeylayoutNoneException()
 
         prepend = '\n'.join([
             self.version(),
