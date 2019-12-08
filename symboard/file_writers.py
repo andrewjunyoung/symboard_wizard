@@ -131,14 +131,14 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         if keylayout is None:
             raise KeylayoutNoneException()
 
-        prepend = '\n'.join([
+        prepend: str = '\n'.join([
             self._version(),
             '<!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">',
             self._created(),
             self._updated(),
         ])
 
-        keyboard_elem = self._keyboard(keylayout)
+        keyboard_elem: Element = self._keyboard(keylayout)
 
         self._layouts(keylayout, keyboard_elem)
         self._modifier_map(keylayout, keyboard_elem)
@@ -215,7 +215,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             each containing attributes as specified by the attributes in
             <keylayout.layouts>.
         """
-        layouts_elem = sub_element(keyboard, 'layouts')
+        layouts_elem: Element = sub_element(keyboard, 'layouts')
 
         # Create children to the layouts_elem
         for layout_attributes in keylayout.layouts:
@@ -249,7 +249,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         # Create children to the modifier_map_elem
         for key, value in keylayout.key_map_select.items():
-            key_map_select_elem = sub_element(
+            key_map_select_elem: Element = sub_element(
                 modifier_map_elem,
                 'keyMapSelect',
                 {'mapIndex': str(key)},
@@ -277,11 +277,13 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             of these elements contains attributes as specified by the dictionary
             in <keylayout.key_map>.
         """
-        key_map_set_elem = sub_element(keyboard, 'keyMapSet', {'id': 'ANSI'})
+        key_map_set_elem: Element = sub_element(
+            keyboard, 'keyMapSet', {'id': 'ANSI'}
+        )
 
         # Create children to the key_map_set_elem
         for i, key_map in keylayout.key_map.items():
-            key_map_elem = sub_element(
+            key_map_elem: Element = sub_element(
                 key_map_set_elem,
                 'keyMap',
                 {'index': str(i)},

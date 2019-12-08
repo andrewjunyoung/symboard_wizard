@@ -19,7 +19,7 @@ class AnsiKeylayout(Keylayout):
     to produce an installable ansi keyboard.
     """
 
-    _DEFAULT_NAME: str= 'Ansi keyboard'
+    _DEFAULT_NAME: str = 'Ansi keyboard'
     name: str = _DEFAULT_NAME
 
     default_index: int = 6

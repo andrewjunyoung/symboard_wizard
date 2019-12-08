@@ -39,7 +39,7 @@ def main() -> None:
     Symboard with respect to these arguments.
     """
 
-    parser = get_parser()
+    parser: ArgumentParser = get_parser()
     args = parser.parse_args()
 
     orchestrator = Orchestrator()
