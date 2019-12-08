@@ -19,7 +19,7 @@ from symboard.file_writers import (
     DEFAULT_OUTPUT_PATH,
 )
 from symboard.errors import (
-    WriteException, ContentsNoneException, FileExistsException
+    WriteException, KeylayoutNoneException, FileExistsException
 )
 
 
@@ -109,7 +109,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.file_writer = KeylayoutXMLFileWriter()
 
     def test_contents_throws_exception_if_keylayout_is_none(self):
-        with self.assertRaises(ContentsNoneException):
+        with self.assertRaises(KeylayoutNoneException):
             self.file_writer.contents(None)
 
     def test_keyboard_has_correct_properties(self):

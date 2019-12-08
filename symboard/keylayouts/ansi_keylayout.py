@@ -1,6 +1,11 @@
-'''@author: Andrew J. Young
-@description: A class representing the ANSI keylayout.
-'''
+"""
+.. module:: keylayouts
+   :synopsis: A class representing the ANSI keylayout.
+
+.. moduleauthor:: Andrew J. Young
+
+"""
+
 
 # Imports from third party packages.
 from typing import Dict, List, Union
@@ -9,7 +14,12 @@ from typing import Dict, List, Union
 from symboard.keylayouts.keylayouts import Keylayout
 
 
+
 class AnsiKeylayout(Keylayout):
+    """ An implementation of the ansi keyboard layout (keylayout) which is able
+    to produce an installable ansi keyboard.
+    """
+
     DEFAULT_NAME: str= 'Ansi keyboard'
     name: str = DEFAULT_NAME
 
