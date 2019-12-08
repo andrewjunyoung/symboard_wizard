@@ -31,7 +31,7 @@ class FileWriter:
     Any classes which inherit from this class should have a custom
     implementation of «write».
     """
-    def change_postfix(self, path: str, extension: str) -> str:
+    def _change_postfix(self, path: str, extension: str) -> str:
         """ A function which returns a string of the given path which replaces
         the extension with the given extension.
 
@@ -99,7 +99,7 @@ class KeylayoutFileWriter(FileWriter):
         """
 
         # Ensure the file has the «.keylayout» postfix.
-        output_path = self.change_postfix(output_path, 'keylayout')
+        output_path = self._change_postfix(output_path, 'keylayout')
 
         # Assert that the output_path is not already being used by any file
         # or directory.
@@ -132,17 +132,17 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             raise KeylayoutNoneException()
 
         prepend = '\n'.join([
-            self.version(),
+            self._version(),
             '<!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">',
-            self.created(),
-            self.updated(),
+            self._created(),
+            self._updated(),
         ])
 
-        keyboard_elem = self.keyboard(keylayout)
+        keyboard_elem = self._keyboard(keylayout)
 
-        self.layouts(keylayout, keyboard_elem)
-        self.modifier_map(keylayout, keyboard_elem)
-        self.key_map_set(keylayout, keyboard_elem)
+        self._layouts(keylayout, keyboard_elem)
+        self._modifier_map(keylayout, keyboard_elem)
+        self._key_map_set(keylayout, keyboard_elem)
 
         return '\n'.join([
             prepend,
@@ -150,7 +150,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         ])
 
 
-    def keyboard(self, keylayout: Keylayout) -> Element:
+    def _keyboard(self, keylayout: Keylayout) -> Element:
         """
         Args:
             keylayout (Keylayout): The keylayout we want to create a root
@@ -162,14 +162,14 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         """
         return Element('keyboard', keylayout.keyboard_attributes())
 
-    def version(self) -> str:
+    def _version(self) -> str:
         """
         Returns:
             str: A string specifying the version and encoding used by the class.
         """
         return '<?xml version="1.1" encoding="UTF-8"?>'
 
-    def comment(self, msg: str) -> str:
+    def _comment(self, msg: str) -> str:
         """
         Returns:
             str: A string representing an XML comment containing the provided
@@ -177,7 +177,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         """
         return '<!-- {} -->'.format(msg)
 
-    def created(self) -> str:
+    def _created(self) -> str:
         # TODO: Synchronize with «updated»
         """
         Returns:
@@ -185,11 +185,11 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             symboard which is being used, and the date and time at which the
             comment was created.
         """
-        return self.comment('Created by Symboard version {} at {}'.format(
+        return self._comment('Created by Symboard version {} at {}'.format(
             VERSION, datetime.utcnow() # TODO: ISO
         ))
 
-    def updated(self) -> str:
+    def _updated(self) -> str:
         """
         Returns:
             str: A string representing an XML comment containing the version of
@@ -197,11 +197,11 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             comment was created (as this is equal to its last update time).
         """
         # TODO: Synchronize with «created»
-        return self.comment('Last updated by Symboard version {} at {}'.format(
+        return self._comment('Last updated by Symboard version {} at {}'.format(
             VERSION, datetime.utcnow() # TODO: ISO
         ))
 
-    def layouts(self, keylayout: Keylayout, keyboard: Element) -> Element:
+    def _layouts(self, keylayout: Keylayout, keyboard: Element) -> Element:
         """
         Args:
             keylayout (Keylayout): The keylayout to create a «layouts» element
@@ -223,7 +223,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         return layouts_elem
 
-    def modifier_map(self, keylayout: Keylayout, keyboard: Element) -> Element:
+    def _modifier_map(self, keylayout: Keylayout, keyboard: Element) -> Element:
         """
         Args:
             keylayout (Keylayout): The keylayout to create a «layouts» element
@@ -262,7 +262,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         return modifier_map_elem
 
-    def key_map_set(self, keylayout: Keylayout, keyboard: Element) -> Element:
+    def _key_map_set(self, keylayout: Keylayout, keyboard: Element) -> Element:
         """
         Args:
             keylayout (Keylayout): The keylayout to create a «layouts» element

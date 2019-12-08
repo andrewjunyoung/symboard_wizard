@@ -14,14 +14,13 @@ from typing import Dict, List, Union
 from symboard.keylayouts.keylayouts import Keylayout
 
 
-
 class AnsiKeylayout(Keylayout):
     """ An implementation of the ansi keyboard layout (keylayout) which is able
     to produce an installable ansi keyboard.
     """
 
-    DEFAULT_NAME: str= 'Ansi keyboard'
-    name: str = DEFAULT_NAME
+    _DEFAULT_NAME: str= 'Ansi keyboard'
+    name: str = _DEFAULT_NAME
 
     default_index: int = 6
 
@@ -33,14 +32,12 @@ class AnsiKeylayout(Keylayout):
         group: int,
         id_: int,
         maxout: int,
-        name: str = DEFAULT_NAME,
+        name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):
-        self.group = group
-        self.id_ = id_
-        self.maxout = maxout
-        self.name = name
-        self.default_index = default_index
+        super(AnsiKeylayout, self).__init__(
+            group, id_, maxout, name=name, default_index=default_index
+        )
 
     layouts: List[Dict[str, str]] = [
         {
