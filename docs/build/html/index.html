@@ -42,7 +42,7 @@
 <code class="sig-prename descclassname">symboard.settings.</code><code class="sig-name descname">DEFAULT_OUTPUT_PATH</code><em class="property"> = './a.keylayout'</em><a class="headerlink" href="#symboard.settings.DEFAULT_OUTPUT_PATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>If no output path is specified, the keylayout will default to being written
 to the path specified by DEFAULT_OUTPUT_PATH. This string can, but does not need
-to, end in «.keylayout». TODO: Check this last statement.</p>
+to, end in «.keylayout».</p>
 </dd></dl>
 
 <dl class="data">
@@ -56,8 +56,8 @@ to, end in «.keylayout». TODO: Check this last statement.</p>
 <div class="section" id="module-symboard.main">
 <span id="symboard-main"></span><h1>Symboard main<a class="headerlink" href="#module-symboard.main" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="symboard.main.get_parser">
-<code class="sig-prename descclassname">symboard.main.</code><code class="sig-name descname">get_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; argparse.ArgumentParser<a class="headerlink" href="#symboard.main.get_parser" title="Permalink to this definition">¶</a></dt>
+<dt id="symboard.main.get_arg_parser">
+<code class="sig-prename descclassname">symboard.main.</code><code class="sig-name descname">get_arg_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; argparse.ArgumentParser<a class="headerlink" href="#symboard.main.get_arg_parser" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><dl class="simple">
@@ -142,6 +142,12 @@ expected not to be.</p>
 </dd></dl>
 
 <dl class="exception">
+<dt id="symboard.errors.NotAFileException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">NotAFileException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.NotAFileException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that the file to be parsed does not exist or is not a file.</p>
+</dd></dl>
+
+<dl class="exception">
 <dt id="symboard.errors.ParserException">
 <em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">ParserException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.ParserException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates that something has gone wrong when parsing.</p>
@@ -162,35 +168,6 @@ expected not to be.</p>
 <dd><p>The base class for functions which write to the local file system.</p>
 <p>Any classes which inherit from this class should have a custom
 implementation of «write».</p>
-<dl class="method">
-<dt id="symboard.file_writers.FileWriter.change_postfix">
-<code class="sig-name descname">change_postfix</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">extension: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.FileWriter.change_postfix" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function which returns a string of the given path which replaces
-the extension with the given extension.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em>) – The path which we want to check the extension of, and
-change if it mismatches with &lt;extension&gt;. This path does not
-need to include an extension.</p></li>
-<li><p><strong>extension</strong> (<em>str</em>) – The extension which we want the path to have.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The full path, as provided, but with the extension specified by</dt><dd><p>&lt;extension&gt;. If the provided path had an extension already,
-then this extenison is replaced. Otherwise, the provided
-extension is appended to the path.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="method">
 <dt id="symboard.file_writers.FileWriter.write">
 <code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">object_</em>, <em class="sig-param">output_path: str = './a.keylayout'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#symboard.file_writers.FileWriter.write" title="Permalink to this definition">¶</a></dt>
@@ -260,20 +237,6 @@ Defaults to DEFAULT_OUTPUT_PATH.</p></li>
 <dt id="symboard.file_writers.KeylayoutXMLFileWriter">
 <em class="property">class </em><code class="sig-prename descclassname">symboard.file_writers.</code><code class="sig-name descname">KeylayoutXMLFileWriter</code><a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.comment">
-<code class="sig-name descname">comment</code><span class="sig-paren">(</span><em class="sig-param">msg: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.comment" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A string representing an XML comment containing the provided
-message.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="symboard.file_writers.KeylayoutXMLFileWriter.contents">
 <code class="sig-name descname">contents</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.contents" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
@@ -289,144 +252,6 @@ a format that can be read and installed by macOS.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="#symboard.errors.KeylayoutNoneException" title="symboard.errors.KeylayoutNoneException"><strong>KeylayoutNoneException</strong></a> – If &lt;keylayout&gt; is None.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.created">
-<code class="sig-name descname">created</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.created" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A string representing an XML comment containing the version of
-symboard which is being used, and the date and time at which the
-comment was created.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.key_map_set">
-<code class="sig-name descname">key_map_set</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.key_map_set" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
-from.</p></li>
-<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
-<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
-containing the tag «keyMapSet». It has children with the tag
-«keyMap», which themselves have children with the tag «keys». Each
-of these elements contains attributes as specified by the dictionary
-in &lt;keylayout.key_map&gt;.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Element</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.keyboard">
-<code class="sig-name descname">keyboard</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.keyboard" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout we want to create a root
-element for.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>An XML tag with the tag ‘keyboard’, and the attributes of</dt><dd><p>&lt;keylayout&gt;. This element can have children added to it later.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Element</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.layouts">
-<code class="sig-name descname">layouts</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.layouts" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
-from.</p></li>
-<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
-<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
-containing the tag «layouts». It has children with the tag «layout»,
-each containing attributes as specified by the attributes in
-&lt;keylayout.layouts&gt;.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Element</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.modifier_map">
-<code class="sig-name descname">modifier_map</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.modifier_map" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
-from.</p></li>
-<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
-<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
-containing the tag «modiferMap». It has children with the tag
-«keyMapSelect», which themselves have children with the tag
-«modifier». Each of these elements contains attributes as specified
-by the dictionary in &lt;keylayout.key_map_select&gt;.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Element</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.updated">
-<code class="sig-name descname">updated</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.updated" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A string representing an XML comment containing the version of
-symboard which is being used, and the date and time at which the
-comment was created (as this is equal to its last update time).</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="symboard.file_writers.KeylayoutXMLFileWriter.version">
-<code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.version" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A string specifying the version and encoding used by the class.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
