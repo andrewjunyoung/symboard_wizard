@@ -13,7 +13,7 @@ from typing import Dict
 from os.path import isfile
 
 # Package internal imports
-from symboard.errors import ParserException
+from symboard.errors import ParserException, NotAFileException
 
 
 class Parser:
@@ -84,11 +84,9 @@ class YamlFileParser(FileParser):
             some other error occurs.
         """
 
-        # TODO: Separate the 2 error types this file produces.
-
         try:
             if not isfile(file_path):
-                raise ParserException('''Parser error: The path «{}» does not
+                raise NotAFileException('''Parser error: The path «{}» does not
                 exist or is not a file.'''.format(file_path))
 
             with open(file_path, 'r') as stream:

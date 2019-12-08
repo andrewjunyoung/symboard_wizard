@@ -25,17 +25,29 @@ class Keylayout:
         id_ (int): The unique ID number for the keyboard, which should be some
             random number in the range [..].
         name (str): The name of the keyboard. Defaults to <_DEFAULT_NAME>
-        maxout (int): Todo
-        default_index (int): The default index for the keyboard.
+        maxout (int): The max number of unicode characters which can be output
+            at a time. Defaults to 1.
+        default_index (int): The default index for the keyboard. The default
+            index is used when some key combination is being pressed that meets
+            none of the states defined in key_map_select.
 
-        layouts (list): A list containing the layouts of the keylayout.
+        layouts (list): A list containing the attributes of each layout of the
+            keyboard. The attributes provided are:
+                - first (index)
+                - last  (index)
+                - mapSet (the key map set being used. For us, this is always the
+                  class of the keyboard.
+                - modifiers (The modifier set being used. For us, this is always
+                  set to 'Modifiers'.
+
+            You generally don't want or need to edit these attributes. More
+            comprehensive information about what they do can be found online.
         key_map_select (Dict[int, str]): A list containing the states of the
             keyboard, and the string of the keys which will cause that state to
             be entered if they are pressed.
         key_map (Dict[int, Dict[int, str]]): A dictionary containing the
             mappings of all inputs and outputs of the keyboard, for all states.
     """
-    # TODO More info on attributes.
 
     # Universal defaults
     _DEFAULT_NAME: str = 'Untitled'
@@ -48,7 +60,7 @@ class Keylayout:
     default_index: int = 0
 
     # These settings are configured by the child classes of «Keylayout».
-    layouts: list = [] # TODO: fix type signature.
+    layouts: List[Dict[str, str]] = []
     key_map_select: Dict[int, str] = {}
     key_map: Dict[int, Dict[int, str]] = {}
 

@@ -10,17 +10,16 @@
 from symboard.orchestrator import Orchestrator
 from argparse import ArgumentParser
 
-def get_parser() -> ArgumentParser:
+def get_arg_parser() -> ArgumentParser:
     """
     Returns:
         ArgumentParser: An ArgumentParser instance which will parse the
             arguments provided to Symboard when executed from the command line.
     """
 
-    # TODO: Should be in factory
-    parser = ArgumentParser(description='''
-    Create a ".keylayout" file from a ".symboard" file.
-    ''')
+    parser = ArgumentParser(
+        description='Create a keylayout file from a symboard file.'
+    )
 
     parser.add_argument('input_file_path', type=str, nargs=1,
             help='''The file path of the .symboard file which you want to make a
@@ -39,8 +38,8 @@ def main() -> None:
     Symboard with respect to these arguments.
     """
 
-    parser: ArgumentParser = get_parser()
-    args = parser.parse_args()
+    arg_parser: ArgumentParser = get_arg_parser()
+    args = arg_parser.parse_args()
 
     orchestrator = Orchestrator()
     orchestrator.run(args.input_file_path[0], args.output_file_path[0])

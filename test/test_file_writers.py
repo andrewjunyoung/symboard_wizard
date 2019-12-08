@@ -13,14 +13,14 @@ import os.path
 # Package internal imports.
 from symboard.settings import VERSION
 from symboard.file_writers import (
-    FileWriter,
-    KeylayoutFileWriter,
-    KeylayoutXMLFileWriter,
-    DEFAULT_OUTPUT_PATH,
-)
+        FileWriter,
+        KeylayoutFileWriter,
+        KeylayoutXMLFileWriter,
+        DEFAULT_OUTPUT_PATH,
+        )
 from symboard.errors import (
-    WriteException, KeylayoutNoneException, FileExistsException
-)
+        WriteException, KeylayoutNoneException, FileExistsException
+        )
 
 
 file_writers_path = 'symboard.file_writers'
@@ -81,7 +81,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
 
         with patch('builtins.open', mock_open(read_data='data')) as open_:
             with self.assertRaises(FileExistsException):
-                 self.file_writer.write(self.mock, self.test_output_path)
+                self.file_writer.write(self.mock, self.test_output_path)
 
     @patch(file_writers_path + '.exists')
     def test_write_throws_exception_if_some_error_occurs(self, mock_exists):
@@ -139,28 +139,32 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         expected = self._comment(msg)
         self.assertEqual(expected, self.file_writer._comment(msg))
 
-    @patch(file_writers_path + '.datetime')
-    def test_created(self, datetime):
-        utcnow_return_value = 'NOW'
-        datetime.utcnow.return_value = utcnow_return_value
+    def test_created(self):
+        expected_time = 'NOW'
+
+        time = Mock()
+        time.strftime = MagicMock(return_value=expected_time)
+
         self.assertEqual(
             self._comment('Created by Symboard version {} at {}'.format(
                 VERSION,
-                utcnow_return_value,
+                expected_time,
             )),
-            self.file_writer._created()
+            self.file_writer._created(time)
         )
 
-    @patch(file_writers_path + '.datetime')
-    def test_updated(self, datetime):
-        utcnow_return_value = 'NOW'
-        datetime.utcnow.return_value = utcnow_return_value
+    def test_updated(self):
+        expected_time = 'NOW'
+
+        time = Mock()
+        time.strftime = MagicMock(return_value=expected_time)
+
         self.assertEqual(
             self._comment('Last updated by Symboard version {} at {}'.format(
                 VERSION,
-                utcnow_return_value,
+                expected_time,
             )),
-            self.file_writer._updated()
+            self.file_writer._updated(time)
         )
 
     def test_layouts_creates_a_well_formed_sub_element(self):

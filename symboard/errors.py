@@ -34,6 +34,12 @@ class FileExistsException(WriteException):
     pass
 
 
+class NotAFileException(ParserException):
+    """ Indicates that the file to be parsed does not exist or is not a file.
+    """
+    pass
+
+
 class NoneException(BaseSymboardException):
     """ Indicates that one of the variables in the program is None, but was
     expected not to be.

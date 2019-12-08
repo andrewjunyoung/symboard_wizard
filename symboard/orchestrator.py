@@ -32,5 +32,6 @@ class Orchestrator:
 
         # Write the keylayout to a file
         symboard_= KeylayoutFileWriter()
-        symboard_.write(output_path)
+        # TODO: Fix
+        #symboard_.write(Keyl, output_path)
 

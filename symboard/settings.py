@@ -15,6 +15,6 @@ VERSION: str = '0.1'
 DEFAULT_OUTPUT_PATH: str = './a.keylayout'
 """ If no output path is specified, the keylayout will default to being written
 to the path specified by DEFAULT_OUTPUT_PATH. This string can, but does not need
-to, end in «.keylayout». TODO: Check this last statement.
+to, end in «.keylayout».
 """
 
