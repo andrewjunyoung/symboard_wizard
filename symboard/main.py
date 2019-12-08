@@ -8,6 +8,12 @@ from symboard.orchestrator import Orchestrator
 from argparse import ArgumentParser
 
 def get_parser() -> ArgumentParser:
+    """
+    Returns:
+        ArgumentParser: An ArgumentParser instance which will parse the
+            arguments provided to Symboard when executed from the command line.
+    """
+
     # TODO: Should be in factory
     parser = ArgumentParser(description='''
     Create a ".keylayout" file from a ".symboard" file.
@@ -25,11 +31,17 @@ def get_parser() -> ArgumentParser:
 
 
 def main() -> None:
+    """ The main method (entry point) for symboard. This function parses the
+    input arguments, and calls the orchestrator to handle the execution of
+    Symboard with respect to these arguments.
+    """
+
     parser = get_parser()
     args = parser.parse_args()
 
     orchestrator = Orchestrator()
     orchestrator.run(args.input_file_path[0], args.output_file_path[0])
+
 
 if __name__ == '__main__':
     # Parse command line args.
