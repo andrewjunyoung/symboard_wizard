@@ -1,7 +1,10 @@
 """
-@author: Andrew J. Young
-@description: This file contains the definitions of classes which write to the
-local file system, and the methods they call in order to do so.
+.. module:: file_writers
+   :synopsis: This file contains the definitions of classes which write to the
+   local file system, and the methods they call in order to do so.
+
+.. moduleauthor:: Andrew J. Young
+
 """
 
 # Imports from third party packages.

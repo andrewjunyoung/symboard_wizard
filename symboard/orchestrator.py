@@ -1,8 +1,11 @@
-'''
-@author: Andrew J. Young
-@description: A file describing the orchestrator, a class which manages the
-              execution and program flow of the Symboard compiler.
-'''
+"""
+.. module:: orchestrator
+   :synopsis: A file describing the orchestrator, a class which manages the
+   execution and program flow of the Symboard compiler.
+
+.. moduleauthor:: Andrew J. Young
+
+"""
 
 from symboard.file_writers import KeylayoutFileWriter
 from symboard.parsers import YamlFileParser

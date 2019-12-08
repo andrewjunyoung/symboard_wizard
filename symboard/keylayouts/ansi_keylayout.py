@@ -1,6 +1,9 @@
 """
-@author: Andrew J. Young
-@description: A class representing the ANSI keylayout.
+.. module:: keylayouts
+   :synopsis: A class representing the ANSI keylayout.
+
+.. moduleauthor:: Andrew J. Young
+
 """
 
 

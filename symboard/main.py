@@ -1,8 +1,11 @@
-'''
-@author: Andrew J. Young
-@description: The entry point for the symboard executable when run on the
-command line.
-'''
+"""
+.. module:: main
+   :synopsis: The entry point for the symboard executable when run on the command
+   line.
+
+.. moduleauthor:: Andrew J. Young
+
+"""
 
 from symboard.orchestrator import Orchestrator
 from argparse import ArgumentParser

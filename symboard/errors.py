@@ -1,6 +1,9 @@
-"""0
-@author Andrew J. Young
-@description The custom error classes used by symboard.
+"""
+.. module:: errors
+   :synopsis: The custom error classes used by symboard.
+
+.. moduleauthor Andrew J. Young
+
 """
 
 class BaseSymboardException(BaseException):

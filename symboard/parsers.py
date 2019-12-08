@@ -1,9 +1,11 @@
 """
-@author: Andrew J. Young
-@description: A collection of parsers which are designed not to be used on their
-own, but instead to be inherited from and extended from.
-"""
+.. module:: parsers
+   :synopsis: A collection of parsers which are designed not to be used on their
+   own, but instead to be inherited from and extended from.
 
+.. moduleauthor:: Andrew J. Young
+
+"""
 
 # Imports from third party packages.
 from yaml import safe_load

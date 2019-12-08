@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Symboard’s documentation! &#8212; Symboard 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-symboard-s-documentation">
+<h1>Welcome to Symboard’s documentation!<a class="headerlink" href="#welcome-to-symboard-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-symboard.settings">
+<span id="symboard-settings"></span><h1>Symboard settings<a class="headerlink" href="#module-symboard.settings" title="Permalink to this headline">¶</a></h1>
+<dl class="data">
+<dt id="symboard.settings.DEFAULT_OUTPUT_PATH">
+<code class="sig-prename descclassname">symboard.settings.</code><code class="sig-name descname">DEFAULT_OUTPUT_PATH</code><em class="property"> = './a.keylayout'</em><a class="headerlink" href="#symboard.settings.DEFAULT_OUTPUT_PATH" title="Permalink to this definition">¶</a></dt>
+<dd><p>If no output path is specified, the keylayout will default to being written
+to the path specified by DEFAULT_OUTPUT_PATH. This string can, but does not need
+to, end in «.keylayout». TODO: Check this last statement.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="symboard.settings.VERSION">
+<code class="sig-prename descclassname">symboard.settings.</code><code class="sig-name descname">VERSION</code><em class="property"> = '0.1'</em><a class="headerlink" href="#symboard.settings.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current version of symboard being used, equivalent to a string
+&lt;major_version&gt;.&lt;minor_version&gt;</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.main">
+<span id="symboard-main"></span><h1>Symboard main<a class="headerlink" href="#module-symboard.main" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="symboard.main.get_parser">
+<code class="sig-prename descclassname">symboard.main.</code><code class="sig-name descname">get_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; argparse.ArgumentParser<a class="headerlink" href="#symboard.main.get_parser" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>An ArgumentParser instance which will parse the</dt><dd><p>arguments provided to Symboard when executed from the command line.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ArgumentParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="symboard.main.main">
+<code class="sig-prename descclassname">symboard.main.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#symboard.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main method (entry point) for symboard. This function parses the
+input arguments, and calls the orchestrator to handle the execution of
+Symboard with respect to these arguments.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.orchestrator">
+<span id="symboard-orchestrator"></span><h1>Symboard orchestrator<a class="headerlink" href="#module-symboard.orchestrator" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="symboard.orchestrator.Orchestrator">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.orchestrator.</code><code class="sig-name descname">Orchestrator</code><a class="headerlink" href="#symboard.orchestrator.Orchestrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class which defines one method («run»). This method defines and
+controls the execution of Symboard given the parameters with which Symboard
+was called.</p>
+<dl class="method">
+<dt id="symboard.orchestrator.Orchestrator.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">input_path: str</em>, <em class="sig-param">output_path: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#symboard.orchestrator.Orchestrator.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method defines and controls the execution of Symboard given the
+parameters with which Symboard was called. it will parse the given input
+file, create a keylayout according to that spec, and write this
+keylayout as an XML file to the specified output path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> (<em>str</em>) – The path to the file containing the specification
+from which to create a keylayout.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – The path to which the output keylayout is to be
+written.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.errors">
+<span id="symboard-errors"></span><h1>Symboard errors<a class="headerlink" href="#module-symboard.errors" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-errors"></span><dl class="exception">
+<dt id="symboard.errors.BaseSymboardException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">BaseSymboardException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.BaseSymboardException" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic exception which can be thrown when some other exception does
+not accurately describe the problem, and should be inherited from by all
+other exceptions used by the Symboard program.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="symboard.errors.FileExistsException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">FileExistsException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.FileExistsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that the file to be written to already exists, and so cannot
+be written to.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="symboard.errors.KeylayoutNoneException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">KeylayoutNoneException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.KeylayoutNoneException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates a keylayout is None, but was expected not to be.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="symboard.errors.NoneException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">NoneException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.NoneException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that one of the variables in the program is None, but was
+expected not to be.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="symboard.errors.ParserException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">ParserException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.ParserException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that something has gone wrong when parsing.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="symboard.errors.WriteException">
+<em class="property">exception </em><code class="sig-prename descclassname">symboard.errors.</code><code class="sig-name descname">WriteException</code><span class="sig-paren">(</span><em class="sig-param">msg: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.errors.WriteException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that something has gone wrong when writing to file.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.file_writers">
+<span id="symboard-file-writers"></span><h1>Symboard file_writers<a class="headerlink" href="#module-symboard.file_writers" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="symboard.file_writers.FileWriter">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.file_writers.</code><code class="sig-name descname">FileWriter</code><a class="headerlink" href="#symboard.file_writers.FileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for functions which write to the local file system.</p>
+<p>Any classes which inherit from this class should have a custom
+implementation of «write».</p>
+<dl class="method">
+<dt id="symboard.file_writers.FileWriter.change_postfix">
+<code class="sig-name descname">change_postfix</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">extension: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.FileWriter.change_postfix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function which returns a string of the given path which replaces
+the extension with the given extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – The path which we want to check the extension of, and
+change if it mismatches with &lt;extension&gt;. This path does not
+need to include an extension.</p></li>
+<li><p><strong>extension</strong> (<em>str</em>) – The extension which we want the path to have.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The full path, as provided, but with the extension specified by</dt><dd><p>&lt;extension&gt;. If the provided path had an extension already,
+then this extenison is replaced. Otherwise, the provided
+extension is appended to the path.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.FileWriter.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">object_</em>, <em class="sig-param">output_path: str = './a.keylayout'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#symboard.file_writers.FileWriter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of writing to file, which should be
+implemented by the children of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_</strong> (<em>object</em>) – The object we want to write data from.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – The path of the file we want to write to.
+Defaults to DEFAULT_OUTPUT_PATH.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symboard.file_writers.KeylayoutFileWriter">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.file_writers.</code><code class="sig-name descname">KeylayoutFileWriter</code><a class="headerlink" href="#symboard.file_writers.KeylayoutFileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="symboard.file_writers.KeylayoutFileWriter.contents">
+<code class="sig-name descname">contents</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutFileWriter.contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of getting the contents of a keylayout,
+which should be implemented by the children of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout we want to get the contents of.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>’’</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutFileWriter.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">output_path: str = './a.keylayout'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#symboard.file_writers.KeylayoutFileWriter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an output file path, tries to create a file in that path using
+the contents of &lt;keylayout&gt;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout we want to write data from.</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – The path of the file we want to write to.
+Defaults to DEFAULT_OUTPUT_PATH.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#symboard.errors.FileExistsException" title="symboard.errors.FileExistsException"><strong>FileExistsException</strong></a> – If &lt;output_path&gt; already exists.</p></li>
+<li><p><a class="reference internal" href="#symboard.errors.WriteException" title="symboard.errors.WriteException"><strong>WriteException</strong></a> – If any error occurs while trying to create the</p></li>
+<li><p><strong>contents of &lt;keylayout&gt;</strong><strong>, or </strong><strong>to write the contents to file.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.file_writers.</code><code class="sig-name descname">KeylayoutXMLFileWriter</code><a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.comment">
+<code class="sig-name descname">comment</code><span class="sig-paren">(</span><em class="sig-param">msg: str</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.comment" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string representing an XML comment containing the provided
+message.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.contents">
+<code class="sig-name descname">contents</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.contents" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout we want to get the contents of.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The (formatted) contents of &lt;keylayout&gt;, in XML version 1.1, in
+a format that can be read and installed by macOS.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#symboard.errors.KeylayoutNoneException" title="symboard.errors.KeylayoutNoneException"><strong>KeylayoutNoneException</strong></a> – If &lt;keylayout&gt; is None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.created">
+<code class="sig-name descname">created</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.created" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string representing an XML comment containing the version of
+symboard which is being used, and the date and time at which the
+comment was created.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.key_map_set">
+<code class="sig-name descname">key_map_set</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.key_map_set" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
+from.</p></li>
+<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
+<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
+containing the tag «keyMapSet». It has children with the tag
+«keyMap», which themselves have children with the tag «keys». Each
+of these elements contains attributes as specified by the dictionary
+in &lt;keylayout.key_map&gt;.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.keyboard">
+<code class="sig-name descname">keyboard</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.keyboard" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout we want to create a root
+element for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>An XML tag with the tag ‘keyboard’, and the attributes of</dt><dd><p>&lt;keylayout&gt;. This element can have children added to it later.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.layouts">
+<code class="sig-name descname">layouts</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.layouts" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
+from.</p></li>
+<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
+<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
+containing the tag «layouts». It has children with the tag «layout»,
+each containing attributes as specified by the attributes in
+&lt;keylayout.layouts&gt;.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.modifier_map">
+<code class="sig-name descname">modifier_map</code><span class="sig-paren">(</span><em class="sig-param">keylayout: symboard.keylayouts.keylayouts.Keylayout</em>, <em class="sig-param">keyboard: lxml.etree.Element</em><span class="sig-paren">)</span> &#x2192; lxml.etree.Element<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.modifier_map" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keylayout</strong> (<em>Keylayout</em>) – The keylayout to create a «layouts» element
+from.</p></li>
+<li><p><strong>keyboard</strong> (<em>Element</em>) – The XML Element which is to be the parent of the</p></li>
+<li><p><strong>created «layouts» element.</strong> (<em>newly</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An element which has been added as a child to &lt;keyboard&gt;,
+containing the tag «modiferMap». It has children with the tag
+«keyMapSelect», which themselves have children with the tag
+«modifier». Each of these elements contains attributes as specified
+by the dictionary in &lt;keylayout.key_map_select&gt;.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.updated">
+<code class="sig-name descname">updated</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.updated" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string representing an XML comment containing the version of
+symboard which is being used, and the date and time at which the
+comment was created (as this is equal to its last update time).</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="symboard.file_writers.KeylayoutXMLFileWriter.version">
+<code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#symboard.file_writers.KeylayoutXMLFileWriter.version" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A string specifying the version and encoding used by the class.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.parsers">
+<span id="symboard-parsers"></span><h1>Symboard parsers<a class="headerlink" href="#module-symboard.parsers" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="symboard.parsers.FileParser">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.parsers.</code><code class="sig-name descname">FileParser</code><a class="headerlink" href="#symboard.parsers.FileParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of a file parser which should be inherited
+from. It contains one method, «parse», which should be overwritten by
+children of this class.</p>
+<dl class="method">
+<dt id="symboard.parsers.FileParser.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">file_path: str</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.parsers.FileParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of file parsing which should be
+overwritten by children of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – The path of the file to parse.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symboard.parsers.Parser">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.parsers.</code><code class="sig-name descname">Parser</code><a class="headerlink" href="#symboard.parsers.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of a parser which should be inherited from. It
+contains one method («parse») which should be overwritten by children of
+this class.</p>
+<dl class="method">
+<dt id="symboard.parsers.Parser.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.parsers.Parser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of parsing which should be overwritten by
+children of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>content</strong> (<em>object</em>) – The content to parse.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symboard.parsers.StringParser">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.parsers.</code><code class="sig-name descname">StringParser</code><a class="headerlink" href="#symboard.parsers.StringParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of a string parser which should be inherited
+from. It contains one method, «parse», which should be overwritten by
+children of this class.</p>
+<dl class="method">
+<dt id="symboard.parsers.StringParser.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">content: str</em><span class="sig-paren">)</span><a class="headerlink" href="#symboard.parsers.StringParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic implementation of string parsing which should be
+overwritten by children of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>content</strong> (<em>str</em>) – The string to parse.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="symboard.parsers.YamlFileParser">
+<em class="property">class </em><code class="sig-prename descclassname">symboard.parsers.</code><code class="sig-name descname">YamlFileParser</code><a class="headerlink" href="#symboard.parsers.YamlFileParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A file parser which parses yaml files, using the method «parse» as the
+exposed API function for parsing.</p>
+<dl class="method">
+<dt id="symboard.parsers.YamlFileParser.parse">
+<em class="property">static </em><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">file_path: str</em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#symboard.parsers.YamlFileParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation of parsing yaml files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – The path of the yaml file to parse.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A dictionary containing the parsed data contained by the</dt><dd><p>specified yaml file.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#symboard.errors.ParserException" title="symboard.errors.ParserException"><strong>ParserException</strong></a> – If the path does not exist or is not a file; or if</p></li>
+<li><p><strong>some other error occurs.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-symboard.keylayouts">
+<span id="symboard-keylayouts"></span><h1>Symboard keylayouts<a class="headerlink" href="#module-symboard.keylayouts" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Symboard</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Andrew J. Young.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,7 +1,10 @@
 """
-@author: Andrew J. Young
-@description: A series of classes which describe classes about keyboards which
-are intended not be used on their own, but instead to be inherited from.
+.. module:: keylayouts
+   :synopsis: A series of classes which describe classes about keyboards which
+   are intended not be used on their own, but instead to be inherited from.
+
+.. moduleauthor:: Andrew J. Young
+
 """
 
 
