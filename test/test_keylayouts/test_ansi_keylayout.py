@@ -71,10 +71,12 @@ class TestAnsiKeyboardIntegration(TestCase):
         '''
         !!! WARNING: This function *will* write to disk !!!
         '''
+        # Setup.
         mock_datetime = Mock()
         datetime.now = MagicMock(return_value=mock_datetime)
         mock_datetime.strftime.return_value = '2019-12-07 21:54:51 (UTC)'
 
+        # Execution.
         self.keylayout_xml_file_writer.write(
             self.ansi_keylayout, self.OUTPUT_PATH
         )
@@ -91,6 +93,7 @@ class TestAnsiKeyboardIntegration(TestCase):
         with open(self.EXPECTED_ANSI_KEYLAYOUT_PATH, 'r') as file_:
             expected = file_.read()
 
+        # Assertion.
         self.assertEqual(expected, actual)
 
 
