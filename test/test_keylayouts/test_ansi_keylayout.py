@@ -66,13 +66,15 @@ class TestAnsiKeyboardIntegration(TestCase):
 
         self.maxDiff = None
 
+        self.mock = Mock()
+
     @patch(file_writers_path + '.datetime')
     def test_output_is_as_expected(self, datetime):
         '''
         !!! WARNING: This function *will* write to disk !!!
         '''
         # Setup.
-        mock_datetime = Mock()
+        mock_datetime = self.mock
         datetime.now = MagicMock(return_value=mock_datetime)
         mock_datetime.strftime.return_value = '2019-12-07 21:54:51 (UTC)'
 

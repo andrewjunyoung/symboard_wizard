@@ -116,7 +116,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         expected_tag = 'keyboard'
         expected_attributes = {'test_attr': 'test_value'}
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.keyboard_attributes = MagicMock(
             return_value=expected_attributes
         )
@@ -142,7 +142,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def test_created(self):
         expected_time = 'NOW'
 
-        time = Mock()
+        time = self.mock
         time.strftime = MagicMock(return_value=expected_time)
 
         self.assertEqual(
@@ -156,7 +156,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def test_updated(self):
         expected_time = 'NOW'
 
-        time = Mock()
+        time = self.mock
         time.strftime = MagicMock(return_value=expected_time)
 
         self.assertEqual(
@@ -177,7 +177,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.layouts = MagicMock(return_value=[])
 
 
@@ -196,7 +196,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.key_map_select = MagicMock(return_value=[])
         mock_keylayout.default_index = EXPECTED_DEFAULT_INDEX
 
@@ -222,7 +222,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.key_map = MagicMock(return_value=[])
 
 
