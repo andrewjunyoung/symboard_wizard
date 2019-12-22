@@ -6,7 +6,7 @@
 # Imports from third party packages
 from unittest import TestCase
 from unittest import main as unittest_main
-from unittest.mock import patch
+from unittest.mock import patch, Mock, MagicMock
 from os import remove
 
 # Package internal imports
@@ -66,13 +66,19 @@ class TestAnsiKeyboardIntegration(TestCase):
 
         self.maxDiff = None
 
+        self.mock = Mock()
+
     @patch(file_writers_path + '.datetime')
     def test_output_is_as_expected(self, datetime):
         '''
         !!! WARNING: This function *will* write to disk !!!
         '''
-        datetime.utcnow.return_value = '2019-12-07 21:54:51 (UTC)'
+        # Setup.
+        mock_datetime = self.mock
+        datetime.now = MagicMock(return_value=mock_datetime)
+        mock_datetime.strftime.return_value = '2019-12-07 21:54:51 (UTC)'
 
+        # Execution.
         self.keylayout_xml_file_writer.write(
             self.ansi_keylayout, self.OUTPUT_PATH
         )
@@ -89,6 +95,7 @@ class TestAnsiKeyboardIntegration(TestCase):
         with open(self.EXPECTED_ANSI_KEYLAYOUT_PATH, 'r') as file_:
             expected = file_.read()
 
+        # Assertion.
         self.assertEqual(expected, actual)
 
 

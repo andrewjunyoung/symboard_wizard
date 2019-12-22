@@ -13,14 +13,14 @@ import os.path
 # Package internal imports.
 from symboard.settings import VERSION
 from symboard.file_writers import (
-    FileWriter,
-    KeylayoutFileWriter,
-    KeylayoutXMLFileWriter,
-    DEFAULT_OUTPUT_PATH,
-)
+        FileWriter,
+        KeylayoutFileWriter,
+        KeylayoutXMLFileWriter,
+        DEFAULT_OUTPUT_PATH,
+        )
 from symboard.errors import (
-    WriteException, ContentsNoneException, FileExistsException
-)
+        WriteException, KeylayoutNoneException, FileExistsException
+        )
 
 
 file_writers_path = 'symboard.file_writers'
@@ -36,7 +36,7 @@ class TestFileWriter(TestCase):
         test_path = self.test_prefix
         expected = self.test_prefix + '.' + self.test_postfix
 
-        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+        actual = self.file_writer._change_postfix(test_path, self.test_postfix)
 
         self.assertEqual(expected, actual)
 
@@ -44,7 +44,7 @@ class TestFileWriter(TestCase):
         test_path = self.test_prefix + '.wrong_postfix'
         expected = self.test_prefix + '.' + self.test_postfix
 
-        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+        actual = self.file_writer._change_postfix(test_path, self.test_postfix)
 
         self.assertEqual(expected, actual)
 
@@ -52,7 +52,7 @@ class TestFileWriter(TestCase):
         test_path = self.test_prefix + '.' + self.test_postfix
         expected = test_path
 
-        actual = self.file_writer.change_postfix(test_path, self.test_postfix)
+        actual = self.file_writer._change_postfix(test_path, self.test_postfix)
 
         self.assertEqual(expected, actual)
 
@@ -81,7 +81,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
 
         with patch('builtins.open', mock_open(read_data='data')) as open_:
             with self.assertRaises(FileExistsException):
-                 self.file_writer.write(self.mock, self.test_output_path)
+                self.file_writer.write(self.mock, self.test_output_path)
 
     @patch(file_writers_path + '.exists')
     def test_write_throws_exception_if_some_error_occurs(self, mock_exists):
@@ -109,21 +109,19 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.file_writer = KeylayoutXMLFileWriter()
 
     def test_contents_throws_exception_if_keylayout_is_none(self):
-        with self.assertRaises(ContentsNoneException):
+        with self.assertRaises(KeylayoutNoneException):
             self.file_writer.contents(None)
 
     def test_keyboard_has_correct_properties(self):
         expected_tag = 'keyboard'
         expected_attributes = {'test_attr': 'test_value'}
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.keyboard_attributes = MagicMock(
             return_value=expected_attributes
         )
 
-        element = self.file_writer.keyboard(mock_keylayout)
-
-        # Assert has name 'keyboard'
+        element = self.file_writer._keyboard(mock_keylayout)
 
         self.assertEqual(expected_tag, element.tag)
         self.assertEqual(expected_attributes, element.attrib)
@@ -134,35 +132,39 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def test_comment_empty_string(self):
         msg = ''
         expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer.comment(msg))
+        self.assertEqual(expected, self.file_writer._comment(msg))
 
     def test_comment_test_string(self):
         msg = 'test'
         expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer.comment(msg))
+        self.assertEqual(expected, self.file_writer._comment(msg))
 
-    @patch(file_writers_path + '.datetime')
-    def test_created(self, datetime):
-        utcnow_return_value = 'NOW'
-        datetime.utcnow.return_value = utcnow_return_value
+    def test_created(self):
+        expected_time = 'NOW'
+
+        time = self.mock
+        time.strftime = MagicMock(return_value=expected_time)
+
         self.assertEqual(
             self._comment('Created by Symboard version {} at {}'.format(
                 VERSION,
-                utcnow_return_value,
+                expected_time,
             )),
-            self.file_writer.created()
+            self.file_writer._created(time)
         )
 
-    @patch(file_writers_path + '.datetime')
-    def test_updated(self, datetime):
-        utcnow_return_value = 'NOW'
-        datetime.utcnow.return_value = utcnow_return_value
+    def test_updated(self):
+        expected_time = 'NOW'
+
+        time = self.mock
+        time.strftime = MagicMock(return_value=expected_time)
+
         self.assertEqual(
             self._comment('Last updated by Symboard version {} at {}'.format(
                 VERSION,
-                utcnow_return_value,
+                expected_time,
             )),
-            self.file_writer.updated()
+            self.file_writer._updated(time)
         )
 
     def test_layouts_creates_a_well_formed_sub_element(self):
@@ -175,11 +177,11 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.layouts = MagicMock(return_value=[])
 
 
-        child = self.file_writer.layouts(mock_keylayout, parent)
+        child = self.file_writer._layouts(mock_keylayout, parent)
 
         self.assertEqual([child], list(parent))
         self.assertEqual(expected_tag, child.tag)
@@ -194,7 +196,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.key_map_select = MagicMock(return_value=[])
         mock_keylayout.default_index = EXPECTED_DEFAULT_INDEX
 
@@ -204,7 +206,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
             'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
         }
 
-        child = self.file_writer.modifier_map(mock_keylayout, parent)
+        child = self.file_writer._modifier_map(mock_keylayout, parent)
 
         self.assertEqual([child], list(parent))
         self.assertEqual(expected_tag, child.tag)
@@ -220,11 +222,11 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = Mock()
+        mock_keylayout = self.mock
         mock_keylayout.key_map = MagicMock(return_value=[])
 
 
-        child = self.file_writer.key_map_set(mock_keylayout, parent)
+        child = self.file_writer._key_map_set(mock_keylayout, parent)
 
         self.assertEqual([child], list(parent))
         self.assertEqual(expected_tag, child.tag)
@@ -241,7 +243,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer.layouts(mock_keylayout, root)
+        modifier_map_elem = self.file_writer._layouts(mock_keylayout, root)
 
         grandchildren = root.findall('./layouts/layout')
         grandchild = grandchildren[0]
@@ -267,7 +269,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer.modifier_map(mock_keylayout, root)
+        modifier_map_elem = self.file_writer._modifier_map(mock_keylayout, root)
 
         key_map_select_elems = root.findall('./modifierMap/keyMapSelect')
         modifier_elems = root.findall('./modifierMap/keyMapSelect/modifier')
@@ -310,7 +312,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
-        key_map_elem = self.file_writer.key_map_set(mock_keylayout, root)
+        key_map_elem = self.file_writer._key_map_set(mock_keylayout, root)
 
         key_map_elems = root.findall('./keyMapSet/keyMap')
         key_elems = root.findall('./keyMapSet/keyMap/key')
