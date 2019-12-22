@@ -9,7 +9,7 @@
 
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
-from symboard.keylayouts.builders import get_keylayout_from_spec
+from symboard.keylayouts.builders import keylayout_from_spec
 
 class Orchestrator:
     """ A class which defines one method («run»). This method defines and
@@ -31,7 +31,7 @@ class Orchestrator:
         # Parse the contents from <input_path>.
         keylayout_spec = YamlFileParser.parse(input_path)
         # Create the keyboard object from the specification.
-        keylayout = get_keylayout_from_spec(keylayout_spec)
+        keylayout = keylayout_from_spec(keylayout_spec)
 
         # Write the keylayout to a file
         file_writer = KeylayoutXMLFileWriter()

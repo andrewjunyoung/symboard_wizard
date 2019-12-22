@@ -24,8 +24,10 @@ NAME_TO_KEYLAYOUT_CLASS_MAP = {
 # TODO: Find a good human readable way of describing the specification of the
 #   YAML file.
 
+def _filter_none_items_from_dict(map_):
+    return {k: v for k, v in map_.items() if v is not None}
 
-def get_keylayout_from_spec(spec: dict):
+def keylayout_from_spec(spec: dict):
     """ Given a dictionary with the specifications (specs) of a keyboard, tries
     to create a keylayout class meeting these specs.
 
@@ -42,43 +44,46 @@ def get_keylayout_from_spec(spec: dict):
 
     try:
         # Mandatory values.
-        keyboard_class = _get_class_from_base_keyboard(spec['base_layout'])
+        keylayout_class = _class_from_base_keylayout(spec['base_layout'])
         id_ = spec['id']
         group = spec['group']
 
         # Optional values.
         maxout = spec.get('max_output_characters', 1)
-        name = spec.get('name', '')
-        default_index = spec.get('default_index', 0)
 
-        return keyboard_class(
+        optional_kwargs = {
+            key: spec.get(key, None) for key in ['name', 'default_index']
+        }
+        kwargs = _filter_none_items_from_dict(optional_kwargs)
+
+        return keylayout_class(
             group,
             id_,
             maxout,
-            name = name,
-            default_index = default_index
+            **kwargs,
         )
     except:
         raise SpecificationException()
 
 
-def _get_class_from_base_keyboard(base_keyboard: str) ->  Keylayout:
+def _class_from_base_keylayout(base_keylayout: str) ->  Keylayout:
     """
     Args:
-        base_keyboard (str): The name of the base_keyboard to use.
+        base_keylayout (str): The name of the base_keylayout to use.
 
     Returns:
-        Keylayout: The keylayout described by the base keyboard.
+        Keylayout: The keylayout class (which inherits from Keylayout) that is
+            described by <base_keylayout>.
 
     Raises:
-        SpecificationException: If <base_keyboard> does not have a valid
+        SpecificationException: If <base_keylayout> does not have a valid
             reference to a Keylayout class (defined by the Symboard language
             spec.
     """
 
-    # This is much faster than checking if base_keyboard is an elem.
+    # This is much faster than checking if base_keylayout is an elem.
     try:
-        return globals()[NAME_TO_KEYLAYOUT_CLASS_MAP[base_keyboard]]
+        return globals()[NAME_TO_KEYLAYOUT_CLASS_MAP[base_keylayout]]
     except:
-        raise SpecificationException()#'base_keyboard', base_keyboard)
+        raise SpecificationException()#'base_keylayout', base_keyboard)
 
