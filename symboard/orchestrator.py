@@ -7,7 +7,7 @@
 
 """
 
-from symboard.file_writers import KeylayoutFileWriter
+from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
 from symboard.keylayouts.builders import get_keylayout_from_spec
 
@@ -34,6 +34,6 @@ class Orchestrator:
         keylayout = get_keylayout_from_spec(keylayout_spec)
 
         # Write the keylayout to a file
-        file_writer = KeylayoutFileWriter()
+        file_writer = KeylayoutXMLFileWriter()
         file_writer.write(keylayout, output_path)
 

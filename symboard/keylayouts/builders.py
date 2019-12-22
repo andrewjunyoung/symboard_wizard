@@ -6,6 +6,8 @@
 
 """
 
+# Imports from third party packages.
+from sys import modules
 
 # Imports from this package.
 from symboard.keylayouts.ansi_keylayout import (
@@ -16,14 +18,14 @@ from symboard.errors import SpecificationException # TODO: define this.
 
 
 NAME_TO_KEYLAYOUT_CLASS_MAP = {
-    'ansi': AnsiKeylayout,
+    'ansi': 'AnsiKeylayout',
 }
 
 # TODO: Find a good human readable way of describing the specification of the
 #   YAML file.
 
 
-def get_keylayout_from_spec(spec: dict) -> Keylayout:
+def get_keylayout_from_spec(spec: dict):
     """ Given a dictionary with the specifications (specs) of a keyboard, tries
     to create a keylayout class meeting these specs.
 
@@ -40,7 +42,7 @@ def get_keylayout_from_spec(spec: dict) -> Keylayout:
 
     try:
         # Mandatory values.
-        _get_class_from_base_keyboard(spec['base_layout'])
+        keyboard_class = _get_class_from_base_keyboard(spec['base_layout'])
         id_ = spec['id']
         group = spec['group']
 
@@ -48,6 +50,14 @@ def get_keylayout_from_spec(spec: dict) -> Keylayout:
         maxout = spec.get('max_output_characters', 1)
         name = spec.get('name', '')
         default_index = spec.get('default_index', 0)
+
+        return keyboard_class(
+            group,
+            id_,
+            maxout,
+            name = name,
+            default_index = default_index
+        )
     except:
         raise SpecificationException()
 
@@ -68,7 +78,7 @@ def _get_class_from_base_keyboard(base_keyboard: str) ->  Keylayout:
 
     # This is much faster than checking if base_keyboard is an elem.
     try:
-        return NAME_TO_KEYLAYOUT_CLASS_MAP[base_keyboard]
+        return globals()[NAME_TO_KEYLAYOUT_CLASS_MAP[base_keyboard]]
     except:
-        raise SpecificationException('base_keyboard', base_keyboard)
+        raise SpecificationException()#'base_keyboard', base_keyboard)
 
