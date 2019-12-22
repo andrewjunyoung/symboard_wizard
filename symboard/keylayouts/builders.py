@@ -19,6 +19,9 @@ NAME_TO_KEYLAYOUT_CLASS_MAP = {
     'ansi': AnsiKeylayout,
 }
 
+# TODO: Find a good human readable way of describing the specification of the
+#   YAML file.
+
 
 def get_keylayout_from_spec(spec: dict) -> Keylayout:
     """ Given a dictionary with the specifications (specs) of a keyboard, tries
@@ -37,14 +40,14 @@ def get_keylayout_from_spec(spec: dict) -> Keylayout:
 
     try:
         # Mandatory values.
-        _get_class_from_base_keyboard(spec['base_keyboard'])
+        _get_class_from_base_keyboard(spec['base_layout'])
         id_ = spec['id']
         group = spec['group']
 
         # Optional values.
-        maxout = spec.get('maxout', None)
-        name = spec.get('name', None)
-        default_index = spec.get('default_index', None)
+        maxout = spec.get('max_output_characters', 1)
+        name = spec.get('name', '')
+        default_index = spec.get('default_index', 0)
     except:
         raise SpecificationException()
 

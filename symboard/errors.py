@@ -51,3 +51,9 @@ class KeylayoutNoneException(NoneException):
     """ Indicates a keylayout is None, but was expected not to be.
     """
     pass
+
+class SpecificationException(BaseSymboardException):
+    """ Indicates that something has gone wrong when trying to create a keyboard
+    that meets the specification defined by the user.
+    """
+    pass
