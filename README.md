@@ -16,7 +16,7 @@ Build: [![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=sv
 
 # About
 
-Symboard (stylized as « Ṡymβoarð ») is a versatile text-based keyboard creator.
+Symboard (stylized as «Ṡymβoarð») is a versatile text-based keyboard creator.
 Symboard has a defined syntax which allows you to create text files which
 describe the specification for a keyboard layout, and will compile these files
 to automatically create a fully functional, UNIX compatible `keylayout` file.
