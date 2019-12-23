@@ -75,7 +75,7 @@ class TestBuilders(TestCase):
             'base_layout': 'ansi',
             'id': EXPECTED_ID,
             'group': EXPECTED_GROUP,
-            'max_output_characters': EXPECTED_MAXOUT,
+            'maxout': EXPECTED_MAXOUT,
             'name': EXPECTED_NAME,
             'default_index': EXPECTED_DEFAULT_INDEX
         }
