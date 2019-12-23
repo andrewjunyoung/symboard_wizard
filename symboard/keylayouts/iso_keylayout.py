@@ -31,7 +31,7 @@ class IsoKeylayout(Keylayout):
         self,
         group: int,
         id_: int,
-        maxout: int,
+        maxout: int = 1,
         name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):

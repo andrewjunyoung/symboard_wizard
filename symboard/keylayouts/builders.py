@@ -6,26 +6,30 @@
 
 """
 
+
 # Imports from third party packages.
 from sys import modules
 
 # Imports from this package.
-from symboard.keylayouts.ansi_keylayout import (
-    Keylayout,
-    AnsiKeylayout,
-)
-from symboard.errors import SpecificationException # TODO: define this.
+from symboard.errors import SpecificationException
+from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
+from symboard.keylayouts.iso_keylayout import IsoKeylayout
+from symboard.keylayouts.keylayouts import Keylayout
+from symboard.yaml_spec import OPTIONAL_PROPERTIES, NAME_TO_KEYLAYOUT_CLASS_MAP
 
 
-NAME_TO_KEYLAYOUT_CLASS_MAP = {
-    'ansi': 'AnsiKeylayout',
-}
+def _filter_none_elems_from_map(map_: map):
+    """ Given a map (call it m), returns a new map which contains all the
+    non-null (non-none) elements of m.
 
-# TODO: Find a good human readable way of describing the specification of the
-#   YAML file.
+    Args:
+        map_: The map to return the non-null elements of.
 
-def _filter_none_items_from_dict(map_):
+    Returns:
+        A new map with all the non-null elements of <map_>.
+    """
     return {k: v for k, v in map_.items() if v is not None}
+
 
 def keylayout_from_spec(spec: dict):
     """ Given a dictionary with the specifications (specs) of a keyboard, tries
@@ -43,25 +47,20 @@ def keylayout_from_spec(spec: dict):
     """
 
     try:
-        # Mandatory values.
+        # Keylayout class to init.
         keylayout_class = _class_from_base_keylayout(spec['base_layout'])
+
+        # Non optional init arguments.
         id_ = spec['id']
         group = spec['group']
 
-        # Optional values.
-        maxout = spec.get('max_output_characters', 1)
-
+        # Optional init arguments.
         optional_kwargs = {
-            key: spec.get(key, None) for key in ['name', 'default_index']
+            key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
         }
-        kwargs = _filter_none_items_from_dict(optional_kwargs)
+        kwargs = _filter_none_elems_from_map(optional_kwargs)
 
-        return keylayout_class(
-            group,
-            id_,
-            maxout,
-            **kwargs,
-        )
+        return keylayout_class(group, id_, **kwargs)
     except:
         raise SpecificationException()
 

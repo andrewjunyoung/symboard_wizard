@@ -31,12 +31,12 @@ class AnsiKeylayout(Keylayout):
         self,
         group: int,
         id_: int,
-        maxout: int,
+        maxout: int = 1,
         name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):
         super(AnsiKeylayout, self).__init__(
-            group, id_, maxout, name=name, default_index=default_index
+            group, id_, maxout=maxout, name=name, default_index=default_index
         )
 
     layouts: List[Dict[str, str]] = [
