@@ -15,7 +15,7 @@ class TestKeylayout(TestCase):
         self.DEFAULT_INDEX = 5
 
         self.class_ = Keylayout
-        self.keylayout = Keylayout(
+        self.keylayout = self.class_(
             self.GROUP,
             self.ID,
             maxout = self.MAXOUT,
