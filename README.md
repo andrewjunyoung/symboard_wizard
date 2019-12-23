@@ -7,12 +7,10 @@ Build: [![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=sv
 * [About](#about)
 * [Making your own keyboard](#making-your-own-keyboard)
   * [Syntax](#syntax)
-    * [Setting global keyboard variables](#setting-global-keyboard-variables)
-      * [List of settings](#list-of-settings)
-    * [Specifying keyboard states](#specifying-keyboard-states)
-      * [List of modal keys](#list-of-modal-keys)
-    * [Creating dead keys](#creating-dead-keys)
-* [List of keywords](#list-of-keywords)
+* [Future features](#future-features)
+  * [Specifying keyboard states (not yet implemented)](#specifying-keyboard-states-not-yet-implemented)
+    * [List of modal keys](#list-of-modal-keys)
+  * [Creating dead keys (not yet implemented)](#creating-dead-keys-not-yet-implemented)
 
 <!-- vim-markdown-toc -->
 
@@ -33,86 +31,79 @@ of operation:
 
 ## Syntax
 
-In a file (we recommend using the file extension «`.symboard`»), include the
-following:
+Symboard creates keyboards according to a _specification_ (spec) which is provided to it. This spec should be written as a [yaml](https://en.wikipedia.org/wiki/YAML) file.
 
-The specification for keyboard files is as follows:
+Yaml can be a little technical at times, so here's what you need to know when using symboard.
 
-### Setting global keyboard variables
+Yaml is made up of keys (headers) which point to values, like this:
 
-`<SETTING> = <VALUE>`
+```
+given_name: noam
+surname: chomsky
+age: 91
+institutions:
+    - University of Arizona
+      start: 2017
+    - Massachusetts Institute of Technology
+      start: 1955
+    - Institute for Advanced Study
+      start: 1958
+      end: 1959
+```
 
-Example:
+Values can be numbers, strings, booleans (true / false), or lists.
 
-`KEYBOARD_TYPE = "ISO"`
+Symboard has some required headings, while others are optional. Optional headings, if not included in your specification, will be set to some default value. This default value is usually picked to be the most appropriate for the keyboard layout you're trying to create.
 
-There are 3 types in symboard files: strings, integers, andidentifiers
-(variables). At present, is no support for higher level types.
+Which headings are available, and which are required, is detailed [here](https://github.com/andrewjunyoung/symboard/wiki/Symboard-yaml-syntax) in the symboard wiki. All symboard settings are written using lower_camel_case.
 
-Strings can take any unicode value, and are enclosed in double quotes (").
-Double quotes within strings must be escaped using the backslash (\\).
+# Future features
 
-Integers can take any integer value.
+## Specifying keyboard states (not yet implemented)
 
-Identifiers must be declared before their usage, and will set the value of the
-variable on the left to the value currently held by the variable on the right.
-
-All settings are written using UPPER\_CAMEL\_CASE. A comprehensive list of these
-can be found below.
-
-#### List of settings
-  - ` KEYBOARD\_TYPE `
-  - ` LAYOUT `
- 
-
-### Specifying keyboard states
-
-`if ( <key_condition> ) then { <key_state> }`
+```
+keyboard_state:
+  condition: ...
+  state: |
+    ...
+```
 
 Example:
 
 ```
-if (
-  (shift? & control)
-  | shift & control?)
-) then {
-  ~&@#$%^<>()\{\}
-  :!?PYFGCRL*+|
-  AOEUIDHTNS-
-  "QJKXBMWVZ
-}
+keyboard_state:
+  condition: (shift? & control) | shift & control?)
+  state: |
+    ~&@#$%^<>()\{\}
+    :!?PYFGCRL*+|
+    AOEUIDHTNS-
+    "QJKXBMWVZ
 ```
 
-
-
-#### List of modal keys
+### List of modal keys
   - `shift`
   - `alt`
   - `command`
   - `control`
   - `function`
   - `caps_lock`
- 
 
-### Creating dead keys
 
-`diacritic(<state_name>, <output_to_change>, <new_output>)`
+## Creating dead keys (not yet implemented)
+
+```
+dead_key:
+  name: ...
+  modified_from: ...
+  modified_to: ...
+```
 
 Example:
 
-`diacritic("acute", "abc", "áb́ć")`
 
-
-# List of keywords
-
-List of non overwriteable keywords:
-  - Global program constants:
-    - ` KEYBOARD\_TYPE `
-    - ` LAYOUT `
-  - Keyboard constants:
-    - `shift`
-    - `alt`
-    - `command`
-    - `control`
-    - `function`
-    - `caps_lock`
+```
+dead_key:
+  name: acute
+  modified_from: abc
+  modified_to: áb́ć
+```
