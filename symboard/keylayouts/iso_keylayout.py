@@ -1,6 +1,6 @@
 """
 .. module:: keylayouts
-   :synopsis: A class representing the ansi keylayout.
+   :synopsis: A class representing the iso keylayout.
 
 .. moduleauthor:: Andrew J. Young
 
@@ -14,18 +14,18 @@ from typing import Dict, List, Union
 from symboard.keylayouts.keylayouts import Keylayout
 
 
-class AnsiKeylayout(Keylayout):
-    """ An implementation of the ansi keyboard layout (keylayout) which is able
-    to produce an installable ansi keyboard.
+class IsoKeylayout(Keylayout):
+    """ An implementation of the iso keyboard layout (keylayout) which
+    is able to produce an installable iso keyboard.
     """
 
-    _DEFAULT_NAME: str = 'Ansi keyboard'
+    _DEFAULT_NAME: str = 'Iso keyboard'
     name: str = _DEFAULT_NAME
 
     default_index: int = 6
 
     def __str__(self):
-        return 'AnsiKeylayout({}, (id: {}))'.format(self.name, self.id_)
+        return 'IsoKeylayout({}, (id: {}))'.format(self.name, self.id_)
 
     def __init__(
         self,
@@ -35,7 +35,7 @@ class AnsiKeylayout(Keylayout):
         name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):
-        super(AnsiKeylayout, self).__init__(
+        super(IsoKeylayout, self).__init__(
             group, id_, maxout, name=name, default_index=default_index
         )
 
@@ -43,7 +43,7 @@ class AnsiKeylayout(Keylayout):
         {
             'first': '0',
             'last': '17',
-            'mapSet': 'ANSI',
+            'mapSet': 'ANSI', # Yes, this is correct for iso too!
             'modifiers': 'Modifiers',
         },
     ]
@@ -70,6 +70,7 @@ class AnsiKeylayout(Keylayout):
             7: 'x',
             8: 'c',
             9: 'v',
+            10: '',
             11: 'b',
             12: 'q',
             13: 'w',
@@ -112,6 +113,7 @@ class AnsiKeylayout(Keylayout):
             50: '`',
             51: '&#x0008;',
             53: '&#x001B;',
+            57: '',
             64: '&#x0010;',
             65: '',
             66: '&#x001D;',
