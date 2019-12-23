@@ -14,6 +14,7 @@ class TestKeylayout(TestCase):
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
+        self.class_ = Keylayout
         self.keylayout = Keylayout(
             self.GROUP,
             self.ID,
@@ -56,9 +57,9 @@ class TestKeylayout(TestCase):
         self.assertEqual(keylayout.default_index, self.DEFAULT_INDEX)
 
     def test_default_name_is_as_defined_in_the_class(self):
-        keylayout = Keylayout(self.GROUP, self.ID, self.MAXOUT)
+        keylayout = self.class_(self.GROUP, self.ID, self.MAXOUT)
 
-        self.assertEqual(keylayout.name, Keylayout._DEFAULT_NAME)
+        self.assertEqual(keylayout.name, self.class_._DEFAULT_NAME)
 
     def test_keylayout_str(self):
         expected = 'Keylayout({}, (id: {}))'.format(self.NAME, self.ID)

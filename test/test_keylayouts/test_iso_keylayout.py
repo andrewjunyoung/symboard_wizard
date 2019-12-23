@@ -26,7 +26,8 @@ class TestIsoKeylayout(TestKeylayout):
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.keylayout = IsoKeylayout(
+        self.class_ = IsoKeylayout
+        self.keylayout = self.class_(
             self.GROUP,
             self.ID,
             name = self.NAME,

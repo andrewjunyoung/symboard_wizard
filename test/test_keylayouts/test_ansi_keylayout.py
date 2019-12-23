@@ -26,7 +26,8 @@ class TestAnsiKeylayout(TestKeylayout):
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.keylayout = AnsiKeylayout(
+        self.class_ = AnsiKeylayout
+        self.keylayout = self.class_(
             self.GROUP,
             self.ID,
             name = self.NAME,
