@@ -18,23 +18,20 @@ from test.test_keylayouts.test_keylayouts import TestKeylayout
 file_writers_path = 'symboard.file_writers'
 
 
-class TestAnsiDvorakKeylayout(TestKeylayout):
+class testAnsiDvorakKeylayout(TestKeylayout):
     def setUp(self):
-        self.OUTPUT_PATH = 'actual.keylayout'
-        self.EXPECTED_ANSI_KEYLAYOUT_PATH = 'test/res/' \
-            'expected_ansi_dvorak_keylayout.keylayout'
-
         self.GROUP = 1
         self.ID = 2
-        self.MAXOUT = 3
-        self.NAME = '4'
+        self.NAME = '3'
+        self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.keylayout = AnsiDvorakKeylayout(
+        self.class_ = AnsiDvorakKeylayout
+        self.keylayout = self.class_(
             self.GROUP,
             self.ID,
-            self.MAXOUT,
             name = self.NAME,
+            maxout = self.MAXOUT,
             default_index = self.DEFAULT_INDEX
         )
 
@@ -53,13 +50,11 @@ class TestAnsiDvorakKeyboardIntegration(TestCase):
 
         self.GROUP = 126
         self.ID = -5586
-        self.MAXOUT = 1
         self.DEFAULT_INDEX = 6
 
         self.ansi_dvorak_keylayout = AnsiDvorakKeylayout(
             self.GROUP,
             self.ID,
-            self.MAXOUT,
             default_index = self.DEFAULT_INDEX
         )
         self.keylayout_xml_file_writer = KeylayoutXMLFileWriter()
