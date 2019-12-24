@@ -1,45 +1,16 @@
 '''
 @author: Andrew J. Young
-@description: Acceptance tests for the ansi_keyboard
+@description: Integration tests for the ansi keyboard
 '''
 
-# Imports from third party packages
+
+# Imports from the local package.
+from test.utils import FILE_WRITERS_PATH
+
+# Imports from third party packages.
 from unittest import TestCase
+from unittest.mock import patch, Mock
 from unittest import main as unittest_main
-from unittest.mock import patch, Mock, MagicMock
-from os import remove
-
-# Package internal imports
-from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
-from symboard.file_writers import KeylayoutXMLFileWriter
-from test.test_keylayouts.test_keylayouts import TestKeylayout
-
-
-file_writers_path = 'symboard.file_writers'
-
-
-class TestAnsiKeylayout(TestKeylayout):
-    def setUp(self):
-        self.GROUP = 1
-        self.ID = 2
-        self.NAME = '3'
-        self.MAXOUT = 4
-        self.DEFAULT_INDEX = 5
-
-        self.class_ = AnsiKeylayout
-        self.keylayout = self.class_(
-            self.GROUP,
-            self.ID,
-            name = self.NAME,
-            maxout = self.MAXOUT,
-            default_index = self.DEFAULT_INDEX,
-        )
-
-    def test_keylayout_str(self):
-        expected = 'AnsiKeylayout({}, (id: {}))'.format(self.NAME, self.ID)
-        actual = str(self.keylayout)
-
-        self.assertEqual(expected, actual)
 
 
 class TestAnsiKeyboardIntegration(TestCase):
@@ -63,7 +34,7 @@ class TestAnsiKeyboardIntegration(TestCase):
 
         self.mock = Mock()
 
-    @patch(file_writers_path + '.datetime')
+    @patch(FILE_WRITERS_PATH + '.datetime')
     def test_output_is_as_expected(self, datetime):
         '''
         !!! WARNING: This function *will* write to disk !!!
@@ -96,4 +67,3 @@ class TestAnsiKeyboardIntegration(TestCase):
 
 if __name__ == '__main__':
     unittest_main()
-
