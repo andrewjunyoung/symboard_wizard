@@ -52,7 +52,7 @@ class TestAnsiDvorakKeyboardIntegration(TestCase):
         self.OUTPUT_PATH = 'actual'
 
         self.GROUP = 126
-        self.ID = -19341
+        self.ID = -5586
         self.MAXOUT = 1
         self.DEFAULT_INDEX = 6
 
