@@ -5,7 +5,7 @@
 
 
 # Imports from the local package.
-from test.utils import FILE_WRITERS_PATH
+from test.utils import FILE_WRITERS_PATH, RES_DIR
 
 # Imports from third party packages.
 from unittest import TestCase
@@ -15,8 +15,8 @@ from unittest import main as unittest_main
 
 class TestAnsiKeyboardIntegration(TestCase):
     def setUp(self):
-        self.EXPECTED_ANSI_KEYLAYOUT_PATH = 'test/res/' \
-            'expected_ansi_keylayout.keylayout'
+        self.EXPECTED_ANSI_KEYLAYOUT_PATH = 'test/integration/res/' \
+            + 'expected_ansi_keylayout.keylayout'
         self.OUTPUT_PATH = 'actual'
 
         self.GROUP = 126

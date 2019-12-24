@@ -10,7 +10,7 @@ from unittest import main as unittest_main
 
 # Package internal imports
 from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
-from test.test_keylayouts.test_keylayouts import TestKeylayout
+from test.test_units.test_keylayouts.test_keylayouts import TestKeylayout
 
 
 class TestAnsiKeylayout(TestKeylayout):

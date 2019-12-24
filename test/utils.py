@@ -5,4 +5,4 @@
 
 
 FILE_WRITERS_PATH = 'symboard.file_writers'
-
+RES_DIR = 'test/test_integration/res/'

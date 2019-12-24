@@ -12,7 +12,7 @@ from os import remove
 # Package internal imports
 from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
-from test.test_keylayouts.test_keylayouts import TestKeylayout
+from test.test_units.test_keylayouts.test_keylayouts import TestKeylayout
 
 
 file_writers_path = 'symboard.file_writers'
