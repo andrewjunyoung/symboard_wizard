@@ -8,10 +8,10 @@ tests:
 	python -m unittest discover -v
 
 unit:
-	python -m unittest discover -v test/unit
+	python -m unittest discover -v test/test_units
 
 integration:
-	python -m unittest discover -v test/integration
+	python -m unittest discover -v test/test_integration
 
 coverage:
 	coverage run -m unittest discover

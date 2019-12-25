@@ -4,17 +4,20 @@ from unittest import main as unittest_main
 
 # Imports from the local package.
 from symboard.keylayouts.keylayouts import Keylayout
+from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
+from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
+from symboard.keylayouts.iso_keylayout import IsoKeylayout
 
 
 class TestKeylayout(TestCase):
-    def setUp(self):
+    def _setUp(self, class_):
         self.GROUP = 1
         self.ID = 2
         self.NAME = '3'
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.class_ = Keylayout
+        self.class_ = class_
         self.keylayout = self.class_(
             self.GROUP,
             self.ID,
@@ -22,6 +25,9 @@ class TestKeylayout(TestCase):
             name = self.NAME,
             default_index = self.DEFAULT_INDEX,
         )
+
+    def setUp(self):
+        self._setUp(Keylayout)
 
     def test_keylayout_init_with_all_properties_provided(self):
         keylayout = self.keylayout
@@ -77,6 +83,37 @@ class TestKeylayout(TestCase):
         actual = self.keylayout.keyboard_attributes()
 
         self.assertEqual(expected, actual)
+
+    def _test_keylayout_str(self, class_name):
+        expected = '{}({}, (id: {}))'.format(class_name, self.NAME, self.ID)
+        actual = str(self.keylayout)
+
+        self.assertEqual(expected, actual)
+
+
+class TestAnsiKeylayout(TestKeylayout):
+    def setUp(self):
+        self._setUp(AnsiKeylayout)
+
+    def test_keylayout_str(self):
+        self._test_keylayout_str('AnsiKeylayout')
+
+
+class TestAnsiDvorakKeylayout(TestKeylayout):
+    def setUp(self):
+        self._setUp(AnsiDvorakKeylayout)
+
+    def test_keylayout_str(self):
+        self._test_keylayout_str('AnsiDvorakKeylayout')
+
+
+class TestIsoKeylayout(TestKeylayout):
+    def setUp(self):
+        self._setUp(IsoKeylayout)
+
+    def test_keylayout_str(self):
+        self._test_keylayout_str('IsoKeylayout')
+
 
 if __name__ == '__main__':
     unittest_main()
