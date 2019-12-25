@@ -1,16 +1,18 @@
 clean:
-	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
-	rm -rf htmlcov
-	rm actual.*
-	rm .coverage
+	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf; rm -rf htmlcov; rm actual.*; rm .coverage
 
 tree:
 	tree -I 'docs|bin|lib|venv|htmlcov|.coverage'
 
-unittest:
+tests:
 	python -m unittest discover -v
 
+unit:
+	python -m unittest discover -v test/test_units
+
+integration:
+	python -m unittest discover -v test/test_integration
+
 coverage:
-	make clean
 	coverage run -m unittest discover
 	coverage html --omit="venv/*"
