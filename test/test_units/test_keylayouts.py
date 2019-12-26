@@ -4,9 +4,10 @@ from unittest import main as unittest_main
 
 # Imports from the local package.
 from symboard.keylayouts.keylayouts import Keylayout
-from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
+from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
+from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 
 
 class TestKeylayout(TestCase):
@@ -113,6 +114,14 @@ class TestIsoKeylayout(TestKeylayout):
 
     def test_keylayout_str(self):
         self._test_keylayout_str('IsoKeylayout')
+
+
+class TestIsoDvorakKeylayout(TestKeylayout):
+    def setUp(self):
+        self._setUp(IsoDvorakKeylayout)
+
+    def test_keylayout_str(self):
+        self._test_keylayout_str('IsoDvorakKeylayout')
 
 
 if __name__ == '__main__':

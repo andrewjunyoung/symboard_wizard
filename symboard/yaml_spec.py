@@ -12,6 +12,8 @@ from typing import List, Dict
 NAME_TO_KEYLAYOUT_CLASS_MAP: Dict[str, str] = {
     'ansi': 'AnsiKeylayout',
     'iso': 'IsoKeylayout',
+    'ansi dvorak': 'AnsiDvorakKeylayout',
+    'iso dvorak': 'IsoDvorakKeylayout',
 }
 
 
