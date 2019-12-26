@@ -9,7 +9,7 @@
 
 # Imports from third party packages.
 from yaml import safe_load
-from typing import Dict
+from typing import Dict, Any
 from os.path import isfile
 
 # Package internal imports
@@ -68,8 +68,22 @@ class YamlFileParser(FileParser):
     """ A file parser which parses yaml files, using the method «parse» as the
     exposed API function for parsing.
     """
+
     @staticmethod
-    def parse(file_path: str) -> Dict:
+    def _try_lower(obj: object) -> object:
+        try:
+            return obj.lower()
+        except:
+            return obj
+
+    @staticmethod
+    def _lower_dict(dict_: Dict[str, Any]) -> Dict[str, Any]:
+        return {k.lower(): YamlFileParser._try_lower(v)
+            for k, v in dict_.items()
+        }
+
+    @staticmethod
+    def parse(file_path: str, case_sensitive: bool = True) -> Dict:
         """ An implementation of parsing yaml files.
 
         Args:
@@ -90,7 +104,13 @@ class YamlFileParser(FileParser):
                 exist or is not a file.'''.format(file_path))
 
             with open(file_path, 'r') as stream:
-                return safe_load(stream)
+                parsed_dict = safe_load(stream)
+
+            if not case_sensitive:
+                parsed_dict = YamlFileParser._lower_dict(parsed_dict)
+
+            return parsed_dict
+
         except:
             raise ParserException('''Parser error: Could not read file contents
             from «{}»'''.format(file_path))

@@ -20,17 +20,17 @@ from symboard.keylayouts.keylayouts import Keylayout
 from symboard.yaml_spec import OPTIONAL_PROPERTIES, NAME_TO_KEYLAYOUT_CLASS_MAP
 
 
-def _filter_none_elems_from_map(map_: map):
-    """ Given a map (call it m), returns a new map which contains all the
+def _filter_none_elems_from_dict(dict_: dict):
+    """ Given a dict (call it m), returns a new dict which contains all the
     non-null (non-none) elements of m.
 
     Args:
-        map_: The map to return the non-null elements of.
+        dict_: The dict to return the non-null elements of.
 
     Returns:
-        A new map with all the non-null elements of <map_>.
+        A new dict with all the non-null elements of <dict_>.
     """
-    return {k: v for k, v in map_.items() if v is not None}
+    return {k: v for k, v in dict_.items() if v is not None}
 
 
 def keylayout_from_spec(spec: dict):
@@ -60,7 +60,7 @@ def keylayout_from_spec(spec: dict):
         optional_kwargs = {
             key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
         }
-        kwargs = _filter_none_elems_from_map(optional_kwargs)
+        kwargs = _filter_none_elems_from_dict(optional_kwargs)
 
         return keylayout_class(group, id_, **kwargs)
     except:
