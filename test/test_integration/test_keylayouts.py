@@ -11,9 +11,10 @@ from os import remove
 
 # Imports from the local package.
 from test.utils import FILE_WRITERS_PATH, RES_DIR
-from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
+from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
+from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
 
 
@@ -97,6 +98,15 @@ class TestAnsiDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(RES_DIR + 'expected_iso_keylayout.keylayout', IsoKeylayout)
+
+
+class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
+    def setUp(self):
+        self._setUp(
+            RES_DIR + 'expected_iso_dvorak_keylayout.keylayout',
+            IsoDvorakKeylayout,
+            id_ = -5586,
+        )
 
 
 if __name__ == '__main__':

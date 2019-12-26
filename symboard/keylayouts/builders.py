@@ -14,6 +14,8 @@ from sys import modules
 from symboard.errors import SpecificationException
 from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
+from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
+from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.keylayouts.keylayouts import Keylayout
 from symboard.yaml_spec import OPTIONAL_PROPERTIES, NAME_TO_KEYLAYOUT_CLASS_MAP
 
