@@ -1,5 +1,5 @@
 base_layout: ansi
-name: Ansi keyboard
+name: Iso keyboard
 id: -19341
 group: 126
 default_index: 6

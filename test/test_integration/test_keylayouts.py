@@ -11,8 +11,6 @@ from os import remove
 
 # Imports from the local package.
 from test.utils import FILE_WRITERS_PATH, RES_DIR
-from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
-from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
@@ -76,23 +74,6 @@ class KeyboardIntegrationTests:
 
             # Assertion.
             self.assertEqual(expected, actual)
-
-
-class TestAnsiKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
-    def setUp(self):
-        self._setUp(
-            RES_DIR + 'expected_ansi_keylayout.keylayout',
-            AnsiKeylayout,
-        )
-
-
-class TestAnsiDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
-    def setUp(self):
-        self._setUp(
-            RES_DIR + 'expected_ansi_dvorak_keylayout.keylayout',
-            AnsiDvorakKeylayout,
-            id_ = -5586,
-        )
 
 
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):

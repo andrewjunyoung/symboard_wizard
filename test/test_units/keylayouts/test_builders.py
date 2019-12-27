@@ -7,7 +7,7 @@ from symboard.keylayouts.builders import (
     _class_from_base_keylayout,
     keylayout_from_spec,
 )
-from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
+from symboard.keylayouts.iso_keylayout import IsoKeylayout
 
 
 BUILDERS_DIRECTORY = 'symboard.keylayouts.builders'
@@ -22,7 +22,7 @@ class TestBuilders(TestCase):
         # Execution
         try:
             keylayout = _class_from_base_keylayout('ansi')(0, 0, 0)
-            self.assertIsInstance(keylayout, AnsiKeylayout)
+            self.assertIsInstance(keylayout, IsoKeylayout)
         except:
             # We should never reach here
             self.fail()
@@ -32,13 +32,13 @@ class TestBuilders(TestCase):
         self, mock__class_from_base_keylayout
     ):
         # Setup.
-        mock__class_from_base_keylayout.return_value = AnsiKeylayout
+        mock__class_from_base_keylayout.return_value = IsoKeylayout
 
         EXPECTED_DEFAULT_INDEX = 0
         EXPECTED_GROUP = 126
         EXPECTED_ID = -19234
         EXPECTED_MAXOUT = 1
-        EXPECTED_NAME = 'Ansi keyboard'
+        EXPECTED_NAME = 'Iso keyboard'
 
         spec = {
             'base_layout': 'ansi',
@@ -63,7 +63,7 @@ class TestBuilders(TestCase):
         self, mock__class_from_base_keylayout
     ):
         # Setup.
-        mock__class_from_base_keylayout.return_value = AnsiKeylayout
+        mock__class_from_base_keylayout.return_value = IsoKeylayout
 
         EXPECTED_DEFAULT_INDEX = 3
         EXPECTED_GROUP = 101
