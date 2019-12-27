@@ -4,8 +4,6 @@ from unittest import main as unittest_main
 
 # Imports from the local package.
 from symboard.keylayouts.keylayouts import Keylayout
-from symboard.keylayouts.ansi_keylayout import AnsiKeylayout
-from symboard.keylayouts.ansi_dvorak_keylayout import AnsiDvorakKeylayout
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 
@@ -90,22 +88,6 @@ class TestKeylayout(TestCase):
         actual = str(self.keylayout)
 
         self.assertEqual(expected, actual)
-
-
-class TestAnsiKeylayout(TestKeylayout):
-    def setUp(self):
-        self._setUp(AnsiKeylayout)
-
-    def test_keylayout_str(self):
-        self._test_keylayout_str('AnsiKeylayout')
-
-
-class TestAnsiDvorakKeylayout(TestKeylayout):
-    def setUp(self):
-        self._setUp(AnsiDvorakKeylayout)
-
-    def test_keylayout_str(self):
-        self._test_keylayout_str('AnsiDvorakKeylayout')
 
 
 class TestIsoKeylayout(TestKeylayout):
