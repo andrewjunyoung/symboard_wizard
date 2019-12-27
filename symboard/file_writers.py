@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 .. module:: file_writers
    :synopsis: This file contains the definitions of classes which write to the
@@ -9,7 +12,7 @@
 
 # Imports from third party packages.
 from os.path import exists, splitext
-from re import search
+from re import search, sub
 from lxml.etree import (
     Element,
     SubElement as sub_element,
@@ -148,10 +151,22 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._modifier_map(keylayout, keyboard_elem)
         self._key_map_set(keylayout, keyboard_elem)
 
-        return '\n'.join([
+        ''' Right. So the authors of the «XML» package assumed, wrongly, that we
+        would always want us to escape «&» by default. In fact, we pretty much
+        exclusively want &# to *not* be escaped (unless it's on its own).
+
+        I've looked around, and there are no low-effort solutions to this
+        problem that aren't total hacks.
+
+        So let's just regex replace all unicode strings.
+        '''
+        stupidly_escaped_contents = '\n'.join([
             prepend,
             tostring(keyboard_elem, encoding='unicode', pretty_print=True),
         ])
+
+        # TODO: Fix this
+        return sub(r'&amp;#x', '&#x', stupidly_escaped_contents)
 
 
     def _keyboard(self, keylayout: Keylayout) -> Element:
