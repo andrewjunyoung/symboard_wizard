@@ -1,6 +1,6 @@
 """
 .. module:: keylayouts
-   :synopsis: A class representing the ansi dvorak keylayout.
+   :synopsis: A class representing the iso dvorak keylayout.
 
 .. moduleauthor:: Andrew J. Young
 
@@ -14,19 +14,19 @@ from typing import Dict, List, Union
 from symboard.keylayouts.keylayouts import Keylayout
 
 
-class AnsiDvorakKeylayout(Keylayout):
+class IsoDvorakKeylayout(Keylayout):
     """ An implementation of the dvorak keyboard layout (keylayout) which
-    is able to produce an installable dvorak keyboard that works on ansi
+    is able to produce an installable dvorak keyboard that works on iso
     keyboards.
     """
 
-    _DEFAULT_NAME: str = 'Ansi dvorak keyboard'
+    _DEFAULT_NAME: str = 'Iso dvorak keyboard'
     name: str = _DEFAULT_NAME
 
     default_index: int = 6
 
     def __str__(self):
-        return 'AnsiDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
+        return 'IsoDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
 
     def __init__(
         self,
@@ -36,7 +36,7 @@ class AnsiDvorakKeylayout(Keylayout):
         name: str = _DEFAULT_NAME,
         default_index: int = 0
     ):
-        super(AnsiDvorakKeylayout, self).__init__(
+        super(IsoDvorakKeylayout, self).__init__(
             group, id_, maxout, name=name, default_index=default_index
         )
 
@@ -44,7 +44,7 @@ class AnsiDvorakKeylayout(Keylayout):
         {
             'first': '0',
             'last': '17',
-            'mapSet': 'ANSI',
+            'mapSet': 'ANSI', # Yes, this is correct for iso too!
             'modifiers': 'Modifiers',
         },
     ]
@@ -71,6 +71,7 @@ class AnsiDvorakKeylayout(Keylayout):
             7: 'q',
             8: 'j',
             9: 'k',
+            10: '',
             11: 'x',
             12: '&#x0027;',
             13: ',',
@@ -113,6 +114,7 @@ class AnsiDvorakKeylayout(Keylayout):
             50: '`',
             51: '&#x0008;',
             53: '&#x001B;',
+            57: '',
             64: '&#x0010;',
             65: '',
             66: '&#x001D;',

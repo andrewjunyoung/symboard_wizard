@@ -10,8 +10,10 @@ from typing import List, Dict
 
 
 NAME_TO_KEYLAYOUT_CLASS_MAP: Dict[str, str] = {
-    'ansi': 'AnsiKeylayout',
+    'ansi': 'IsoKeylayout',
     'iso': 'IsoKeylayout',
+    'ansi dvorak': 'IsoDvorakKeylayout',
+    'iso dvorak': 'IsoDvorakKeylayout',
 }
 
 
