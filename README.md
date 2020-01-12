@@ -55,7 +55,7 @@ Values can be numbers, strings, booleans (true / false), or lists.
 
 Symboard has some required headings, while others are optional. Optional headings, if not included in your specification, will be set to some default value. This default value is usually picked to be the most appropriate for the keyboard layout you're trying to create.
 
-Which headings are available, and which are required, is detailed [here](https://github.com/andrewjunyoung/symboard/wiki/Symboard-yaml-syntax) in the symboard wiki. All symboard settings are written using lower_camel_case.
+Which headings are available, and which are required, is detailed [here](https://github.com/andrewjunyoung/symboard/wiki/Symboard-yaml-syntax) in the symboard wiki. All symboard settings are written using lower\_camel\_case.
 
 # Future features
 
@@ -72,7 +72,7 @@ Example:
 
 ```
 keyboard_state:
-  condition: (shift? & control) | shift & control?)
+  condition: shift or control
   state: |
     ~&@#$%^<>()\{\}
     :!?PYFGCRL*+|
