@@ -20,7 +20,7 @@ class IsoDvorakKeylayout(Keylayout):
     keyboards.
     """
 
-    _DEFAULT_NAME: str = 'Iso dvorak keyboard'
+    _DEFAULT_NAME: str = 'Dvorak keyboard (iso)'
     name: str = _DEFAULT_NAME
 
     default_index: int = 6
