@@ -20,14 +20,14 @@ class TestMainIntegration(TestCase):
     def setUp(self):
         self.orchestrator = Orchestrator()
         self.OUTPUT_PATH = 'output2'
-        self.INPUT_PATH = RES_DIR + 'minimal_input_iso.yaml'
+        self.INPUT_PATH = RES_DIR + 'minimal_iso.yaml'
         self.EXPECTED_ANSI_KEYLAYOUT_PATH = RES_DIR \
-            + 'expected_iso_keylayout.keylayout'
+            + 'iso.keylayout'
 
         self.maxDiff = None
 
     @patch('symboard.file_writers.datetime')
-    def test_integration_with_minimal_iso_input_yaml(self, datetime):
+    def test_integration_with_minimal_iso_yaml(self, datetime):
         '''
         !!! WARNING: This function *will* write to disk !!!
         '''
