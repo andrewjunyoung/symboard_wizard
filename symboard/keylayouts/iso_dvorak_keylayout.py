@@ -50,13 +50,13 @@ class IsoDvorakKeylayout(Keylayout):
     ]
 
     key_map_select: Dict[int, str] = {
-        0: '',
-        1: 'anyShift',
-        2: 'anyOption',
-        3: 'anyShift caps? anyOption',
-        4: 'command',
-        5: 'caps',
-        6: 'anyControl',
+        0: [''],
+        1: ['anyShift'],
+        2: ['anyOption'],
+        3: ['anyShift caps? anyOption'],
+        4: ['command'],
+        5: ['caps'],
+        6: ['anyControl'],
     }
 
     key_map: Dict[int, Dict[int, str]] = {

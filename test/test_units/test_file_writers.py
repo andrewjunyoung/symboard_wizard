@@ -260,12 +260,12 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         expected_key_map_select_tag = 'keyMapSelect'
         expected_key_map_select_attributes = {'mapIndex': '0'}
 
+        key_combos = ['test_keys_1', 'test_keys_2']
         expected_modifier_tag = 'modifier'
-        expected_modifier_attributes = {'keys': 'testKeys'}
 
         root = Element('root')
 
-        mock_keylayout = MagicMock(key_map_select={0: 'testKeys'})
+        mock_keylayout = MagicMock(key_map_select={0: key_combos})
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
@@ -275,7 +275,6 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         modifier_elems = root.findall('./modifierMap/keyMapSelect/modifier')
 
         key_map_select_elem = key_map_select_elems[0]
-        modifier_elem = modifier_elems[0]
 
         ####################################################### End execution ##
         ## Begin assertion #####################################################
@@ -283,15 +282,19 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(1, len(key_map_select_elems))
         self.assertEqual(expected_key_map_select_tag, key_map_select_elem.tag)
         self.assertEqual(
-                expected_key_map_select_attributes, key_map_select_elem.attrib
+            expected_key_map_select_attributes, key_map_select_elem.attrib
         )
 
         # Assertions for modifier
-        self.assertEqual(1, len(modifier_elems))
-        self.assertEqual(expected_modifier_tag, modifier_elem.tag)
-        self.assertEqual(
+        self.assertEqual(2, len(modifier_elems))
+        for i in range(len(modifier_elems)):
+            modifier_elem = modifier_elems[i]
+            expected_modifier_attributes = {'keys': key_combos[i]}
+
+            self.assertEqual(expected_modifier_tag, modifier_elem.tag)
+            self.assertEqual(
                 expected_modifier_attributes, modifier_elem.attrib
-        )
+            )
         ####################################################### End assertion ##
 
     def test_key_map_set_creates_well_formed_sub_sub_elements(self):

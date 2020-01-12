@@ -265,17 +265,18 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         )
 
         # Create children to the modifier_map_elem
-        for key, value in keylayout.key_map_select.items():
+        for key, key_strokes in keylayout.key_map_select.items():
             key_map_select_elem: Element = sub_element(
                 modifier_map_elem,
                 'keyMapSelect',
                 {'mapIndex': str(key)},
             )
-            sub_element(
-                key_map_select_elem,
-                'modifier',
-                {'keys': str(value)},
-            )
+            for key_stroke in key_strokes:
+                sub_element(
+                    key_map_select_elem,
+                    'modifier',
+                    {'keys': str(key_stroke)},
+                )
 
         return modifier_map_elem
 
