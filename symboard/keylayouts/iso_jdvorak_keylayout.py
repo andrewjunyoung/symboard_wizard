@@ -36,7 +36,7 @@ class IsoJDvorakKeylayout(Keylayout):
         name: str = _DEFAULT_NAME,
         default_index: int = 4
     ):
-        super(IsoDvorakKeylayout, self).__init__(
+        super(IsoJDvorakKeylayout, self).__init__(
             group, id_, maxout, name=name, default_index=default_index
         )
 

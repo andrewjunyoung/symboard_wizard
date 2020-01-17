@@ -13,6 +13,7 @@ from os import remove
 from test.utils import FILE_WRITERS_PATH, RES_DIR
 from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
+from symboard.keylayouts.iso_jdvorak_keylayout import IsoJDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
 
 
@@ -87,6 +88,14 @@ class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest)
             RES_DIR + 'iso_dvorak.keylayout',
             IsoDvorakKeylayout,
             id_ = -5586,
+        )
+
+class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
+    def setUp(self):
+        self._setUp(
+            RES_DIR + 'jdvorak.keylayout',
+            IsoJDvorakKeylayout,
+            id_  = -31708,
         )
 
 
