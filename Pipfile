@@ -19,6 +19,7 @@ wcwidth = "==0.1.7"
 zipp = "==0.6.0"
 PyYAML = "==5.1.2"
 Sphinx = "==2.2.2"
+sphinx_rtd_theme = "==0.4.3"
 
 [requires]
 python_version = "3.7"
