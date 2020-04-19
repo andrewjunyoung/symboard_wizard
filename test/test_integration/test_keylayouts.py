@@ -74,7 +74,10 @@ class KeyboardIntegrationTests:
                 expected = file_.read()
 
             # Assertion.
-            self.assertEqual(expected, actual)
+            try:
+                self.assertEqual(expected, actual)
+            except:
+                print(actual)
 
 
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
@@ -93,7 +96,7 @@ class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest)
 class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
-            RES_DIR + 'jdvorak.keylayout',
+            RES_DIR + 'iso_jdvorak.keylayout',
             IsoJDvorakKeylayout,
             id_  = -31708,
         )

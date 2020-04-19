@@ -44,7 +44,7 @@ class IsoDvorakKeylayout(Keylayout):
         {
             'first': '0',
             'last': '17',
-            'mapSet': 'ANSI', # Yes, this is correct for iso too!
+            'mapSet': 'ANSI',  # Yes, this is correct for iso too!
             'modifiers': 'Modifiers',
         },
     ]
