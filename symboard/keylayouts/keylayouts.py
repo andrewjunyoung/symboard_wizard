@@ -10,6 +10,28 @@
 
 # Imports from third party packages.
 from typing import Dict, List, Union
+from dataclasses import dataclass
+
+
+@dataclass(init=True, repr=True, eq=True, frozen=True)
+class Action:
+    """ A class for keystrokes which cause actions to change.
+    Keys which implement actions are called «dead keys».
+
+    This class can be used for defining behavior like adding hidden layers to
+    the keyboard. These hidden layers are commonly used for:
+        - special characters. For example, unicode characters including β and →
+          may be accessible through hidden layers.
+        - function keys. CTRL is an example of a function key: CTRL + C for
+          «copy» and CTRL + V for «paste».
+        - adding combining diacritics to characters. For example, ALT + ,
+          followed by A may give á.
+    """
+    string: str
+
+    def __str__(self):
+        return self.string
+
 
 
 class Keylayout:

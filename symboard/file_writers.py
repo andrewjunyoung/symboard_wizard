@@ -24,17 +24,8 @@ from datetime import datetime
 from symboard.errors import (
     WriteException, FileExistsException, KeylayoutNoneException
 )
-from symboard.keylayouts.keylayouts import Keylayout
+from symboard.keylayouts.keylayouts import Keylayout, Action
 from symboard.settings import VERSION, DEFAULT_OUTPUT_PATH
-
-
-def _get_tag(object_):
-    if isinstance(object_, str):
-        return 'object'
-    elif isinstance(object_, Action):
-        return 'action'
-    else:
-        raise TagNotFoundException(object_)
 
 
 class FileWriter:
@@ -178,6 +169,17 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         return sub(r'&amp;#x', '&#x', stupidly_escaped_contents)
 
 
+
+    def _get_tag(self, object_):
+        if isinstance(object_, str):
+            return 'output'
+        elif isinstance(object_, Action):
+            return 'action'
+        else:
+            raise TagNotFoundException(object_)
+
+
+
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """
         Args:
@@ -268,7 +270,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keyboard,
             'modifierMap',
             {
-                'id': 'Modifiers',
+                'id': keylayout.layouts[0]['modifiers'],
                 'defaultIndex': str(keylayout.default_index),
             },
         )
@@ -319,7 +321,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
                 sub_element(
                     key_map_elem,
                     'key',
-                    {'code': str(code), _get_tag(output): str(output)}
+                    {'code': str(code), self._get_tag(output): str(output)}
                 )
 
         return key_map_set_elem

@@ -18,15 +18,16 @@ from symboard.file_writers import KeylayoutXMLFileWriter
 
 
 class KeyboardIntegrationTests:
-
     class IntegrationTest(TestCase):
-        def _setUp(self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341):
+        def _setUp(
+            self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341, DEFAULT_INDEX = 6
+        ):
             self.EXPECTED_OUTPUT_PATH = EXPECTED_OUTPUT_PATH
             self.ACTUAL_OUTPUT_PATH = 'actual'
 
             self.GROUP = 126
             self.ID = id_
-            self.DEFAULT_INDEX = 6
+            self.DEFAULT_INDEX = DEFAULT_INDEX
 
             self.class_ = class_
             self.keylayout = self.class_(
@@ -74,10 +75,7 @@ class KeyboardIntegrationTests:
                 expected = file_.read()
 
             # Assertion.
-            try:
-                self.assertEqual(expected, actual)
-            except:
-                print(actual)
+            self.assertEqual(expected, actual)
 
 
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
@@ -99,6 +97,7 @@ class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest
             RES_DIR + 'iso_jdvorak.keylayout',
             IsoJDvorakKeylayout,
             id_  = -31708,
+            DEFAULT_INDEX = 4,
         )
 
 
