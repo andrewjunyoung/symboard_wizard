@@ -11,6 +11,7 @@ from lxml.etree import Element
 import os.path
 
 # Package internal imports.
+from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION
 from symboard.file_writers import (
         FileWriter,
@@ -186,10 +187,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_tag, child.tag)
         self.assertEqual(expected_attributes, child.attrib)
 
-    @patch(file_writers_path + '.sub_element')
-    def test_modifier_map_creates_a_well_formed_sub_element(
-        self, mock_sub_element
-    ):
+    def test_modifier_map_creates_a_well_formed_sub_element(self):
         ''' Warinng: There are issues with using mocking and
         lxml.etree.SubElement. This is in part because SubElement is implemented
         using C. It is not possible to pass mock objects to SubElement. '''
@@ -202,12 +200,9 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        keylayout = Keylayout(
-        mock_keylayout.key_map_select = MagicMock(return_value=[])
-        mock_keylayout.layout[0]['modifiers'] = modifiers
-
-        mock_keylayout.default_index = Mock()
-        mock_keylayout.default_index.__str__ = lambda x: str(EXPECTED_DEFAULT_INDEX)
+        keylayout = Keylayout(0, 0)
+        keylayout.layouts = [{'modifiers': modifiers}]
+        keylayout.default_index = str(EXPECTED_DEFAULT_INDEX)
 
         expected_tag = 'modifierMap'
         expected_attributes = {
@@ -215,7 +210,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
             'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
         }
 
-        child = self.file_writer._modifier_map(mock_keylayout, parent)
+        child = self.file_writer._modifier_map(keylayout, parent)
 
         self.assertEqual([child], list(parent))
         self.assertEqual(expected_tag, child.tag)
@@ -264,10 +259,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_attributes, grandchild.attrib)
         ####################################################### End assertion ##
 
-    @patch('lxml.etree.SubElement')
-    def test_modifier_map_creates_well_formed_sub_sub_elements(
-        self, mock_sub_element
-    ):
+    def test_modifier_map_creates_well_formed_sub_sub_elements(self):
         ## Begin setup #########################################################
         expected_key_map_select_tag = 'keyMapSelect'
         expected_key_map_select_attributes = {'mapIndex': '0'}
@@ -277,14 +269,14 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         root = Element('root')
 
-        mock_keylayout = MagicMock(
-            key_map_select={0: key_combos},
-            default_index=6,
-        )
+        keylayout = Keylayout(0, 0)
+        keylayout.key_map_select = {0: key_combos}
+        keylayout.default_index = 6
+        keylayout.layouts = [{'modifiers': expected_modifier_tag}]
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer._modifier_map(mock_keylayout, root)
+        modifier_map_elem = self.file_writer._modifier_map(keylayout, root)
 
         key_map_select_elems = root.findall('./modifierMap/keyMapSelect')
         modifier_elems = root.findall('./modifierMap/keyMapSelect/modifier')
