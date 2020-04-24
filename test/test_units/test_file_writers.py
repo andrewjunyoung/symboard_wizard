@@ -11,6 +11,7 @@ from lxml.etree import Element
 import os.path
 
 # Package internal imports.
+from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION
 from symboard.file_writers import (
         FileWriter,
@@ -180,7 +181,6 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         mock_keylayout = self.mock
         mock_keylayout.layouts = MagicMock(return_value=[])
 
-
         child = self.file_writer._layouts(mock_keylayout, parent)
 
         self.assertEqual([child], list(parent))
@@ -188,7 +188,11 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_attributes, child.attrib)
 
     def test_modifier_map_creates_a_well_formed_sub_element(self):
+        ''' Warinng: There are issues with using mocking and
+        lxml.etree.SubElement. This is in part because SubElement is implemented
+        using C. It is not possible to pass mock objects to SubElement. '''
         EXPECTED_DEFAULT_INDEX = 3
+        modifiers = 'Modifiers'
 
         # We need to create this, as there's no way of finding a node's parent,
         # only its children.
@@ -196,17 +200,17 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         # its child.
         parent = Element('root')
 
-        mock_keylayout = self.mock
-        mock_keylayout.key_map_select = MagicMock(return_value=[])
-        mock_keylayout.default_index = EXPECTED_DEFAULT_INDEX
+        keylayout = Keylayout(0, 0)
+        keylayout.layouts = [{'modifiers': modifiers}]
+        keylayout.default_index = str(EXPECTED_DEFAULT_INDEX)
 
         expected_tag = 'modifierMap'
         expected_attributes = {
-            'id': 'Modifiers',
+            'id': modifiers,
             'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
         }
 
-        child = self.file_writer._modifier_map(mock_keylayout, parent)
+        child = self.file_writer._modifier_map(keylayout, parent)
 
         self.assertEqual([child], list(parent))
         self.assertEqual(expected_tag, child.tag)
@@ -260,22 +264,24 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         expected_key_map_select_tag = 'keyMapSelect'
         expected_key_map_select_attributes = {'mapIndex': '0'}
 
+        key_combos = ['test_keys_1', 'test_keys_2']
         expected_modifier_tag = 'modifier'
-        expected_modifier_attributes = {'keys': 'testKeys'}
 
         root = Element('root')
 
-        mock_keylayout = MagicMock(key_map_select={0: 'testKeys'})
+        keylayout = Keylayout(0, 0)
+        keylayout.key_map_select = {0: key_combos}
+        keylayout.default_index = 6
+        keylayout.layouts = [{'modifiers': expected_modifier_tag}]
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer._modifier_map(mock_keylayout, root)
+        modifier_map_elem = self.file_writer._modifier_map(keylayout, root)
 
         key_map_select_elems = root.findall('./modifierMap/keyMapSelect')
         modifier_elems = root.findall('./modifierMap/keyMapSelect/modifier')
 
         key_map_select_elem = key_map_select_elems[0]
-        modifier_elem = modifier_elems[0]
 
         ####################################################### End execution ##
         ## Begin assertion #####################################################
@@ -283,15 +289,19 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(1, len(key_map_select_elems))
         self.assertEqual(expected_key_map_select_tag, key_map_select_elem.tag)
         self.assertEqual(
-                expected_key_map_select_attributes, key_map_select_elem.attrib
+            expected_key_map_select_attributes, key_map_select_elem.attrib
         )
 
         # Assertions for modifier
-        self.assertEqual(1, len(modifier_elems))
-        self.assertEqual(expected_modifier_tag, modifier_elem.tag)
-        self.assertEqual(
+        self.assertEqual(2, len(modifier_elems))
+        for i in range(len(modifier_elems)):
+            modifier_elem = modifier_elems[i]
+            expected_modifier_attributes = {'keys': key_combos[i]}
+
+            self.assertEqual(expected_modifier_tag, modifier_elem.tag)
+            self.assertEqual(
                 expected_modifier_attributes, modifier_elem.attrib
-        )
+            )
         ####################################################### End assertion ##
 
     def test_key_map_set_creates_well_formed_sub_sub_elements(self):

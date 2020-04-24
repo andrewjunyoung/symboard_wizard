@@ -24,7 +24,7 @@ from datetime import datetime
 from symboard.errors import (
     WriteException, FileExistsException, KeylayoutNoneException
 )
-from symboard.keylayouts.keylayouts import Keylayout
+from symboard.keylayouts.keylayouts import Keylayout, Action
 from symboard.settings import VERSION, DEFAULT_OUTPUT_PATH
 
 
@@ -169,6 +169,17 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         return sub(r'&amp;#x', '&#x', stupidly_escaped_contents)
 
 
+
+    def _get_tag(self, object_):
+        if isinstance(object_, str):
+            return 'output'
+        elif isinstance(object_, Action):
+            return 'action'
+        else:
+            raise TagNotFoundException(object_)
+
+
+
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """
         Args:
@@ -259,23 +270,24 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keyboard,
             'modifierMap',
             {
-                'id': 'Modifiers',
+                'id': keylayout.layouts[0]['modifiers'],
                 'defaultIndex': str(keylayout.default_index),
             },
         )
 
         # Create children to the modifier_map_elem
-        for key, value in keylayout.key_map_select.items():
+        for key, key_strokes in keylayout.key_map_select.items():
             key_map_select_elem: Element = sub_element(
                 modifier_map_elem,
                 'keyMapSelect',
                 {'mapIndex': str(key)},
             )
-            sub_element(
-                key_map_select_elem,
-                'modifier',
-                {'keys': str(value)},
-            )
+            for key_stroke in key_strokes:
+                sub_element(
+                    key_map_select_elem,
+                    'modifier',
+                    {'keys': str(key_stroke)},
+                )
 
         return modifier_map_elem
 
@@ -309,7 +321,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
                 sub_element(
                     key_map_elem,
                     'key',
-                    {'code': str(code), 'output': str(output)}
+                    {'code': str(code), self._get_tag(output): str(output)}
                 )
 
         return key_map_set_elem
