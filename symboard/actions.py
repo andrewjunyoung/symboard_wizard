@@ -7,8 +7,12 @@
 """
 
 
+# Imports from third party packages.
 from yaml import safe_load
 from dataclasses import dataclass
+
+# Imports from the local package.
+from symboard.errors import AlphabetLengthException
 
 
 states_list: set = set()
@@ -30,18 +34,15 @@ class Action:
 class State:
     name: str = None
     terminator: str = None
-    action_to_output_map: dict = {}
+    action_to_output_map: dict = None
 
-    def with_alphabet(output_lower: str) -> None:
+    def with_alphabet(self, output_lower: str) -> None:
         # TODO: Write tests
 
-        if len(alphabet) != 26:
-            return AlphabetLengthError(len(alphabet))
+        if len(output_lower) != 26:
+            raise AlphabetLengthException(len(output_lower))
 
         self.action_to_output_map = {
             latin_alphabet_lower[i]: output_lower[i]
+            for i in range(len(output_lower))
         }
-
-acute_state = State('acute', terminator='α').with_keylayout(
-    output_lower='áb́ćd́éf́ǵh́íȷ́ḱĺḿńóṕq́ŕśt́úv́ẃx́ýź',
-)
