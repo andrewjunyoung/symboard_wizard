@@ -152,7 +152,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._key_map_set(keylayout, keyboard_elem)
 
         ''' Right. So the authors of the «XML» package assumed, wrongly, that we
-        would always want us to escape «&» by default. In fact, we pretty much
+        would always want to escape «&» by default. In fact, we pretty much
         exclusively want &# to *not* be escaped (unless it's on its own).
 
         I've looked around, and there are no low-effort solutions to this
@@ -165,9 +165,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             tostring(keyboard_elem, encoding='unicode', pretty_print=True),
         ])
 
-        # TODO: Fix this
         return sub(r'&amp;#x', '&#x', stupidly_escaped_contents)
-
 
 
     def _get_tag(self, object_):
@@ -297,7 +295,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keylayout (Keylayout): The keylayout to create a «layouts» element
                 from.
             keyboard (Element): The XML Element which is to be the parent of the
-            newly created «layouts» element.
+                newly created «layouts» element.
 
         Returns:
             Element: An element which has been added as a child to <keyboard>,
@@ -326,3 +324,66 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         return key_map_set_elem
 
+    def _action(
+        self, keylayout: Keylayout, keyboard: Element, action_id: str
+    ) -> Element:
+        """
+        Args:
+            keylayout (Keylayout): The keylayout to create an «action» element
+                from.
+            keyboard (Element): The XML Element which is to be the parent of the
+                newly craeted «action» element.
+            action_id (str): The unique id (name) to give to the action.
+
+        Returns:
+            Element: An element which has been added as a child to <keyboard>,
+            containing the tag «action», and an id for that action. The action
+            tag has children with the tag «when». Each of these tags specifies
+            the output when the action accurs in a particular state.
+        """
+        action_elem: Element = sub_element(
+            keyboard, 'action', {'id': action_id}
+        )
+
+        for state in keylayout.states:
+            if action_id in state.action_to_output_map.keys():
+                when_elem: Element = sub_element(
+                    action_elem,
+                    'when',
+                    {
+                        'state': state.name,
+                        'output': state.action_to_output_map[action_id],
+                    },
+                )
+
+        return action_elem
+
+    def _terminators(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        """
+        Args:
+            keylayout (Keylayout): The keylayout to create a «terminators» element
+                from.
+            keyboard (Element): The XML Element which is to be the parent of the
+                newly craeted «terminators» element.
+
+        Returns:
+            Element: An element which has been added as a child to <keyboard>,
+            containing the tag «terminators». The terminators tag has children
+            with the tag «when». These tags specify the terminators for each
+            state of <keylayout>.
+        """
+        terminators_elem: Element = sub_element(
+            keyboard, 'terminators'
+        )
+
+        for state in keylayout.states:
+            when_elem: Element = sub_element(
+                terminators_elem,
+                'when',
+                {
+                    'state': state.name,
+                    'output': state.terminator,
+                },
+            )
+
+        return terminators_elem

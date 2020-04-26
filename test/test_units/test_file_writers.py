@@ -14,14 +14,15 @@ import os.path
 from symboard.keylayouts.keylayouts import Keylayout
 from symboard.settings import VERSION
 from symboard.file_writers import (
-        FileWriter,
-        KeylayoutFileWriter,
-        KeylayoutXMLFileWriter,
-        DEFAULT_OUTPUT_PATH,
-        )
+    FileWriter,
+    KeylayoutFileWriter,
+    KeylayoutXMLFileWriter,
+    DEFAULT_OUTPUT_PATH,
+)
 from symboard.errors import (
-        WriteException, KeylayoutNoneException, FileExistsException
-        )
+    WriteException, KeylayoutNoneException, FileExistsException
+)
+from symboard.actions import State
 
 
 file_writers_path = 'symboard.file_writers'
@@ -236,6 +237,59 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_tag, child.tag)
         self.assertEqual(expected_attributes, child.attrib)
 
+    def test_action_creates_well_formed_sub_element(self):
+        ''' Warinng: There are issues with using mocking and
+        lxml.etree.SubElement. This is in part because SubElement is implemented
+        using C. It is not possible to pass mock objects to SubElement. '''
+
+        expected_action_id = 'action'
+        expected_state_id = 'state'
+        expected_action_output = 'output'
+
+        parent = Element('root')
+
+        keylayout = Keylayout(0, 0)
+        keylayout.states = [State(
+            name=expected_state_id,
+            action_to_output_map={expected_action_id: expected_action_output},
+        )]
+
+        expected_tag = 'action'
+        expected_attributes = {
+            'id': expected_action_id,
+        }
+
+        child = self.file_writer._action(keylayout, parent, expected_action_id)
+
+        self.assertEqual([child], list(parent))
+        self.assertEqual(expected_tag, child.tag)
+        self.assertEqual(expected_attributes, child.attrib)
+
+    def test_terminators_creates_well_formed_sub_element(self):
+        ''' Warinng: There are issues with using mocking and
+        lxml.etree.SubElement. This is in part because SubElement is implemented
+        using C. It is not possible to pass mock objects to SubElement. '''
+
+        expected_state_id = 'state'
+        expected_terminator = 'terminator'
+
+        parent = Element('root')
+
+        keylayout = Keylayout(0, 0)
+        keylayout.states = [State(
+            name=expected_state_id,
+            terminator=expected_terminator,
+        )]
+
+        expected_tag = 'terminators'
+        expected_attributes = {}
+
+        child = self.file_writer._terminators(keylayout, parent)
+
+        self.assertEqual([child], list(parent))
+        self.assertEqual(expected_tag, child.tag)
+        self.assertEqual(expected_attributes, child.attrib)
+
     def test_layouts_creates_well_formed_sub_sub_elements(self):
         ## Begin setup #########################################################
         expected_tag = 'layout'
@@ -345,6 +399,89 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(
             expected_key_attributes, key_elem.attrib
         )
+        ####################################################### End assertion ##
+
+    def test_action_creates_well_formed_sub_sub_element(self):
+        ''' Warinng: There are issues with using mocking and
+        lxml.etree.SubElement. This is in part because SubElement is implemented
+        using C. It is not possible to pass mock objects to SubElement. '''
+
+        expected_action_id = 'action'
+        expected_state_id = 'state'
+        expected_action_output = 'output'
+
+        root = Element('root')
+
+        keylayout = Keylayout(0, 0)
+        keylayout.states = [State(
+            name=expected_state_id,
+            action_to_output_map={expected_action_id: expected_action_output},
+        )]
+
+        expected_when_tag = 'when'
+        expected_when_attributes = {
+            'state': expected_state_id,
+            'output': expected_action_output,
+        }
+
+        ########################################################### End setup ##
+        ## Begin execution #####################################################
+
+        child = self.file_writer._action(keylayout, root, expected_action_id)
+
+        when_elems = root.findall('./action/when')
+        when_elem = when_elems[0]
+
+        ####################################################### End execution ##
+        ## Begin assertion #####################################################
+
+        self.assertEqual(1, len(when_elems))
+        self.assertEqual(expected_when_tag, when_elem.tag)
+        self.assertEqual(
+            expected_when_attributes, when_elem.attrib
+        )
+
+        ####################################################### End assertion ##
+
+    def test_terminators_creates_well_formed_sub_sub_element(self):
+        ''' Warinng: There are issues with using mocking and
+        lxml.etree.SubElement. This is in part because SubElement is implemented
+        using C. It is not possible to pass mock objects to SubElement. '''
+
+        expected_state_id = 'state'
+        expected_terminator = 'terminator'
+
+        root = Element('root')
+
+        keylayout = Keylayout(0, 0)
+        keylayout.states = [State(
+            name=expected_state_id,
+            terminator=expected_terminator,
+        )]
+
+        expected_when_tag = 'when'
+        expected_when_attributes = {
+            'state': expected_state_id,
+            'output': expected_terminator,
+        }
+
+        ########################################################### End setup ##
+        ## Begin execution #####################################################
+
+        child = self.file_writer._terminators(keylayout, root)
+
+        when_elems = root.findall('./terminators/when')
+        when_elem = when_elems[0]
+
+        ####################################################### End execution ##
+        ## Begin assertion #####################################################
+
+        self.assertEqual(1, len(when_elems))
+        self.assertEqual(expected_when_tag, when_elem.tag)
+        self.assertEqual(
+            expected_when_attributes, when_elem.attrib
+        )
+
         ####################################################### End assertion ##
 
 
