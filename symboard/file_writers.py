@@ -150,6 +150,10 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._layouts(keylayout, keyboard_elem)
         self._modifier_map(keylayout, keyboard_elem)
         self._key_map_set(keylayout, keyboard_elem)
+        for action in keylayout.actions:
+            self._action(keylayout, keyboard_elem, action.id_)
+        if len(keylayout.states) > 0:
+            self._terminators(keylayout, keyboard_elem)
 
         ''' Right. So the authors of the «XML» package assumed, wrongly, that we
         would always want to escape «&» by default. In fact, we pretty much
@@ -175,8 +179,6 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             return 'action'
         else:
             raise TagNotFoundException(object_)
-
-
 
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """

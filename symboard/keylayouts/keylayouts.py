@@ -86,6 +86,9 @@ class Keylayout:
     key_map_select: Dict[int, str] = {}
     key_map: Dict[int, Dict[int, str]] = {}
 
+    actions: set = set()
+    states: set = set()
+
     def keyboard_attributes(self):
         """
         Returns:
