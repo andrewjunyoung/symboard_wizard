@@ -48,7 +48,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         },
     ]
 
-    key_map_select: Dict[int, str] = {
+    key_map_select: Dict[int, Union[str, List[str]]] = {
         0: ['anyShift? caps? command'],
         1: ['anyShift caps?',
             'anyShift? caps',
@@ -74,7 +74,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         ]
     }
 
-    key_map: Dict[int, Dict[int, str]] = {
+    key_map = {
         0: {
             0: 'a',
             1: 'o',

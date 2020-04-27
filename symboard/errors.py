@@ -57,3 +57,9 @@ class SpecificationException(BaseSymboardException):
     that meets the specification defined by the user.
     """
     pass
+
+class AlphabetLengthException(BaseSymboardException):
+    """ Indicates that the alphabet provided has the wrong number of letters (it
+    should have 26).
+    """
+    pass
