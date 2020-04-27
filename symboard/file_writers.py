@@ -150,7 +150,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._layouts(keylayout, keyboard_elem)
         self._modifier_map(keylayout, keyboard_elem)
         self._key_map_set(keylayout, keyboard_elem)
-        for action in keylayout.actions:
+        for action in sorted(keylayout.actions):
             self._action(keylayout, keyboard_elem, action.id_)
         if len(keylayout.states) > 0:
             self._terminators(keylayout, keyboard_elem)
@@ -179,6 +179,12 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             return 'action'
         else:
             raise TagNotFoundException(object_)
+
+    def _get_output(self, object_):
+        if isinstance(object_, str):
+            return object_
+        elif isinstance(object_, Action):
+            return object_.id_
 
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """
@@ -321,7 +327,10 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
                 sub_element(
                     key_map_elem,
                     'key',
-                    {'code': str(code), self._get_tag(output): str(output)}
+                    {
+                        'code': str(code),
+                        self._get_tag(output): self._get_output(output)
+                    },
                 )
 
         return key_map_set_elem

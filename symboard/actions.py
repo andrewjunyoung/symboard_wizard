@@ -25,7 +25,7 @@ with open('symboard/alphabets.yaml', 'r') as file_:
 latin_alphabet_lower = alphabets['latin_lower']
 
 
-@dataclass(init=True, eq=True, repr=True)
+@dataclass(init=True, eq=True, repr=True, order=True, frozen=True)
 class Action:
     id_: str = None
 

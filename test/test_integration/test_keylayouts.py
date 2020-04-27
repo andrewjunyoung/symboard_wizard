@@ -41,6 +41,8 @@ class KeyboardIntegrationTests:
 
             self.mock = Mock()
 
+            self.DELETE_FILE = True
+
         def setUp(self):
             # This should be implemented by children which inherit from this class.
             pass
@@ -65,10 +67,12 @@ class KeyboardIntegrationTests:
             try:
                 with open(OUTPUT_PATH, 'r') as file_:
                     actual = file_.read()
-                remove(OUTPUT_PATH)
+                if self.DELETE_FILE:
+                    remove(OUTPUT_PATH)
             except:
-                remove(OUTPUT_PATH)
-                self.fail() # We should never get here.
+                if self.DELETE_FILE:
+                    remove(OUTPUT_PATH)
+                self.fail()  # We should never get here.
 
 
             with open(self.EXPECTED_OUTPUT_PATH, 'r') as file_:
@@ -81,6 +85,7 @@ class KeyboardIntegrationTests:
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(RES_DIR + 'iso.keylayout', IsoKeylayout)
+        print(self.keylayout.actions)
 
 
 class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
