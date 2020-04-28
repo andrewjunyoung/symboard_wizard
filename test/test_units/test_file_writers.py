@@ -116,24 +116,11 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.action_output = 'output'
         self.terminator = 'terminator'
 
-
-        ''' Warning: There are issues when using mocking with
-        lxml.etree.SubElement. This is in part because SubElement is
-        implemented using C. It is not possible to pass mock objects to
-        SubElement.
-
-        Because of this, we define a keyboard with common functionality as an
-        attribute of the class so that it can be reused throughout tests which
-        need it. But, in almost all cases where mocking is possible, using
-        mocking is preferable to using this object.
-        '''
-        self.keylayout = Keylayout(0, 0)
-        self.keylayout.states = [State(
+        self.states_mocker = MagicMock(states = [State(
             name=self.state_id,
             action_to_output_map={self.action_id: self.action_output},
             terminator=self.terminator
-        )]
-        # TODO: build the attributes of this class.
+        )])
 
     def test_contents_throws_exception_if_keylayout_is_none(self):
         with self.assertRaises(KeylayoutNoneException):
@@ -201,12 +188,10 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_attributes, elem.attrib)
 
     def _execute_function_on_elem(
-        self, function, keylayout=None, args=None
+        self, function, keylayout, args=None
     ):
         if args is None:  # To avoid using mutable defaults.
             args = ()
-        if keylayout is None:
-            keylayout = self.keylayout
 
         # We need to create this, as there's no way of finding a node's root,
         # only its children.
@@ -256,8 +241,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         """ Asserts that the sub_elem created by «_layouts» meets the
         required specification.
         """
-        mock_keylayout = self.mock
-        mock_keylayout.layouts = MagicMock(return_value=[])
+        mock_keylayout = MagicMock(layouts=[])
 
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._layouts,
@@ -273,11 +257,14 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         EXPECTED_DEFAULT_INDEX = 3
         modifiers = 'Modifiers'
 
-        self.keylayout.layouts = [{'modifiers': modifiers}]
-        self.keylayout.default_index = str(EXPECTED_DEFAULT_INDEX)
+        mock_keylayout = MagicMock(
+            layouts=[{'modifiers': modifiers}],
+            default_index=str(EXPECTED_DEFAULT_INDEX),
+        )
 
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._modifier_map,
+            keylayout=mock_keylayout,
             expected_tag='modifierMap',
             expected_attributes={
                 'id': modifiers,
@@ -289,8 +276,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         """ Asserts that the sub_elem created by «_key_map_set» meets the
         required specification.
         """
-        mock_keylayout = self.mock
-        mock_keylayout.key_map = MagicMock(return_value=[])
+        mock_keylayout = MagicMock(key_map={})
 
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._key_map_set,
@@ -305,6 +291,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         """
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._action,
+            keylayout=self.states_mocker,
             args=[self.action_id],
             expected_tag='action',
             expected_attributes={
@@ -316,8 +303,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         """ Asserts that the sub_elem created by «_terminators» meets the
         required specification.
         """
-        mock_keylayout = self.mock
-        mock_keylayout.states = MagicMock(return_value=[])
+        mock_keylayout = MagicMock(states=[])
 
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._terminators,
@@ -363,11 +349,14 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         expected_modifier_tag = 'modifier'
         key_combos = ['test_keys_1', 'test_keys_2']
 
-        self.keylayout.key_map_select = {0: key_combos}
-        self.keylayout.layouts = [{'modifiers': expected_modifier_tag}]
+        mock_keylayout = MagicMock(
+            key_map_select={0: key_combos},
+            layouts=[{'modifiers': expected_modifier_tag}],
+        )
 
         self._assert_about_properties_of_sub_sub_elems(
             self.file_writer._modifier_map,
+            keylayout=mock_keylayout,
             path_to_sub_elems='./modifierMap/keyMapSelect',
             expected_tag='keyMapSelect',
             expected_attributes={'mapIndex': '0'},
@@ -375,6 +364,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         self._assert_about_properties_of_sub_sub_elems(
             self.file_writer._modifier_map,
+            keylayout=mock_keylayout,
             path_to_sub_elems='./modifierMap/keyMapSelect/modifier',
             expected_n_sub_elems = 2,
             expected_tag=expected_modifier_tag,
@@ -409,6 +399,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def test_action_creates_well_formed_sub_sub_elem(self):
         self._assert_about_properties_of_sub_sub_elems(
             self.file_writer._action,
+            keylayout=self.states_mocker,
             path_to_sub_elems='.action/when',
             args=[self.action_id],
             expected_tag='when',
@@ -421,6 +412,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def test_terminators_creates_well_formed_sub_sub_elem(self):
         self._assert_about_properties_of_sub_sub_elems(
             self.file_writer._terminators,
+            keylayout=self.states_mocker,
             path_to_sub_elems='.terminators/when',
             expected_tag='when',
             expected_attributes={

@@ -54,9 +54,9 @@ class FileWriter:
         # Assert postfix is non null and purely alphanumeric.
         prefix, old_extension = splitext(path)
 
-        if old_extension != extension: # Incorrect or missing postfix.
+        if old_extension != extension:  # Incorrect or missing postfix.
             return prefix + '.' + extension
-        else: # Correct postfix.
+        else:  # Correct postfix.
             return path
 
     def write(self, object_, output_path: str = DEFAULT_OUTPUT_PATH) -> None:
