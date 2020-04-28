@@ -108,7 +108,13 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def setUp(self):
         super().setUp()
 
+        self.expected_time = 'NOW'
         self.file_writer = KeylayoutXMLFileWriter()
+
+        self.action_id = 'action'
+        self.state_id = 'state'
+        self.action_output = 'output'
+        self.terminator = 'terminator'
 
     def test_contents_throws_exception_if_keylayout_is_none(self):
         with self.assertRaises(KeylayoutNoneException):
@@ -129,166 +135,162 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.assertEqual(expected_attributes, element.attrib)
 
     def _comment(self, msg: str) -> str:
+        """ Returns an XML comment (which contains <msg>) as a string.
+        """
         return '<!-- {} -->'.format(msg)
 
     def test_comment_empty_string(self):
-        msg = ''
-        expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer._comment(msg))
+        msgs = [
+            '',
+            'test',
+        ]
+        for msg in msgs:
+            expected = self._comment(msg)
+            self.assertEqual(expected, self.file_writer._comment(msg))
 
-    def test_comment_test_string(self):
-        msg = 'test'
-        expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer._comment(msg))
+    def _test_comment_with_strftime(self, function, comment):
+        """ This class tests that <function> returns a comment with the string
+        <comment>. It mocks out the time.strftime method, which allows it to
+        test comments which include times in them.
 
-    def test_created(self):
-        expected_time = 'NOW'
-
+        For symboard, it can be used to test both the «_created» and «_updated»
+        functions.
+        """
         time = self.mock
-        time.strftime = MagicMock(return_value=expected_time)
+        time.strftime = MagicMock(return_value=self.expected_time)
 
         self.assertEqual(
             self._comment('Created by Symboard version {} at {}'.format(
                 VERSION,
-                expected_time,
+                self.expected_time,
             )),
             self.file_writer._created(time)
         )
 
-    def test_updated(self):
-        expected_time = 'NOW'
 
-        time = self.mock
-        time.strftime = MagicMock(return_value=expected_time)
-
-        self.assertEqual(
-            self._comment('Last updated by Symboard version {} at {}'.format(
-                VERSION,
-                expected_time,
-            )),
-            self.file_writer._updated(time)
+    def test_created(self):
+        self._test_comment_with_strftime(
+            self.file_writer._created,
+            f'Created by Symboard version {VERSION} at {self.expected_time}',
         )
 
-    def test_layouts_creates_a_well_formed_sub_element(self):
-        expected_tag = 'layouts'
-        expected_attributes = {}
+    def test_updated(self):
+        self._test_comment_with_strftime(
+            self.file_writer._created,
+            f'Last updated by Symboard version {VERSION} at' \
+            f'{self.expected_time}',
+        )
 
-        # We need to create this, as there's no way of finding a node's parent,
+    def _assert_properties_of_XML_tag_returned_from(
+        self, function, keylayout, expected_tag, expected_attributes, args=None
+    ):
+        if args is None:  # To avoid using mutable defaults.
+            args = ()
+
+        # We need to create this, as there's no way of finding a node's root,
         # only its children.
         # Without this object, we can't assert that the sub element is added as
         # its child.
-        parent = Element('root')
+        root = Element('root')
 
-        mock_keylayout = self.mock
-        mock_keylayout.layouts = MagicMock(return_value=[])
+        child = function(keylayout, root, *args)
 
-        child = self.file_writer._layouts(mock_keylayout, parent)
-
-        self.assertEqual([child], list(parent))
+        self.assertEqual([child], list(root))
         self.assertEqual(expected_tag, child.tag)
         self.assertEqual(expected_attributes, child.attrib)
 
+    def test_layouts_creates_a_well_formed_sub_element(self):
+        """ Asserts that the sub_element created by «_layouts» meets the
+        required specification.
+        """
+        mock_keylayout = self.mock
+        mock_keylayout.layouts = MagicMock(return_value=[])
+
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._layouts,
+            keylayout=mock_keylayout,
+            expected_tag='layouts',
+            expected_attributes={},
+        )
+
     def test_modifier_map_creates_a_well_formed_sub_element(self):
-        ''' Warinng: There are issues with using mocking and
-        lxml.etree.SubElement. This is in part because SubElement is implemented
-        using C. It is not possible to pass mock objects to SubElement. '''
+        """ Asserts that the sub_element created by «_modifier_map» meets the
+        required specification.
+        """
+
+        # Warning: There are issues when using mocking with
+        # lxml.etree.SubElement. This is in part because SubElement is
+        # implemented using C. It is not possible to pass mock objects to
+        # SubElement.
         EXPECTED_DEFAULT_INDEX = 3
         modifiers = 'Modifiers'
-
-        # We need to create this, as there's no way of finding a node's parent,
-        # only its children.
-        # Without this object, we can't assert that the sub element is added as
-        # its child.
-        parent = Element('root')
 
         keylayout = Keylayout(0, 0)
         keylayout.layouts = [{'modifiers': modifiers}]
         keylayout.default_index = str(EXPECTED_DEFAULT_INDEX)
 
-        expected_tag = 'modifierMap'
-        expected_attributes = {
-            'id': modifiers,
-            'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
-        }
-
-        child = self.file_writer._modifier_map(keylayout, parent)
-
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._modifier_map,
+            keylayout=keylayout,
+            expected_tag='modifierMap',
+            expected_attributes={
+                'id': modifiers,
+                'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
+            },
+        )
 
     def test_key_map_set_creates_a_well_formed_sub_element(self):
-        expected_tag = 'keyMapSet'
-        expected_attributes = {'id': 'ANSI'}
-
-        # We need to create this, as there's no way of finding a node's parent,
-        # only its children.
-        # Without this object, we can't assert that the sub element is added as
-        # its child.
-        parent = Element('root')
-
+        """ Asserts that the sub_element created by «_key_map_set» meets the
+        required specification.
+        """
         mock_keylayout = self.mock
         mock_keylayout.key_map = MagicMock(return_value=[])
 
-
-        child = self.file_writer._key_map_set(mock_keylayout, parent)
-
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._key_map_set,
+            keylayout=mock_keylayout,
+            expected_tag='keyMapSet',
+            expected_attributes={'id': 'ANSI'},
+        )
 
     def test_action_creates_well_formed_sub_element(self):
-        ''' Warinng: There are issues with using mocking and
+        ''' Warning: There are issues with using mocking and
         lxml.etree.SubElement. This is in part because SubElement is implemented
         using C. It is not possible to pass mock objects to SubElement. '''
 
-        expected_action_id = 'action'
-        expected_state_id = 'state'
-        expected_action_output = 'output'
-
-        parent = Element('root')
-
         keylayout = Keylayout(0, 0)
         keylayout.states = [State(
-            name=expected_state_id,
-            action_to_output_map={expected_action_id: expected_action_output},
+            name=self.state_id,
+            action_to_output_map={self.action_id: self.action_output},
         )]
 
-        expected_tag = 'action'
-        expected_attributes = {
-            'id': expected_action_id,
-        }
-
-        child = self.file_writer._action(keylayout, parent, expected_action_id)
-
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._action,
+            keylayout=keylayout,
+            args=[self.action_id],
+            expected_tag='action',
+            expected_attributes={
+                'id': self.action_id,
+            },
+        )
 
     def test_terminators_creates_well_formed_sub_element(self):
-        ''' Warinng: There are issues with using mocking and
+        ''' Warning: There are issues with using mocking and
         lxml.etree.SubElement. This is in part because SubElement is implemented
         using C. It is not possible to pass mock objects to SubElement. '''
 
-        expected_state_id = 'state'
-        expected_terminator = 'terminator'
-
-        parent = Element('root')
-
         keylayout = Keylayout(0, 0)
         keylayout.states = [State(
-            name=expected_state_id,
-            terminator=expected_terminator,
+            name=self.state_id,
+            terminator=self.terminator,
         )]
 
-        expected_tag = 'terminators'
-        expected_attributes = {}
-
-        child = self.file_writer._terminators(keylayout, parent)
-
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._terminators,
+            keylayout=keylayout,
+            expected_tag = 'terminators',
+            expected_attributes = {},
+        )
 
     def test_layouts_creates_well_formed_sub_sub_elements(self):
         ## Begin setup #########################################################
@@ -402,32 +404,32 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         ####################################################### End assertion ##
 
     def test_action_creates_well_formed_sub_sub_element(self):
-        ''' Warinng: There are issues with using mocking and
+        ''' Warning: There are issues with using mocking and
         lxml.etree.SubElement. This is in part because SubElement is implemented
         using C. It is not possible to pass mock objects to SubElement. '''
 
-        expected_action_id = 'action'
-        expected_state_id = 'state'
-        expected_action_output = 'output'
+        self.action_id = 'action'
+        self.state_id = 'state'
+        self.action_output = 'output'
 
         root = Element('root')
 
         keylayout = Keylayout(0, 0)
         keylayout.states = [State(
-            name=expected_state_id,
-            action_to_output_map={expected_action_id: expected_action_output},
+            name=self.state_id,
+            action_to_output_map={self.action_id: self.action_output},
         )]
 
         expected_when_tag = 'when'
         expected_when_attributes = {
-            'state': expected_state_id,
-            'output': expected_action_output,
+            'state': self.state_id,
+            'output': self.action_output,
         }
 
         ########################################################### End setup ##
         ## Begin execution #####################################################
 
-        child = self.file_writer._action(keylayout, root, expected_action_id)
+        child = self.file_writer._action(keylayout, root, self.action_id)
 
         when_elems = root.findall('./action/when')
         when_elem = when_elems[0]
@@ -444,25 +446,25 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         ####################################################### End assertion ##
 
     def test_terminators_creates_well_formed_sub_sub_element(self):
-        ''' Warinng: There are issues with using mocking and
+        ''' Warning: There are issues with using mocking and
         lxml.etree.SubElement. This is in part because SubElement is implemented
         using C. It is not possible to pass mock objects to SubElement. '''
 
-        expected_state_id = 'state'
-        expected_terminator = 'terminator'
+        self.state_id = 'state'
+        self.terminator = 'terminator'
 
         root = Element('root')
 
         keylayout = Keylayout(0, 0)
         keylayout.states = [State(
-            name=expected_state_id,
-            terminator=expected_terminator,
+            name=self.state_id,
+            terminator=self.terminator,
         )]
 
         expected_when_tag = 'when'
         expected_when_attributes = {
-            'state': expected_state_id,
-            'output': expected_terminator,
+            'state': self.state_id,
+            'output': self.terminator,
         }
 
         ########################################################### End setup ##
