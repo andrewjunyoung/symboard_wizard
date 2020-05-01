@@ -13,6 +13,7 @@ from typing import Dict, List, Union
 # Imports from this package.
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.keylayouts.keylayouts import Action
+from symboard.states import states
 
 
 class IsoJDvorakKeylayout(IsoDvorakKeylayout):
@@ -23,6 +24,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
 
     _DEFAULT_NAME: str = 'JDvorak keyboard (iso)'
     default_index: int = 4
+    used_states: list = [states['latin_acute_lower']]
 
     def __str__(self):
         return 'IsoJDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
@@ -313,7 +315,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             10: '□',
             11: Action("∑"),
             12: Action(":"),
-            13: Action(", 1"),
+            13: Action("alt+,", next_=states['latin_acute_lower']),
             14: Action(". 1"),
             15: Action("dot"),
             16: Action("action 2"),
@@ -860,3 +862,4 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             126: '&#x001E;',
         },
     }
+
