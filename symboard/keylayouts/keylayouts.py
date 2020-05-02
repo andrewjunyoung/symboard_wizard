@@ -69,7 +69,7 @@ class Keylayout:
     key_map: dict = {}
 
     actions: set = set()
-    states: set = set()
+    used_states: list = list()
 
     def keyboard_attributes(self):
         """
@@ -89,12 +89,12 @@ class Keylayout:
         }
 
     def set_actions_from_key_map(self):
-        self.actions = {
+        self.actions = [
             output
             for index in self.key_map.values()
             for key, output in index.items()
             if isinstance(output, Action)
-        }
+        ]
 
     def __str__(self):
         return 'Keylayout({}, (id: {}))'.format(self.name, self.id_)

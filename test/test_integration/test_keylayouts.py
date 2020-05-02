@@ -85,7 +85,6 @@ class KeyboardIntegrationTests:
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(RES_DIR + 'iso.keylayout', IsoKeylayout)
-        print(self.keylayout.actions)
 
 
 class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):

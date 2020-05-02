@@ -151,8 +151,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._modifier_map(keylayout, keyboard_elem)
         self._key_map_set(keylayout, keyboard_elem)
         for action in sorted(keylayout.actions):
-            self._action(keylayout, keyboard_elem, action.id_)
-        if len(keylayout.states) > 0:
+            self._action(keylayout, keyboard_elem, action)
+        if len(keylayout.used_states) > 0:
             self._terminators(keylayout, keyboard_elem)
 
         ''' Right. So the authors of the «XML» package assumed, wrongly, that we
@@ -336,7 +336,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         return key_map_set_elem
 
     def _action(
-        self, keylayout: Keylayout, keyboard: Element, action_id: str
+        self, keylayout: Keylayout, keyboard: Element, action: Action
     ) -> Element:
         """
         Args:
@@ -352,11 +352,26 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             tag has children with the tag «when». Each of these tags specifies
             the output when the action accurs in a particular state.
         """
+        if keylayout.used_states is None:
+            return
+
+        action_id = action.id_
+        next_state = action.next_
+
         action_elem: Element = sub_element(
             keyboard, 'action', {'id': action_id}
         )
 
-        for state in keylayout.states:
+        for state in keylayout.used_states:
+            if next_state is not None:
+                when_elem: Element = sub_element(
+                    action_elem,
+                    'when',
+                    {
+                        'state': 'none',
+                        'next': next_state.name,
+                    }
+                )
             if action_id in state.action_to_output_map.keys():
                 when_elem: Element = sub_element(
                     action_elem,
@@ -387,7 +402,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keyboard, 'terminators'
         )
 
-        for state in keylayout.states:
+        for state in keylayout.used_states:
             when_elem: Element = sub_element(
                 terminators_elem,
                 'when',
