@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SOURCE_DIR=$1
+DEST_DIR=/Library/Keyboard\ Layouts
+
+sudo cp $SOURCE_DIR $DEST_DIR
+
