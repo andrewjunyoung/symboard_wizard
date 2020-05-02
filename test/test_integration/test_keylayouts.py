@@ -15,19 +15,17 @@ from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.keylayouts.iso_jdvorak_keylayout import IsoJDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
-from settings import (
-    KEEP_INTEGRATION_TEST_OUTPUT_FILE,
-    KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE,
-    KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE,
-    KEEP_ISO_JDVORAK_INTEGRATION_TEST_OUTPUT_FILE,
-)
+import settings
+
+
+DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'
 
 
 class KeyboardIntegrationTests:
     class IntegrationTest(TestCase):
         def _setUp(
             self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341, DEFAULT_INDEX = 6,
-            FILE_DELETION_ENV_VAR=KEEP_INTEGRATION_TEST_OUTPUT_FILE,
+            FILE_DELETION_ENV_VAR = DEFAULT_FILE_DELETION_ENV_VAR,
         ):
             self.EXPECTED_OUTPUT_PATH = EXPECTED_OUTPUT_PATH
             self.ACTUAL_OUTPUT_PATH = 'actual' + str(self.__class__.__name__) \
@@ -49,7 +47,13 @@ class KeyboardIntegrationTests:
 
             self.mock = Mock()
 
-            self.KEEP_FILE = FILE_DELETION_ENV_VAR
+            if getenv(FILE_DELETION_ENV_VAR):
+                self.KEEP_FILE = getenv(FILE_DELETION_ENV_VAR)
+            elif getenv(DEFAULT_FILE_DELETION_ENV_VAR):
+                self.KEEP_FILE = getenv(DEFAULT_FILE_DELETION_ENV_VAR)
+            else:
+                # TODO: Log an exception
+                self.KEEP_FILE = False
 
         def setUp(self):
             # This should be implemented by children which inherit from this class.
@@ -95,7 +99,7 @@ class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
         self._setUp(
             RES_DIR + 'iso.keylayout',
             IsoKeylayout,
-            FILE_DELETION_ENV_VAR=KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 
@@ -105,7 +109,7 @@ class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest)
             RES_DIR + 'iso_dvorak.keylayout',
             IsoDvorakKeylayout,
             id_ = -5586,
-            FILE_DELETION_ENV_VAR=KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
@@ -115,7 +119,7 @@ class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest
             IsoJDvorakKeylayout,
             id_  = -31708,
             DEFAULT_INDEX = 4,
-            FILE_DELETION_ENV_VAR=KEEP_ISO_JDVORAK_INTEGRATION_TEST_OUTPUT_FILE,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_JDVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 

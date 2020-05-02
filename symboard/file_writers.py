@@ -85,7 +85,8 @@ class KeylayoutFileWriter(FileWriter):
         return ''
 
     def write(
-        self, keylayout: Keylayout, output_path: str = DEFAULT_OUTPUT_PATH
+        self, keylayout: Keylayout,
+        output_path: str = DEFAULT_OUTPUT_PATH,
     ) -> None:
         """ Given an output file path, tries to create a file in that path using
         the contents of <keylayout>.
