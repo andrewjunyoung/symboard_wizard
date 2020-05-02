@@ -62,4 +62,7 @@ class AlphabetLengthException(BaseSymboardException):
     """ Indicates that the alphabet provided has the wrong number of letters (it
     should have 26).
     """
-    pass
+    def __init__(self, alphabet):
+        super().__init__(msg=f'Alphabet {alphabet} of length {len(alphabet)} is'
+        'not a valid alphabet length.')
+

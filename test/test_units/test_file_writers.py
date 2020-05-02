@@ -111,14 +111,15 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self.expected_time = 'NOW'
         self.file_writer = KeylayoutXMLFileWriter()
 
-        self.action_id = 'action'
+        action_id = 'action_id'
+        self.action = MagicMock(id_=action_id, next_=None)
         self.state_id = 'state'
         self.action_output = 'output'
         self.terminator = 'terminator'
 
-        self.states_mocker = MagicMock(states = [State(
+        self.states_mocker = MagicMock(used_states = [State(
             name=self.state_id,
-            action_to_output_map={self.action_id: self.action_output},
+            action_to_output_map={action_id: self.action_output},
             terminator=self.terminator
         )])
 
@@ -292,10 +293,10 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         self._assert_properties_of_XML_tag_returned_from(
             self.file_writer._action,
             keylayout=self.states_mocker,
-            args=[self.action_id],
+            args=[self.action],
             expected_tag='action',
             expected_attributes={
-                'id': self.action_id,
+                'id': self.action.id_,
             },
         )
 
@@ -401,7 +402,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
             self.file_writer._action,
             keylayout=self.states_mocker,
             path_to_sub_elems='.action/when',
-            args=[self.action_id],
+            args=[self.action],
             expected_tag='when',
             expected_attributes={
                 'state': self.state_id,
