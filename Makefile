@@ -1,5 +1,5 @@
 clean:
-	find . | grep -E "(dist|build|__pycache__|\.pyc|\.pyo)" | xargs rm -rf; rm -rf htmlcov; rm actual.*; rm .coverage
+	find . | grep -E "(dist|__pycache__|\.pyc|\.pyo)" | xargs rm -rf; rm -rf htmlcov; rm actual*; rm .coverage
 
 tree:
 	tree -I 'docs|bin|lib|venv|htmlcov|.coverage'

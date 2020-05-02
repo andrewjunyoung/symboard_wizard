@@ -37,15 +37,14 @@ def main() -> None:
     input arguments, and calls the orchestrator to handle the execution of
     Symboard with respect to these arguments.
     """
-
+    # Parse command line args.
     arg_parser: ArgumentParser = get_arg_parser()
     args = arg_parser.parse_args()
 
+    # Run orchestrator.
     orchestrator = Orchestrator()
     orchestrator.run(args.input_file_path[0], args.output_file_path[0])
 
 
 if __name__ == '__main__':
-    # Parse command line args.
-   main()
-
+    main()

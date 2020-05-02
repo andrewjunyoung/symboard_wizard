@@ -25,7 +25,7 @@ from symboard.errors import (
     WriteException, FileExistsException, KeylayoutNoneException
 )
 from symboard.keylayouts.keylayouts import Keylayout, Action
-from symboard.settings import VERSION, DEFAULT_OUTPUT_PATH
+from settings import VERSION, DEFAULT_OUTPUT_PATH
 
 
 class FileWriter:
