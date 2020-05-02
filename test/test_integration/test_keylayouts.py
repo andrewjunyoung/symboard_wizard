@@ -7,7 +7,7 @@
 from unittest import TestCase
 from unittest.mock import patch, Mock, MagicMock
 from unittest import main as unittest_main
-from os import remove
+from os import remove, getenv
 
 # Imports from the local package.
 from test.utils import FILE_WRITERS_PATH, RES_DIR
@@ -15,15 +15,21 @@ from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.keylayouts.iso_jdvorak_keylayout import IsoJDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
+import settings
+
+
+DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'
 
 
 class KeyboardIntegrationTests:
     class IntegrationTest(TestCase):
         def _setUp(
-            self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341, DEFAULT_INDEX = 6
+            self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341, DEFAULT_INDEX = 6,
+            FILE_DELETION_ENV_VAR = DEFAULT_FILE_DELETION_ENV_VAR,
         ):
             self.EXPECTED_OUTPUT_PATH = EXPECTED_OUTPUT_PATH
-            self.ACTUAL_OUTPUT_PATH = 'actual'
+            self.ACTUAL_OUTPUT_PATH = 'actual' + str(self.__class__.__name__) \
+                + '.keylayout'
 
             self.GROUP = 126
             self.ID = id_
@@ -41,7 +47,13 @@ class KeyboardIntegrationTests:
 
             self.mock = Mock()
 
-            self.DELETE_FILE = True
+            if getenv(FILE_DELETION_ENV_VAR):
+                self.KEEP_FILE = getenv(FILE_DELETION_ENV_VAR)
+            elif getenv(DEFAULT_FILE_DELETION_ENV_VAR):
+                self.KEEP_FILE = getenv(DEFAULT_FILE_DELETION_ENV_VAR)
+            else:
+                # TODO: Log an exception
+                self.KEEP_FILE = False
 
         def setUp(self):
             # This should be implemented by children which inherit from this class.
@@ -53,7 +65,7 @@ class KeyboardIntegrationTests:
             !!! WARNING: This function *will* write to disk !!!
             '''
             # Setup.
-            OUTPUT_PATH = self.ACTUAL_OUTPUT_PATH + '.keylayout'
+            OUTPUT_PATH = self.ACTUAL_OUTPUT_PATH
 
             mock_datetime = self.mock
             datetime.now = MagicMock(return_value=mock_datetime)
@@ -67,10 +79,10 @@ class KeyboardIntegrationTests:
             try:
                 with open(OUTPUT_PATH, 'r') as file_:
                     actual = file_.read()
-                if self.DELETE_FILE:
+                if not self.KEEP_FILE:
                     remove(OUTPUT_PATH)
             except:
-                if self.DELETE_FILE:
+                if not self.KEEP_FILE:
                     remove(OUTPUT_PATH)
                 self.fail()  # We should never get here.
 
@@ -84,7 +96,11 @@ class KeyboardIntegrationTests:
 
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
-        self._setUp(RES_DIR + 'iso.keylayout', IsoKeylayout)
+        self._setUp(
+            RES_DIR + 'iso.keylayout',
+            IsoKeylayout,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE',
+        )
 
 
 class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
@@ -93,6 +109,7 @@ class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest)
             RES_DIR + 'iso_dvorak.keylayout',
             IsoDvorakKeylayout,
             id_ = -5586,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
@@ -102,6 +119,7 @@ class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest
             IsoJDvorakKeylayout,
             id_  = -31708,
             DEFAULT_INDEX = 4,
+            FILE_DELETION_ENV_VAR='KEEP_ISO_JDVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 
