@@ -66,3 +66,14 @@ class AlphabetLengthException(BaseSymboardException):
         super().__init__(msg=f'Alphabet {alphabet} of length {len(alphabet)} is'
         'not a valid alphabet length.')
 
+class CouldNotGetOutputException(BaseSymboardException):
+    """ Indicates that the object does not have a well defined output that can
+    be used when a key is pressed.
+    """
+    def __init__(self, object_):
+        super().__init__(
+            msg=f'could not find an output field in object_.object_ is of type'
+            '{type(object_)}, but should be of type str or'
+            'Action.'
+        )
+
