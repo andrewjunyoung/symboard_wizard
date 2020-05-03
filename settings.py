@@ -9,6 +9,10 @@
 
 # Package settings {
 
+PACKAGE_NAME = 'symboard'
+""" The name of the package.
+"""
+
 VERSION: str = '0.2.0'
 """ The current version of symboard being used, equivalent to a string
 <major_version>.<minor_version>.<patch>

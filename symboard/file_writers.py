@@ -172,8 +172,22 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         return sub(r'&amp;#x', '&#x', stupidly_escaped_contents)
 
+    def _get_tag(self, object_: object):
+        """ Returns "output" if <object_ > is a string, and "action" if it is an
+        Action. Raises an exception otherwise.
 
-    def _get_tag(self, object_):
+        This corresponds to the behavior of the keylayout XML files. If a key
+        being pressed is meant to produce output, then the tag must be
+        «output», otherwise it must be «action» if an action is triggered by it
+        (such as entering a state).
+
+        Args:
+            object_ (object): The object to get the tag for.
+
+        Raises:
+            TagNotFoundException: If the object_ is neither a string nor an
+            Action, and hence a tag is unable to be generated.
+        """
         if isinstance(object_, str):
             return 'output'
         elif isinstance(object_, Action):
@@ -181,11 +195,25 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         else:
             raise TagNotFoundException(object_)
 
-    def _get_output(self, object_):
+    def _get_output(self, object_: object):
+        """ Returns the output for when a key is pressed, based off «object_»
+        from a key map. If the output is a normal key, the output will be a
+        string (and hence type regular text). If the output is an action, the
+        output will be triggering that action.
+
+        Args:
+            object_ (object): The object (from a key map) to get the output for.
+
+        Raises:
+            CouldNotGetOutputException: If the output from <object_> could not
+            be resolved (IE <object_> is not a string or an Action).
+        """
         if isinstance(object_, str):
             return object_
         elif isinstance(object_, Action):
             return object_.id_
+        else:
+            raise CouldNotGetOutputException(object_)
 
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """

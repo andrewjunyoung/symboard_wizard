@@ -12,7 +12,7 @@ import os.path
 
 # Package internal imports.
 from symboard.keylayouts.keylayouts import Keylayout
-from symboard.settings import VERSION
+from settings import VERSION
 from symboard.file_writers import (
     FileWriter,
     KeylayoutFileWriter,
