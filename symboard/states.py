@@ -20,9 +20,16 @@ from symboard.actions import State
 
 
 states_dir = 'symboard/states'
+""" The relative path to the directory containing definitions of states. These
+states can be pre-defined by the Symboard project, or added by users.
+"""
 
 
 def load_yaml():
+    """ Loads all yaml files which can be found in the folder <states_dir>, and
+    adds them to an object «states», which can then be imported and used
+    throughout the project.
+    """
     states: Dict[State] = {}
 
     for _, _, file_names in walk(states_dir):
@@ -44,4 +51,7 @@ def load_yaml():
 
 
 states = load_yaml()
+""" An object containing all states found inside <states_dir>, which can be
+imported and used throughout the project.
+"""
 
