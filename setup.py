@@ -1,12 +1,12 @@
 import setuptools
-from symboard import __name__, __version__
+from settings import PACKAGE_NAME, VERSION
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name=__name__,
-    version=__version__,
+    name=PACKAGE_NAME,
+    version=VERSION,
     author='Andrew J. Young',
     author_email='andrewjunyoung1@gmail.com',
     description='A text-based keyboard layout creator. Change or add keys ' \
