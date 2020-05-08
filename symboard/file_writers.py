@@ -151,8 +151,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._layouts(keylayout, keyboard_elem)
         self._modifier_map(keylayout, keyboard_elem)
         self._key_map_set(keylayout, keyboard_elem)
-        for action in sorted(keylayout.actions):
-            self._action(keylayout, keyboard_elem, action)
+        if len(keylayout.actions) > 0:
+            self._actions(keylayout, keyboard_elem)
         if len(keylayout.used_states) > 0:
             self._terminators(keylayout, keyboard_elem)
 
@@ -364,6 +364,28 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         return key_map_set_elem
 
+    def _actions(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        actions_elem: Element = sub_element(
+            keyboard, 'actions'
+        )
+
+        for action in sorted(keylayout.actions):
+            self._action(keylayout, actions_elem, action)
+
+        return actions_elem
+
+    def _when_elem(
+        self, elem: Element, state: str, output_type: str, output: object
+    ) -> Element:
+        return sub_element(
+            elem,
+            'when',
+            {
+                'state': state,
+                output_type: output,
+            }
+        )
+
     def _action(
         self, keylayout: Keylayout, keyboard: Element, action: Action
     ) -> Element:
@@ -392,23 +414,20 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         )
 
         for state in keylayout.used_states:
+            # Add an output for the "none" state, including possible dead keys.
             if next_state is not None:
-                when_elem: Element = sub_element(
-                    action_elem,
-                    'when',
-                    {
-                        'state': 'none',
-                        'next': next_state.name,
-                    }
-                )
+                # Add a dead key (the "next" output will be the state the user
+                # enters next.
+                next_state_name = next_state.name
+                self._when_elem(action_elem, 'none', 'next', next_state_name)
+            else:
+                output = action_id
+                self._when_elem(action_elem, 'none', 'output', output)
+
             if action_id in state.action_to_output_map.keys():
-                when_elem: Element = sub_element(
-                    action_elem,
-                    'when',
-                    {
-                        'state': state.name,
-                        'output': state.action_to_output_map[action_id],
-                    },
+                self._when_elem(
+                    action_elem, state.name, 'output',
+                    state.action_to_output_map[action_id],
                 )
 
         return action_elem
@@ -432,13 +451,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         )
 
         for state in keylayout.used_states:
-            when_elem: Element = sub_element(
-                terminators_elem,
-                'when',
-                {
-                    'state': state.name,
-                    'output': state.terminator,
-                },
+            self._when_elem(
+                terminators_elem, state.name, 'output', state.terminator
             )
 
         return terminators_elem

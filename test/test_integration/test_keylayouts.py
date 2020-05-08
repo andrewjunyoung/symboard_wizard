@@ -43,7 +43,7 @@ class KeyboardIntegrationTests:
             )
             self.keylayout_xml_file_writer = KeylayoutXMLFileWriter()
 
-            self.maxDiff = None
+            self.maxDiff = 1000
 
             self.mock = Mock()
 
@@ -86,11 +86,12 @@ class KeyboardIntegrationTests:
                     remove(OUTPUT_PATH)
                 self.fail()  # We should never get here.
 
-
             with open(self.EXPECTED_OUTPUT_PATH, 'r') as file_:
                 expected = file_.read()
 
             # Assertion.
+            # Optimization for the strings not being equal.
+            self.assertEqual(len(expected), len(actual))
             self.assertEqual(expected, actual)
 
 
