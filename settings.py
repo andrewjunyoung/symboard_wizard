@@ -28,15 +28,9 @@ to, end in «.keylayout».
 # Import using dotenv {
 
 from dotenv import load_dotenv
-load_dotenv()
-
-# OR, the same with increased verbosity
-load_dotenv(verbose=True)
-
-# OR, explicitly providing path to '.env'
-from pathlib import Path  # python3 only
-env_path = Path('.') / '.env.pub'
-load_dotenv(dotenv_path=env_path)
+# Explicitly providing path to '.env', with verbosity.
+env_path = './.env.pub'
+load_dotenv(dotenv_path=env_path, verbose=True)
 
 # } Import using dotenv
 

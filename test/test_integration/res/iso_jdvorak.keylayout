@@ -827,188 +827,418 @@
       <key code="126" output="&#x001E;"/>
     </keyMap>
   </keyMapSet>
-  <action id=" "/>
-  <action id="  1"/>
-  <action id="  2"/>
-  <action id="!"/>
-  <action id="%"/>
-  <action id="&#x0022;"/>
-  <action id="&#x0026;"/>
-  <action id="&#x0027;"/>
-  <action id=","/>
-  <action id="-"/>
-  <action id="."/>
-  <action id=". 1"/>
-  <action id="0"/>
-  <action id="1"/>
-  <action id="2"/>
-  <action id="3"/>
-  <action id="4"/>
-  <action id="5"/>
-  <action id="6"/>
-  <action id="6 1"/>
-  <action id="7"/>
-  <action id="8"/>
-  <action id="9"/>
-  <action id=":"/>
-  <action id=": 1"/>
-  <action id=";"/>
-  <action id="?"/>
-  <action id="A"/>
-  <action id="B"/>
-  <action id="C"/>
-  <action id="D"/>
-  <action id="E"/>
-  <action id="F"/>
-  <action id="G"/>
-  <action id="H"/>
-  <action id="I"/>
-  <action id="J"/>
-  <action id="K"/>
-  <action id="L"/>
-  <action id="M"/>
-  <action id="N"/>
-  <action id="O"/>
-  <action id="P"/>
-  <action id="Q"/>
-  <action id="R"/>
-  <action id="S"/>
-  <action id="T"/>
-  <action id="U"/>
-  <action id="V"/>
-  <action id="W"/>
-  <action id="X"/>
-  <action id="Y"/>
-  <action id="Z"/>
-  <action id="^"/>
-  <action id="^ 1"/>
-  <action id="a">
-    <when state="latin_acute_lower" output="á"/>
-  </action>
-  <action id="action"/>
-  <action id="action 1"/>
-  <action id="action 10"/>
-  <action id="action 11"/>
-  <action id="action 12"/>
-  <action id="action 13"/>
-  <action id="action 14"/>
-  <action id="action 2"/>
-  <action id="action 3"/>
-  <action id="action 4"/>
-  <action id="action 5"/>
-  <action id="action 6"/>
-  <action id="action 7"/>
-  <action id="action 8"/>
-  <action id="action 9"/>
-  <action id="acute"/>
-  <action id="alt+,">
-    <when state="none" next="latin_acute_lower"/>
-  </action>
-  <action id="b">
-    <when state="latin_acute_lower" output="b́"/>
-  </action>
-  <action id="c">
-    <when state="latin_acute_lower" output="ć"/>
-  </action>
-  <action id="caron"/>
-  <action id="d">
-    <when state="latin_acute_lower" output="d́"/>
-  </action>
-  <action id="dot"/>
-  <action id="e">
-    <when state="latin_acute_lower" output="é"/>
-  </action>
-  <action id="f">
-    <when state="latin_acute_lower" output="f́"/>
-  </action>
-  <action id="g">
-    <when state="latin_acute_lower" output="ǵ"/>
-  </action>
-  <action id="h">
-    <when state="latin_acute_lower" output="h́"/>
-  </action>
-  <action id="i">
-    <when state="latin_acute_lower" output="í"/>
-  </action>
-  <action id="j">
-    <when state="latin_acute_lower" output="ȷ́"/>
-  </action>
-  <action id="k">
-    <when state="latin_acute_lower" output="ḱ"/>
-  </action>
-  <action id="l">
-    <when state="latin_acute_lower" output="ĺ"/>
-  </action>
-  <action id="m">
-    <when state="latin_acute_lower" output="ḿ"/>
-  </action>
-  <action id="n">
-    <when state="latin_acute_lower" output="ń"/>
-  </action>
-  <action id="o">
-    <when state="latin_acute_lower" output="ó"/>
-  </action>
-  <action id="p">
-    <when state="latin_acute_lower" output="ṕ"/>
-  </action>
-  <action id="q">
-    <when state="latin_acute_lower" output="q́"/>
-  </action>
-  <action id="r">
-    <when state="latin_acute_lower" output="ŕ"/>
-  </action>
-  <action id="s">
-    <when state="latin_acute_lower" output="ś"/>
-  </action>
-  <action id="t">
-    <when state="latin_acute_lower" output="t́"/>
-  </action>
-  <action id="u">
-    <when state="latin_acute_lower" output="ú"/>
-  </action>
-  <action id="v">
-    <when state="latin_acute_lower" output="v́"/>
-  </action>
-  <action id="w">
-    <when state="latin_acute_lower" output="ẃ"/>
-  </action>
-  <action id="x">
-    <when state="latin_acute_lower" output="x́"/>
-  </action>
-  <action id="y">
-    <when state="latin_acute_lower" output="ý"/>
-  </action>
-  <action id="z">
-    <when state="latin_acute_lower" output="ź"/>
-  </action>
-  <action id=" "/>
-  <action id="¬"/>
-  <action id="®"/>
-  <action id="¯"/>
-  <action id="±"/>
-  <action id="± 1"/>
-  <action id="·"/>
-  <action id="×"/>
-  <action id="ˆ"/>
-  <action id="α"/>
-  <action id="β"/>
-  <action id="γ"/>
-  <action id="Ё"/>
-  <action id="І"/>
-  <action id="Ј"/>
-  <action id="Љ"/>
-  <action id="Ћ"/>
-  <action id="Ќ"/>
-  <action id="Ґ"/>
-  <action id="‘"/>
-  <action id="’"/>
-  <action id="’ 1"/>
-  <action id="∑"/>
-  <action id="√"/>
-  <action id="∫"/>
-  <action id="∮"/>
-  <action id="∴"/>
-  <action id="∵"/>
+  <actions>
+    <action id=" ">
+      <when state="none" output=" "/>
+    </action>
+    <action id="  1">
+      <when state="none" output="  1"/>
+    </action>
+    <action id="  2">
+      <when state="none" output="  2"/>
+    </action>
+    <action id="!">
+      <when state="none" output="!"/>
+    </action>
+    <action id="%">
+      <when state="none" output="%"/>
+    </action>
+    <action id="&#x0022;">
+      <when state="none" output="&#x0022;"/>
+    </action>
+    <action id="&#x0026;">
+      <when state="none" output="&#x0026;"/>
+    </action>
+    <action id="&#x0027;">
+      <when state="none" output="&#x0027;"/>
+    </action>
+    <action id=",">
+      <when state="none" output=","/>
+    </action>
+    <action id="-">
+      <when state="none" output="-"/>
+    </action>
+    <action id=".">
+      <when state="none" output="."/>
+    </action>
+    <action id=". 1">
+      <when state="none" output=". 1"/>
+    </action>
+    <action id="0">
+      <when state="none" output="0"/>
+    </action>
+    <action id="1">
+      <when state="none" output="1"/>
+    </action>
+    <action id="2">
+      <when state="none" output="2"/>
+    </action>
+    <action id="3">
+      <when state="none" output="3"/>
+    </action>
+    <action id="4">
+      <when state="none" output="4"/>
+    </action>
+    <action id="5">
+      <when state="none" output="5"/>
+    </action>
+    <action id="6">
+      <when state="none" output="6"/>
+    </action>
+    <action id="6 1">
+      <when state="none" output="6 1"/>
+    </action>
+    <action id="7">
+      <when state="none" output="7"/>
+    </action>
+    <action id="8">
+      <when state="none" output="8"/>
+    </action>
+    <action id="9">
+      <when state="none" output="9"/>
+    </action>
+    <action id=":">
+      <when state="none" output=":"/>
+    </action>
+    <action id=": 1">
+      <when state="none" output=": 1"/>
+    </action>
+    <action id=";">
+      <when state="none" output=";"/>
+    </action>
+    <action id="?">
+      <when state="none" output="?"/>
+    </action>
+    <action id="A">
+      <when state="none" output="A"/>
+    </action>
+    <action id="B">
+      <when state="none" output="B"/>
+    </action>
+    <action id="C">
+      <when state="none" output="C"/>
+    </action>
+    <action id="D">
+      <when state="none" output="D"/>
+    </action>
+    <action id="E">
+      <when state="none" output="E"/>
+    </action>
+    <action id="F">
+      <when state="none" output="F"/>
+    </action>
+    <action id="G">
+      <when state="none" output="G"/>
+    </action>
+    <action id="H">
+      <when state="none" output="H"/>
+    </action>
+    <action id="I">
+      <when state="none" output="I"/>
+    </action>
+    <action id="J">
+      <when state="none" output="J"/>
+    </action>
+    <action id="K">
+      <when state="none" output="K"/>
+    </action>
+    <action id="L">
+      <when state="none" output="L"/>
+    </action>
+    <action id="M">
+      <when state="none" output="M"/>
+    </action>
+    <action id="N">
+      <when state="none" output="N"/>
+    </action>
+    <action id="O">
+      <when state="none" output="O"/>
+    </action>
+    <action id="P">
+      <when state="none" output="P"/>
+    </action>
+    <action id="Q">
+      <when state="none" output="Q"/>
+    </action>
+    <action id="R">
+      <when state="none" output="R"/>
+    </action>
+    <action id="S">
+      <when state="none" output="S"/>
+    </action>
+    <action id="T">
+      <when state="none" output="T"/>
+    </action>
+    <action id="U">
+      <when state="none" output="U"/>
+    </action>
+    <action id="V">
+      <when state="none" output="V"/>
+    </action>
+    <action id="W">
+      <when state="none" output="W"/>
+    </action>
+    <action id="X">
+      <when state="none" output="X"/>
+    </action>
+    <action id="Y">
+      <when state="none" output="Y"/>
+    </action>
+    <action id="Z">
+      <when state="none" output="Z"/>
+    </action>
+    <action id="^">
+      <when state="none" output="^"/>
+    </action>
+    <action id="^ 1">
+      <when state="none" output="^ 1"/>
+    </action>
+    <action id="a">
+      <when state="none" output="a"/>
+      <when state="latin_acute_lower" output="á"/>
+    </action>
+    <action id="action">
+      <when state="none" output="action"/>
+    </action>
+    <action id="action 1">
+      <when state="none" output="action 1"/>
+    </action>
+    <action id="action 10">
+      <when state="none" output="action 10"/>
+    </action>
+    <action id="action 11">
+      <when state="none" output="action 11"/>
+    </action>
+    <action id="action 12">
+      <when state="none" output="action 12"/>
+    </action>
+    <action id="action 13">
+      <when state="none" output="action 13"/>
+    </action>
+    <action id="action 14">
+      <when state="none" output="action 14"/>
+    </action>
+    <action id="action 2">
+      <when state="none" output="action 2"/>
+    </action>
+    <action id="action 3">
+      <when state="none" output="action 3"/>
+    </action>
+    <action id="action 4">
+      <when state="none" output="action 4"/>
+    </action>
+    <action id="action 5">
+      <when state="none" output="action 5"/>
+    </action>
+    <action id="action 6">
+      <when state="none" output="action 6"/>
+    </action>
+    <action id="action 7">
+      <when state="none" output="action 7"/>
+    </action>
+    <action id="action 8">
+      <when state="none" output="action 8"/>
+    </action>
+    <action id="action 9">
+      <when state="none" output="action 9"/>
+    </action>
+    <action id="acute">
+      <when state="none" output="acute"/>
+    </action>
+    <action id="alt+,">
+      <when state="none" next="latin_acute_lower"/>
+    </action>
+    <action id="b">
+      <when state="none" output="b"/>
+      <when state="latin_acute_lower" output="b́"/>
+    </action>
+    <action id="c">
+      <when state="none" output="c"/>
+      <when state="latin_acute_lower" output="ć"/>
+    </action>
+    <action id="caron">
+      <when state="none" output="caron"/>
+    </action>
+    <action id="d">
+      <when state="none" output="d"/>
+      <when state="latin_acute_lower" output="d́"/>
+    </action>
+    <action id="dot">
+      <when state="none" output="dot"/>
+    </action>
+    <action id="e">
+      <when state="none" output="e"/>
+      <when state="latin_acute_lower" output="é"/>
+    </action>
+    <action id="f">
+      <when state="none" output="f"/>
+      <when state="latin_acute_lower" output="f́"/>
+    </action>
+    <action id="g">
+      <when state="none" output="g"/>
+      <when state="latin_acute_lower" output="ǵ"/>
+    </action>
+    <action id="h">
+      <when state="none" output="h"/>
+      <when state="latin_acute_lower" output="h́"/>
+    </action>
+    <action id="i">
+      <when state="none" output="i"/>
+      <when state="latin_acute_lower" output="í"/>
+    </action>
+    <action id="j">
+      <when state="none" output="j"/>
+      <when state="latin_acute_lower" output="ȷ́"/>
+    </action>
+    <action id="k">
+      <when state="none" output="k"/>
+      <when state="latin_acute_lower" output="ḱ"/>
+    </action>
+    <action id="l">
+      <when state="none" output="l"/>
+      <when state="latin_acute_lower" output="ĺ"/>
+    </action>
+    <action id="m">
+      <when state="none" output="m"/>
+      <when state="latin_acute_lower" output="ḿ"/>
+    </action>
+    <action id="n">
+      <when state="none" output="n"/>
+      <when state="latin_acute_lower" output="ń"/>
+    </action>
+    <action id="o">
+      <when state="none" output="o"/>
+      <when state="latin_acute_lower" output="ó"/>
+    </action>
+    <action id="p">
+      <when state="none" output="p"/>
+      <when state="latin_acute_lower" output="ṕ"/>
+    </action>
+    <action id="q">
+      <when state="none" output="q"/>
+      <when state="latin_acute_lower" output="q́"/>
+    </action>
+    <action id="r">
+      <when state="none" output="r"/>
+      <when state="latin_acute_lower" output="ŕ"/>
+    </action>
+    <action id="s">
+      <when state="none" output="s"/>
+      <when state="latin_acute_lower" output="ś"/>
+    </action>
+    <action id="t">
+      <when state="none" output="t"/>
+      <when state="latin_acute_lower" output="t́"/>
+    </action>
+    <action id="u">
+      <when state="none" output="u"/>
+      <when state="latin_acute_lower" output="ú"/>
+    </action>
+    <action id="v">
+      <when state="none" output="v"/>
+      <when state="latin_acute_lower" output="v́"/>
+    </action>
+    <action id="w">
+      <when state="none" output="w"/>
+      <when state="latin_acute_lower" output="ẃ"/>
+    </action>
+    <action id="x">
+      <when state="none" output="x"/>
+      <when state="latin_acute_lower" output="x́"/>
+    </action>
+    <action id="y">
+      <when state="none" output="y"/>
+      <when state="latin_acute_lower" output="ý"/>
+    </action>
+    <action id="z">
+      <when state="none" output="z"/>
+      <when state="latin_acute_lower" output="ź"/>
+    </action>
+    <action id=" ">
+      <when state="none" output=" "/>
+    </action>
+    <action id="¬">
+      <when state="none" output="¬"/>
+    </action>
+    <action id="®">
+      <when state="none" output="®"/>
+    </action>
+    <action id="¯">
+      <when state="none" output="¯"/>
+    </action>
+    <action id="±">
+      <when state="none" output="±"/>
+    </action>
+    <action id="± 1">
+      <when state="none" output="± 1"/>
+    </action>
+    <action id="·">
+      <when state="none" output="·"/>
+    </action>
+    <action id="×">
+      <when state="none" output="×"/>
+    </action>
+    <action id="ˆ">
+      <when state="none" output="ˆ"/>
+    </action>
+    <action id="α">
+      <when state="none" output="α"/>
+    </action>
+    <action id="β">
+      <when state="none" output="β"/>
+    </action>
+    <action id="γ">
+      <when state="none" output="γ"/>
+    </action>
+    <action id="Ё">
+      <when state="none" output="Ё"/>
+    </action>
+    <action id="І">
+      <when state="none" output="І"/>
+    </action>
+    <action id="Ј">
+      <when state="none" output="Ј"/>
+    </action>
+    <action id="Љ">
+      <when state="none" output="Љ"/>
+    </action>
+    <action id="Ћ">
+      <when state="none" output="Ћ"/>
+    </action>
+    <action id="Ќ">
+      <when state="none" output="Ќ"/>
+    </action>
+    <action id="Ґ">
+      <when state="none" output="Ґ"/>
+    </action>
+    <action id="‘">
+      <when state="none" output="‘"/>
+    </action>
+    <action id="’">
+      <when state="none" output="’"/>
+    </action>
+    <action id="’ 1">
+      <when state="none" output="’ 1"/>
+    </action>
+    <action id="∑">
+      <when state="none" output="∑"/>
+    </action>
+    <action id="√">
+      <when state="none" output="√"/>
+    </action>
+    <action id="∫">
+      <when state="none" output="∫"/>
+    </action>
+    <action id="∮">
+      <when state="none" output="∮"/>
+    </action>
+    <action id="∴">
+      <when state="none" output="∴"/>
+    </action>
+    <action id="∵">
+      <when state="none" output="∵"/>
+    </action>
+  </actions>
   <terminators>
     <when state="latin_acute_lower" output="´"/>
   </terminators>
