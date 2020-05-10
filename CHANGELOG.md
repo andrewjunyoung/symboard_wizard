@@ -1,3 +1,40 @@
+## [0.3.0] - 2020-05-??
+
+### Added
+- The JDvorak keylayout (iso) has been made available as a base layout, with the
+  acute accent as an included diacritics.
+- Support for basic addition of actions and states (dead keys) to keylayouts
+- Parsing of yaml files containing alphabets into a global states object.
+- A state for the greek alphabet.
+- States for the latin alphabet with nearly of the diacritics listed on
+  the wikipedia diacritics page (last accessed 2020-05-10). This includes:
+    - breve
+    - breve, inverted
+    - caron
+    - circumlfex
+    - hacek
+    - hook above (AKA dau hoi)
+    - macron
+    - ogonek
+    - hook, palatal 
+    - hook, retroflex 
+    - acute accent, double
+    - acute accent, single
+    - grave accent, double
+    - grave accent, single
+    - horn
+    - dot
+    - umlaut (AKA diaresis)
+    - umlaut (AKA diaresis)
+    - ring, above
+    - ring, below
+- A script for installing keylayouts automatically for macOS.
+
+### Changed
+- Expanded the use of mocking in tests.
+- Reduced duplication in test cases for file writers.
+
+
 ## [0.2.0] - 2019-12-27
 
 ### Added
