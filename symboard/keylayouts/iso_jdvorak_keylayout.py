@@ -24,7 +24,10 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
 
     _DEFAULT_NAME: str = 'JDvorak keyboard (iso)'
     default_index: int = 4
-    used_states: list = [states['latin_acute_lower']]
+    used_states: list = [
+        states['latin_acute'],
+        states['latin_grave'],
+    ]
 
     def __str__(self):
         return 'IsoJDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
@@ -315,7 +318,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             10: '□',
             11: Action("∑"),
             12: Action(":"),
-            13: Action("alt+,", next_=states['latin_acute_lower']),
+            13: Action("alt+,", next_=states['latin_acute']),
             14: Action(". 1"),
             15: Action("dot"),
             16: Action("action 2"),
@@ -352,7 +355,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             47: Action("caron"),
             48: '&#x0009;',
             49: Action("  2"),
-            50: Action("±"),
+            50: Action("alt+`", next_=states['latin_grave']),
             51: '&#x0008;',
             52: '&#x0003;',
             53: '&#x001B;',
