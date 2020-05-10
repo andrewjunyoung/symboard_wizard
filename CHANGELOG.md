@@ -1,8 +1,6 @@
 ## [0.3.0] - 2020-05-??
 
 ### Added
-- The JDvorak keylayout (iso) has been made available as a base layout, with the
-  acute accent as an included diacritics.
 - Support for basic addition of actions and states (dead keys) to keylayouts
 - Parsing of yaml files containing alphabets into a global states object.
 - A state for the greek alphabet.
@@ -28,6 +26,10 @@
     - umlaut (AKA diaresis)
     - ring, above
     - ring, below
+- The JDvorak keylayout (iso) has been made available as a base layout, with the
+  following diacritics:
+    - acute accent, single
+    - grave accent, single
 - A script for installing keylayouts automatically for macOS.
 - Added logging throughout program for debugging and information.
 

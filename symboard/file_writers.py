@@ -427,17 +427,17 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keyboard, 'action', {'id': action_id}
         )
 
+        if next_state is not None:
+            # Add a dead key (the "next" output will be the state the user
+            # enters next.
+            next_state_name = next_state.name
+            self._when_elem(action_elem, 'none', 'next', next_state_name)
+        else:
+            output = action_id
+            self._when_elem(action_elem, 'none', 'output', output)
+
         for state in keylayout.used_states:
             # Add an output for the "none" state, including possible dead keys.
-            if next_state is not None:
-                # Add a dead key (the "next" output will be the state the user
-                # enters next.
-                next_state_name = next_state.name
-                self._when_elem(action_elem, 'none', 'next', next_state_name)
-            else:
-                output = action_id
-                self._when_elem(action_elem, 'none', 'output', output)
-
             if action_id in state.action_to_output_map.keys():
                 self._when_elem(
                     action_elem, state.name, 'output',
