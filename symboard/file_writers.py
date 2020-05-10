@@ -19,6 +19,7 @@ from lxml.etree import (
     tostring,
 )
 from datetime import datetime
+import logging
 
 # Package internal imports.
 from symboard.errors import (
@@ -108,14 +109,17 @@ class KeylayoutFileWriter(FileWriter):
         # Assert that the output_path is not already being used by any file
         # or directory.
         if exists(output_path):
-            raise FileExistsException()
+            raise FileExistsException(output_path)
 
         try:
             contents = self.contents(keylayout)
+
+            logging.info(f'Writing disk contents at {output_path}.')
+
             with open(output_path, 'w+') as file_:
                 file_.write(contents)
         except:
-            raise WriteException()
+            raise WriteException(output_path)
 
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):
@@ -136,6 +140,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
 
         if keylayout is None:
             raise KeylayoutNoneException()
+
+        logging.info(f'Getting contents for keylayout {repr(keylayout)}.')
 
         now: datetime = datetime.now()
 
@@ -278,6 +284,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             each containing attributes as specified by the attributes in
             <keylayout.layouts>.
         """
+        logging.info(f'Creating a layouts element and its subchildren.')
+
         layouts_elem: Element = sub_element(keyboard, 'layouts')
 
         # Create children to the layouts_elem
@@ -289,10 +297,10 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
     def _modifier_map(self, keylayout: Keylayout, keyboard: Element) -> Element:
         """
         Args:
-            keylayout (Keylayout): The keylayout to create a «layouts» element
+            keylayout (Keylayout): The keylayout to create a «modifierMap» element
                 from.
             keyboard (Element): The XML Element which is to be the parent of the
-            newly created «layouts» element.
+            newly created «modifierMap» element.
 
         Returns:
             Element: An element which has been added as a child to <keyboard>,
@@ -301,6 +309,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             «modifier». Each of these elements contains attributes as specified
             by the dictionary in <keylayout.key_map_select>.
         """
+        logging.info(f'Creating a modifierMap element and its subchildren.')
+
         modifier_map_elem = sub_element(
             keyboard,
             'modifierMap',
@@ -329,10 +339,10 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
     def _key_map_set(self, keylayout: Keylayout, keyboard: Element) -> Element:
         """
         Args:
-            keylayout (Keylayout): The keylayout to create a «layouts» element
+            keylayout (Keylayout): The keylayout to create a «keyMap» element
                 from.
             keyboard (Element): The XML Element which is to be the parent of the
-                newly created «layouts» element.
+                newly created «keyMap» element.
 
         Returns:
             Element: An element which has been added as a child to <keyboard>,
@@ -341,6 +351,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             of these elements contains attributes as specified by the dictionary
             in <keylayout.key_map>.
         """
+        logging.info(f'Creating a keyMap element and its subchildren.')
+
         key_map_set_elem: Element = sub_element(
             keyboard, 'keyMapSet', {'id': 'ANSI'}
         )
@@ -365,6 +377,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         return key_map_set_elem
 
     def _actions(self, keylayout: Keylayout, keyboard: Element) -> Element:
+        logging.info(f'Creating an actions element and its subchildren.')
+
         actions_elem: Element = sub_element(
             keyboard, 'actions'
         )
@@ -446,6 +460,8 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             with the tag «when». These tags specify the terminators for each
             state of <keylayout>.
         """
+        logging.info(f'Creating a terminators element and its subchildren.')
+
         terminators_elem: Element = sub_element(
             keyboard, 'terminators'
         )

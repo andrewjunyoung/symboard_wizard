@@ -10,9 +10,9 @@
 
 # Imports from the standard library.
 from os import walk
+import logging
 
 # Imports from third party packages.
-#from mypy import Dict
 from yaml import safe_load
 
 # Imports from this package.
@@ -30,10 +30,16 @@ def load_yaml():
     adds them to an object «states», which can then be imported and used
     throughout the project.
     """
+    logging.info(
+        f'Creating yaml states object using files from folder «{states_dir}».'
+    )
+
     states: Dict[State] = {}
 
     for _, _, file_names in walk(states_dir):
         for file_name in file_names:
+            logging.info(f'Importing yaml states from file {file_name}.')
+
             file_path = states_dir + '/' + file_name
 
             with open(file_path, 'r') as file_:

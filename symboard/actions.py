@@ -10,6 +10,7 @@
 # Imports from third party packages.
 from yaml import safe_load
 from dataclasses import dataclass
+import logging
 
 # Imports from the local package.
 from symboard.errors import AlphabetLengthException
@@ -58,9 +59,15 @@ class State:
 
     def _get_actions(self, output: str) -> None:
         if len(output) == 26:
+            logging.info(f'Using latin actions set for state {repr(self)}.')
+
             return latin
+
         elif len(output) == 36:
+            logging.info(f'Using alphalatin action set for state {repr(self)}.')
+
             return alphalatin
+
         else:
             raise AlphabetLengthException(output)
 
@@ -86,6 +93,8 @@ class State:
         actions = self._get_actions(outputs)
 
         for action, output in zip(actions.lower, outputs):
+            logging.info(f'Mapping action {action} to output {output}.')
+
             self.action_to_output_map[action] = output
 
         return self
