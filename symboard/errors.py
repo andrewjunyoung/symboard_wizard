@@ -24,7 +24,10 @@ class ParserException(BaseSymboardException):
 class WriteException(BaseSymboardException):
     """ Indicates that something has gone wrong when writing to file.
     """
-    pass
+    def __init__(self, output_path):
+        super().__init__(
+            f'An error occurred when writing contents to path «{output_path}».'
+        )
 
 
 class FileExistsException(WriteException):
@@ -37,8 +40,10 @@ class FileExistsException(WriteException):
 class NotAFileException(ParserException):
     """ Indicates that the file to be parsed does not exist or is not a file.
     """
-    pass
-
+    def __init__(self, file_path):
+        super().__init__(
+            f'The path «{file_path}» does not exist or is not a file',
+        )
 
 class NoneException(BaseSymboardException):
     """ Indicates that one of the variables in the program is None, but was

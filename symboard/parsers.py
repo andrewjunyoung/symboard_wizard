@@ -11,6 +11,7 @@
 from yaml import safe_load
 from typing import Dict, Any
 from os.path import isfile
+import logging
 
 # Package internal imports
 from symboard.errors import ParserException, NotAFileException
@@ -100,18 +101,24 @@ class YamlFileParser(FileParser):
 
         try:
             if not isfile(file_path):
-                raise NotAFileException('''Parser error: The path «{}» does not
-                exist or is not a file.'''.format(file_path))
+                raise NotAFileException(file_path)
+
+            logging.info(f'Reading yaml file from disk at {file_path}.')
 
             with open(file_path, 'r') as stream:
                 parsed_dict = safe_load(stream)
 
+            logging.info(f'Case sensitive parsing is set to {case_sensitive}.')
+
             if not case_sensitive:
+                logging.info(f'Converting yaml contents to lower case.')
+
                 parsed_dict = YamlFileParser._lower_dict(parsed_dict)
 
             return parsed_dict
 
         except:
-            raise ParserException('''Parser error: Could not read file contents
-            from «{}»'''.format(file_path))
+            raise ParserException(
+                f'Could not read file contents from «{file_path}».'
+            )
 

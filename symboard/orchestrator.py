@@ -7,6 +7,10 @@
 
 """
 
+# Imports from third party packages.
+import logging
+
+# Imports from the local package.
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
 from symboard.keylayouts.builders import keylayout_from_spec
@@ -29,14 +33,18 @@ class Orchestrator:
             output_path (str): The path to which the output keylayout is to be
                 written.
         """
-        # Parse the contents from <input_path>.
+        logging.info(f'Parsing the contents from {input_path}.')
+
         keylayout_spec = YamlFileParser.parse(
             input_path, case_sensitive = True,
         )
-        # Create the keyboard object from the specification.
+
+        logging.info(f'Creating the keyboard object from the specification.')
+
         keylayout = keylayout_from_spec(keylayout_spec)
 
-        # Write the keylayout to a file
+        logging.info(f'Trying to write the keylayout to disk at {output_path}.')
+
         file_writer = KeylayoutXMLFileWriter()
         file_writer.write(keylayout, output_path)
 

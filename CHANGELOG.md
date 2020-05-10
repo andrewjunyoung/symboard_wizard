@@ -29,6 +29,7 @@
     - ring, above
     - ring, below
 - A script for installing keylayouts automatically for macOS.
+- Added logging throughout program for debugging and information.
 
 ### Changed
 - Expanded the use of mocking in tests.
