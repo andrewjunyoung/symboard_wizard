@@ -3,7 +3,7 @@ latin_acute_lower:
   upper: Á,B́,Ć,D́,É,F́,Ǵ,H́,Í,ȷ́,Ḱ,Ĺ,Ḿ,Ń,Ó,Ṕ,Q́,Ŕ,Ś,T́,Ú,V́,Ẃ,X́,Ý,Ź
   lower: á,b́,ć,d́,é,f́,ǵ,h́,í,ȷ́,ḱ,ĺ,ḿ,ń,ó,ṕ,q́,ŕ,ś,t́,ú,v́,ẃ,x́,ý,ź
 latin_grave:
-  terminator: `
+  terminator: "`"
   upper: À,,,,È,,,H̀,Ì,J,K̀,,M̀,Ǹ,Ò,,,R̀,S̀,T̀,Ù,V̀,Ẁ,X̀,Ỳ,Z̀
   lower: à,,,,è,,,h̀,ì,j,k̀,,m̀,ǹ,ò,,,r̀,s̀,t̀,ù,v̀,ẁ,x̀,ỳ,z̀
 latin_acute_double:
@@ -20,8 +20,8 @@ latin_circumflex_above:
   lower: â,b̂,ĉ,d̂,ê,,ĝ,ĥ,î,ĵ,k̂,l̂,m̂,n̂,ô,,,r̂,ŝ,t̂,û,v̂,ŵ,x̂,ŷ,ẑ
 latin_circumflex_below:
   terminator: ˆ
-  upper: ,,C̭,Ḓ,Ḙ,,,H̭,I̭,,,Ḽ,,Ṋ,,,,R̭,,Ṱ,Ṷ,,,,,
-  lower: ,,c̭,ḓ,ḙ,,,h̭,i̭,,,ḽ,,ṋ,,,,r̭,,ṱ,ṷ,,,,,
+  upper: ",,C̭,Ḓ,Ḙ,,,H̭,I̭,,,Ḽ,,Ṋ,,,,R̭,,Ṱ,Ṷ,,,,,"
+  lower: ",,c̭,ḓ,ḙ,,,h̭,i̭,,,ḽ,,ṋ,,,,r̭,,ṱ,ṷ,,,,,"
 latin_hacek:
   terminator: ˇ
   upper: Ǎ,B̌,Č,Ď,Ě,F̌,Ǧ,Ȟ,Ǐ,J̌,Ǩ,Ľ,M̌,Ň,Ǒ,P̌,Q̌,Ř,Š,Ť,Ǔ,V̌,W̌,X̌,Y̌,Ž
@@ -57,7 +57,7 @@ latin_hook_above:
   # Hook above the character, AKA dau hoi. Used in vietnamese.
   terminator: " ̉"
   upper: Ả,,,,Ẻ,,,,Ỉ,,,,,,Ỏ,,,,,,Ủ,,,,Ỷ,
-  upper: ả,,,,ẻ,,,,ỉ,,,,,,ỏ,,,,,,ủ,,,,ỷ,
+  lower: ả,,,,ẻ,,,,ỉ,,,,,,ỏ,,,,,,ủ,,,,ỷ,
 latin_hook_inclusive:
   # Hook included as part of the character.
   # Note that some characters «with left hook» (N,n,u) and some «with right
@@ -66,8 +66,8 @@ latin_hook_inclusive:
   # is because this character is out of widespread use, while «v with right
   # hook» is in widespread use as part of the IPA.
   terminator: " ̡"
-  upper: ,Ɓ,Ƈ,Ɗ,,Ƒ,Ɠ,Ɦ,,,Ƙ,,Ɱ,Ɲ,,Ƥ,,,,Ƭ,,,Ⱳ,,Ƴ,Ȥ
-  lower: ,ɓ,ƈ,ɗ,,ƒ,ɠ,ɦ,,,ƙ,,ɱ,ɲ,,ƥ,ʠ,,,ƭ,ꭒ,ⱱ,ⱳ,,ƴ,ȥ
+  upper: ",Ɓ,Ƈ,Ɗ,,Ƒ,Ɠ,Ɦ,,,Ƙ,,Ɱ,Ɲ,,Ƥ,,,,Ƭ,,,Ⱳ,,Ƴ,Ȥ"
+  lower: ",ɓ,ƈ,ɗ,,ƒ,ɠ,ɦ,,,ƙ,,ɱ,ɲ,,ƥ,ʠ,,,ƭ,ꭒ,ⱱ,ⱳ,,ƴ,ȥ"
 latin_hook_retroflex:
   # Hook to the right, indicating a retroflex sound. Used in the IPA.
   terminator: "◌̢"  # TODO: Make this the combining character alone.
@@ -75,7 +75,7 @@ latin_hook_retroflex:
 latin_hook_palatal:
   # Hook left, indicating a palatal sound. Used in the IPA.
   terminator: " ̡"
-  lower: ,ᶀ,,ᶁ,,ᶂ,ᶃ,,,,ᶄ,ᶅ,ᶆ,ᶇ,,ᶈ,,ᶉ,ᶊ,ƫ,,ᶌ,,ᶍ,,ᶎ
+  lower: ",ᶀ,,ᶁ,,ᶂ,ᶃ,,,,ᶄ,ᶅ,ᶆ,ᶇ,,ᶈ,,ᶉ,ᶊ,ƫ,,ᶌ,,ᶍ,,ᶎ"
 
 # TODO: tail, swash tail, flourish, crossed tail, squirrel tail,
 # script v (V with hook)
@@ -84,8 +84,8 @@ latin_hook_palatal:
 
 latin_horn:
   terminator: " ̛"
-  upper: ,,,,,,,,,,,,,,Ơ,,,,,,Ư,,,,,
-  lower: ,,,,,,,,,,,,,,ơ,,,,,,ư,,,,,
+  upper: ",,,,,,,,,,,,,,Ơ,,,,,,Ư,,,,,"
+  lower: ",,,,,,,,,,,,,,ơ,,,,,,ư,,,,,"
 latin_macron_above:
   terminator: ˉ
   upper: Ā,B̄,C̄,D̄,Ē,,Ḡ,,Ī,J̄,,L̄,M̄,N̄,Ō,P̄,Q̄,R̄,S̄,T̄,Ū,V̄,W̄,X̄,Ȳ,Z̄
