@@ -1,0 +1,108 @@
+latin_acute_lower:
+  terminator: ´
+  upper: Á,B́,Ć,D́,É,F́,Ǵ,H́,Í,ȷ́,Ḱ,Ĺ,Ḿ,Ń,Ó,Ṕ,Q́,Ŕ,Ś,T́,Ú,V́,Ẃ,X́,Ý,Ź
+  lower: á,b́,ć,d́,é,f́,ǵ,h́,í,ȷ́,ḱ,ĺ,ḿ,ń,ó,ṕ,q́,ŕ,ś,t́,ú,v́,ẃ,x́,ý,ź
+latin_grave:
+  terminator: "`"
+  upper: À,,,,È,,,H̀,Ì,J,K̀,,M̀,Ǹ,Ò,,,R̀,S̀,T̀,Ù,V̀,Ẁ,X̀,Ỳ,Z̀
+  lower: à,,,,è,,,h̀,ì,j,k̀,,m̀,ǹ,ò,,,r̀,s̀,t̀,ù,v̀,ẁ,x̀,ỳ,z̀
+latin_acute_double:
+  terminator: ˝
+  upper: A̋,,,,E̋,,,,I̋,,,,M̋,,Ő,,,,,,Ű,,,,,
+  lower: a̋,,,,e̋,,,,i̋,,,,m̋,,ő,,,,,,ű,,,,,
+latin_double_grave:
+  terminator: " ̏"
+  upper: Ȁ,,,,Ȅ,,,,Ȉ,,,,,,Ȍ,,,Ȑ,,,Ȕ,,,,Y̏,
+  lower: ȁ,,,,ȅ,,,,ȉ,,,,,,ȍ,,,ȑ,,,ȕ,,,,y̏,
+latin_circumflex_above:
+  terminator: ˆ
+  upper: Â,B̂,Ĉ,D̂,Ê,,Ĝ,Ĥ,Î,Ĵ,K̂,L̂,M̂,N̂,Ô,,,R̂,Ŝ,T̂,Û,V̂,Ŵ,X̂,Ŷ,Ẑ
+  lower: â,b̂,ĉ,d̂,ê,,ĝ,ĥ,î,ĵ,k̂,l̂,m̂,n̂,ô,,,r̂,ŝ,t̂,û,v̂,ŵ,x̂,ŷ,ẑ
+latin_circumflex_below:
+  terminator: ˆ
+  upper: ",,C̭,Ḓ,Ḙ,,,H̭,I̭,,,Ḽ,,Ṋ,,,,R̭,,Ṱ,Ṷ,,,,,"
+  lower: ",,c̭,ḓ,ḙ,,,h̭,i̭,,,ḽ,,ṋ,,,,r̭,,ṱ,ṷ,,,,,"
+latin_hacek:
+  terminator: ˇ
+  upper: Ǎ,B̌,Č,Ď,Ě,F̌,Ǧ,Ȟ,Ǐ,J̌,Ǩ,Ľ,M̌,Ň,Ǒ,P̌,Q̌,Ř,Š,Ť,Ǔ,V̌,W̌,X̌,Y̌,Ž
+  lower: ǎ,b̌,č,ď,ě,f̌,ǧ,ȟ,ǐ,ǰ,ǩ,ľ,m̌,ň,ǒ,p̌,q̌,ř,š,ť,ǔ,v̌,w̌,x̌,y̌,ž
+latin_breve:
+  terminator: ˘
+  upper: Ă,,C̆,,Ĕ,,Ğ,Ḫ,Ĭ,,K̆,,M̆,N̆,Ŏ,P̆,,R̆,,T̆,Ŭ,V̆,,X̆,Y̆,
+  lower: ă,,c̆,,ĕ,,ğ,ḫ,ĭ,,k̆,,m̆,n̆,ŏ,p̆,,r̆,,t̆,ŭ,v̆,,x̆,y̆,
+latin_breve_inverted:
+  terminator: " ̑"
+  upper: Ȃ,,,,Ȇ,,,,Ȋ,,,,,,Ȏ,,,Ȓ,,,Ȗ,,,,,
+  lower: ȃ,,,,ȇ,,,,ȋ,,,,,,ȏ,,,ȓ,,,ȗ,,,,,
+latin_cedilla:
+  terminator: ¸
+  upper: A̧,B̧,Ç,Ḑ,Ȩ,,Ģ,Ḩ,I̧,,Ķ,Ļ,M̧,Ņ,O̧,,Q̧,Ŗ,Ş,Ţ,U̧,,,X̧,,Z̧
+  lower: a̧,b̧,ç,ḑ,ȩ,,ģ,ḩ,i̧,,ķ,ļ,m̧,ņ,o̧,,q̧,ŗ,ş,ţ,u̧,,,x̧,,z̧
+latin_umlaut:
+  terminator: ¨
+  upper: Ä,B̈,C̈,,Ë,,,Ḧ,Ï,J̈,K̈,L̈,M̈,N̈,Ö,P̈,Q̈,R̈,S̈,T̈,Ü,V̈,Ẅ,Ẍ,Ÿ,Z̈
+  lower: ä,b̈,c̈,,ë,,,ḧ,ï,j̈,k̈,l̈,m̈,n̈,ö,p̈,q̈,r̈,s̈,ẗ,ü,v̈,ẅ,ẍ,ÿ,z̈
+latin_dot_above:
+  terminator: ·
+  upper: Ạ,Ḅ,C̣,Ḍ,Ẹ,F̣,G̣,Ḥ,Ị,J̣,Ḳ,Ḷ,Ṃ,Ṇ,Ọ,P̣,Q̣,Ṛ,Ṣ,Ṭ,Ụ,Ṿ,Ẉ,X̣,Ỵ,Ẓ
+  lower: ạ,ḅ,c̣,ḍ,ẹ,f̣,g̣,ḥ,ị,j̣,ḳ,ḷ,ṃ,ṇ,ọ,p̣,q̣,ṛ,ṣ,ṭ,ụ,ṿ,ẉ,x̣,ỵ,ẓ
+latin_dot_below:
+  terminator: ·
+  upper: Ȧ,Ḃ,Ċ,Ḋ,Ė,Ḟ,Ġ,Ḣ,,,K̇,L̇,Ṁ,Ṅ,Ȯ,Ṗ,Q̇,Ṙ,Ṡ,Ṫ,U̇,V̇,Ẇ,Ẋ,Ẏ,Ż
+  lower: ȧ,ḃ,ċ,ḋ,ė,ḟ,ġ,ḣ,,,k̇,l̇,ṁ,ṅ,ȯ,ṗ,q̇,ṙ,ṡ,ṫ,u̇,v̇,ẇ,ẋ,ẏ,ż
+
+## Begin hooks {
+
+latin_hook_above:
+  # Hook above the character, AKA dau hoi. Used in vietnamese.
+  terminator: " ̉"
+  upper: Ả,,,,Ẻ,,,,Ỉ,,,,,,Ỏ,,,,,,Ủ,,,,Ỷ,
+  lower: ả,,,,ẻ,,,,ỉ,,,,,,ỏ,,,,,,ủ,,,,ỷ,
+latin_hook_inclusive:
+  # Hook included as part of the character.
+  # Note that some characters «with left hook» (N,n,u) and some «with right
+  # hook» (v) are included in this set.
+  # Note that «Script V», also known as «V with hook» is *not* in this set. This
+  # is because this character is out of widespread use, while «v with right
+  # hook» is in widespread use as part of the IPA.
+  terminator: " ̡"
+  upper: ",Ɓ,Ƈ,Ɗ,,Ƒ,Ɠ,Ɦ,,,Ƙ,,Ɱ,Ɲ,,Ƥ,,,,Ƭ,,,Ⱳ,,Ƴ,Ȥ"
+  lower: ",ɓ,ƈ,ɗ,,ƒ,ɠ,ɦ,,,ƙ,,ɱ,ɲ,,ƥ,ʠ,,,ƭ,ꭒ,ⱱ,ⱳ,,ƴ,ȥ"
+latin_hook_retroflex:
+  # Hook to the right, indicating a retroflex sound. Used in the IPA.
+  terminator: "◌̢"  # TODO: Make this the combining character alone.
+  lower: ᶏ,,,ɖ,ᶒ,,,,ᶖ,,,ɭ,,ɳ,,,,ɽ,ʂ,ʈ,ᶙ,,,,,ʐ
+latin_hook_palatal:
+  # Hook left, indicating a palatal sound. Used in the IPA.
+  terminator: " ̡"
+  lower: ",ᶀ,,ᶁ,,ᶂ,ᶃ,,,,ᶄ,ᶅ,ᶆ,ᶇ,,ᶈ,,ᶉ,ᶊ,ƫ,,ᶌ,,ᶍ,,ᶎ"
+
+# TODO: tail, swash tail, flourish, crossed tail, squirrel tail,
+# script v (V with hook)
+
+## } End hooks
+
+latin_horn:
+  terminator: " ̛"
+  upper: ",,,,,,,,,,,,,,Ơ,,,,,,Ư,,,,,"
+  lower: ",,,,,,,,,,,,,,ơ,,,,,,ư,,,,,"
+latin_macron_above:
+  terminator: ˉ
+  upper: Ā,B̄,C̄,D̄,Ē,,Ḡ,,Ī,J̄,,L̄,M̄,N̄,Ō,P̄,Q̄,R̄,S̄,T̄,Ū,V̄,W̄,X̄,Ȳ,Z̄
+  lower: ā,b̄,c̄,d̄,ē,,ḡ,,ī,j̄,,l̄,m̄,n̄,ō,p̄,q̄,r̄,s̄,t̄,ū,v̄,w̄,x̄,ȳ,z̄
+latin_macron_below:
+  terminator: ˉ
+  upper: A̱,Ḇ,C̱,Ḏ,E̱,,G̱,H̱,I̱,J̱,Ḵ,Ḻ,M̱,Ṉ,O̱,P̱,,Ṟ,S̱,Ṯ,U̱,,,X̱,Y̱,Ẕ
+  lower: a̱,ḇ,c̱,ḏ,e̱,,g̱,ẖ,i̱,j̱,ḵ,ḻ,m̱,ṉ,o̱,p̱,,ṟ,s̱,ṯ,u̱,,,x̱,y̱,ẕ
+latin_ogonek:
+  terminator: ˛
+  upper: Ą,,C̨,,Ę,,,,Į,J̨,,,,N̨,Ǫ,,,,S̨,,Ų,,,,Y̨,Z̨
+  lower: ą,,c̨,,ę,,,,į,j̨,,,,n̨,ǫ,,,,s̨,,ų,,,,y̨,z̨
+latin_ring_above:
+  terminator: ˚
+  upper: Å,,,D̊,E̊,,G̊,,I̊,J̊,,,,,O̊,,Q̊,,S̊,,Ů,V̊,W̊,X̊,Y̊,
+  lower: å,,,d̊,e̊,,g̊,,i̊,j̊,,,,,o̊,,q̊,,s̊,,ů,v̊,ẘ,x̊,ẙ,
+latin_ring_below:
+  terminator: ˚
+  upper: Ḁ,,,,,,,,,,,L̥,,,,,,R̥,S̥,,,,,,,
+  lower: ḁ,,,,,,,,,,,l̥,,,,,,r̥,s̥,,,,,,,
