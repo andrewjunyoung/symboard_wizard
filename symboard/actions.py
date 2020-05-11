@@ -11,9 +11,11 @@
 from yaml import safe_load
 from dataclasses import dataclass
 import logging
+from typing import List
 
 # Imports from the local package.
 from symboard.errors import AlphabetLengthException
+from settings import OUTPUT_DELIMITER
 
 
 @dataclass(init=False, eq=True, repr=True)
@@ -71,10 +73,12 @@ class State:
         else:
             raise AlphabetLengthException(output)
 
-    def with_lower(self, output_list: str) -> None:
-        """ Builds the object's action_to_output_map for all lowercase numeric
-        or alphanumeric letters, such that the outputs are defined according to
-        output_list.
+    def _with_case(self, output_list: str, case: str):
+        """ A generic class for building outputs of a certain case.
+
+        Builds the object's action_to_output_map for all (lower|upper)case
+        numeric or alphanumeric letters, such that the outputs are defined
+        according to output_list.
 
         Example:
             my_state = State(name, terminator).with_lower(
@@ -88,16 +92,22 @@ class State:
             output_list (str): The output which is expected for each key, in
                 alphabetical order, and separated by commas.
         """
-        outputs = output_list.split(',')
+        outputs: List[str] = output_list.split(OUTPUT_DELIMITER)
 
         actions = self._get_actions(outputs)
 
-        for action, output in zip(actions.lower, outputs):
+        for action, output in zip(getattr(actions, case), outputs):
             logging.info(f'Mapping action {action} to output {output}.')
 
             self.action_to_output_map[action] = output
 
         return self
+
+    def with_lower(self, output_list: str):
+        return self._with_case(output_list, 'lower')
+
+    def with_upper(self, output_list: str):
+        return self._with_case(output_list, 'upper')
 
 
 @dataclass(init=False, eq=True, repr=True, order=True)
