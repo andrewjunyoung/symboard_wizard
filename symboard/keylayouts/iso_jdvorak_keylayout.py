@@ -26,16 +26,16 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
     default_index: int = 4
     used_states: list = [
         states['latin_acute'],             # /
-        #states['latin_acute_double'],      # ^/ (*)
-        #states['latin_breve'],             # u
-        #states['latin_breve_inverted'],    # ^u (U)
+        states['latin_acute_double'],      # ^/ (*)
+        states['latin_breve'],             # u
+        states['latin_breve_inverted'],    # ^u (U)
         #states['latin_cedilla'],           # z
         #states['latin_circumflex_above'],  # ^  (6)
         #states['latin_circumflex_below'],  # ^^ (^6)
         #states['latin_dot_above'],         # .
         #states['latin_dot_below'],         # ^. (?)
         states['latin_grave'],             # \
-        #states['latin_grave_double'],      # ^\ (|)
+        states['latin_grave_double'],      # ^\ (|)
         #states['latin_hacek'],             # v
         #states['latin_hook_above'],        # 7
         #states['latin_hook_palatal'],      # j
@@ -328,7 +328,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             0: Action("1"),
             1: Action("2"),
             2: Action("3"),
-            3: Action("4"),
+            3: Action("alt+u", next_=states['latin_breve']),
             4: Action("6 1"),
             5: Action("5"),
             6: Action("acute"),
@@ -440,7 +440,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             0: Action("α"),
             1: Action("action 4"),
             2: Action("action 5"),
-            3: Action("action 6"),
+            3: Action("alt+U", next_=states['latin_breve_inverted']),
             4: Action("Ґ"),
             5: Action("action 7"),
             6: Action("action"),
@@ -470,7 +470,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             30: '≠',
             31: Action("‘"),
             32: Action("γ"),
-            33: '∓',
+            33: Action("alt+*", next_=states['latin_acute_double']),
             34: Action("І"),
             35: Action("’ 1"),
             36: '&#x000D;',
@@ -479,7 +479,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             39: '',
             40: Action("Ќ"),
             41: Action("’"),
-            42: '',
+            42: Action("alt+|", next_=states['latin_grave_double']),
             43: Action("∵"),
             44: Action("action 13"),
             45: Action("β"),
