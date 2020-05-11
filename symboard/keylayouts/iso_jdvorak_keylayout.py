@@ -25,7 +25,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
     _DEFAULT_NAME: str = 'JDvorak keyboard (iso)'
     default_index: int = 4
     used_states: list = [
-        states['latin_acute'],
+        states['latin_acute'],             # /
         #states['latin_acute_double'],      # ^/ (*)
         #states['latin_breve'],             # u
         #states['latin_breve_inverted'],    # ^u (U)
@@ -40,7 +40,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         #states['latin_hook_above'],        # 7
         #states['latin_hook_palatal'],      # j
         #states['latin_hook_retroflex'],    # ^j (J)
-        #states['latin_horn'],              # ,
+        states['latin_horn'],              # ,
         #states['latin_macron_above'],      # -  (_)
         #states['latin_macron_below'],      # ^- (-)
         #states['latin_ogonek'],            # c
@@ -338,7 +338,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             10: '□',
             11: Action("∑"),
             12: Action(":"),
-            13: Action("alt+,", next_=states['latin_acute']),
+            13: Action("alt+,", next_=states['latin_horn']),
             14: Action(". 1"),
             15: Action("dot"),
             16: Action("action 2"),
@@ -358,7 +358,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             30: '',
             31: Action("^"),
             32: Action("action 3"),
-            33: '',
+            33: Action("alt+/", next_=states['latin_acute']),
             34: Action("%"),
             35: Action("!"),
             36: '&#x000D;',
@@ -367,7 +367,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             39: Action("¯"),
             40: Action("8"),
             41: Action("0"),
-            42: '',
+            42: Action("alt+\\", next_=states['latin_grave']),
             43: Action("∴"),
             44: Action("¬"),
             45: Action("∫"),
@@ -375,7 +375,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             47: Action("caron"),
             48: '&#x0009;',
             49: Action("  2"),
-            50: Action("alt+`", next_=states['latin_grave']),
+            50: Action("alt+`"),
             51: '&#x0008;',
             52: '&#x0003;',
             53: '&#x001B;',
