@@ -46,12 +46,17 @@ def load_yaml():
                 contents = safe_load(file_)
 
             for name, attribs in contents.items():
-                states[name] = State(
+                new_state = State(
                     name=name,
                     terminator=attribs['terminator'],
                 ).with_lower(
                     attribs['lower']
                 )
+
+                if attribs.get('upper'):
+                    new_state = new_state.with_upper(attribs['upper'])
+
+                states[name] = new_state
 
     return states
 
