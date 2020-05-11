@@ -47,6 +47,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         states['latin_ring_above'],        # o
         states['latin_ring_below'],        # ^o (O)
         states['latin_umlaut'],            # :  (;)
+        states['greek'],                   # a
     ]
 
     def __str__(self):
@@ -325,7 +326,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             126: '&#x001E;',
         },
         2: {
-            0: Action("1"),
+            0: Action('alt+a', next_=states['greek']),
             1: Action("alt+o", next_=states['latin_ring_above']),
             2: Action("3"),
             3: Action("alt+u", next_=states['latin_breve']),

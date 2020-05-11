@@ -267,7 +267,7 @@
       <key code="126" output="&#x001E;"/>
     </keyMap>
     <keyMap index="2">
-      <key code="0" action="1"/>
+      <key code="0" action="alt+a"/>
       <key code="1" action="alt+o"/>
       <key code="2" action="3"/>
       <key code="3" action="alt+u"/>
@@ -858,9 +858,6 @@
     <action id="0">
       <when state="none" output="0"/>
     </action>
-    <action id="1">
-      <when state="none" output="1"/>
-    </action>
     <action id="3">
       <when state="none" output="3"/>
     </action>
@@ -999,6 +996,7 @@
       <when state="latin_ring_above" output="å"/>
       <when state="latin_ring_below" output="ḁ"/>
       <when state="latin_umlaut" output="ä"/>
+      <when state="greek" output="α"/>
     </action>
     <action id="action">
       <when state="none" output="action"/>
@@ -1087,6 +1085,9 @@
     <action id="alt+`">
       <when state="none" output="alt+`"/>
     </action>
+    <action id="alt+a">
+      <when state="none" next="greek"/>
+    </action>
     <action id="alt+c">
       <when state="none" next="latin_ogonek"/>
     </action>
@@ -1132,6 +1133,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="b̈"/>
+      <when state="greek" output="β"/>
     </action>
     <action id="c">
       <when state="none" output="c"/>
@@ -1157,6 +1159,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="c̈"/>
+      <when state="greek" output="ξ"/>
     </action>
     <action id="d">
       <when state="none" output="d"/>
@@ -1182,6 +1185,7 @@
       <when state="latin_ring_above" output="d̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
+      <when state="greek" output="δ"/>
     </action>
     <action id="dot">
       <when state="none" output="dot"/>
@@ -1210,6 +1214,7 @@
       <when state="latin_ring_above" output="e̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ë"/>
+      <when state="greek" output="ε"/>
     </action>
     <action id="f">
       <when state="none" output="f"/>
@@ -1235,6 +1240,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
+      <when state="greek" output="φ"/>
     </action>
     <action id="g">
       <when state="none" output="g"/>
@@ -1260,6 +1266,7 @@
       <when state="latin_ring_above" output="g̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
+      <when state="greek" output="γ"/>
     </action>
     <action id="h">
       <when state="none" output="h"/>
@@ -1285,6 +1292,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ḧ"/>
+      <when state="greek" output="η"/>
     </action>
     <action id="i">
       <when state="none" output="i"/>
@@ -1310,6 +1318,7 @@
       <when state="latin_ring_above" output="i̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ï"/>
+      <when state="greek" output="ι"/>
     </action>
     <action id="j">
       <when state="none" output="j"/>
@@ -1335,6 +1344,7 @@
       <when state="latin_ring_above" output="j̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="j̈"/>
+      <when state="greek" output="ς"/>
     </action>
     <action id="k">
       <when state="none" output="k"/>
@@ -1360,6 +1370,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="k̈"/>
+      <when state="greek" output="κ"/>
     </action>
     <action id="l">
       <when state="none" output="l"/>
@@ -1385,6 +1396,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="l̥"/>
       <when state="latin_umlaut" output="l̈"/>
+      <when state="greek" output="λ"/>
     </action>
     <action id="m">
       <when state="none" output="m"/>
@@ -1410,6 +1422,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="m̈"/>
+      <when state="greek" output="μ"/>
     </action>
     <action id="n">
       <when state="none" output="n"/>
@@ -1435,6 +1448,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="n̈"/>
+      <when state="greek" output="ν"/>
     </action>
     <action id="o">
       <when state="none" output="o"/>
@@ -1460,6 +1474,7 @@
       <when state="latin_ring_above" output="o̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ö"/>
+      <when state="greek" output="ο"/>
     </action>
     <action id="p">
       <when state="none" output="p"/>
@@ -1485,6 +1500,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="p̈"/>
+      <when state="greek" output="π"/>
     </action>
     <action id="q">
       <when state="none" output="q"/>
@@ -1510,6 +1526,7 @@
       <when state="latin_ring_above" output="q̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="q̈"/>
+      <when state="greek" output="θ"/>
     </action>
     <action id="r">
       <when state="none" output="r"/>
@@ -1535,6 +1552,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="r̥"/>
       <when state="latin_umlaut" output="r̈"/>
+      <when state="greek" output="ρ"/>
     </action>
     <action id="s">
       <when state="none" output="s"/>
@@ -1560,6 +1578,7 @@
       <when state="latin_ring_above" output="s̊"/>
       <when state="latin_ring_below" output="s̥"/>
       <when state="latin_umlaut" output="s̈"/>
+      <when state="greek" output="σ"/>
     </action>
     <action id="t">
       <when state="none" output="t"/>
@@ -1585,6 +1604,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẗ"/>
+      <when state="greek" output="τ"/>
     </action>
     <action id="u">
       <when state="none" output="u"/>
@@ -1610,6 +1630,7 @@
       <when state="latin_ring_above" output="ů"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ü"/>
+      <when state="greek" output="υ"/>
     </action>
     <action id="v">
       <when state="none" output="v"/>
@@ -1635,6 +1656,7 @@
       <when state="latin_ring_above" output="v̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="v̈"/>
+      <when state="greek" output="ϝ"/>
     </action>
     <action id="w">
       <when state="none" output="w"/>
@@ -1660,6 +1682,7 @@
       <when state="latin_ring_above" output="ẘ"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẅ"/>
+      <when state="greek" output="ω"/>
     </action>
     <action id="x">
       <when state="none" output="x"/>
@@ -1685,6 +1708,7 @@
       <when state="latin_ring_above" output="x̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẍ"/>
+      <when state="greek" output="χ"/>
     </action>
     <action id="y">
       <when state="none" output="y"/>
@@ -1710,6 +1734,7 @@
       <when state="latin_ring_above" output="ẙ"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ÿ"/>
+      <when state="greek" output="ψ"/>
     </action>
     <action id="z">
       <when state="none" output="z"/>
@@ -1735,6 +1760,7 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="z̈"/>
+      <when state="greek" output="ζ"/>
     </action>
     <action id=" ">
       <when state="none" output=" "/>
@@ -1826,5 +1852,6 @@
     <when state="latin_ring_above" output="˚"/>
     <when state="latin_ring_below" output="˚"/>
     <when state="latin_umlaut" output="¨"/>
+    <when state="greek" output="α"/>
   </terminators>
 </keyboard>
