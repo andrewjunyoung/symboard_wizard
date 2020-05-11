@@ -10,7 +10,7 @@ latin_acute_double:
   terminator: ˝
   upper: A̋,,,,E̋,,,,I̋,,,,M̋,,Ő,,,,,,Ű,,,,,
   lower: a̋,,,,e̋,,,,i̋,,,,m̋,,ő,,,,,,ű,,,,,
-latin_double_grave:
+latin_grave_double:
   terminator: " ̏"
   upper: Ȁ,,,,Ȅ,,,,Ȉ,,,,,,Ȍ,,,Ȑ,,,Ȕ,,,,Y̏,
   lower: ȁ,,,,ȅ,,,,ȉ,,,,,,ȍ,,,ȑ,,,ȕ,,,,y̏,
