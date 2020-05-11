@@ -26,7 +26,27 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
     default_index: int = 4
     used_states: list = [
         states['latin_acute'],
-        states['latin_grave'],
+        #states['latin_acute_double'],      # ^/ (*)
+        #states['latin_breve'],             # u
+        #states['latin_breve_inverted'],    # ^u (U)
+        #states['latin_cedilla'],           # z
+        #states['latin_circumflex_above'],  # ^  (6)
+        #states['latin_circumflex_below'],  # ^^ (^6)
+        #states['latin_dot_above'],         # .
+        #states['latin_dot_below'],         # ^. (?)
+        states['latin_grave'],             # \
+        #states['latin_grave_double'],      # ^\ (|)
+        #states['latin_hacek'],             # v
+        #states['latin_hook_above'],        # 7
+        #states['latin_hook_palatal'],      # j
+        #states['latin_hook_retroflex'],    # ^j (J)
+        #states['latin_horn'],              # ,
+        #states['latin_macron_above'],      # -  (_)
+        #states['latin_macron_below'],      # ^- (-)
+        #states['latin_ogonek'],            # c
+        #states['latin_ring_above'],        # o
+        #states['latin_ring_below'],        # ^o (O)
+        #states['latin_umlaut'],            # :  (;)
     ]
 
     def __str__(self):
@@ -309,7 +329,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             1: Action("2"),
             2: Action("3"),
             3: Action("4"),
-            4: Action("6"),
+            4: Action("6 1"),
             5: Action("5"),
             6: Action("acute"),
             7: Action("×"),
@@ -551,7 +571,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             19: '2',
             20: '3',
             21: '4',
-            22: Action("6 1"),
+            22: Action("6"),
             23: '5',
             24: ']',
             25: '9',
