@@ -24,6 +24,12 @@ to the path specified by DEFAULT_OUTPUT_PATH. This string can, but does not need
 to, end in «.keylayout».
 """
 
+OUTPUT_DELIMITER = ','
+""" The delimiter used by state files between key outputs. So, «abc» would
+become the output of a single key, while «a,bc» would be the output of 2. Used
+throughout the states defined in the states directory, and by State builders.
+"""
+
 # } Package settings
 # Import using dotenv {
 

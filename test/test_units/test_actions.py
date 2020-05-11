@@ -7,8 +7,12 @@ from symboard.actions import State
 from symboard.errors import AlphabetLengthException
 
 
-class TestState(TestCase):
-    def test_with_lower_raises_exception_when_not_valid_length(self):
+class TestLetterCase(TestCase):
+    def setUp(self):
+        self.fn = '_with_case'
+        self.args = ['lower']
+
+    def test_with_case_raises_exception_when_not_valid_length(self):
         state = State(name='acute', terminator='´')
         inputs = [
             '',
@@ -23,9 +27,9 @@ class TestState(TestCase):
 
         for input_ in inputs:
             with self.assertRaises(AlphabetLengthException):
-                state.with_lower(input_)
+                getattr(state, self.fn)(input_, *self.args)
 
-    def test_with_lower_does_not_raise_exception_when_length_26(self):
+    def test_with_case_does_not_raise_exception_when_length_26(self):
         state = State(name='acute', terminator='´')
         inputs = [
             'p,y,f,g,c,r,l,a,o,e,u,i,d,h,t,n,s,q,j,k,x,b,m,w,v,z',
@@ -33,9 +37,22 @@ class TestState(TestCase):
         ]
 
         for input_ in inputs:
-            state.with_lower(input_)
+            getattr(state, self.fn)(input_, *self.args)
 
-    # TODO: Test _get_actions
+
+class TestUpperCase(TestLetterCase):
+    def setUp(self):
+        self.fn = 'with_upper'
+        self.args = []
+
+
+class TestLowerCase(TestLetterCase):
+    def setUp(self):
+        self.fn = 'with_lower'
+        self.args = []
+
+
+# TODO: Test _get_actions
 
 
 if __name__ == '__main__':

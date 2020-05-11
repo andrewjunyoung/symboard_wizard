@@ -14,19 +14,43 @@ from symboard.actions import State, latin
 
 
 class TestStates(TestCase):
-    def test_load_yaml_valid_input(self):
-        state_name = 'nothing'
-        comma_separated_latin_lower = \
+    def setUp(self):
+        self.comma_separated_latin_lower = \
             'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z'
+        self.comma_separated_latin_upper = \
+            self.comma_separated_latin_lower.upper()
+
+    def test_load_yaml_valid_input_without_upper(self):
+        state_name = 'nothing'
         read_data = f'''
         {state_name}:
             terminator: .
-            lower: {comma_separated_latin_lower}
-            upper: A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
+            lower: {self.comma_separated_latin_lower}
         '''
         expected_states = {
             state_name: State(name=state_name, terminator='.').with_lower(
-                comma_separated_latin_lower
+                self.comma_separated_latin_lower
+            )
+        }
+
+        with patch('builtins.open', mock_open(read_data=read_data)) as open_:
+            actual_states = load_yaml()
+
+        self.assertEqual(expected_states, actual_states)
+
+    def test_load_yaml_valid_input_with_upper(self):
+        state_name = 'nothing'
+        read_data = f'''
+        {state_name}:
+            terminator: .
+            lower: {self.comma_separated_latin_lower}
+            upper: {self.comma_separated_latin_upper}
+        '''
+        expected_states = {
+            state_name: State(name=state_name, terminator='.').with_lower(
+                self.comma_separated_latin_lower
+            ).with_upper(
+                self.comma_separated_latin_upper
             )
         }
 
