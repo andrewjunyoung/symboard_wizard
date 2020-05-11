@@ -268,20 +268,20 @@
     </keyMap>
     <keyMap index="2">
       <key code="0" action="1"/>
-      <key code="1" action="2"/>
+      <key code="1" action="alt+o"/>
       <key code="2" action="3"/>
-      <key code="3" action="4"/>
-      <key code="4" action="6"/>
+      <key code="3" action="alt+u"/>
+      <key code="4" action="6 1"/>
       <key code="5" action="5"/>
       <key code="6" action="acute"/>
       <key code="7" action="×"/>
-      <key code="8" action="·"/>
+      <key code="8" action="alt+j"/>
       <key code="9" action="√"/>
       <key code="10" output="□"/>
       <key code="11" action="∑"/>
-      <key code="12" action=":"/>
+      <key code="12" action="alt+;"/>
       <key code="13" action="alt+,"/>
-      <key code="14" action=". 1"/>
+      <key code="14" action="alt+."/>
       <key code="15" action="dot"/>
       <key code="16" action="action 2"/>
       <key code="17" action="action 1"/>
@@ -289,32 +289,32 @@
       <key code="19" output=""/>
       <key code="20" output=""/>
       <key code="21" output=""/>
-      <key code="22" action="ˆ"/>
+      <key code="22" action="alt+6"/>
       <key code="23" output=""/>
       <key code="24" output="»"/>
       <key code="25" output="&#x000D;"/>
-      <key code="26" output=""/>
-      <key code="27" output="«"/>
+      <key code="26" action="alt+7"/>
+      <key code="27" output=""/>
       <key code="28" output=""/>
       <key code="29" output=""/>
       <key code="30" output=""/>
       <key code="31" action="^"/>
       <key code="32" action="action 3"/>
-      <key code="33" output=""/>
-      <key code="34" action="%"/>
+      <key code="33" action="alt+/"/>
+      <key code="34" action="alt+c"/>
       <key code="35" action="!"/>
       <key code="36" output="&#x000D;"/>
       <key code="37" action="9"/>
       <key code="38" action="7"/>
-      <key code="39" action="¯"/>
+      <key code="39" action="alt+_"/>
       <key code="40" action="8"/>
       <key code="41" action="0"/>
-      <key code="42" output=""/>
+      <key code="42" action="alt+\"/>
       <key code="43" action="∴"/>
-      <key code="44" action="¬"/>
+      <key code="44" action="alt+z"/>
       <key code="45" action="∫"/>
       <key code="46" action="∮"/>
-      <key code="47" action="caron"/>
+      <key code="47" action="alt+v"/>
       <key code="48" output="&#x0009;"/>
       <key code="49" action="  2"/>
       <key code="50" action="alt+`"/>
@@ -380,20 +380,20 @@
     </keyMap>
     <keyMap index="3">
       <key code="0" action="α"/>
-      <key code="1" action="action 4"/>
+      <key code="1" action="alt+O"/>
       <key code="2" action="action 5"/>
-      <key code="3" action="action 6"/>
+      <key code="3" action="alt+U"/>
       <key code="4" action="Ґ"/>
       <key code="5" action="action 7"/>
       <key code="6" action="action"/>
       <key code="7" action="action 8"/>
-      <key code="8" action="action 14"/>
+      <key code="8" action="alt+J"/>
       <key code="9" action="action 9"/>
       <key code="10" output=""/>
       <key code="11" action="action 10"/>
       <key code="12" action="± 1"/>
       <key code="13" output="¡"/>
-      <key code="14" action="Ё"/>
+      <key code="14" action="alt+?"/>
       <key code="15" action="®"/>
       <key code="16" output=""/>
       <key code="17" action="Ћ"/>
@@ -401,7 +401,7 @@
       <key code="19" output=""/>
       <key code="20" output=""/>
       <key code="21" output=""/>
-      <key code="22" action="&#x0026;"/>
+      <key code="22" action="alt+^"/>
       <key code="23" output=""/>
       <key code="24" output=""/>
       <key code="25" output=""/>
@@ -412,16 +412,16 @@
       <key code="30" output="≠"/>
       <key code="31" action="‘"/>
       <key code="32" action="γ"/>
-      <key code="33" output="∓"/>
+      <key code="33" action="alt+*"/>
       <key code="34" action="І"/>
       <key code="35" action="’ 1"/>
       <key code="36" output="&#x000D;"/>
       <key code="37" action="Љ"/>
       <key code="38" action="Ј"/>
-      <key code="39" output=""/>
+      <key code="39" action="alt+-"/>
       <key code="40" action="Ќ"/>
       <key code="41" action="’"/>
-      <key code="42" output=""/>
+      <key code="42" action="alt+|"/>
       <key code="43" action="∵"/>
       <key code="44" action="action 13"/>
       <key code="45" action="β"/>
@@ -513,7 +513,7 @@
       <key code="19" output="2"/>
       <key code="20" output="3"/>
       <key code="21" output="4"/>
-      <key code="22" action="6 1"/>
+      <key code="22" action="6"/>
       <key code="23" output="5"/>
       <key code="24" output="]"/>
       <key code="25" output="9"/>
@@ -840,14 +840,8 @@
     <action id="!">
       <when state="none" output="!"/>
     </action>
-    <action id="%">
-      <when state="none" output="%"/>
-    </action>
     <action id="&#x0022;">
       <when state="none" output="&#x0022;"/>
-    </action>
-    <action id="&#x0026;">
-      <when state="none" output="&#x0026;"/>
     </action>
     <action id="&#x0027;">
       <when state="none" output="&#x0027;"/>
@@ -861,23 +855,14 @@
     <action id=".">
       <when state="none" output="."/>
     </action>
-    <action id=". 1">
-      <when state="none" output=". 1"/>
-    </action>
     <action id="0">
       <when state="none" output="0"/>
     </action>
     <action id="1">
       <when state="none" output="1"/>
     </action>
-    <action id="2">
-      <when state="none" output="2"/>
-    </action>
     <action id="3">
       <when state="none" output="3"/>
-    </action>
-    <action id="4">
-      <when state="none" output="4"/>
     </action>
     <action id="5">
       <when state="none" output="5"/>
@@ -896,9 +881,6 @@
     </action>
     <action id="9">
       <when state="none" output="9"/>
-    </action>
-    <action id=":">
-      <when state="none" output=":"/>
     </action>
     <action id=": 1">
       <when state="none" output=": 1"/>
@@ -996,7 +978,27 @@
     <action id="a">
       <when state="none" output="a"/>
       <when state="latin_acute" output="á"/>
+      <when state="latin_acute_double" output="a̋"/>
+      <when state="latin_breve" output="ă"/>
+      <when state="latin_breve_inverted" output="ȃ"/>
+      <when state="latin_cedilla" output="a̧"/>
+      <when state="latin_circumflex_above" output="â"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ạ"/>
+      <when state="latin_dot_below" output="ȧ"/>
       <when state="latin_grave" output="à"/>
+      <when state="latin_grave_double" output="ȁ"/>
+      <when state="latin_hacek" output="ǎ"/>
+      <when state="latin_hook_above" output="ả"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output="ᶏ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="ā"/>
+      <when state="latin_macron_below" output="a̱"/>
+      <when state="latin_ogonek" output="ą"/>
+      <when state="latin_ring_above" output="å"/>
+      <when state="latin_ring_below" output="ḁ"/>
+      <when state="latin_umlaut" output="ä"/>
     </action>
     <action id="action">
       <when state="none" output="action"/>
@@ -1016,23 +1018,14 @@
     <action id="action 13">
       <when state="none" output="action 13"/>
     </action>
-    <action id="action 14">
-      <when state="none" output="action 14"/>
-    </action>
     <action id="action 2">
       <when state="none" output="action 2"/>
     </action>
     <action id="action 3">
       <when state="none" output="action 3"/>
     </action>
-    <action id="action 4">
-      <when state="none" output="action 4"/>
-    </action>
     <action id="action 5">
       <when state="none" output="action 5"/>
-    </action>
-    <action id="action 6">
-      <when state="none" output="action 6"/>
     </action>
     <action id="action 7">
       <when state="none" output="action 7"/>
@@ -1046,29 +1039,149 @@
     <action id="acute">
       <when state="none" output="acute"/>
     </action>
+    <action id="alt+*">
+      <when state="none" next="latin_acute_double"/>
+    </action>
     <action id="alt+,">
+      <when state="none" next="latin_horn"/>
+    </action>
+    <action id="alt+-">
+      <when state="none" next="latin_macron_below"/>
+    </action>
+    <action id="alt+.">
+      <when state="none" next="latin_dot_above"/>
+    </action>
+    <action id="alt+/">
       <when state="none" next="latin_acute"/>
     </action>
-    <action id="alt+`">
+    <action id="alt+6">
+      <when state="none" next="latin_circumflex_above"/>
+    </action>
+    <action id="alt+7">
+      <when state="none" next="latin_hook_above"/>
+    </action>
+    <action id="alt+;">
+      <when state="none" next="latin_umlaut"/>
+    </action>
+    <action id="alt+?">
+      <when state="none" next="latin_dot_below"/>
+    </action>
+    <action id="alt+J">
+      <when state="none" next="latin_hook_retroflex"/>
+    </action>
+    <action id="alt+O">
+      <when state="none" next="latin_ring_below"/>
+    </action>
+    <action id="alt+U">
+      <when state="none" next="latin_breve_inverted"/>
+    </action>
+    <action id="alt+\">
       <when state="none" next="latin_grave"/>
+    </action>
+    <action id="alt+^">
+      <when state="none" next="latin_circumflex_below"/>
+    </action>
+    <action id="alt+_">
+      <when state="none" next="latin_macron_above"/>
+    </action>
+    <action id="alt+`">
+      <when state="none" output="alt+`"/>
+    </action>
+    <action id="alt+c">
+      <when state="none" next="latin_ogonek"/>
+    </action>
+    <action id="alt+j">
+      <when state="none" next="latin_hook_palatal"/>
+    </action>
+    <action id="alt+o">
+      <when state="none" next="latin_ring_above"/>
+    </action>
+    <action id="alt+u">
+      <when state="none" next="latin_breve"/>
+    </action>
+    <action id="alt+v">
+      <when state="none" next="latin_hacek"/>
+    </action>
+    <action id="alt+z">
+      <when state="none" next="latin_cedilla"/>
+    </action>
+    <action id="alt+|">
+      <when state="none" next="latin_grave_double"/>
     </action>
     <action id="b">
       <when state="none" output="b"/>
       <when state="latin_acute" output="b́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="b̧"/>
+      <when state="latin_circumflex_above" output="b̂"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ḅ"/>
+      <when state="latin_dot_below" output="ḃ"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="b̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶀ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="b̄"/>
+      <when state="latin_macron_below" output="ḇ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="b̈"/>
     </action>
     <action id="c">
       <when state="none" output="c"/>
       <when state="latin_acute" output="ć"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="c̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ç"/>
+      <when state="latin_circumflex_above" output="ĉ"/>
+      <when state="latin_circumflex_below" output="c̭"/>
+      <when state="latin_dot_above" output="c̣"/>
+      <when state="latin_dot_below" output="ċ"/>
       <when state="latin_grave" output=""/>
-    </action>
-    <action id="caron">
-      <when state="none" output="caron"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="č"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="c̄"/>
+      <when state="latin_macron_below" output="c̱"/>
+      <when state="latin_ogonek" output="c̨"/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="c̈"/>
     </action>
     <action id="d">
       <when state="none" output="d"/>
       <when state="latin_acute" output="d́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ḑ"/>
+      <when state="latin_circumflex_above" output="d̂"/>
+      <when state="latin_circumflex_below" output="ḓ"/>
+      <when state="latin_dot_above" output="ḍ"/>
+      <when state="latin_dot_below" output="ḋ"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ď"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶁ"/>
+      <when state="latin_hook_retroflex" output="ɖ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="d̄"/>
+      <when state="latin_macron_below" output="ḏ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="d̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output=""/>
     </action>
     <action id="dot">
       <when state="none" output="dot"/>
@@ -1076,136 +1189,564 @@
     <action id="e">
       <when state="none" output="e"/>
       <when state="latin_acute" output="é"/>
+      <when state="latin_acute_double" output="e̋"/>
+      <when state="latin_breve" output="ĕ"/>
+      <when state="latin_breve_inverted" output="ȇ"/>
+      <when state="latin_cedilla" output="ȩ"/>
+      <when state="latin_circumflex_above" output="ê"/>
+      <when state="latin_circumflex_below" output="ḙ"/>
+      <when state="latin_dot_above" output="ẹ"/>
+      <when state="latin_dot_below" output="ė"/>
       <when state="latin_grave" output="è"/>
+      <when state="latin_grave_double" output="ȅ"/>
+      <when state="latin_hacek" output="ě"/>
+      <when state="latin_hook_above" output="ẻ"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output="ᶒ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="ē"/>
+      <when state="latin_macron_below" output="e̱"/>
+      <when state="latin_ogonek" output="ę"/>
+      <when state="latin_ring_above" output="e̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ë"/>
     </action>
     <action id="f">
       <when state="none" output="f"/>
       <when state="latin_acute" output="f́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output=""/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="f̣"/>
+      <when state="latin_dot_below" output="ḟ"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="f̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶂ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output=""/>
+      <when state="latin_macron_below" output=""/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output=""/>
     </action>
     <action id="g">
       <when state="none" output="g"/>
       <when state="latin_acute" output="ǵ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="ğ"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ģ"/>
+      <when state="latin_circumflex_above" output="ĝ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="g̣"/>
+      <when state="latin_dot_below" output="ġ"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ǧ"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶃ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="ḡ"/>
+      <when state="latin_macron_below" output="g̱"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="g̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output=""/>
     </action>
     <action id="h">
       <when state="none" output="h"/>
       <when state="latin_acute" output="h́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="ḫ"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ḩ"/>
+      <when state="latin_circumflex_above" output="ĥ"/>
+      <when state="latin_circumflex_below" output="h̭"/>
+      <when state="latin_dot_above" output="ḥ"/>
+      <when state="latin_dot_below" output="ḣ"/>
       <when state="latin_grave" output="h̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ȟ"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output=""/>
+      <when state="latin_macron_below" output="ẖ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ḧ"/>
     </action>
     <action id="i">
       <when state="none" output="i"/>
       <when state="latin_acute" output="í"/>
+      <when state="latin_acute_double" output="i̋"/>
+      <when state="latin_breve" output="ĭ"/>
+      <when state="latin_breve_inverted" output="ȋ"/>
+      <when state="latin_cedilla" output="i̧"/>
+      <when state="latin_circumflex_above" output="î"/>
+      <when state="latin_circumflex_below" output="i̭"/>
+      <when state="latin_dot_above" output="ị"/>
+      <when state="latin_dot_below" output=""/>
       <when state="latin_grave" output="ì"/>
+      <when state="latin_grave_double" output="ȉ"/>
+      <when state="latin_hacek" output="ǐ"/>
+      <when state="latin_hook_above" output="ỉ"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output="ᶖ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="ī"/>
+      <when state="latin_macron_below" output="i̱"/>
+      <when state="latin_ogonek" output="į"/>
+      <when state="latin_ring_above" output="i̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ï"/>
     </action>
     <action id="j">
       <when state="none" output="j"/>
       <when state="latin_acute" output="ȷ́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output="ĵ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="j̣"/>
+      <when state="latin_dot_below" output=""/>
       <when state="latin_grave" output="j"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ǰ"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="j̄"/>
+      <when state="latin_macron_below" output="j̱"/>
+      <when state="latin_ogonek" output="j̨"/>
+      <when state="latin_ring_above" output="j̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="j̈"/>
     </action>
     <action id="k">
       <when state="none" output="k"/>
       <when state="latin_acute" output="ḱ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="k̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ķ"/>
+      <when state="latin_circumflex_above" output="k̂"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ḳ"/>
+      <when state="latin_dot_below" output="k̇"/>
       <when state="latin_grave" output="k̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ǩ"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶄ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output=""/>
+      <when state="latin_macron_below" output="ḵ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="k̈"/>
     </action>
     <action id="l">
       <when state="none" output="l"/>
       <when state="latin_acute" output="ĺ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ļ"/>
+      <when state="latin_circumflex_above" output="l̂"/>
+      <when state="latin_circumflex_below" output="ḽ"/>
+      <when state="latin_dot_above" output="ḷ"/>
+      <when state="latin_dot_below" output="l̇"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ľ"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶅ"/>
+      <when state="latin_hook_retroflex" output="ɭ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="l̄"/>
+      <when state="latin_macron_below" output="ḻ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output="l̥"/>
+      <when state="latin_umlaut" output="l̈"/>
     </action>
     <action id="m">
       <when state="none" output="m"/>
       <when state="latin_acute" output="ḿ"/>
+      <when state="latin_acute_double" output="m̋"/>
+      <when state="latin_breve" output="m̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="m̧"/>
+      <when state="latin_circumflex_above" output="m̂"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ṃ"/>
+      <when state="latin_dot_below" output="ṁ"/>
       <when state="latin_grave" output="m̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="m̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶆ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="m̄"/>
+      <when state="latin_macron_below" output="m̱"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="m̈"/>
     </action>
     <action id="n">
       <when state="none" output="n"/>
       <when state="latin_acute" output="ń"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="n̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ņ"/>
+      <when state="latin_circumflex_above" output="n̂"/>
+      <when state="latin_circumflex_below" output="ṋ"/>
+      <when state="latin_dot_above" output="ṇ"/>
+      <when state="latin_dot_below" output="ṅ"/>
       <when state="latin_grave" output="ǹ"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ň"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶇ"/>
+      <when state="latin_hook_retroflex" output="ɳ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="n̄"/>
+      <when state="latin_macron_below" output="ṉ"/>
+      <when state="latin_ogonek" output="n̨"/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="n̈"/>
     </action>
     <action id="o">
       <when state="none" output="o"/>
       <when state="latin_acute" output="ó"/>
+      <when state="latin_acute_double" output="ő"/>
+      <when state="latin_breve" output="ŏ"/>
+      <when state="latin_breve_inverted" output="ȏ"/>
+      <when state="latin_cedilla" output="o̧"/>
+      <when state="latin_circumflex_above" output="ô"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ọ"/>
+      <when state="latin_dot_below" output="ȯ"/>
       <when state="latin_grave" output="ò"/>
+      <when state="latin_grave_double" output="ȍ"/>
+      <when state="latin_hacek" output="ǒ"/>
+      <when state="latin_hook_above" output="ỏ"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output="ơ"/>
+      <when state="latin_macron_above" output="ō"/>
+      <when state="latin_macron_below" output="o̱"/>
+      <when state="latin_ogonek" output="ǫ"/>
+      <when state="latin_ring_above" output="o̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ö"/>
     </action>
     <action id="p">
       <when state="none" output="p"/>
       <when state="latin_acute" output="ṕ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="p̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output=""/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="p̣"/>
+      <when state="latin_dot_below" output="ṗ"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="p̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶈ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="p̄"/>
+      <when state="latin_macron_below" output="p̱"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="p̈"/>
     </action>
     <action id="q">
       <when state="none" output="q"/>
       <when state="latin_acute" output="q́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="q̧"/>
+      <when state="latin_circumflex_above" output=""/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="q̣"/>
+      <when state="latin_dot_below" output="q̇"/>
       <when state="latin_grave" output=""/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="q̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="q̄"/>
+      <when state="latin_macron_below" output=""/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="q̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="q̈"/>
     </action>
     <action id="r">
       <when state="none" output="r"/>
       <when state="latin_acute" output="ŕ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="r̆"/>
+      <when state="latin_breve_inverted" output="ȓ"/>
+      <when state="latin_cedilla" output="ŗ"/>
+      <when state="latin_circumflex_above" output="r̂"/>
+      <when state="latin_circumflex_below" output="r̭"/>
+      <when state="latin_dot_above" output="ṛ"/>
+      <when state="latin_dot_below" output="ṙ"/>
       <when state="latin_grave" output="r̀"/>
+      <when state="latin_grave_double" output="ȑ"/>
+      <when state="latin_hacek" output="ř"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶉ"/>
+      <when state="latin_hook_retroflex" output="ɽ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="r̄"/>
+      <when state="latin_macron_below" output="ṟ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output="r̥"/>
+      <when state="latin_umlaut" output="r̈"/>
     </action>
     <action id="s">
       <when state="none" output="s"/>
       <when state="latin_acute" output="ś"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ş"/>
+      <when state="latin_circumflex_above" output="ŝ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ṣ"/>
+      <when state="latin_dot_below" output="ṡ"/>
       <when state="latin_grave" output="s̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="š"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶊ"/>
+      <when state="latin_hook_retroflex" output="ʂ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="s̄"/>
+      <when state="latin_macron_below" output="s̱"/>
+      <when state="latin_ogonek" output="s̨"/>
+      <when state="latin_ring_above" output="s̊"/>
+      <when state="latin_ring_below" output="s̥"/>
+      <when state="latin_umlaut" output="s̈"/>
     </action>
     <action id="t">
       <when state="none" output="t"/>
       <when state="latin_acute" output="t́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="t̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="ţ"/>
+      <when state="latin_circumflex_above" output="t̂"/>
+      <when state="latin_circumflex_below" output="ṱ"/>
+      <when state="latin_dot_above" output="ṭ"/>
+      <when state="latin_dot_below" output="ṫ"/>
       <when state="latin_grave" output="t̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ť"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ƫ"/>
+      <when state="latin_hook_retroflex" output="ʈ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="t̄"/>
+      <when state="latin_macron_below" output="ṯ"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ẗ"/>
     </action>
     <action id="u">
       <when state="none" output="u"/>
       <when state="latin_acute" output="ú"/>
+      <when state="latin_acute_double" output="ű"/>
+      <when state="latin_breve" output="ŭ"/>
+      <when state="latin_breve_inverted" output="ȗ"/>
+      <when state="latin_cedilla" output="u̧"/>
+      <when state="latin_circumflex_above" output="û"/>
+      <when state="latin_circumflex_below" output="ṷ"/>
+      <when state="latin_dot_above" output="ụ"/>
+      <when state="latin_dot_below" output="u̇"/>
       <when state="latin_grave" output="ù"/>
+      <when state="latin_grave_double" output="ȕ"/>
+      <when state="latin_hacek" output="ǔ"/>
+      <when state="latin_hook_above" output="ủ"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output="ᶙ"/>
+      <when state="latin_horn" output="ư"/>
+      <when state="latin_macron_above" output="ū"/>
+      <when state="latin_macron_below" output="u̱"/>
+      <when state="latin_ogonek" output="ų"/>
+      <when state="latin_ring_above" output="ů"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ü"/>
     </action>
     <action id="v">
       <when state="none" output="v"/>
       <when state="latin_acute" output="v́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="v̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output="v̂"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ṿ"/>
+      <when state="latin_dot_below" output="v̇"/>
       <when state="latin_grave" output="v̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="v̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶌ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="v̄"/>
+      <when state="latin_macron_below" output=""/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="v̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="v̈"/>
     </action>
     <action id="w">
       <when state="none" output="w"/>
       <when state="latin_acute" output="ẃ"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output="ŵ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ẉ"/>
+      <when state="latin_dot_below" output="ẇ"/>
       <when state="latin_grave" output="ẁ"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="w̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="w̄"/>
+      <when state="latin_macron_below" output=""/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="ẘ"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ẅ"/>
     </action>
     <action id="x">
       <when state="none" output="x"/>
       <when state="latin_acute" output="x́"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="x̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="x̧"/>
+      <when state="latin_circumflex_above" output="x̂"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="x̣"/>
+      <when state="latin_dot_below" output="ẋ"/>
       <when state="latin_grave" output="x̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="x̌"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶍ"/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="x̄"/>
+      <when state="latin_macron_below" output="x̱"/>
+      <when state="latin_ogonek" output=""/>
+      <when state="latin_ring_above" output="x̊"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ẍ"/>
     </action>
     <action id="y">
       <when state="none" output="y"/>
       <when state="latin_acute" output="ý"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output="y̆"/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output=""/>
+      <when state="latin_circumflex_above" output="ŷ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ỵ"/>
+      <when state="latin_dot_below" output="ẏ"/>
       <when state="latin_grave" output="ỳ"/>
+      <when state="latin_grave_double" output="y̏"/>
+      <when state="latin_hacek" output="y̌"/>
+      <when state="latin_hook_above" output="ỷ"/>
+      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_retroflex" output=""/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="ȳ"/>
+      <when state="latin_macron_below" output="y̱"/>
+      <when state="latin_ogonek" output="y̨"/>
+      <when state="latin_ring_above" output="ẙ"/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="ÿ"/>
     </action>
     <action id="z">
       <when state="none" output="z"/>
       <when state="latin_acute" output="ź"/>
+      <when state="latin_acute_double" output=""/>
+      <when state="latin_breve" output=""/>
+      <when state="latin_breve_inverted" output=""/>
+      <when state="latin_cedilla" output="z̧"/>
+      <when state="latin_circumflex_above" output="ẑ"/>
+      <when state="latin_circumflex_below" output=""/>
+      <when state="latin_dot_above" output="ẓ"/>
+      <when state="latin_dot_below" output="ż"/>
       <when state="latin_grave" output="z̀"/>
+      <when state="latin_grave_double" output=""/>
+      <when state="latin_hacek" output="ž"/>
+      <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="ᶎ"/>
+      <when state="latin_hook_retroflex" output="ʐ"/>
+      <when state="latin_horn" output=""/>
+      <when state="latin_macron_above" output="z̄"/>
+      <when state="latin_macron_below" output="ẕ"/>
+      <when state="latin_ogonek" output="z̨"/>
+      <when state="latin_ring_above" output=""/>
+      <when state="latin_ring_below" output=""/>
+      <when state="latin_umlaut" output="z̈"/>
     </action>
     <action id=" ">
       <when state="none" output=" "/>
     </action>
-    <action id="¬">
-      <when state="none" output="¬"/>
-    </action>
     <action id="®">
       <when state="none" output="®"/>
-    </action>
-    <action id="¯">
-      <when state="none" output="¯"/>
     </action>
     <action id="± 1">
       <when state="none" output="± 1"/>
     </action>
-    <action id="·">
-      <when state="none" output="·"/>
-    </action>
     <action id="×">
       <when state="none" output="×"/>
-    </action>
-    <action id="ˆ">
-      <when state="none" output="ˆ"/>
     </action>
     <action id="α">
       <when state="none" output="α"/>
@@ -1215,9 +1756,6 @@
     </action>
     <action id="γ">
       <when state="none" output="γ"/>
-    </action>
-    <action id="Ё">
-      <when state="none" output="Ё"/>
     </action>
     <action id="І">
       <when state="none" output="І"/>
@@ -1267,6 +1805,26 @@
   </actions>
   <terminators>
     <when state="latin_acute" output="´"/>
+    <when state="latin_acute_double" output="˝"/>
+    <when state="latin_breve" output="˘"/>
+    <when state="latin_breve_inverted" output=" ̑"/>
+    <when state="latin_cedilla" output="¸"/>
+    <when state="latin_circumflex_above" output="ˆ"/>
+    <when state="latin_circumflex_below" output="ˆ"/>
+    <when state="latin_dot_above" output="·"/>
+    <when state="latin_dot_below" output="·"/>
     <when state="latin_grave" output="`"/>
+    <when state="latin_grave_double" output=" ̏"/>
+    <when state="latin_hacek" output="ˇ"/>
+    <when state="latin_hook_above" output=" ̉"/>
+    <when state="latin_hook_palatal" output=" ̡"/>
+    <when state="latin_hook_retroflex" output="◌̢"/>
+    <when state="latin_horn" output=" ̛"/>
+    <when state="latin_macron_above" output="ˉ"/>
+    <when state="latin_macron_below" output="ˉ"/>
+    <when state="latin_ogonek" output="˛"/>
+    <when state="latin_ring_above" output="˚"/>
+    <when state="latin_ring_below" output="˚"/>
+    <when state="latin_umlaut" output="¨"/>
   </terminators>
 </keyboard>
