@@ -1,4 +1,4 @@
-## [0.3.0] - 2020-05-??
+## [0.3.0] - 2020-05-12
 
 ### Added
 - Support for basic addition of actions and states (dead keys) to keylayouts,
