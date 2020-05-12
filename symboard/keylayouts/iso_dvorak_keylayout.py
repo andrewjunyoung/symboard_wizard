@@ -20,7 +20,7 @@ class IsoDvorakKeylayout(Keylayout):
     keyboards.
     """
 
-    _DEFAULT_NAME: str = 'Iso dvorak keyboard'
+    _DEFAULT_NAME: str = 'Dvorak keyboard (iso)'
     name: str = _DEFAULT_NAME
 
     default_index: int = 6
@@ -44,19 +44,19 @@ class IsoDvorakKeylayout(Keylayout):
         {
             'first': '0',
             'last': '17',
-            'mapSet': 'ANSI', # Yes, this is correct for iso too!
+            'mapSet': 'ANSI',  # Yes, this is correct for iso too!
             'modifiers': 'Modifiers',
         },
     ]
 
     key_map_select: Dict[int, str] = {
-        0: '',
-        1: 'anyShift',
-        2: 'anyOption',
-        3: 'anyShift caps? anyOption',
-        4: 'command',
-        5: 'caps',
-        6: 'anyControl',
+        0: [''],
+        1: ['anyShift'],
+        2: ['anyOption'],
+        3: ['anyShift caps? anyOption'],
+        4: ['command'],
+        5: ['caps'],
+        6: ['anyControl'],
     }
 
     key_map: Dict[int, Dict[int, str]] = {

@@ -2,7 +2,7 @@
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!-- Created by Symboard version 0.2.0 at 2019-12-07 21:54:51 (UTC) -->
 <!-- Last updated by Symboard version 0.2.0 at 2019-12-07 21:54:51 (UTC) -->
-<keyboard group="126" id="-5586" name="Iso dvorak keyboard" maxout="1">
+<keyboard group="126" id="-5586" name="Dvorak keyboard (iso)" maxout="1">
   <layouts>
     <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
   </layouts>

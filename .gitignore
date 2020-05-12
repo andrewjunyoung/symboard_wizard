@@ -8,3 +8,5 @@ tags
 build
 dist
 *.egg-info
+docs/
+.env

@@ -10,6 +10,10 @@
 
 # Imports from third party packages.
 from typing import Dict, List, Union
+from dataclasses import dataclass
+
+# Imports from the local package.
+from symboard.actions import Action
 
 
 class Keylayout:
@@ -62,7 +66,10 @@ class Keylayout:
     # These settings are configured by the child classes of «Keylayout».
     layouts: List[Dict[str, str]] = []
     key_map_select: Dict[int, str] = {}
-    key_map: Dict[int, Dict[int, str]] = {}
+    key_map: dict = {}
+
+    actions: set = set()
+    used_states: list = list()
 
     def keyboard_attributes(self):
         """
@@ -81,6 +88,14 @@ class Keylayout:
             'maxout': str(self.maxout),
         }
 
+    def set_actions_from_key_map(self):
+        self.actions = [
+            output
+            for index in self.key_map.values()
+            for key, output in index.items()
+            if isinstance(output, Action)
+        ]
+
     def __str__(self):
         return 'Keylayout({}, (id: {}))'.format(self.name, self.id_)
 
@@ -97,4 +112,5 @@ class Keylayout:
         self.maxout = maxout
         self.name = name
         self.default_index = default_index
+        self.set_actions_from_key_map()
 

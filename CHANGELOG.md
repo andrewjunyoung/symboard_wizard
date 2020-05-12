@@ -1,3 +1,45 @@
+## [0.3.0] - 2020-05-12
+
+### Added
+- Support for basic addition of actions and states (dead keys) to keylayouts,
+  including upper and lower case.
+- Parsing of yaml files containing alphabets into a global states object.
+- *States*:
+  - States for the latin alphabet with nearly of the diacritics listed on
+  the wikipedia diacritics page (last accessed 2020-05-10). They are available
+  in upper and lower case. This includes:
+    - breve
+    - breve, inverted
+    - caron
+    - circumlfex
+    - hacek
+    - hook above (AKA dau hoi)
+    - macron
+    - ogonek
+    - hook, palatal 
+    - hook, retroflex 
+    - acute accent, double
+    - acute accent, single
+    - grave accent, double
+    - grave accent, single
+    - horn
+    - dot
+    - umlaut (AKA diaresis)
+    - umlaut (AKA diaresis)
+    - ring, above
+    - ring, below
+  - A state for the greek alphabet.
+- *JDvorak keyboard features*:
+  - The JDvorak keylayout (iso) has been made available as a base layout, with
+  all the above diacritics in upper and lower case.
+- A script for installing keylayouts automatically for macOS.
+- Added logging throughout program for debugging and information.
+
+### Changed
+- Expanded the use of mocking in tests.
+- Reduced duplication in test cases for file writers.
+
+
 ## [0.2.0] - 2019-12-27
 
 ### Added

@@ -24,7 +24,10 @@ class ParserException(BaseSymboardException):
 class WriteException(BaseSymboardException):
     """ Indicates that something has gone wrong when writing to file.
     """
-    pass
+    def __init__(self, output_path):
+        super().__init__(
+            f'An error occurred when writing contents to path «{output_path}».'
+        )
 
 
 class FileExistsException(WriteException):
@@ -37,8 +40,10 @@ class FileExistsException(WriteException):
 class NotAFileException(ParserException):
     """ Indicates that the file to be parsed does not exist or is not a file.
     """
-    pass
-
+    def __init__(self, file_path):
+        super().__init__(
+            f'The path «{file_path}» does not exist or is not a file',
+        )
 
 class NoneException(BaseSymboardException):
     """ Indicates that one of the variables in the program is None, but was
@@ -57,3 +62,23 @@ class SpecificationException(BaseSymboardException):
     that meets the specification defined by the user.
     """
     pass
+
+class AlphabetLengthException(BaseSymboardException):
+    """ Indicates that the alphabet provided has the wrong number of letters (it
+    should have 26).
+    """
+    def __init__(self, alphabet):
+        super().__init__(msg=f'Alphabet {alphabet} of length {len(alphabet)} is'
+        'not a valid alphabet length.')
+
+class CouldNotGetOutputException(BaseSymboardException):
+    """ Indicates that the object does not have a well defined output that can
+    be used when a key is pressed.
+    """
+    def __init__(self, object_):
+        super().__init__(
+            msg=f'could not find an output field in object_.object_ is of type'
+            '{type(object_)}, but should be of type str or'
+            'Action.'
+        )
+

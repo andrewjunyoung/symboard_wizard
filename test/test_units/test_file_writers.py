@@ -4,23 +4,26 @@
 '''
 
 # Imports from third party packages.
+from collections.abc import Iterable
+from lxml.etree import Element
 from unittest import TestCase
 from unittest import main as unittest_main
 from unittest.mock import patch, mock_open, Mock, MagicMock, PropertyMock
-from lxml.etree import Element
 import os.path
 
 # Package internal imports.
-from symboard.settings import VERSION
+from symboard.keylayouts.keylayouts import Keylayout
+from settings import VERSION
 from symboard.file_writers import (
-        FileWriter,
-        KeylayoutFileWriter,
-        KeylayoutXMLFileWriter,
-        DEFAULT_OUTPUT_PATH,
-        )
+    FileWriter,
+    KeylayoutFileWriter,
+    KeylayoutXMLFileWriter,
+    DEFAULT_OUTPUT_PATH,
+)
 from symboard.errors import (
-        WriteException, KeylayoutNoneException, FileExistsException
-        )
+    WriteException, KeylayoutNoneException, FileExistsException
+)
+from symboard.actions import State
 
 
 file_writers_path = 'symboard.file_writers'
@@ -69,7 +72,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
         # Setup.
         mock_exists.return_value = False
 
-        with patch('builtins.open', mock_open(read_data='data')) as open_:
+        with patch('builtins.open', mock_open(read_data = 'data')) as open_:
             with patch.object(self.file_writer.__class__, 'contents'):
                 self.file_writer.write(self.mock, self.test_output_path)
 
@@ -79,7 +82,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
     def test_write_throws_exception_if_the_file_exists(self, mock_exists):
         mock_exists.return_value = True
 
-        with patch('builtins.open', mock_open(read_data='data')) as open_:
+        with patch('builtins.open', mock_open(read_data = 'data')) as open_:
             with self.assertRaises(FileExistsException):
                 self.file_writer.write(self.mock, self.test_output_path)
 
@@ -95,7 +98,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
     def test_write_allows_for_no_output_path(self, mock_exists):
         mock_exists.return_value = False
 
-        with patch('builtins.open', mock_open(read_data='data')) as open_:
+        with patch('builtins.open', mock_open(read_data = 'data')) as open_:
             with patch.object(self.file_writer.__class__, 'contents'):
                 self.file_writer.write(self.mock)
 
@@ -106,11 +109,71 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
     def setUp(self):
         super().setUp()
 
+        self.expected_time = 'NOW'
         self.file_writer = KeylayoutXMLFileWriter()
+
+        action_id = 'action_id'
+        self.action = MagicMock(id_ = action_id, next_ = None)
+        self.state_id = 'state'
+        self.action_output = 'output'
+        self.terminator = 'terminator'
+
+        self.states_mocker = MagicMock(used_states = [State(
+            name = self.state_id,
+            action_to_output_map = {action_id: self.action_output},
+            terminator = self.terminator
+        )])
 
     def test_contents_throws_exception_if_keylayout_is_none(self):
         with self.assertRaises(KeylayoutNoneException):
             self.file_writer.contents(None)
+
+    def _comment(self, msg: str) -> str:
+        """ Returns an XML comment (which contains <msg>) as a string.
+        """
+        return '<!-- {} -->'.format(msg)
+
+    def test_comment_empty_string(self):
+        msgs = [
+            '',
+            'test',
+        ]
+        for msg in msgs:
+            expected = self._comment(msg)
+            self.assertEqual(expected, self.file_writer._comment(msg))
+
+    def _test_comment_with_strftime(self, function, comment):
+        """ This class tests that <function> returns a comment with the string
+        <comment>. It mocks out the time.strftime method, which allows it to
+        test comments which include times in them.
+
+        For symboard, it can be used to test both the «_created» and «_updated»
+        functions.
+        """
+        time = self.mock
+        time.strftime = MagicMock(return_value = self.expected_time)
+
+        self.assertEqual(
+            self._comment('Created by Symboard version {} at {}'.format(
+                VERSION,
+                self.expected_time,
+            )),
+            self.file_writer._created(time)
+        )
+
+
+    def test_created(self):
+        self._test_comment_with_strftime(
+            self.file_writer._created,
+            f'Created by Symboard version {VERSION} at {self.expected_time}',
+        )
+
+    def test_updated(self):
+        self._test_comment_with_strftime(
+            self.file_writer._created,
+            f'Last updated by Symboard version {VERSION} at' \
+            f'{self.expected_time}',
+        )
 
     def test_keyboard_has_correct_properties(self):
         expected_tag = 'keyboard'
@@ -118,224 +181,251 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
 
         mock_keylayout = self.mock
         mock_keylayout.keyboard_attributes = MagicMock(
-            return_value=expected_attributes
+            return_value = expected_attributes
         )
 
-        element = self.file_writer._keyboard(mock_keylayout)
+        elem = self.file_writer._keyboard(mock_keylayout)
 
-        self.assertEqual(expected_tag, element.tag)
-        self.assertEqual(expected_attributes, element.attrib)
+        self.assertEqual(expected_tag, elem.tag)
+        self.assertEqual(expected_attributes, elem.attrib)
 
-    def _comment(self, msg: str) -> str:
-        return '<!-- {} -->'.format(msg)
+    def _execute_function_on_elem(
+        self, function, keylayout, args = None
+    ):
+        if args is None:  # To avoid using mutable defaults.
+            args = ()
 
-    def test_comment_empty_string(self):
-        msg = ''
-        expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer._comment(msg))
-
-    def test_comment_test_string(self):
-        msg = 'test'
-        expected = self._comment(msg)
-        self.assertEqual(expected, self.file_writer._comment(msg))
-
-    def test_created(self):
-        expected_time = 'NOW'
-
-        time = self.mock
-        time.strftime = MagicMock(return_value=expected_time)
-
-        self.assertEqual(
-            self._comment('Created by Symboard version {} at {}'.format(
-                VERSION,
-                expected_time,
-            )),
-            self.file_writer._created(time)
-        )
-
-    def test_updated(self):
-        expected_time = 'NOW'
-
-        time = self.mock
-        time.strftime = MagicMock(return_value=expected_time)
-
-        self.assertEqual(
-            self._comment('Last updated by Symboard version {} at {}'.format(
-                VERSION,
-                expected_time,
-            )),
-            self.file_writer._updated(time)
-        )
-
-    def test_layouts_creates_a_well_formed_sub_element(self):
-        expected_tag = 'layouts'
-        expected_attributes = {}
-
-        # We need to create this, as there's no way of finding a node's parent,
+        # We need to create this, as there's no way of finding a node's root,
         # only its children.
-        # Without this object, we can't assert that the sub element is added as
+        # Without this object, we can't assert that the sub elem is added as
         # its child.
-        parent = Element('root')
+        root = Element('root')
 
-        mock_keylayout = self.mock
-        mock_keylayout.layouts = MagicMock(return_value=[])
+        return root, function(keylayout, root, *args)
 
+    def _assert_properties_of_XML_tag_returned_from(
+        self, function, expected_tag, expected_attributes, keylayout = None,
+        args = None
+    ):
+        """ Assert that a function, when called on <keylayout> with an Element
+        node and other arguments (provided by <args>) creates a sub-elem with
+        the expected tag and attributes.
 
-        child = self.file_writer._layouts(mock_keylayout, parent)
+        <function>, given an Element node, should add a sub-elem to that
+        node, and return the sub-elem.
 
-        self.assertEqual([child], list(parent))
+        child_node = function(keylayout, Element('root'), *args)
+
+        Args:
+            function (Callable): The function under test.
+            keylayout (Keylayout): The Keylayout, or mock object, being used to
+            test <function>.
+            expected_tag (str): The name that the sub-elem created by
+            <function> is expected to have.
+            expected_attributes (Dict[str, str]): A map of the expected
+            attributes which the sub-elem created by <function> is expected
+            to have.
+
+        Raises:
+            AssertionError: If the child is incorrectly created, or if either
+            the expected tag or attributes are different to their actual values
+            created by <function>.
+        """
+        root, child = self._execute_function_on_elem(
+            function, keylayout, args
+        )
+
+        self.assertEqual([child], list(root))
         self.assertEqual(expected_tag, child.tag)
         self.assertEqual(expected_attributes, child.attrib)
 
-    def test_modifier_map_creates_a_well_formed_sub_element(self):
+    def test_layouts_creates_a_well_formed_sub_elem(self):
+        """ Asserts that the sub_elem created by «_layouts» meets the
+        required specification.
+        """
+        mock_keylayout = MagicMock(layouts = [])
+
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._layouts,
+            keylayout = mock_keylayout,
+            expected_tag = 'layouts',
+            expected_attributes = {},
+        )
+
+    def test_modifier_map_creates_a_well_formed_sub_elem(self):
+        """ Asserts that the sub_elem created by «_modifier_map» meets the
+        required specification.
+        """
         EXPECTED_DEFAULT_INDEX = 3
+        modifiers = 'Modifiers'
 
-        # We need to create this, as there's no way of finding a node's parent,
-        # only its children.
-        # Without this object, we can't assert that the sub element is added as
-        # its child.
-        parent = Element('root')
+        mock_keylayout = MagicMock(
+            layouts = [{'modifiers': modifiers}],
+            default_index = str(EXPECTED_DEFAULT_INDEX),
+        )
 
-        mock_keylayout = self.mock
-        mock_keylayout.key_map_select = MagicMock(return_value=[])
-        mock_keylayout.default_index = EXPECTED_DEFAULT_INDEX
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._modifier_map,
+            keylayout = mock_keylayout,
+            expected_tag = 'modifierMap',
+            expected_attributes = {
+                'id': modifiers,
+                'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
+            },
+        )
 
-        expected_tag = 'modifierMap'
-        expected_attributes = {
-            'id': 'Modifiers',
-            'defaultIndex': str(EXPECTED_DEFAULT_INDEX),
-        }
+    def test_key_map_set_creates_a_well_formed_sub_elem(self):
+        """ Asserts that the sub_elem created by «_key_map_set» meets the
+        required specification.
+        """
+        mock_keylayout = MagicMock(key_map = {})
 
-        child = self.file_writer._modifier_map(mock_keylayout, parent)
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._key_map_set,
+            keylayout = mock_keylayout,
+            expected_tag = 'keyMapSet',
+            expected_attributes = {'id': 'ANSI'},
+        )
 
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
+    def test_action_creates_well_formed_sub_elem(self):
+        """ Asserts that the sub_elem created by «_action» meets the
+        required specification.
+        """
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._action,
+            keylayout = self.states_mocker,
+            args = [self.action],
+            expected_tag = 'action',
+            expected_attributes = {
+                'id': self.action.id_,
+            },
+        )
 
-    def test_key_map_set_creates_a_well_formed_sub_element(self):
-        expected_tag = 'keyMapSet'
-        expected_attributes = {'id': 'ANSI'}
+    def test_terminators_creates_well_formed_sub_elem(self):
+        """ Asserts that the sub_elem created by «_terminators» meets the
+        required specification.
+        """
+        mock_keylayout = MagicMock(states = [])
 
-        # We need to create this, as there's no way of finding a node's parent,
-        # only its children.
-        # Without this object, we can't assert that the sub element is added as
-        # its child.
-        parent = Element('root')
+        self._assert_properties_of_XML_tag_returned_from(
+            self.file_writer._terminators,
+            keylayout = mock_keylayout,
+            expected_tag = 'terminators',
+            expected_attributes = {},
+        )
 
-        mock_keylayout = self.mock
-        mock_keylayout.key_map = MagicMock(return_value=[])
+    def _assert_about_properties_of_sub_sub_elems(
+        self, function, path_to_sub_elems, expected_tag, expected_attributes,
+        args = None, expected_n_sub_elems = 1, keylayout = None
+    ):
+        root, _ = self._execute_function_on_elem(function, keylayout, args)
+
+        grandchildren = root.findall(path_to_sub_elems)
+        n_sub_elems = len(grandchildren)
+
+        self.assertEqual(expected_n_sub_elems, n_sub_elems)
+        for i, grandchild in enumerate(grandchildren):
+            self.assertEqual(expected_tag, grandchild.tag)
+            try:
+                self.assertEqual(expected_attributes[i], grandchild.attrib)
+            except KeyError:
+                self.assertEqual(expected_attributes, grandchild.attrib)
 
 
-        child = self.file_writer._key_map_set(mock_keylayout, parent)
-
-        self.assertEqual([child], list(parent))
-        self.assertEqual(expected_tag, child.tag)
-        self.assertEqual(expected_attributes, child.attrib)
-
-    def test_layouts_creates_well_formed_sub_sub_elements(self):
-        ## Begin setup #########################################################
-        expected_tag = 'layout'
+    def test_layouts_creates_well_formed_sub_sub_elems(self):
         expected_attributes = {'key': 'value'}
 
-        root = Element('root')
+        mock_keylayout = MagicMock(layouts = [expected_attributes])
 
-        mock_keylayout = MagicMock(layouts=[expected_attributes])
+        self._assert_about_properties_of_sub_sub_elems(
+            function = self.file_writer._layouts,
+            keylayout = mock_keylayout,
+            path_to_sub_elems = './layouts/layout',
+            expected_tag = 'layout',
+            expected_attributes = expected_attributes,
+        )
 
-        ########################################################### End setup ##
-        ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer._layouts(mock_keylayout, root)
+        self._assert_about_properties_of_sub_sub_elems
 
-        grandchildren = root.findall('./layouts/layout')
-        grandchild = grandchildren[0]
-
-        ####################################################### End execution ##
-        ## Begin assertion #####################################################
-        self.assertEqual(1, len(grandchildren))
-        self.assertEqual(expected_tag, grandchild.tag)
-        self.assertEqual(expected_attributes, grandchild.attrib)
-        ####################################################### End assertion ##
-
-    def test_modifier_map_creates_well_formed_sub_sub_elements(self):
-        ## Begin setup #########################################################
-        expected_key_map_select_tag = 'keyMapSelect'
-        expected_key_map_select_attributes = {'mapIndex': '0'}
-
+    def test_modifier_map_creates_well_formed_sub_sub_elems(self):
         expected_modifier_tag = 'modifier'
-        expected_modifier_attributes = {'keys': 'testKeys'}
+        key_combos = ['test_keys_1', 'test_keys_2']
 
-        root = Element('root')
-
-        mock_keylayout = MagicMock(key_map_select={0: 'testKeys'})
-
-        ########################################################### End setup ##
-        ## Begin execution #####################################################
-        modifier_map_elem = self.file_writer._modifier_map(mock_keylayout, root)
-
-        key_map_select_elems = root.findall('./modifierMap/keyMapSelect')
-        modifier_elems = root.findall('./modifierMap/keyMapSelect/modifier')
-
-        key_map_select_elem = key_map_select_elems[0]
-        modifier_elem = modifier_elems[0]
-
-        ####################################################### End execution ##
-        ## Begin assertion #####################################################
-        # Assertions for keyMapSelect
-        self.assertEqual(1, len(key_map_select_elems))
-        self.assertEqual(expected_key_map_select_tag, key_map_select_elem.tag)
-        self.assertEqual(
-                expected_key_map_select_attributes, key_map_select_elem.attrib
+        mock_keylayout = MagicMock(
+            key_map_select = {0: key_combos},
+            layouts = [{'modifiers': expected_modifier_tag}],
         )
 
-        # Assertions for modifier
-        self.assertEqual(1, len(modifier_elems))
-        self.assertEqual(expected_modifier_tag, modifier_elem.tag)
-        self.assertEqual(
-                expected_modifier_attributes, modifier_elem.attrib
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._modifier_map,
+            keylayout = mock_keylayout,
+            path_to_sub_elems = './modifierMap/keyMapSelect',
+            expected_tag = 'keyMapSelect',
+            expected_attributes = {'mapIndex': '0'},
         )
-        ####################################################### End assertion ##
 
-    def test_key_map_set_creates_well_formed_sub_sub_elements(self):
-        ## Begin setup #########################################################
-        expected_key_map_tag = 'keyMap'
-        expected_key_map_attributes = {'index': '0'}
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._modifier_map,
+            keylayout = mock_keylayout,
+            path_to_sub_elems = './modifierMap/keyMapSelect/modifier',
+            expected_n_sub_elems = 2,
+            expected_tag = expected_modifier_tag,
+            expected_attributes = [
+                {'keys': key_combos[i]} for i in range(len(key_combos))
+            ],
+        )
 
-        expected_key_tag = 'key'
-        expected_key_attributes = {'code': '3', 'output': 'v'}
-
-        root = Element('root')
-
-        mock_keylayout = MagicMock(key_map={
+    def test_key_map_set_creates_well_formed_sub_sub_elems(self):
+        mock_keylayout = MagicMock(key_map = {
             0: {
                 3: 'v',
             },
         })
 
-        ########################################################### End setup ##
-        ## Begin execution #####################################################
-        key_map_elem = self.file_writer._key_map_set(mock_keylayout, root)
-
-        key_map_elems = root.findall('./keyMapSet/keyMap')
-        key_elems = root.findall('./keyMapSet/keyMap/key')
-
-        key_map_elem = key_map_elems[0]
-        key_elem = key_elems[0]
-
-        ####################################################### End execution ##
-        ## Begin assertion #####################################################
-        # Assertions for keyMap
-        self.assertEqual(1, len(key_map_elems))
-        self.assertEqual(expected_key_map_tag, key_map_elem.tag)
-        self.assertEqual(
-            expected_key_map_attributes, key_map_elem.attrib
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._key_map_set,
+            keylayout = mock_keylayout,
+            path_to_sub_elems = './keyMapSet/keyMap',
+            expected_tag = 'keyMap',
+            expected_attributes = {'index': '0'},
         )
 
-        # Assertions for key
-        self.assertEqual(1, len(key_elems))
-        self.assertEqual(expected_key_tag, key_elem.tag)
-        self.assertEqual(
-            expected_key_attributes, key_elem.attrib
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._key_map_set,
+            keylayout = mock_keylayout,
+            path_to_sub_elems = '.keyMapSet/keyMap/key',
+            expected_tag = 'key',
+            expected_attributes = {'code': '3', 'output': 'v'},
         )
-        ####################################################### End assertion ##
+
+    def test_action_creates_well_formed_sub_sub_elem(self):
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._action,
+            keylayout = self.states_mocker,
+            path_to_sub_elems = '.action/when',
+            args = [self.action],
+            expected_tag = 'when',
+            expected_attributes = [{
+                'state': 'none',
+                'output': self.action.id_,
+            }, {
+                'state': self.state_id,
+                'output': self.action_output,
+            }],
+            expected_n_sub_elems = 2,
+        )
+
+    def test_terminators_creates_well_formed_sub_sub_elem(self):
+        self._assert_about_properties_of_sub_sub_elems(
+            self.file_writer._terminators,
+            keylayout = self.states_mocker,
+            path_to_sub_elems = '.terminators/when',
+            expected_tag = 'when',
+            expected_attributes = {
+                'state': self.state_id,
+                'output': self.terminator,
+            },
+        )
 
 
 if __name__ == '__main__':
