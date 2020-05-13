@@ -11,11 +11,11 @@
 from yaml import safe_load
 from dataclasses import dataclass
 import logging
-from typing import List
+from typing import List, Callable, Dict
 
 # Imports from the local package.
 from symboard.errors import AlphabetLengthException
-from settings import OUTPUT_DELIMITER
+from settings import OUTPUT_DELIMITER, DEFAULT_STATE_TERMINATOR
 
 
 @dataclass(init=False, eq=True, repr=True)
@@ -40,7 +40,10 @@ class State:
     action_to_output_map: dict = None
 
     def __init__(
-        self, name: str, terminator: str, action_to_output_map: dict = None
+        self,
+        name: str,
+        terminator: str = None,
+        action_to_output_map: dict = None
     ) -> None:
         """ Initializes an object. If an action_to_output_map is provided, then
         the object's action_to_output_map attribute will be set to it.
@@ -53,13 +56,10 @@ class State:
                 output for when a specific action occurs while in this state.
         """
         self.name = name
-        self.terminator = terminator
-        if action_to_output_map is None:
-            self.action_to_output_map = {}
-        else:
-            self.action_to_output_map = action_to_output_map
+        self.terminator = terminator if terminator else DEFAULT_STATE_TERMINATOR
+        self.action_to_output_map = action_to_output_map if action_to_output_map else {}
 
-    def _get_actions(self, output: str) -> None:
+    def _get_actions(self, output: str):
         if len(output) == 26:
             logging.info(f'Using latin actions set for state {repr(self)}.')
 
@@ -74,7 +74,7 @@ class State:
             raise AlphabetLengthException(output)
 
     def _with_case(self, output_list: str, case: str):
-        """ A generic class for building outputs of a certain case.
+        """ A generic method for building outputs of a certain case.
 
         Builds the object's action_to_output_map for all (lower|upper)case
         numeric or alphanumeric letters, such that the outputs are defined
@@ -103,11 +103,32 @@ class State:
 
         return self
 
+    def with_upper(self, output_list: str):
+        return self._with_case(output_list, 'upper')
+
     def with_lower(self, output_list: str):
         return self._with_case(output_list, 'lower')
 
-    def with_upper(self, output_list: str):
-        return self._with_case(output_list, 'upper')
+    def with_map(self, action_to_output_map: dict):
+        """ A method for overriding individual outputs for individual actions
+        inside the class's action_to_output_map.
+
+        Args:
+            action_to_output_map (dict): The dict containing all of the {action:
+            output} pairs to add / override inside the class's
+            action_to_output_map.
+        """
+        for action, output in action_to_output_map.items():
+            self.action_to_output_map[action] = output
+        return self
+
+    def builder_method_from_attrib_name(self, attrib_name: str) -> Callable:
+        atttrib_name_to_method_map: Dict[str, Callable] = {
+            'upper': self.with_upper,
+            'lower': self.with_lower,
+            'map': self.with_map,
+        }
+        return atttrib_name_to_method_map[attrib_name]
 
 
 @dataclass(init=False, eq=True, repr=True, order=True)
@@ -146,8 +167,8 @@ class Script:
             case), and kana (hiragana and katakana).
     """
     length: int = None
-    lower: str = None
     upper: str = None
+    lower: str = None
 
     def __init__(self, lower: str, upper: str = None) -> None:
         """ An initializer for a script.
@@ -169,8 +190,8 @@ class Script:
 
 
 latin = Script(
-    lower='abcdefghijklmnopqrstuvwxyz',
     upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    lower='abcdefghijklmnopqrstuvwxyz',
 )
 """ An implementation of the latin script.
 """

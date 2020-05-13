@@ -1,0 +1,13 @@
+latin_rotated_lower:
+  terminator: ɐ
+  upper: Ɐ,Q,Ɔ,P,Ə,,,Ɥ,,Ṣ,Ʞ,Ꞁ,Ɯ,U,O,D,B,,S,Ʇ,N,Ʌ,,X,ʎ,Z
+  lower: ɐ,q,ɔ,p,ə,ɟ,ᵷ,ɥ,ᴉ,ſ̣,ʞ,ꞁ,ɯ,u,o,d,b,ɹ,s,ʇ,n,ʌ,ʍ,x,ʎ,z
+latin_rotated_upper:
+  terminator: Ɐ
+  upper: Ɐ,,Ɔ,,Ǝ,Ⅎ,⅁,H,I,,Ʞ,⅂,ꟽ,N,O,d,,,S,⊥,,Ʌ,,,⅄,
+  lower: ",,ᴐ,,ⱻ,ⅎ,,ʜ,ɪ,ɾ,,,,ɴ,ᴏ,,,ᴚ,ꜱ,,,,,,,ᴢ"
+latin_extensions:
+  terminator: x
+  upper: Ɑ,,,,Ɛ,Ƒ,Ɣ,Ƕ,Ɪ,,,,,,Ɔ,,,,ẞ,Þ,Ʊ,Ʋ,,Ʃ,Ƴ,Ʒ,,Ƨ,З,Ч,Ƽ,Ƅ,,,,
+  lower: ɑ,,ʕ,,ɛ,ƒ,ɣ,ƕ,ɪ,,,,,,ɔ,,,,ß,þ,ʊ,ʋ,,ʃ,ƴ,ʒ,,ƨ,з,ч,ƽ,ƅ,ʔ,,,
+

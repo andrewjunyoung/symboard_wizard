@@ -1,0 +1,15 @@
+arrows_basic:
+  terminator: →
+  map:
+    q: ↖
+    w: ↑
+    e: ↗
+    a: ←
+    d: →
+    z: ↙
+    x: ↓
+    c: ↘
+    -: ↔
+    "|": ↕
+    left: ↶
+    right: ↷

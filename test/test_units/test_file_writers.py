@@ -150,7 +150,7 @@ class TestKeylayoutXMLFileWriter(TestKeylayoutFileWriter):
         For symboard, it can be used to test both the «_created» and «_updated»
         functions.
         """
-        time = self.mock
+        time = Mock()
         time.strftime = MagicMock(return_value = self.expected_time)
 
         self.assertEqual(

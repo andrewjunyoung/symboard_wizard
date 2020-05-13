@@ -26,6 +26,7 @@ class TestMainIntegration(TestCase):
 
         self.maxDiff = None
 
+    @patch('symboard.file_writers.VERSION', '0.2.0')
     @patch('symboard.file_writers.datetime')
     def test_integration_with_minimal_iso_yaml(self, datetime):
         '''

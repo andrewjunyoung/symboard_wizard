@@ -15,7 +15,6 @@ from symboard.keylayouts.iso_keylayout import IsoKeylayout
 from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
 from symboard.keylayouts.iso_jdvorak_keylayout import IsoJDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
-import settings
 
 
 DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'
@@ -59,6 +58,7 @@ class KeyboardIntegrationTests:
             # This should be implemented by children which inherit from this class.
             pass
 
+        @patch(FILE_WRITERS_PATH + '.VERSION', '0.2.0')
         @patch(FILE_WRITERS_PATH + '.datetime')
         def test_output_is_as_expected(self, datetime):
             '''
@@ -67,9 +67,9 @@ class KeyboardIntegrationTests:
             # Setup.
             OUTPUT_PATH = self.ACTUAL_OUTPUT_PATH
 
-            mock_datetime = self.mock
-            datetime.now = MagicMock(return_value=mock_datetime)
+            mock_datetime = Mock()
             mock_datetime.strftime.return_value = '2019-12-07 21:54:51 (UTC)'
+            datetime.now = MagicMock(return_value=mock_datetime)
 
             # Execution.
             self.keylayout_xml_file_writer.write(
