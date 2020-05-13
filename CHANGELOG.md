@@ -5,6 +5,11 @@
   by one
 - A setting for «STATE\_ATTRIB\_PREFERENCE», giving the order of preference in
   which states have their attributes parsed.
+- *States*
+  - Arrows (for QWERTY and Dvorak keylayouts)
+  - Latin upside down (lower)
+  - Latin upside down (upper)
+  - Latin extensions
 
 ### Changed
 - Terminators are now optional properties to create a state, and default to

@@ -1,4 +1,4 @@
-arrows_basic:
+arrows_basic_qwerty:
   terminator: →
   map:
     q: ↖
@@ -9,6 +9,21 @@ arrows_basic:
     z: ↙
     x: ↓
     c: ↘
+    -: ↔
+    "|": ↕
+    left: ↶
+    right: ↷
+arrows_basic_dvorak:
+  terminator: →
+  map:
+    ;: ↖
+    ",": ↑
+    .: ↗
+    a: ←
+    e: →
+    "&#x0027;": ↙
+    q: ↓
+    j: ↘
     -: ↔
     "|": ↕
     left: ↶
