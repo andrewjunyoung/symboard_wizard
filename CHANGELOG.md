@@ -1,3 +1,23 @@
+## [0.4.0] - 2020-05-??
+
+### Added
+- Support for "maps" inside states, where a state specified keys to output one
+  by one
+- A setting for «STATE\_ATTRIB\_PREFERENCE», giving the order of preference in
+  which states have their attributes parsed.
+- *States*
+  - Arrows (for QWERTY and Dvorak keylayouts)
+  - Latin upside down (lower)
+  - Latin upside down (upper)
+  - Latin extensions
+
+### Changed
+- Terminators are now optional properties to create a state, and default to
+  DEFAULT\_STATE\_TERMINATOR if not provided.
+
+### Fixed
+- Now mocking symboard version for integration tests to pass
+
 ## [0.3.0] - 2020-05-12
 
 ### Added

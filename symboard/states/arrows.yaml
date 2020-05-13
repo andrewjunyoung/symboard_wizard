@@ -1,0 +1,30 @@
+arrows_basic_qwerty:
+  terminator: →
+  map:
+    q: ↖
+    w: ↑
+    e: ↗
+    a: ←
+    d: →
+    z: ↙
+    x: ↓
+    c: ↘
+    -: ↔
+    "|": ↕
+    left: ↶
+    right: ↷
+arrows_basic_dvorak:
+  terminator: →
+  map:
+    ;: ↖
+    ",": ↑
+    .: ↗
+    a: ←
+    e: →
+    "&#x0027;": ↙
+    q: ↓
+    j: ↘
+    -: ↔
+    "|": ↕
+    left: ↶
+    right: ↷
