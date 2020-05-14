@@ -204,7 +204,7 @@
       <key code="46" action="M"/>
       <key code="47" action="V"/>
       <key code="48" output="&#x0009;"/>
-      <key code="49" action="  1"/>
+      <key code="49" action=" "/>
       <key code="50" output="~"/>
       <key code="51" output="&#x0008;"/>
       <key code="52" output="&#x0003;"/>
@@ -267,7 +267,7 @@
       <key code="126" output="&#x001E;"/>
     </keyMap>
     <keyMap index="2">
-      <key code="0" action="alt+a"/>
+      <key code="0" output="alt+a"/>
       <key code="1" action="alt+o"/>
       <key code="2" action="alt+e"/>
       <key code="3" action="alt+u"/>
@@ -299,7 +299,7 @@
       <key code="29" output=""/>
       <key code="30" output=""/>
       <key code="31" action="alt+r"/>
-      <key code="32" action="action 3"/>
+      <key code="32" action="alt+g"/>
       <key code="33" action="alt+/"/>
       <key code="34" action="alt+c"/>
       <key code="35" action="!"/>
@@ -316,7 +316,7 @@
       <key code="46" action="∮"/>
       <key code="47" action="alt+v"/>
       <key code="48" output="&#x0009;"/>
-      <key code="49" action="  2"/>
+      <key code="49" action=" "/>
       <key code="50" action="alt+`"/>
       <key code="51" output="&#x0008;"/>
       <key code="52" output="&#x0003;"/>
@@ -831,11 +831,11 @@
     <action id=" ">
       <when state="none" output=" "/>
     </action>
-    <action id="  1">
-      <when state="none" output="  1"/>
+    <action id=" ">
+      <when state="none" output=" "/>
     </action>
-    <action id="  2">
-      <when state="none" output="  2"/>
+    <action id=" ">
+      <when state="none" output=" "/>
     </action>
     <action id="!">
       <when state="none" output="!"/>
@@ -1668,9 +1668,6 @@
     <action id="action 2">
       <when state="none" output="action 2"/>
     </action>
-    <action id="action 3">
-      <when state="none" output="action 3"/>
-    </action>
     <action id="action 5">
       <when state="none" output="action 5"/>
     </action>
@@ -1749,14 +1746,14 @@
     <action id="alt+`">
       <when state="none" output="alt+`"/>
     </action>
-    <action id="alt+a">
-      <when state="none" next="greek"/>
-    </action>
     <action id="alt+c">
       <when state="none" next="latin_ogonek"/>
     </action>
     <action id="alt+e">
       <when state="none" output="alt+e"/>
+    </action>
+    <action id="alt+g">
+      <when state="none" next="greek"/>
     </action>
     <action id="alt+h">
       <when state="none" output="alt+h"/>
