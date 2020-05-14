@@ -10,6 +10,10 @@
   - Latin upside down (lower)
   - Latin upside down (upper)
   - Latin extensions
+- Support for states containing unicode symbols, such as "'", to be written
+  as-is in state files. Normally "'" and other symbols need to be converted to
+  unicode (&#x0027;), but now, they can be written as "'" in yaml (state)
+  files and converted by Symboard into their unicode representation.
 
 ### Changed
 - Terminators are now optional properties to create a state, and default to
