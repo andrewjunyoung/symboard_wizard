@@ -15,7 +15,11 @@ from typing import List, Callable, Dict
 
 # Imports from the local package.
 from symboard.errors import AlphabetLengthException
-from settings import OUTPUT_DELIMITER, DEFAULT_STATE_TERMINATOR
+from settings import (
+    OUTPUT_DELIMITER,
+    DEFAULT_STATE_TERMINATOR,
+    ACTION_TO_UNICODE_MAP
+)
 
 
 @dataclass(init=False, eq=True, repr=True)
@@ -109,6 +113,12 @@ class State:
     def with_lower(self, output_list: str):
         return self._with_case(output_list, 'lower')
 
+    def _to_unicode(self, string: str) -> str:
+        try:
+            return ACTION_TO_UNICODE_MAP[string]
+        except KeyError:
+            return string
+
     def with_map(self, action_to_output_map: dict):
         """ A method for overriding individual outputs for individual actions
         inside the class's action_to_output_map.
@@ -118,6 +128,11 @@ class State:
             output} pairs to add / override inside the class's
             action_to_output_map.
         """
+        action_to_output_map = {
+            self._to_unicode(action): output
+            for action, output in action_to_output_map.items()
+        }
+
         for action, output in action_to_output_map.items():
             self.action_to_output_map[action] = output
         return self
