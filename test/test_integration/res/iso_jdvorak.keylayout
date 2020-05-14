@@ -167,7 +167,7 @@
       <key code="9" action="K"/>
       <key code="10" output="·"/>
       <key code="11" action="X"/>
-      <key code="12" action=": 1"/>
+      <key code="12" action=":"/>
       <key code="13" output="!"/>
       <key code="14" action="?"/>
       <key code="15" action="P"/>
@@ -177,7 +177,7 @@
       <key code="19" output="@"/>
       <key code="20" output="#"/>
       <key code="21" output="$"/>
-      <key code="22" action="^ 1"/>
+      <key code="22" action="^"/>
       <key code="23" output="%"/>
       <key code="24" output="}"/>
       <key code="25" output="("/>
@@ -204,7 +204,7 @@
       <key code="46" action="M"/>
       <key code="47" action="V"/>
       <key code="48" output="&#x0009;"/>
-      <key code="49" action="  1"/>
+      <key code="49" output=" "/>
       <key code="50" output="~"/>
       <key code="51" output="&#x0008;"/>
       <key code="52" output="&#x0003;"/>
@@ -267,11 +267,11 @@
       <key code="126" output="&#x001E;"/>
     </keyMap>
     <keyMap index="2">
-      <key code="0" action="alt+a"/>
+      <key code="0" output="alt+a"/>
       <key code="1" action="alt+o"/>
       <key code="2" action="alt+e"/>
       <key code="3" action="alt+u"/>
-      <key code="4" action="6 1"/>
+      <key code="4" action="alt+d"/>
       <key code="5" action="alt+i"/>
       <key code="6" action="acute"/>
       <key code="7" action="×"/>
@@ -294,12 +294,12 @@
       <key code="24" output="»"/>
       <key code="25" output="&#x000D;"/>
       <key code="26" action="alt+7"/>
-      <key code="27" output=""/>
+      <key code="27" output="«"/>
       <key code="28" output=""/>
       <key code="29" output=""/>
       <key code="30" output=""/>
       <key code="31" action="alt+r"/>
-      <key code="32" action="action 3"/>
+      <key code="32" action="alt+g"/>
       <key code="33" action="alt+/"/>
       <key code="34" action="alt+c"/>
       <key code="35" action="!"/>
@@ -308,7 +308,7 @@
       <key code="38" action="alt+h"/>
       <key code="39" action="alt+_"/>
       <key code="40" action="alt+?2"/>
-      <key code="41" action="alt+?3"/>
+      <key code="41" action="alt+s"/>
       <key code="42" action="alt+\"/>
       <key code="43" action="∴"/>
       <key code="44" action="alt+z"/>
@@ -316,7 +316,7 @@
       <key code="46" action="∮"/>
       <key code="47" action="alt+v"/>
       <key code="48" output="&#x0009;"/>
-      <key code="49" action="  2"/>
+      <key code="49" output=" "/>
       <key code="50" action="alt+`"/>
       <key code="51" output="&#x0008;"/>
       <key code="52" output="&#x0003;"/>
@@ -530,7 +530,7 @@
       <key code="36" output="&#x000D;"/>
       <key code="37" action="n"/>
       <key code="38" action="h"/>
-      <key code="39" action="-"/>
+      <key code="39" action="_"/>
       <key code="40" action="t"/>
       <key code="41" action="s"/>
       <key code="42" output="\"/>
@@ -831,12 +831,6 @@
     <action id=" ">
       <when state="none" output=" "/>
     </action>
-    <action id="  1">
-      <when state="none" output="  1"/>
-    </action>
-    <action id="  2">
-      <when state="none" output="  2"/>
-    </action>
     <action id="!">
       <when state="none" output="!"/>
     </action>
@@ -850,10 +844,6 @@
     <action id=",">
       <when state="none" output=","/>
       <when state="arrows_basic_dvorak" output="↑"/>
-    </action>
-    <action id="-">
-      <when state="none" output="-"/>
-      <when state="arrows_basic_dvorak" output="↔"/>
     </action>
     <action id=".">
       <when state="none" output="."/>
@@ -887,9 +877,6 @@
       <when state="none" output="6"/>
       <when state="latin_extensions" output="ƅ"/>
     </action>
-    <action id="6 1">
-      <when state="none" output="6 1"/>
-    </action>
     <action id="7">
       <when state="none" output="7"/>
       <when state="latin_extensions" output="ʔ"/>
@@ -902,8 +889,8 @@
       <when state="none" output="9"/>
       <when state="latin_extensions" output=""/>
     </action>
-    <action id=": 1">
-      <when state="none" output=": 1"/>
+    <action id=":">
+      <when state="none" output=":"/>
     </action>
     <action id=";">
       <when state="none" output=";"/>
@@ -1614,8 +1601,12 @@
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʒ"/>
     </action>
-    <action id="^ 1">
-      <when state="none" output="^ 1"/>
+    <action id="^">
+      <when state="none" output="^"/>
+      <when state="latin_extensions" output="Ƅ"/>
+    </action>
+    <action id="_">
+      <when state="none" output="_"/>
     </action>
     <action id="a">
       <when state="none" output="a"/>
@@ -1668,9 +1659,6 @@
     <action id="action 2">
       <when state="none" output="action 2"/>
     </action>
-    <action id="action 3">
-      <when state="none" output="action 3"/>
-    </action>
     <action id="action 5">
       <when state="none" output="action 5"/>
     </action>
@@ -1722,9 +1710,6 @@
     <action id="alt+?2">
       <when state="none" output="alt+?2"/>
     </action>
-    <action id="alt+?3">
-      <when state="none" output="alt+?3"/>
-    </action>
     <action id="alt+J">
       <when state="none" next="latin_hook_retroflex"/>
     </action>
@@ -1749,14 +1734,17 @@
     <action id="alt+`">
       <when state="none" output="alt+`"/>
     </action>
-    <action id="alt+a">
-      <when state="none" next="greek"/>
-    </action>
     <action id="alt+c">
       <when state="none" next="latin_ogonek"/>
     </action>
+    <action id="alt+d">
+      <when state="none" output="alt+d"/>
+    </action>
     <action id="alt+e">
       <when state="none" output="alt+e"/>
+    </action>
+    <action id="alt+g">
+      <when state="none" next="greek"/>
     </action>
     <action id="alt+h">
       <when state="none" output="alt+h"/>
@@ -1772,6 +1760,9 @@
     </action>
     <action id="alt+r">
       <when state="none" next="latin_rotated_lower"/>
+    </action>
+    <action id="alt+s">
+      <when state="none" output="alt+s"/>
     </action>
     <action id="alt+u">
       <when state="none" next="latin_breve"/>
@@ -2285,7 +2276,7 @@
       <when state="greek" output="ρ"/>
       <when state="latin_rotated_lower" output="ɹ"/>
       <when state="latin_rotated_upper" output="ᴚ"/>
-      <when state="latin_extensions" output=""/>
+      <when state="latin_extensions" output="ɾ"/>
     </action>
     <action id="s">
       <when state="none" output="s"/>
