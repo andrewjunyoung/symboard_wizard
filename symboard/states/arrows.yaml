@@ -21,7 +21,7 @@ arrows_basic_dvorak:
     .: ↗
     a: ←
     e: →
-    "&#x0027;": ↙
+    "'": ↙
     q: ↓
     j: ↘
     -: ↔

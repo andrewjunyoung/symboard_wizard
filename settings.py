@@ -7,7 +7,7 @@
 
 """
 # Imports from the standard library
-from typing import List
+from typing import List, Dict
 
 
 # Package settings {
@@ -54,6 +54,26 @@ STATE_ATTRIBUTE_PRECEDENCE: List[str] = [
 they are added to a state when parsed. Attributes later the list have higher
 precedence, and will override the settings of attributes earlier in the list.
 """
+
+ACTION_TO_UNICODE_MAP: Dict[str, str] = {
+    # Arrows {
+
+    "left": "&#x001C;",
+    "right": "&#x001D;",
+    "up": "&#x001E;",
+    "down": "&#x001F;",
+
+    # } Arrows
+
+    # Punctuation {
+
+    "'": "&#x0027;",
+
+    # { Punctuation
+}
+""" TODO
+"""
+
 
 # } States settings
 # } Package settings
