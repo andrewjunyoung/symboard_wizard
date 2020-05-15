@@ -18,6 +18,8 @@
 ### Changed
 - Terminators are now optional properties to create a state, and default to
   DEFAULT\_STATE\_TERMINATOR if not provided.
+- Updated readme with tutorial on how to use symboard, vision, and a better
+  overview.
 
 ### Fixed
 - Now mocking symboard version for integration tests to pass

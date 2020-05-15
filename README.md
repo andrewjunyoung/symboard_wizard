@@ -1,109 +1,123 @@
-Build: [![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=svg)](https://circleci.com/gh/andrewjunyoung/symboard)
+[![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=svg)](https://circleci.com/gh/andrewjunyoung/symboard) 
+[![PyPI version](https://img.shields.io/pypi/v/symboard.svg)](https://pypi.org/project/symboard/0.3.0/) 
+[![Test coverage](https://img.shields.io/badge/coverage-94%25-brightgreen.svg)](https://circleci.com/gh/andrewjunyoung/symboard)
 
 # Ṡymβoarð (Symboard)
 
 <!-- vim-markdown-toc GFM -->
 
 * [About](#about)
-* [Making your own keyboard](#making-your-own-keyboard)
-  * [Syntax](#syntax)
-* [Future features](#future-features)
-  * [Specifying keyboard states (not yet implemented)](#specifying-keyboard-states-not-yet-implemented)
-    * [List of modal keys](#list-of-modal-keys)
-  * [Creating dead keys (not yet implemented)](#creating-dead-keys-not-yet-implemented)
+* [Vision](#vision)
+* [Installation](#installation)
+  * [Pip](#pip)
+* [Basic usage](#basic-usage)
+  * [Creating a keylayout](#creating-a-keylayout)
+  * [Installing a keyboard (macOS)](#installing-a-keyboard-macos)
+* [macOS](#macos)
 
 <!-- vim-markdown-toc -->
 
 # About
 
-Symboard (stylized as «Ṡymβoarð») is a versatile text-based keyboard creator.
-Symboard has a defined syntax which allows you to create text files which
-describe the specification for a keyboard layout, and will compile these files
-to automatically create a fully functional, UNIX compatible `keylayout` file.
+Symboard is a versatile text-based keyboard creator. Symboard takes a
+description of the keyboard you want (written in [yaml](https://yaml.org/)), and
+have this keyboard automatically generated and installed onto your computer.
 
-The syntax of Symboard (described below) currently allows for 3 different type
-of operation:
-- Setting global keyboard variables, such as keyboard type and layout
-- Specifying different keyboard states, such as shift, or alt
-- A concise syntax to create dead keys, such as for accents and diacritics.
+Symboard is *human readable*, *easy to edit*, and *easy to extend*.
 
-# Making your own keyboard
+What does all that mean?
 
-## Syntax
+When we a specification is *human readable*, we mean that you can describe your
+dream keyboard in a logical format close to plain English.
 
-Symboard creates keyboards according to a _specification_ (spec) which is provided to it. This spec should be written as a [yaml](https://en.wikipedia.org/wiki/YAML) file.
+When we say it's *easy to edit*, we mean that you can change it with little time
+or difficulty, even for big bulky changes like supporting a whole new language.
 
-Yaml can be a little technical at times, so here's what you need to know when using symboard.
+when we say it's *easy to extend*, we mean that if Symboard doesn't have a
+feature built in, it won't take long to add it yourself.
 
-Yaml is made up of keys (headers) which point to values, like this:
+# Vision
 
-```
-given_name: noam
-surname: chomsky
-age: 91
-institutions:
-    - University of Arizona
-      start: 2017
-    - Massachusetts Institute of Technology
-      start: 1955
-    - Institute for Advanced Study
-      start: 1958
-      end: 1959
-```
+For most languages, computer keyboards are remarkably inexpressive, and even 100
+years after their creation, are hard to use. As a multilingual person, you may
+find yourself flipping between 2, 3, or even waay more keyboards. It's a pain.
 
-Values can be numbers, strings, booleans (true / false), or lists.
+Even for speakers of just one language, as soon as you start trying to type
+math, or emoji, or even just make jokes with strikethrough text, your keyboard
+just doesn't cut it.
 
-Symboard has some required headings, while others are optional. Optional headings, if not included in your specification, will be set to some default value. This default value is usually picked to be the most appropriate for the keyboard layout you're trying to create.
+I want symboard to be *the* standard keyboard editor. Period. Whatever keyboard
+you use, whether that's QWERTY, AZERTY, Dvorak, or Russian, you should be able
+to type any symbol you want on your keyboard. And it should be something you
+don't give any thought to.
 
-Which headings are available, and which are required, is detailed [here](https://github.com/andrewjunyoung/symboard/wiki/Symboard-yaml-syntax) in the symboard wiki. All symboard settings are written using lower\_camel\_case.
+I want symboard to have a huge library of plugins for anything a user could
+want: for making that english keyboard able to type that math symbol you always
+need; for making that type spanish keyboard type french too; for making your
+linguistics paper muuuch easier to write.
 
-# Future features
+And, I want users to just tick boxes about what features they need their
+keyboard to have. Forget having a huge list of keyboards to choose from when you
+start your computer. Pick whatever keyboard layout you want, and make it
+_support whatever symbols you want it to type_, without making it hard to use.
 
-## Specifying keyboard states (not yet implemented)
+The days of keyboard lists in OSes are the past: pick a layout, pick the
+symbols you need. Change your mind later if you want to.
 
-```
-keyboard_state:
-  condition: ...
-  state: |
-    ...
-```
+<!-- TODO: Click to see slides -->
 
-Example:
+# Installation
 
-```
-keyboard_state:
-  condition: shift or control
-  state: |
-    ~&@#$%^<>()\{\}
-    :!?PYFGCRL*+|
-    AOEUIDHTNS-
-    "QJKXBMWVZ
-```
+<!-- TODO: Click to read the full documentation -->
 
-### List of modal keys
-  - `shift`
-  - `alt`
-  - `command`
-  - `control`
-  - `function`
-  - `caps_lock`
+## Pip
 
-
-## Creating dead keys (not yet implemented)
+Run the following script in a terminal of your choice:
 
 ```
-dead_key:
-  name: ...
-  modified_from: ...
-  modified_to: ...
+pip install symboard
 ```
 
-Example:
+# Basic usage
 
+<!-- TODO: Click to read the full documentation --> 
 
+## Creating a keylayout
+
+1. Create a yaml spec and save it somewhere on your computer.
+
+1. Run
 ```
-dead_key:
-  name: acute
-  modified_from: abc
-  modified_to: áb́ć
+symboard/main.py <path_to_your_yaml_spec> <output_path>
 ```
+The keylayout file will be written to the location at <output\_path>, as you
+specify.
+
+## Installing a keyboard (macOS)
+
+# macOS
+
+1. Copy your keylayout file into the keylayouts directory. To do this, run the
+following code inside the Symboard project directory:
+```
+source ./install <path_to_your_keylayout>
+```
+
+1. Open System Preferences and navigate to «keyboard» > «input sources». Click
+   on the + sign in the bottom right.
+
+<img src="res/input_sources_menu.png" alt="Input sources menu" width="600"/>
+
+1. Search for your keyboard layout. It's most likely to appear under others», at
+   the bottom of the list.
+
+<img src="res/click_add.png" alt="Searching for your keyboard" width="600"/>
+
+1. Click «Add».
+
+1. Your keyboard is now available to use! To switch to it, either click on the
+   keyboard icon in the menu bar, or flip through your keyboards to find it.
+
+<img src="res/switching_in_menu_bar.png" alt="Switching in the menu bar" height="400"/>
+<img src="res/flip_through_keyboards.png" alt="Flip through keyboards" height="400"/>
+
