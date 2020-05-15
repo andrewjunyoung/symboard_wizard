@@ -52,6 +52,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         states['latin_rotated_lower'],     # r
         states['latin_rotated_upper'],     # R
         states['latin_extensions'],        # x
+        states['latin_comma_below'],       # ^, (!)
     ]
 
     def __str__(self):
@@ -455,7 +456,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             10: '',
             11: Action("action 10"),
             12: Action("± 1"),
-            13: '¡',
+            13: Action("alt+!", next_=states['latin_comma_below']),
             14: Action("alt+?", next_=states['latin_dot_below']),
             15: Action("®"),
             16: '',
