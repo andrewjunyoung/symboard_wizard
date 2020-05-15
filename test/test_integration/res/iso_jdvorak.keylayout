@@ -392,7 +392,7 @@
       <key code="10" output=""/>
       <key code="11" action="action 10"/>
       <key code="12" action="± 1"/>
-      <key code="13" output="¡"/>
+      <key code="13" action="alt+!"/>
       <key code="14" action="alt+?"/>
       <key code="15" action="®"/>
       <key code="16" output=""/>
@@ -925,6 +925,7 @@
       <when state="latin_rotated_lower" output="Ɐ"/>
       <when state="latin_rotated_upper" output="Ɐ"/>
       <when state="latin_extensions" output="Ɑ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="B">
       <when state="none" output="B"/>
@@ -952,6 +953,7 @@
       <when state="latin_rotated_lower" output="Q"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="C">
       <when state="none" output="C"/>
@@ -979,6 +981,7 @@
       <when state="latin_rotated_lower" output="Ɔ"/>
       <when state="latin_rotated_upper" output="Ɔ"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="D">
       <when state="none" output="D"/>
@@ -1006,6 +1009,7 @@
       <when state="latin_rotated_lower" output="P"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output="D̦"/>
     </action>
     <action id="E">
       <when state="none" output="E"/>
@@ -1033,6 +1037,7 @@
       <when state="latin_rotated_lower" output="Ə"/>
       <when state="latin_rotated_upper" output="Ǝ"/>
       <when state="latin_extensions" output="Ɛ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="F">
       <when state="none" output="F"/>
@@ -1060,6 +1065,7 @@
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="Ⅎ"/>
       <when state="latin_extensions" output="Ƒ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="G">
       <when state="none" output="G"/>
@@ -1087,6 +1093,7 @@
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="⅁"/>
       <when state="latin_extensions" output="Ɣ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="H">
       <when state="none" output="H"/>
@@ -1114,6 +1121,7 @@
       <when state="latin_rotated_lower" output="Ɥ"/>
       <when state="latin_rotated_upper" output="H"/>
       <when state="latin_extensions" output="Ƕ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="I">
       <when state="none" output="I"/>
@@ -1141,6 +1149,7 @@
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="I"/>
       <when state="latin_extensions" output="Ɪ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="J">
       <when state="none" output="J"/>
@@ -1168,6 +1177,7 @@
       <when state="latin_rotated_lower" output="Ṣ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="K">
       <when state="none" output="K"/>
@@ -1195,6 +1205,7 @@
       <when state="latin_rotated_lower" output="Ʞ"/>
       <when state="latin_rotated_upper" output="Ʞ"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="L">
       <when state="none" output="L"/>
@@ -1222,6 +1233,7 @@
       <when state="latin_rotated_lower" output="Ꞁ"/>
       <when state="latin_rotated_upper" output="⅂"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="M">
       <when state="none" output="M"/>
@@ -1249,6 +1261,7 @@
       <when state="latin_rotated_lower" output="Ɯ"/>
       <when state="latin_rotated_upper" output="ꟽ"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="N">
       <when state="none" output="N"/>
@@ -1276,6 +1289,7 @@
       <when state="latin_rotated_lower" output="U"/>
       <when state="latin_rotated_upper" output="N"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="O">
       <when state="none" output="O"/>
@@ -1303,6 +1317,7 @@
       <when state="latin_rotated_lower" output="O"/>
       <when state="latin_rotated_upper" output="O"/>
       <when state="latin_extensions" output="Ɔ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="P">
       <when state="none" output="P"/>
@@ -1330,6 +1345,7 @@
       <when state="latin_rotated_lower" output="D"/>
       <when state="latin_rotated_upper" output="d"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="Q">
       <when state="none" output="Q"/>
@@ -1357,6 +1373,7 @@
       <when state="latin_rotated_lower" output="B"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="R">
       <when state="none" output="R"/>
@@ -1384,6 +1401,7 @@
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="S">
       <when state="none" output="S"/>
@@ -1411,6 +1429,7 @@
       <when state="latin_rotated_lower" output="S"/>
       <when state="latin_rotated_upper" output="S"/>
       <when state="latin_extensions" output="ẞ"/>
+      <when state="latin_comma_below" output="Ș"/>
     </action>
     <action id="T">
       <when state="none" output="T"/>
@@ -1438,6 +1457,7 @@
       <when state="latin_rotated_lower" output="Ʇ"/>
       <when state="latin_rotated_upper" output="⊥"/>
       <when state="latin_extensions" output="Þ"/>
+      <when state="latin_comma_below" output="Ț"/>
     </action>
     <action id="U">
       <when state="none" output="U"/>
@@ -1465,6 +1485,7 @@
       <when state="latin_rotated_lower" output="N"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʊ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="V">
       <when state="none" output="V"/>
@@ -1492,6 +1513,7 @@
       <when state="latin_rotated_lower" output="Ʌ"/>
       <when state="latin_rotated_upper" output="Ʌ"/>
       <when state="latin_extensions" output="Ʋ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="W">
       <when state="none" output="W"/>
@@ -1519,6 +1541,7 @@
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="X">
       <when state="none" output="X"/>
@@ -1546,6 +1569,7 @@
       <when state="latin_rotated_lower" output="X"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʃ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="Y">
       <when state="none" output="Y"/>
@@ -1573,6 +1597,7 @@
       <when state="latin_rotated_lower" output="ʎ"/>
       <when state="latin_rotated_upper" output="⅄"/>
       <when state="latin_extensions" output="Ƴ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="Z">
       <when state="none" output="Z"/>
@@ -1600,6 +1625,7 @@
       <when state="latin_rotated_lower" output="Z"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʒ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="^">
       <when state="none" output="^"/>
@@ -1637,6 +1663,7 @@
       <when state="latin_rotated_lower" output="ɐ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ɑ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="action">
       <when state="none" output="action"/>
@@ -1673,6 +1700,9 @@
     </action>
     <action id="acute">
       <when state="none" output="acute"/>
+    </action>
+    <action id="alt+!">
+      <when state="none" next="latin_comma_below"/>
     </action>
     <action id="alt+*">
       <when state="none" next="latin_acute_double"/>
@@ -1807,6 +1837,7 @@
       <when state="latin_rotated_lower" output="q"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="c">
       <when state="none" output="c"/>
@@ -1836,6 +1867,7 @@
       <when state="latin_rotated_lower" output="ɔ"/>
       <when state="latin_rotated_upper" output="ᴐ"/>
       <when state="latin_extensions" output="ʕ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="d">
       <when state="none" output="d"/>
@@ -1865,6 +1897,7 @@
       <when state="latin_rotated_lower" output="p"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output="d̦"/>
     </action>
     <action id="dot">
       <when state="none" output="dot"/>
@@ -1898,6 +1931,7 @@
       <when state="latin_rotated_lower" output="ə"/>
       <when state="latin_rotated_upper" output="ⱻ"/>
       <when state="latin_extensions" output="ɛ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="f">
       <when state="none" output="f"/>
@@ -1927,6 +1961,7 @@
       <when state="latin_rotated_lower" output="ɟ"/>
       <when state="latin_rotated_upper" output="ⅎ"/>
       <when state="latin_extensions" output="ƒ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="g">
       <when state="none" output="g"/>
@@ -1956,6 +1991,7 @@
       <when state="latin_rotated_lower" output="ᵷ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ɣ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="h">
       <when state="none" output="h"/>
@@ -1985,6 +2021,7 @@
       <when state="latin_rotated_lower" output="ɥ"/>
       <when state="latin_rotated_upper" output="ʜ"/>
       <when state="latin_extensions" output="ƕ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="i">
       <when state="none" output="i"/>
@@ -2014,6 +2051,7 @@
       <when state="latin_rotated_lower" output="ᴉ"/>
       <when state="latin_rotated_upper" output="ɪ"/>
       <when state="latin_extensions" output="ɪ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="j">
       <when state="none" output="j"/>
@@ -2044,6 +2082,7 @@
       <when state="latin_rotated_lower" output="ſ̣"/>
       <when state="latin_rotated_upper" output="ɾ"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="k">
       <when state="none" output="k"/>
@@ -2073,6 +2112,7 @@
       <when state="latin_rotated_lower" output="ʞ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="l">
       <when state="none" output="l"/>
@@ -2102,6 +2142,7 @@
       <when state="latin_rotated_lower" output="ꞁ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="m">
       <when state="none" output="m"/>
@@ -2131,6 +2172,7 @@
       <when state="latin_rotated_lower" output="ɯ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="n">
       <when state="none" output="n"/>
@@ -2160,6 +2202,7 @@
       <when state="latin_rotated_lower" output="u"/>
       <when state="latin_rotated_upper" output="ɴ"/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="o">
       <when state="none" output="o"/>
@@ -2189,6 +2232,7 @@
       <when state="latin_rotated_lower" output="o"/>
       <when state="latin_rotated_upper" output="ᴏ"/>
       <when state="latin_extensions" output="ɔ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="p">
       <when state="none" output="p"/>
@@ -2218,6 +2262,7 @@
       <when state="latin_rotated_lower" output="d"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="q">
       <when state="none" output="q"/>
@@ -2248,6 +2293,7 @@
       <when state="latin_rotated_lower" output="b"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="r">
       <when state="none" output="r"/>
@@ -2277,6 +2323,7 @@
       <when state="latin_rotated_lower" output="ɹ"/>
       <when state="latin_rotated_upper" output="ᴚ"/>
       <when state="latin_extensions" output="ɾ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="s">
       <when state="none" output="s"/>
@@ -2306,6 +2353,7 @@
       <when state="latin_rotated_lower" output="s"/>
       <when state="latin_rotated_upper" output="ꜱ"/>
       <when state="latin_extensions" output="ß"/>
+      <when state="latin_comma_below" output="ș"/>
     </action>
     <action id="t">
       <when state="none" output="t"/>
@@ -2335,6 +2383,7 @@
       <when state="latin_rotated_lower" output="ʇ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="þ"/>
+      <when state="latin_comma_below" output="ț"/>
     </action>
     <action id="u">
       <when state="none" output="u"/>
@@ -2364,6 +2413,7 @@
       <when state="latin_rotated_lower" output="n"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʊ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="v">
       <when state="none" output="v"/>
@@ -2393,6 +2443,7 @@
       <when state="latin_rotated_lower" output="ʌ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʋ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="w">
       <when state="none" output="w"/>
@@ -2422,6 +2473,7 @@
       <when state="latin_rotated_lower" output="ʍ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="x">
       <when state="none" output="x"/>
@@ -2451,6 +2503,7 @@
       <when state="latin_rotated_lower" output="x"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʃ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="y">
       <when state="none" output="y"/>
@@ -2480,6 +2533,7 @@
       <when state="latin_rotated_lower" output="ʎ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ƴ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="z">
       <when state="none" output="z"/>
@@ -2509,6 +2563,7 @@
       <when state="latin_rotated_lower" output="z"/>
       <when state="latin_rotated_upper" output="ᴢ"/>
       <when state="latin_extensions" output="ʒ"/>
+      <when state="latin_comma_below" output=""/>
     </action>
     <action id="|">
       <when state="none" output="|"/>
@@ -2603,5 +2658,6 @@
     <when state="latin_rotated_lower" output="ɐ"/>
     <when state="latin_rotated_upper" output="Ɐ"/>
     <when state="latin_extensions" output="x"/>
+    <when state="latin_comma_below" output=","/>
   </terminators>
 </keyboard>
