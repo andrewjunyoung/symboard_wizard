@@ -24,35 +24,35 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
 
     _DEFAULT_NAME: str = 'JDvorak keyboard (iso)'
     default_index: int = 4
-    used_states: list = [
-        states['latin_acute'],             # /
-        states['latin_acute_double'],      # ^/ (*)
-        states['latin_breve'],             # u
-        states['latin_breve_inverted'],    # ^u (U)
-        states['latin_cedilla'],           # z
-        states['latin_circumflex_above'],  # ^  (6)
-        states['latin_circumflex_below'],  # ^^ (^6)
-        states['latin_dot_above'],         # .
-        states['latin_dot_below'],         # ^. (?)
-        states['latin_grave'],             # \
-        states['latin_grave_double'],      # ^\ (|)
-        states['latin_hacek'],             # v
-        states['latin_hook_above'],        # 7
-        states['latin_hook_palatal'],      # j
-        states['latin_hook_retroflex'],    # ^j (J)
-        states['latin_horn'],              # ,
-        states['latin_macron_above'],      # -  (_)
-        states['latin_macron_below'],      # ^- (-)
-        states['latin_ogonek'],            # c
-        states['latin_ring_above'],        # o
-        states['latin_ring_below'],        # ^o (O)
-        states['latin_umlaut'],            # :  (;)
-        states['greek'],                   # a
-        states['arrows_basic_dvorak'],     # 1
-        states['latin_rotated_lower'],     # r
-        states['latin_rotated_upper'],     # R
-        states['latin_extensions'],        # x
-        states['latin_comma_below'],       # ^, (!)
+    states_list: list = [
+        'latin_acute',             # /
+        'latin_acute_double',      # ^/ (*)
+        'latin_breve',             # u
+        'latin_breve_inverted',    # ^u (U)
+        'latin_cedilla',           # z
+        'latin_circumflex_above',  # ^  (6)
+        'latin_circumflex_below',  # ^^ (^6)
+        'latin_dot_above',         # .
+        'latin_dot_below',         # ^. (?)
+        'latin_grave',             # \
+        'latin_grave_double',      # ^\ (|)
+        'latin_hacek',             # v
+        'latin_hook_above',        # 7
+        'latin_hook_palatal',      # j
+        'latin_hook_retroflex',    # ^j (J)
+        'latin_horn',              # ,
+        'latin_macron_above',      # -  (_)
+        'latin_macron_below',      # ^- (-)
+        'latin_ogonek',            # c
+        'latin_ring_above',        # o
+        'latin_ring_below',        # ^o (O)
+        'latin_umlaut',            # :  (;)
+        'greek',                   # a
+        'arrows_basic_dvorak',     # 1
+        'latin_rotated_lower',     # r
+        'latin_rotated_upper',     # R
+        'latin_extensions',        # x
+        'latin_comma_below',       # ^, (!)
     ]
 
     def __str__(self):
