@@ -70,6 +70,7 @@ class Keylayout:
 
     actions: set = set()
     used_states: list = list()
+    states_list: list = list()
 
     def keyboard_attributes(self):
         """
@@ -94,6 +95,11 @@ class Keylayout:
             for index in self.key_map.values()
             for key, output in index.items()
             if isinstance(output, Action)
+        ]
+
+    def create_used_states(self, states) -> bool:
+        self.used_states = [
+            states[state_name] for state_name in self.states_list
         ]
 
     def __str__(self):

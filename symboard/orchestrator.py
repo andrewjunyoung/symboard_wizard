@@ -40,18 +40,14 @@ class Orchestrator:
             input_path, case_sensitive = True,
         )
 
-        logging.info(f'Installing states from the states directory.')
+        logging.info(f'Importing states from the states directory.')
 
         states = load_yaml()
 
         logging.info(f'Creating the keyboard object from the specification.')
 
         keylayout = keylayout_from_spec(keylayout_spec)
-        if hasattr(keylayout, 'states_list'):
-            keylayout.used_states = [
-                states[state_name]
-                for state_name in keylayout.states_list
-            ]
+        keylayout.create_used_states(states)
 
         logging.info(f'Trying to write the keylayout to disk at {output_path}.')
 

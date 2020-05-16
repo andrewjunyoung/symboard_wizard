@@ -55,6 +55,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_comma_below',       # ^, (!)
     ]
 
+
     def __str__(self):
         return 'IsoJDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
 
