@@ -106,18 +106,18 @@ source ./install <path_to_your_keylayout>
 1. Open System Preferences and navigate to «keyboard» > «input sources». Click
    on the + sign in the bottom right.
 
-<img src="res/input_sources_menu.png" alt="Input sources menu" width="600"/>
+<img src="docs/res/input_sources_menu.png" alt="Input sources menu" width="600"/>
 
 1. Search for your keyboard layout. It's most likely to appear under others», at
    the bottom of the list.
 
-<img src="res/click_add.png" alt="Searching for your keyboard" width="600"/>
+<img src="docs/res/click_add.png" alt="Searching for your keyboard" width="600"/>
 
 1. Click «Add».
 
 1. Your keyboard is now available to use! To switch to it, either click on the
    keyboard icon in the menu bar, or flip through your keyboards to find it.
 
-<img src="res/switching_in_menu_bar.png" alt="Switching in the menu bar" height="400"/>
-<img src="res/flip_through_keyboards.png" alt="Flip through keyboards" height="400"/>
+<img src="docs/res/switching_in_menu_bar.png" alt="Switching in the menu bar" height="400"/>
+<img src="docs/res/flip_through_keyboards.png" alt="Flip through keyboards" height="400"/>
 
