@@ -15,7 +15,6 @@ jobs:
           command: |
             pip install poetry
             poetry shell
-            poetry install
       - run:
           name: Run unit tests with coverage
           command: |
