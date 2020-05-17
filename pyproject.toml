@@ -3,7 +3,7 @@ name = 'symboard'  # TODO
 version = '0.4.0'  # TODO
 description = 'Change or add to your keyboard with ease.'  # Verify SSL
 authors = ['Andrew J. Young <andrew@sierracompute.com>']
-readme = 'readme.md'
+readme = 'README.md'
 
 homepage = 'https://github.com/andrewjunyoung/symboard'
 repository = 'https://github.com/andrewjunyoung/symboard'
