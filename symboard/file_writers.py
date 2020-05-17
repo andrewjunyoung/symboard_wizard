@@ -26,7 +26,7 @@ from symboard.errors import (
     WriteException, FileExistsException, KeylayoutNoneException
 )
 from symboard.keylayouts.keylayouts import Keylayout, Action
-from settings import VERSION, DEFAULT_OUTPUT_PATH
+from settings import VERSION, DEFAULT_OUTPUT_PATH, OVERWRITE_OUTPUT
 
 
 class FileWriter:
@@ -109,7 +109,10 @@ class KeylayoutFileWriter(FileWriter):
         # Assert that the output_path is not already being used by any file
         # or directory.
         if exists(output_path):
-            raise FileExistsException(output_path)
+            if OVERWRITE_OUTPUT:
+                logging.info(f'Overwriting output at {output_path}')
+            else:
+                raise FileExistsException(output_path)
 
         try:
             contents = self.contents(keylayout)

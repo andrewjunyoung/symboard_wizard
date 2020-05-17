@@ -27,6 +27,12 @@ to the path specified by DEFAULT_OUTPUT_PATH. This string can, but does not need
 to, end in «.keylayout».
 """
 
+OVERWRITE_OUTPUT: bool = False
+""" Iff set to true, Symboard will overwrite a file stored at
+<DEFAULT_OUTPUT_PATH>, if one exists. If set to false, an error will be thrown
+when trying to do this.
+"""
+
 # States settings {
 
 STATES_DIR = 'symboard/states'
