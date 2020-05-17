@@ -1,0 +1,50 @@
+[tool.poetry]
+name = 'symboard'  # TODO
+version = '0.4.0'  # TODO
+description = 'Change or add to your keyboard with ease.'  # Verify SSL
+authors = ['Andrew J. Young <andrew@sierracompute.com>']
+readme = 'readme.md'
+
+homepage = 'https://github.com/andrewjunyoung/symboard'
+repository = 'https://github.com/andrewjunyoung/symboard'
+
+keywords = ['keyboard', 'customization', 'symboard']
+
+packages = [
+  {include = 'symboard'},
+  {include = 'scripts'},
+]
+
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"  # TODO: This should be tested with tox.
+coverage = "^4.5.4"
+lxml = "^4.4.2"
+py = "^1.8.0"
+six = "^1.12.0"
+wcwidth = "^0.1.7"
+zipp = "^0.6.0"
+PyYAML = "^5.1.2"
+bleach = "^3.1.4"
+python-dotenv = "^0.13.0"
+tabulate = "^0.8.7"
+isort = "^4.3.21"
+
+[tool.poetry.dev-dependencies]
+twine = "^3.1.1"
+neovim = "^0.3.1"
+sexpdata = "^0.0.3"
+websocket-client = "^0.57.0"
+pytest = "^5.2.1"
+Sphinx = "^3.0.3"
+sphinx_rtd_theme = "^0.4.3"
+
+[tool.poetry.scripts]
+# TODO
+
+[[source]]
+verify_ssl = true
