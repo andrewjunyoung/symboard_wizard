@@ -10,7 +10,7 @@ from unittest.mock import mock_open, patch
 
 # Imports from this package.
 from symboard.states import load_yaml
-from symboard.actions import State, latin
+from symboard.actions import State
 
 
 class TestStates(TestCase):

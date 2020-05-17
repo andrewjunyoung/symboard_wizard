@@ -1,0 +1,7 @@
+cyrillic:
+  # The map below is based off cyrillic beta code. (See
+  # https://github.com/andrewjunyoung/writing/blob/master/published/language/latinization/cyrillic_beta_code.md).
+  terminator: д
+  upper: А,В,Ц,Д,Е,Ф,Г,Х,И,Й,К,Л,М,Н,О,П,Ԛ,Р,С,Т,У,Б,Ԝ,,Ы,З
+  lower: а,в,ц,д,е,ф,г,х,и,й,к,л,м,н,о,п,ԛ,р,с,т,у,б,ԝ,,ы,з,ь,ъ
+
