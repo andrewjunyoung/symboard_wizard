@@ -64,20 +64,24 @@ precedence, and will override the settings of attributes earlier in the list.
 ACTION_TO_UNICODE_MAP: Dict[str, str] = {
     # Arrows {
 
-    "left": "&#x001C;",
-    "right": "&#x001D;",
-    "up": "&#x001E;",
-    "down": "&#x001F;",
+    'left': '&#x001C;',
+    'right': '&#x001D;',
+    'up': '&#x001E;',
+    'down': '&#x001F;',
 
     # } Arrows
 
     # Punctuation {
 
-    "'": "&#x0027;",
+    '\'': '&#x0027;',
+    '\"': '&#x0022;',
 
     # { Punctuation
 }
-""" TODO
+""" A map between the textual representation of a key (used in yaml files
+describing states) to the unicode representation required by keylayout files.
+Only characters which need to be represented using numerical unicode
+representations are included in this map (EG «\'», but not «a»).
 """
 
 

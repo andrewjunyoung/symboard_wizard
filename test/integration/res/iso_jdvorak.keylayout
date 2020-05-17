@@ -836,10 +836,12 @@
     </action>
     <action id="&#x0022;">
       <when state="none" output="&#x0022;"/>
+      <when state="cyrillic" output="ъ"/>
     </action>
     <action id="&#x0027;">
       <when state="none" output="&#x0027;"/>
       <when state="arrows_basic_dvorak" output="↙"/>
+      <when state="cyrillic" output="ь"/>
     </action>
     <action id=",">
       <when state="none" output=","/>

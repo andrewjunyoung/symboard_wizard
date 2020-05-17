@@ -18,7 +18,7 @@ from symboard.errors import AlphabetLengthException
 from settings import (
     OUTPUT_DELIMITER,
     DEFAULT_STATE_TERMINATOR,
-    ACTION_TO_UNICODE_MAP
+    ACTION_TO_UNICODE_MAP,
 )
 
 
@@ -105,7 +105,7 @@ class State:
         for action, output in zip(getattr(actions, case), outputs):
             logging.info(f'Mapping action {action} to output {output}.')
 
-            self.action_to_output_map[action] = output
+            self.action_to_output_map[self._to_unicode(action)] = output
 
         return self
 
