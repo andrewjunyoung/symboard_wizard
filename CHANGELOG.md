@@ -1,3 +1,9 @@
+## [0.5.0] - 2020-05-??
+
+### Added
+- States to JDvorak:
+  - alt+e to link to latin\_e state
+
 ## [0.4.0] - 2020-05-17
 
 ### Added
@@ -11,6 +17,7 @@
   - Latin upside down (upper)
   - Latin extensions
   - Latin small caps
+  - Latin «e» (EG for «æ»)
   - Partial cyrillic support (for 28 cyrillic characters)
 - Support for states containing unicode symbols, such as "'", to be written
   as-is in state files. Normally "'" and other symbols need to be converted to

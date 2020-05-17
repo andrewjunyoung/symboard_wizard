@@ -55,6 +55,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_tilde_above',       # `
         'latin_tilde_below',       # ^` (~)
         'latin_bar',               # t
+        'latin_e',                 # e
         'latin_slash',             # ^t (T)
         'cyrillic',                # C
         'greek',                   # G
@@ -339,7 +340,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         2: {
             0: 'alt+a',
             1: Action("alt+o", next_=states['latin_ring_above']),
-            2: Action("alt+e"),
+            2: Action("alt+e", next_=states['latin_e']),
             3: Action("alt+u", next_=states['latin_breve']),
             4: Action("alt+d"),
             5: Action("alt+i"),
