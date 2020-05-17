@@ -21,7 +21,6 @@ jobs:
           name: Run unit tests with coverage
           command: |
             poetry run nosetests -v --with-coverage --cover-package=symboard --cover-erase
-            poetry run coverage html --include="symboard/*"
       - store_artifacts:
           path: htmlcov
 
