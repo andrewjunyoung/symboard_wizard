@@ -10,23 +10,17 @@ jobs:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
-      - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           name: Install python dependencies in a venv.
           command: |
-            sudo pip install pipenv
-            pipenv install
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            pip install poetry
+            poetry shell
+            poetry install
       - run:
           name: Run unit tests with coverage
           command: |
-            pipenv run coverage run -m unittest discover -v
-            pipenv run coverage html --include="symboard/*"
+            coverage run -m unittest discover -v
+            coverage html --include="symboard/*"
       - store_artifacts:
           path: htmlcov
+
