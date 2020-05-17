@@ -8,6 +8,7 @@ from unittest import TestCase
 from unittest.mock import patch, Mock, MagicMock
 from unittest import main as unittest_main
 from os import remove, getenv
+import logging
 
 # Imports from the local package.
 from test.utils import FILE_WRITERS_PATH, RES_DIR
@@ -19,6 +20,7 @@ from symboard.states import load_yaml
 
 
 DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'
+OVERWRITE_TEST_OUTPUT_FILES = 'OVERWRITE_TEST_OUTPUT_FILES'
 
 
 class KeyboardIntegrationTests:
@@ -45,14 +47,19 @@ class KeyboardIntegrationTests:
 
             self.maxDiff = 1000
 
-            self.mock = Mock()
+            self.OVERWRITE_OUTPUT = getenv(OVERWRITE_TEST_OUTPUT_FILES)
 
             if getenv(FILE_DELETION_ENV_VAR):
                 self.KEEP_FILE = getenv(FILE_DELETION_ENV_VAR)
             elif getenv(DEFAULT_FILE_DELETION_ENV_VAR):
                 self.KEEP_FILE = getenv(DEFAULT_FILE_DELETION_ENV_VAR)
             else:
-                # TODO: Log an exception
+                logging.warning(
+                    f'Failed to find file deletion environment variable at '
+                    f'{FILE_DELETION_ENV_VAR} and '
+                    f'{DEFAULT_FILE_DELETION_ENV_VAR}. Setting KEEP_FILE = '
+                    f'False.'
+                )
                 self.KEEP_FILE = False
 
             self.states = load_yaml()
@@ -61,6 +68,8 @@ class KeyboardIntegrationTests:
             # This should be implemented by children which inherit from this class.
             pass
 
+        # For some reason, this works with bools, but not objects.
+        @patch(FILE_WRITERS_PATH + '.OVERWRITE_OUTPUT', True)
         @patch(FILE_WRITERS_PATH + '.VERSION', '0.2.0')
         @patch(FILE_WRITERS_PATH + '.datetime')
         def test_output_is_as_expected(self, datetime):
