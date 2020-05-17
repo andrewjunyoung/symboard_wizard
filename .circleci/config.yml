@@ -4,6 +4,8 @@ version: 2
 
 jobs:
   build:
+    docker:
+      - image: circleci/python:3.7.5
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -11,8 +13,9 @@ jobs:
       - run:
           name: Install python dependencies in a venv.
           command: |
-            pip install poetry
-            poetry shell
+            sudo pip install poetry
+            #poetry shell
+            poetry install
       - run:
           name: Run unit tests with coverage
           command: |
