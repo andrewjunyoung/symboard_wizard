@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/andrewjunyoung/symboard.svg?style=svg)](https://circleci.com/gh/andrewjunyoung/symboard) 
-[![PyPI version](https://img.shields.io/pypi/v/symboard.svg)](https://pypi.org/project/symboard/0.3.0/) 
+[![PyPI version](https://img.shields.io/pypi/v/symboard.svg)](https://pypi.org/project/symboard/0.4.0/) 
 [![Test coverage](https://img.shields.io/badge/coverage-94%25-brightgreen.svg)](https://circleci.com/gh/andrewjunyoung/symboard)
 
 # Ṡymβoarð (Symboard)
