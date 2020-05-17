@@ -75,7 +75,8 @@ latin_hook_retroflex:
 latin_hook_palatal:
   # Hook left, indicating a palatal sound. Used in the IPA.
   terminator: " ̡"
-  lower: ",ᶀ,,ᶁ,,ᶂ,ᶃ,,,,ᶄ,ᶅ,ᶆ,ᶇ,,ᶈ,,ᶉ,ᶊ,ƫ,,ᶌ,,ᶍ,,ᶎ"
+  upper: ",,,,,Ƒ,,,,Ʝ,,,Ɱ,Ŋ,,,,,,,,,,,,Ᶎ"
+  lower: ",ᶀ,,ᶁ,,ƒ,ᶃ,,,ʝ,ᶄ,ᶅ,ɱ,ŋ,,ᶈ,,ᶉ,ᶊ,ƫ,,ᶌ,,ᶍ,,ᶎ"
 
 # TODO: tail, swash tail, flourish, crossed tail, squirrel tail,
 # script v (V with hook)
