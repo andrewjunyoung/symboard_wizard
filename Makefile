@@ -16,3 +16,6 @@ integration:
 coverage:
 	coverage run -m unittest discover
 	coverage html --omit="venv/*"
+
+show_states:
+	python scripts/show_states.py
