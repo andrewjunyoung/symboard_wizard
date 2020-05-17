@@ -914,6 +914,7 @@
       <when state="latin_grave_double" output="Ȁ"/>
       <when state="latin_hacek" output="Ǎ"/>
       <when state="latin_hook_above" output="Ả"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Ā"/>
       <when state="latin_macron_below" output="A̱"/>
@@ -942,6 +943,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="B̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="B̄"/>
       <when state="latin_macron_below" output="Ḇ"/>
@@ -970,6 +972,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Č"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="C̄"/>
       <when state="latin_macron_below" output="C̱"/>
@@ -998,6 +1001,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ď"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="D̄"/>
       <when state="latin_macron_below" output="Ḏ"/>
@@ -1026,6 +1030,7 @@
       <when state="latin_grave_double" output="Ȅ"/>
       <when state="latin_hacek" output="Ě"/>
       <when state="latin_hook_above" output="Ẻ"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Ē"/>
       <when state="latin_macron_below" output="E̱"/>
@@ -1054,6 +1059,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="F̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="Ƒ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output=""/>
       <when state="latin_macron_below" output=""/>
@@ -1082,6 +1088,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ǧ"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Ḡ"/>
       <when state="latin_macron_below" output="G̱"/>
@@ -1110,6 +1117,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ȟ"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output=""/>
       <when state="latin_macron_below" output="H̱"/>
@@ -1138,6 +1146,7 @@
       <when state="latin_grave_double" output="Ȉ"/>
       <when state="latin_hacek" output="Ǐ"/>
       <when state="latin_hook_above" output="Ỉ"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Ī"/>
       <when state="latin_macron_below" output="I̱"/>
@@ -1166,6 +1175,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="J̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="Ʝ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="J̄"/>
       <when state="latin_macron_below" output="J̱"/>
@@ -1194,6 +1204,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ǩ"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output=""/>
       <when state="latin_macron_below" output="Ḵ"/>
@@ -1222,6 +1233,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ľ"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="L̄"/>
       <when state="latin_macron_below" output="Ḻ"/>
@@ -1250,6 +1262,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="M̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="Ɱ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="M̄"/>
       <when state="latin_macron_below" output="M̱"/>
@@ -1278,6 +1291,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ň"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="Ŋ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="N̄"/>
       <when state="latin_macron_below" output="Ṉ"/>
@@ -1306,6 +1320,7 @@
       <when state="latin_grave_double" output="Ȍ"/>
       <when state="latin_hacek" output="Ǒ"/>
       <when state="latin_hook_above" output="Ỏ"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output="Ơ"/>
       <when state="latin_macron_above" output="Ō"/>
       <when state="latin_macron_below" output="O̱"/>
@@ -1334,6 +1349,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="P̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="P̄"/>
       <when state="latin_macron_below" output="P̱"/>
@@ -1362,6 +1378,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Q̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Q̄"/>
       <when state="latin_macron_below" output=""/>
@@ -1390,6 +1407,7 @@
       <when state="latin_grave_double" output="Ȑ"/>
       <when state="latin_hacek" output="Ř"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="R̄"/>
       <when state="latin_macron_below" output="Ṟ"/>
@@ -1418,6 +1436,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Š"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="S̄"/>
       <when state="latin_macron_below" output="S̱"/>
@@ -1446,6 +1465,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ť"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="T̄"/>
       <when state="latin_macron_below" output="Ṯ"/>
@@ -1474,6 +1494,7 @@
       <when state="latin_grave_double" output="Ȕ"/>
       <when state="latin_hacek" output="Ǔ"/>
       <when state="latin_hook_above" output="Ủ"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output="Ư"/>
       <when state="latin_macron_above" output="Ū"/>
       <when state="latin_macron_below" output="U̱"/>
@@ -1502,6 +1523,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="V̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="V̄"/>
       <when state="latin_macron_below" output=""/>
@@ -1530,6 +1552,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="W̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="W̄"/>
       <when state="latin_macron_below" output=""/>
@@ -1558,6 +1581,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="X̌"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="X̄"/>
       <when state="latin_macron_below" output="X̱"/>
@@ -1586,6 +1610,7 @@
       <when state="latin_grave_double" output="Y̏"/>
       <when state="latin_hacek" output="Y̌"/>
       <when state="latin_hook_above" output="Ỷ"/>
+      <when state="latin_hook_palatal" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Ȳ"/>
       <when state="latin_macron_below" output="Y̱"/>
@@ -1614,6 +1639,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="Ž"/>
       <when state="latin_hook_above" output=""/>
+      <when state="latin_hook_palatal" output="Ᶎ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="Z̄"/>
       <when state="latin_macron_below" output="Ẕ"/>
@@ -1948,7 +1974,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="f̌"/>
       <when state="latin_hook_above" output=""/>
-      <when state="latin_hook_palatal" output="ᶂ"/>
+      <when state="latin_hook_palatal" output="ƒ"/>
       <when state="latin_hook_retroflex" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output=""/>
@@ -2068,7 +2094,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="ǰ"/>
       <when state="latin_hook_above" output=""/>
-      <when state="latin_hook_palatal" output=""/>
+      <when state="latin_hook_palatal" output="ʝ"/>
       <when state="latin_hook_retroflex" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="j̄"/>
@@ -2159,7 +2185,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="m̌"/>
       <when state="latin_hook_above" output=""/>
-      <when state="latin_hook_palatal" output="ᶆ"/>
+      <when state="latin_hook_palatal" output="ɱ"/>
       <when state="latin_hook_retroflex" output=""/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="m̄"/>
@@ -2189,7 +2215,7 @@
       <when state="latin_grave_double" output=""/>
       <when state="latin_hacek" output="ň"/>
       <when state="latin_hook_above" output=""/>
-      <when state="latin_hook_palatal" output="ᶇ"/>
+      <when state="latin_hook_palatal" output="ŋ"/>
       <when state="latin_hook_retroflex" output="ɳ"/>
       <when state="latin_horn" output=""/>
       <when state="latin_macron_above" output="n̄"/>
