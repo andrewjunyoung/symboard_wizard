@@ -10,10 +10,15 @@
   - Latin upside down (lower)
   - Latin upside down (upper)
   - Latin extensions
+  - Latin small caps
+  - Partial cyrillic support (for 28 cyrillic characters)
 - Support for states containing unicode symbols, such as "'", to be written
   as-is in state files. Normally "'" and other symbols need to be converted to
   unicode (&#x0027;), but now, they can be written as "'" in yaml (state)
   files and converted by Symboard into their unicode representation.
+- A script for showing what states are inside your states directory, and some
+  information about them each.
+- Support for states of length 27 and 28 (including «'» and «"»)
 
 ### Changed
 - Terminators are now optional properties to create a state, and default to

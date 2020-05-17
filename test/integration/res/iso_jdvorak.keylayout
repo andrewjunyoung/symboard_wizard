@@ -411,9 +411,9 @@
       <key code="29" output="∞"/>
       <key code="30" output="≠"/>
       <key code="31" action="alt+R"/>
-      <key code="32" action="γ"/>
+      <key code="32" action="alt+G"/>
       <key code="33" action="alt+*"/>
-      <key code="34" action="І"/>
+      <key code="34" action="alt+C"/>
       <key code="35" action="’ 1"/>
       <key code="36" output="&#x000D;"/>
       <key code="37" action="Љ"/>
@@ -836,10 +836,12 @@
     </action>
     <action id="&#x0022;">
       <when state="none" output="&#x0022;"/>
+      <when state="cyrillic" output="ъ"/>
     </action>
     <action id="&#x0027;">
       <when state="none" output="&#x0027;"/>
       <when state="arrows_basic_dvorak" output="↙"/>
+      <when state="cyrillic" output="ь"/>
     </action>
     <action id=",">
       <when state="none" output=","/>
@@ -922,7 +924,6 @@
       <when state="latin_ring_above" output="Å"/>
       <when state="latin_ring_below" output="Ḁ"/>
       <when state="latin_umlaut" output="Ä"/>
-      <when state="greek" output="Α"/>
       <when state="latin_rotated_lower" output="Ɐ"/>
       <when state="latin_rotated_upper" output="Ɐ"/>
       <when state="latin_extensions" output="Ɑ"/>
@@ -931,6 +932,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="Ⱥ"/>
+      <when state="cyrillic" output="А"/>
+      <when state="greek" output="Α"/>
     </action>
     <action id="B">
       <when state="none" output="B"/>
@@ -955,7 +958,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="B̈"/>
-      <when state="greek" output="Β"/>
       <when state="latin_rotated_lower" output="Q"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -964,6 +966,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ƀ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="В"/>
+      <when state="greek" output="Β"/>
     </action>
     <action id="C">
       <when state="none" output="C"/>
@@ -988,7 +992,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="C̈"/>
-      <when state="greek" output="Ξ"/>
       <when state="latin_rotated_lower" output="Ɔ"/>
       <when state="latin_rotated_upper" output="Ɔ"/>
       <when state="latin_extensions" output=""/>
@@ -997,6 +1000,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ꞓ"/>
       <when state="latin_slash" output="Ȼ"/>
+      <when state="cyrillic" output="Ц"/>
+      <when state="greek" output="Ξ"/>
     </action>
     <action id="D">
       <when state="none" output="D"/>
@@ -1021,7 +1026,6 @@
       <when state="latin_ring_above" output="D̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="Δ"/>
       <when state="latin_rotated_lower" output="P"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1030,6 +1034,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Đ"/>
       <when state="latin_slash" output="Ð"/>
+      <when state="cyrillic" output="Д"/>
+      <when state="greek" output="Δ"/>
     </action>
     <action id="E">
       <when state="none" output="E"/>
@@ -1054,7 +1060,6 @@
       <when state="latin_ring_above" output="E̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ë"/>
-      <when state="greek" output="Ε"/>
       <when state="latin_rotated_lower" output="Ə"/>
       <when state="latin_rotated_upper" output="Ǝ"/>
       <when state="latin_extensions" output="Ɛ"/>
@@ -1063,6 +1068,8 @@
       <when state="latin_tilde_below" output="Ḛ"/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="Ɇ"/>
+      <when state="cyrillic" output="Е"/>
+      <when state="greek" output="Ε"/>
     </action>
     <action id="F">
       <when state="none" output="F"/>
@@ -1087,7 +1094,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="Φ"/>
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="Ⅎ"/>
       <when state="latin_extensions" output="Ƒ"/>
@@ -1096,6 +1102,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Ф"/>
+      <when state="greek" output="Φ"/>
     </action>
     <action id="G">
       <when state="none" output="G"/>
@@ -1120,7 +1128,6 @@
       <when state="latin_ring_above" output="G̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="Γ"/>
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="⅁"/>
       <when state="latin_extensions" output="Ɣ"/>
@@ -1129,6 +1136,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ǥ"/>
       <when state="latin_slash" output="Ꞡ"/>
+      <when state="cyrillic" output="Г"/>
+      <when state="greek" output="Γ"/>
     </action>
     <action id="H">
       <when state="none" output="H"/>
@@ -1153,7 +1162,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ḧ"/>
-      <when state="greek" output="Η"/>
       <when state="latin_rotated_lower" output="Ɥ"/>
       <when state="latin_rotated_upper" output="H"/>
       <when state="latin_extensions" output="Ƕ"/>
@@ -1162,6 +1170,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ħ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Х"/>
+      <when state="greek" output="Η"/>
     </action>
     <action id="I">
       <when state="none" output="I"/>
@@ -1186,7 +1196,6 @@
       <when state="latin_ring_above" output="I̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ï"/>
-      <when state="greek" output="Ι"/>
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output="I"/>
       <when state="latin_extensions" output="Ɪ"/>
@@ -1195,6 +1204,8 @@
       <when state="latin_tilde_below" output="Ḭ"/>
       <when state="latin_bar" output="Ɨ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="И"/>
+      <when state="greek" output="Ι"/>
     </action>
     <action id="J">
       <when state="none" output="J"/>
@@ -1219,7 +1230,6 @@
       <when state="latin_ring_above" output="J̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="J̈"/>
-      <when state="greek" output="Σ"/>
       <when state="latin_rotated_lower" output="Ṣ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1228,6 +1238,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ɉ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Й"/>
+      <when state="greek" output="Σ"/>
     </action>
     <action id="K">
       <when state="none" output="K"/>
@@ -1252,7 +1264,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="K̈"/>
-      <when state="greek" output="Κ"/>
       <when state="latin_rotated_lower" output="Ʞ"/>
       <when state="latin_rotated_upper" output="Ʞ"/>
       <when state="latin_extensions" output=""/>
@@ -1261,6 +1272,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ꝁ"/>
       <when state="latin_slash" output="Ꝃ"/>
+      <when state="cyrillic" output="К"/>
+      <when state="greek" output="Κ"/>
     </action>
     <action id="L">
       <when state="none" output="L"/>
@@ -1285,7 +1298,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="L̥"/>
       <when state="latin_umlaut" output="L̈"/>
-      <when state="greek" output="Λ"/>
       <when state="latin_rotated_lower" output="Ꞁ"/>
       <when state="latin_rotated_upper" output="⅂"/>
       <when state="latin_extensions" output=""/>
@@ -1294,6 +1306,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ƚ"/>
       <when state="latin_slash" output="Ł"/>
+      <when state="cyrillic" output="Л"/>
+      <when state="greek" output="Λ"/>
     </action>
     <action id="M">
       <when state="none" output="M"/>
@@ -1318,7 +1332,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="M̈"/>
-      <when state="greek" output="Μ"/>
       <when state="latin_rotated_lower" output="Ɯ"/>
       <when state="latin_rotated_upper" output="ꟽ"/>
       <when state="latin_extensions" output=""/>
@@ -1327,6 +1340,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="М"/>
+      <when state="greek" output="Μ"/>
     </action>
     <action id="N">
       <when state="none" output="N"/>
@@ -1351,7 +1366,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="N̈"/>
-      <when state="greek" output="Ν"/>
       <when state="latin_rotated_lower" output="U"/>
       <when state="latin_rotated_upper" output="N"/>
       <when state="latin_extensions" output=""/>
@@ -1360,6 +1374,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="Ꞥ"/>
+      <when state="cyrillic" output="Н"/>
+      <when state="greek" output="Ν"/>
     </action>
     <action id="O">
       <when state="none" output="O"/>
@@ -1384,7 +1400,6 @@
       <when state="latin_ring_above" output="O̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ö"/>
-      <when state="greek" output="Ο"/>
       <when state="latin_rotated_lower" output="O"/>
       <when state="latin_rotated_upper" output="O"/>
       <when state="latin_extensions" output="Ɔ"/>
@@ -1393,6 +1408,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ɵ"/>
       <when state="latin_slash" output="Ø"/>
+      <when state="cyrillic" output="О"/>
+      <when state="greek" output="Ο"/>
     </action>
     <action id="P">
       <when state="none" output="P"/>
@@ -1417,7 +1434,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="P̈"/>
-      <when state="greek" output="Π"/>
       <when state="latin_rotated_lower" output="D"/>
       <when state="latin_rotated_upper" output="d"/>
       <when state="latin_extensions" output=""/>
@@ -1426,6 +1442,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ᵽ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="П"/>
+      <when state="greek" output="Π"/>
     </action>
     <action id="Q">
       <when state="none" output="Q"/>
@@ -1450,7 +1468,6 @@
       <when state="latin_ring_above" output="Q̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Q̈"/>
-      <when state="greek" output="Θ"/>
       <when state="latin_rotated_lower" output="B"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1459,6 +1476,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Ԛ"/>
+      <when state="greek" output="Θ"/>
     </action>
     <action id="R">
       <when state="none" output="R"/>
@@ -1483,7 +1502,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="R̥"/>
       <when state="latin_umlaut" output="R̈"/>
-      <when state="greek" output="Ρ"/>
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1492,6 +1510,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ɍ"/>
       <when state="latin_slash" output="Ꞧ"/>
+      <when state="cyrillic" output="Р"/>
+      <when state="greek" output="Ρ"/>
     </action>
     <action id="S">
       <when state="none" output="S"/>
@@ -1516,7 +1536,6 @@
       <when state="latin_ring_above" output="S̊"/>
       <when state="latin_ring_below" output="S̥"/>
       <when state="latin_umlaut" output="S̈"/>
-      <when state="greek" output="Σ"/>
       <when state="latin_rotated_lower" output="S"/>
       <when state="latin_rotated_upper" output="S"/>
       <when state="latin_extensions" output="ẞ"/>
@@ -1525,6 +1544,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="Ꞩ"/>
+      <when state="cyrillic" output="С"/>
+      <when state="greek" output="Σ"/>
     </action>
     <action id="T">
       <when state="none" output="T"/>
@@ -1549,7 +1570,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="T̈"/>
-      <when state="greek" output="Τ"/>
       <when state="latin_rotated_lower" output="Ʇ"/>
       <when state="latin_rotated_upper" output="⊥"/>
       <when state="latin_extensions" output="Þ"/>
@@ -1558,6 +1578,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ŧ"/>
       <when state="latin_slash" output="Ⱦ"/>
+      <when state="cyrillic" output="Т"/>
+      <when state="greek" output="Τ"/>
     </action>
     <action id="U">
       <when state="none" output="U"/>
@@ -1582,7 +1604,6 @@
       <when state="latin_ring_above" output="Ů"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ü"/>
-      <when state="greek" output="Υ"/>
       <when state="latin_rotated_lower" output="N"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʊ"/>
@@ -1591,6 +1612,8 @@
       <when state="latin_tilde_below" output="Ṵ"/>
       <when state="latin_bar" output="Ʉ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="У"/>
+      <when state="greek" output="Υ"/>
     </action>
     <action id="V">
       <when state="none" output="V"/>
@@ -1615,7 +1638,6 @@
       <when state="latin_ring_above" output="V̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="V̈"/>
-      <when state="greek" output="Ϝ"/>
       <when state="latin_rotated_lower" output="Ʌ"/>
       <when state="latin_rotated_upper" output="Ʌ"/>
       <when state="latin_extensions" output="Ʋ"/>
@@ -1624,6 +1646,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="Ꝟ"/>
+      <when state="cyrillic" output="Б"/>
+      <when state="greek" output="Ϝ"/>
     </action>
     <action id="W">
       <when state="none" output="W"/>
@@ -1648,7 +1672,6 @@
       <when state="latin_ring_above" output="W̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ẅ"/>
-      <when state="greek" output="Ω"/>
       <when state="latin_rotated_lower" output=""/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1657,6 +1680,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Ԝ"/>
+      <when state="greek" output="Ω"/>
     </action>
     <action id="X">
       <when state="none" output="X"/>
@@ -1681,7 +1706,6 @@
       <when state="latin_ring_above" output="X̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ẍ"/>
-      <when state="greek" output="Χ"/>
       <when state="latin_rotated_lower" output="X"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʃ"/>
@@ -1690,6 +1714,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output=""/>
+      <when state="greek" output="Χ"/>
     </action>
     <action id="Y">
       <when state="none" output="Y"/>
@@ -1714,7 +1740,6 @@
       <when state="latin_ring_above" output="Y̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Ÿ"/>
-      <when state="greek" output="Ψ"/>
       <when state="latin_rotated_lower" output="ʎ"/>
       <when state="latin_rotated_upper" output="⅄"/>
       <when state="latin_extensions" output="Ƴ"/>
@@ -1723,6 +1748,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ɏ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="Ы"/>
+      <when state="greek" output="Ψ"/>
     </action>
     <action id="Z">
       <when state="none" output="Z"/>
@@ -1747,7 +1774,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="Z̈"/>
-      <when state="greek" output="Ζ"/>
       <when state="latin_rotated_lower" output="Z"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="Ʒ"/>
@@ -1756,6 +1782,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="Ƶ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="З"/>
+      <when state="greek" output="Ζ"/>
     </action>
     <action id="^">
       <when state="none" output="^"/>
@@ -1788,7 +1816,6 @@
       <when state="latin_ring_above" output="å"/>
       <when state="latin_ring_below" output="ḁ"/>
       <when state="latin_umlaut" output="ä"/>
-      <when state="greek" output="α"/>
       <when state="arrows_basic_dvorak" output="←"/>
       <when state="latin_rotated_lower" output="ɐ"/>
       <when state="latin_rotated_upper" output=""/>
@@ -1798,6 +1825,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="ⱥ"/>
+      <when state="cyrillic" output="а"/>
+      <when state="greek" output="α"/>
     </action>
     <action id="action">
       <when state="none" output="action"/>
@@ -1871,6 +1900,12 @@
     <action id="alt+?1">
       <when state="none" output="alt+?1"/>
     </action>
+    <action id="alt+C">
+      <when state="none" next="cyrillic"/>
+    </action>
+    <action id="alt+G">
+      <when state="none" next="greek"/>
+    </action>
     <action id="alt+J">
       <when state="none" next="latin_hook_retroflex"/>
     </action>
@@ -1908,7 +1943,7 @@
       <when state="none" output="alt+e"/>
     </action>
     <action id="alt+g">
-      <when state="none" next="greek"/>
+      <when state="none" output="alt+g"/>
     </action>
     <action id="alt+h">
       <when state="none" output="alt+h"/>
@@ -1973,7 +2008,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="b̈"/>
-      <when state="greek" output="β"/>
       <when state="latin_rotated_lower" output="q"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -1982,6 +2016,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ƀ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="в"/>
+      <when state="greek" output="β"/>
     </action>
     <action id="c">
       <when state="none" output="c"/>
@@ -2007,7 +2043,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="c̈"/>
-      <when state="greek" output="ξ"/>
       <when state="latin_rotated_lower" output="ɔ"/>
       <when state="latin_rotated_upper" output="ᴐ"/>
       <when state="latin_extensions" output="ʕ"/>
@@ -2016,6 +2051,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ꞓ"/>
       <when state="latin_slash" output="ȼ"/>
+      <when state="cyrillic" output="ц"/>
+      <when state="greek" output="ξ"/>
     </action>
     <action id="d">
       <when state="none" output="d"/>
@@ -2041,7 +2078,6 @@
       <when state="latin_ring_above" output="d̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="δ"/>
       <when state="latin_rotated_lower" output="p"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2050,6 +2086,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="đ"/>
       <when state="latin_slash" output="ð"/>
+      <when state="cyrillic" output="д"/>
+      <when state="greek" output="δ"/>
     </action>
     <action id="dot">
       <when state="none" output="dot"/>
@@ -2078,7 +2116,6 @@
       <when state="latin_ring_above" output="e̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ë"/>
-      <when state="greek" output="ε"/>
       <when state="arrows_basic_dvorak" output="→"/>
       <when state="latin_rotated_lower" output="ə"/>
       <when state="latin_rotated_upper" output="ⱻ"/>
@@ -2088,6 +2125,8 @@
       <when state="latin_tilde_below" output="ḛ"/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="ɇ"/>
+      <when state="cyrillic" output="е"/>
+      <when state="greek" output="ε"/>
     </action>
     <action id="f">
       <when state="none" output="f"/>
@@ -2113,7 +2152,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="φ"/>
       <when state="latin_rotated_lower" output="ɟ"/>
       <when state="latin_rotated_upper" output="ⅎ"/>
       <when state="latin_extensions" output="ƒ"/>
@@ -2122,6 +2160,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="ф"/>
+      <when state="greek" output="φ"/>
     </action>
     <action id="g">
       <when state="none" output="g"/>
@@ -2147,7 +2187,6 @@
       <when state="latin_ring_above" output="g̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output=""/>
-      <when state="greek" output="γ"/>
       <when state="latin_rotated_lower" output="ᵷ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ɣ"/>
@@ -2156,6 +2195,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ǥ"/>
       <when state="latin_slash" output="ꞡ"/>
+      <when state="cyrillic" output="г"/>
+      <when state="greek" output="γ"/>
     </action>
     <action id="h">
       <when state="none" output="h"/>
@@ -2181,7 +2222,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ḧ"/>
-      <when state="greek" output="η"/>
       <when state="latin_rotated_lower" output="ɥ"/>
       <when state="latin_rotated_upper" output="ʜ"/>
       <when state="latin_extensions" output="ƕ"/>
@@ -2190,6 +2230,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ħ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="х"/>
+      <when state="greek" output="η"/>
     </action>
     <action id="i">
       <when state="none" output="i"/>
@@ -2215,7 +2257,6 @@
       <when state="latin_ring_above" output="i̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ï"/>
-      <when state="greek" output="ι"/>
       <when state="latin_rotated_lower" output="ᴉ"/>
       <when state="latin_rotated_upper" output="ɪ"/>
       <when state="latin_extensions" output="ɪ"/>
@@ -2224,6 +2265,8 @@
       <when state="latin_tilde_below" output="ḭ"/>
       <when state="latin_bar" output="ɨ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="и"/>
+      <when state="greek" output="ι"/>
     </action>
     <action id="j">
       <when state="none" output="j"/>
@@ -2249,7 +2292,6 @@
       <when state="latin_ring_above" output="j̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="j̈"/>
-      <when state="greek" output="ς"/>
       <when state="arrows_basic_dvorak" output="↘"/>
       <when state="latin_rotated_lower" output="ſ̣"/>
       <when state="latin_rotated_upper" output="ɾ"/>
@@ -2259,6 +2301,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ɉ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="й"/>
+      <when state="greek" output="ς"/>
     </action>
     <action id="k">
       <when state="none" output="k"/>
@@ -2284,7 +2328,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="k̈"/>
-      <when state="greek" output="κ"/>
       <when state="latin_rotated_lower" output="ʞ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2293,6 +2336,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ꝁ"/>
       <when state="latin_slash" output="ꝃ"/>
+      <when state="cyrillic" output="к"/>
+      <when state="greek" output="κ"/>
     </action>
     <action id="l">
       <when state="none" output="l"/>
@@ -2318,7 +2363,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="l̥"/>
       <when state="latin_umlaut" output="l̈"/>
-      <when state="greek" output="λ"/>
       <when state="latin_rotated_lower" output="ꞁ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2327,6 +2371,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ƚ"/>
       <when state="latin_slash" output="ł"/>
+      <when state="cyrillic" output="л"/>
+      <when state="greek" output="λ"/>
     </action>
     <action id="m">
       <when state="none" output="m"/>
@@ -2352,7 +2398,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="m̈"/>
-      <when state="greek" output="μ"/>
       <when state="latin_rotated_lower" output="ɯ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2361,6 +2406,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="м"/>
+      <when state="greek" output="μ"/>
     </action>
     <action id="n">
       <when state="none" output="n"/>
@@ -2386,7 +2433,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="n̈"/>
-      <when state="greek" output="ν"/>
       <when state="latin_rotated_lower" output="u"/>
       <when state="latin_rotated_upper" output="ɴ"/>
       <when state="latin_extensions" output=""/>
@@ -2395,6 +2441,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="ꞥ"/>
+      <when state="cyrillic" output="н"/>
+      <when state="greek" output="ν"/>
     </action>
     <action id="o">
       <when state="none" output="o"/>
@@ -2420,7 +2468,6 @@
       <when state="latin_ring_above" output="o̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ö"/>
-      <when state="greek" output="ο"/>
       <when state="latin_rotated_lower" output="o"/>
       <when state="latin_rotated_upper" output="ᴏ"/>
       <when state="latin_extensions" output="ɔ"/>
@@ -2429,6 +2476,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ɵ"/>
       <when state="latin_slash" output="ø"/>
+      <when state="cyrillic" output="о"/>
+      <when state="greek" output="ο"/>
     </action>
     <action id="p">
       <when state="none" output="p"/>
@@ -2454,7 +2503,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="p̈"/>
-      <when state="greek" output="π"/>
       <when state="latin_rotated_lower" output="d"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2463,6 +2511,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ᵽ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="п"/>
+      <when state="greek" output="π"/>
     </action>
     <action id="q">
       <when state="none" output="q"/>
@@ -2488,7 +2538,6 @@
       <when state="latin_ring_above" output="q̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="q̈"/>
-      <when state="greek" output="θ"/>
       <when state="arrows_basic_dvorak" output="↓"/>
       <when state="latin_rotated_lower" output="b"/>
       <when state="latin_rotated_upper" output=""/>
@@ -2498,6 +2547,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="ԛ"/>
+      <when state="greek" output="θ"/>
     </action>
     <action id="r">
       <when state="none" output="r"/>
@@ -2523,7 +2574,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output="r̥"/>
       <when state="latin_umlaut" output="r̈"/>
-      <when state="greek" output="ρ"/>
       <when state="latin_rotated_lower" output="ɹ"/>
       <when state="latin_rotated_upper" output="ᴚ"/>
       <when state="latin_extensions" output="ɾ"/>
@@ -2532,6 +2582,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ɍ"/>
       <when state="latin_slash" output="ꞧ"/>
+      <when state="cyrillic" output="р"/>
+      <when state="greek" output="ρ"/>
     </action>
     <action id="s">
       <when state="none" output="s"/>
@@ -2557,7 +2609,6 @@
       <when state="latin_ring_above" output="s̊"/>
       <when state="latin_ring_below" output="s̥"/>
       <when state="latin_umlaut" output="s̈"/>
-      <when state="greek" output="σ"/>
       <when state="latin_rotated_lower" output="s"/>
       <when state="latin_rotated_upper" output="ꜱ"/>
       <when state="latin_extensions" output="ß"/>
@@ -2566,6 +2617,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="ꞩ"/>
+      <when state="cyrillic" output="с"/>
+      <when state="greek" output="σ"/>
     </action>
     <action id="t">
       <when state="none" output="t"/>
@@ -2591,7 +2644,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẗ"/>
-      <when state="greek" output="τ"/>
       <when state="latin_rotated_lower" output="ʇ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="þ"/>
@@ -2600,6 +2652,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ŧ"/>
       <when state="latin_slash" output="ⱦ"/>
+      <when state="cyrillic" output="т"/>
+      <when state="greek" output="τ"/>
     </action>
     <action id="u">
       <when state="none" output="u"/>
@@ -2625,7 +2679,6 @@
       <when state="latin_ring_above" output="ů"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ü"/>
-      <when state="greek" output="υ"/>
       <when state="latin_rotated_lower" output="n"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʊ"/>
@@ -2634,6 +2687,8 @@
       <when state="latin_tilde_below" output="ṵ"/>
       <when state="latin_bar" output="ʉ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="у"/>
+      <when state="greek" output="υ"/>
     </action>
     <action id="v">
       <when state="none" output="v"/>
@@ -2659,7 +2714,6 @@
       <when state="latin_ring_above" output="v̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="v̈"/>
-      <when state="greek" output="ϝ"/>
       <when state="latin_rotated_lower" output="ʌ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʋ"/>
@@ -2668,6 +2722,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output="ꝟ"/>
+      <when state="cyrillic" output="б"/>
+      <when state="greek" output="ϝ"/>
     </action>
     <action id="w">
       <when state="none" output="w"/>
@@ -2693,7 +2749,6 @@
       <when state="latin_ring_above" output="ẘ"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẅ"/>
-      <when state="greek" output="ω"/>
       <when state="latin_rotated_lower" output="ʍ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output=""/>
@@ -2702,6 +2757,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="ԝ"/>
+      <when state="greek" output="ω"/>
     </action>
     <action id="x">
       <when state="none" output="x"/>
@@ -2727,7 +2784,6 @@
       <when state="latin_ring_above" output="x̊"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ẍ"/>
-      <when state="greek" output="χ"/>
       <when state="latin_rotated_lower" output="x"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ʃ"/>
@@ -2736,6 +2792,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output=""/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output=""/>
+      <when state="greek" output="χ"/>
     </action>
     <action id="y">
       <when state="none" output="y"/>
@@ -2761,7 +2819,6 @@
       <when state="latin_ring_above" output="ẙ"/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="ÿ"/>
-      <when state="greek" output="ψ"/>
       <when state="latin_rotated_lower" output="ʎ"/>
       <when state="latin_rotated_upper" output=""/>
       <when state="latin_extensions" output="ƴ"/>
@@ -2770,6 +2827,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ɏ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="ы"/>
+      <when state="greek" output="ψ"/>
     </action>
     <action id="z">
       <when state="none" output="z"/>
@@ -2795,7 +2854,6 @@
       <when state="latin_ring_above" output=""/>
       <when state="latin_ring_below" output=""/>
       <when state="latin_umlaut" output="z̈"/>
-      <when state="greek" output="ζ"/>
       <when state="latin_rotated_lower" output="z"/>
       <when state="latin_rotated_upper" output="ᴢ"/>
       <when state="latin_extensions" output="ʒ"/>
@@ -2804,6 +2862,8 @@
       <when state="latin_tilde_below" output=""/>
       <when state="latin_bar" output="ƶ"/>
       <when state="latin_slash" output=""/>
+      <when state="cyrillic" output="з"/>
+      <when state="greek" output="ζ"/>
     </action>
     <action id="|">
       <when state="none" output="|"/>
@@ -2826,12 +2886,6 @@
     </action>
     <action id="β">
       <when state="none" output="β"/>
-    </action>
-    <action id="γ">
-      <when state="none" output="γ"/>
-    </action>
-    <action id="І">
-      <when state="none" output="І"/>
     </action>
     <action id="Ј">
       <when state="none" output="Ј"/>
@@ -2890,7 +2944,6 @@
     <when state="latin_ring_above" output="˚"/>
     <when state="latin_ring_below" output="˚"/>
     <when state="latin_umlaut" output="¨"/>
-    <when state="greek" output="α"/>
     <when state="arrows_basic_dvorak" output="→"/>
     <when state="latin_rotated_lower" output="ɐ"/>
     <when state="latin_rotated_upper" output="Ɐ"/>
@@ -2900,5 +2953,7 @@
     <when state="latin_tilde_below" output="~"/>
     <when state="latin_bar" output="-"/>
     <when state="latin_slash" output="/"/>
+    <when state="cyrillic" output="д"/>
+    <when state="greek" output="α"/>
   </terminators>
 </keyboard>

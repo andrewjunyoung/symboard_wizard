@@ -47,7 +47,6 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_ring_above',        # o
         'latin_ring_below',        # ^o (O)
         'latin_umlaut',            # :  (;)
-        'greek',                   # a
         'arrows_basic_dvorak',     # 1
         'latin_rotated_lower',     # r
         'latin_rotated_upper',     # R
@@ -57,6 +56,8 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_tilde_below',       # ^` (~)
         'latin_bar',               # t
         'latin_slash',             # ^t (T)
+        'cyrillic',                # C
+        'greek',                   # G
     ]
 
 
@@ -368,7 +369,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             29: '',
             30: '',
             31: Action("alt+r", next_=states['latin_rotated_lower']),
-            32: Action("alt+g", next_=states['greek']),
+            32: Action("alt+g"),
             33: Action("alt+/", next_=states['latin_acute']),
             34: Action("alt+c", next_=states['latin_ogonek']),
             35: Action("!"),
@@ -480,9 +481,9 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             29: '∞',
             30: '≠',
             31: Action("alt+R", next_=states['latin_rotated_upper']),
-            32: Action("γ"),
+            32: Action("alt+G", next_=states['greek']),
             33: Action("alt+*", next_=states['latin_acute_double']),
-            34: Action("І"),
+            34: Action("alt+C", next_=states['cyrillic']),
             35: Action("’ 1"),
             36: '&#x000D;',
             37: Action("Љ"),

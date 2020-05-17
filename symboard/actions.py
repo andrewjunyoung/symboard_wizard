@@ -18,7 +18,7 @@ from symboard.errors import AlphabetLengthException
 from settings import (
     OUTPUT_DELIMITER,
     DEFAULT_STATE_TERMINATOR,
-    ACTION_TO_UNICODE_MAP
+    ACTION_TO_UNICODE_MAP,
 )
 
 
@@ -64,17 +64,19 @@ class State:
         self.action_to_output_map = action_to_output_map if action_to_output_map else {}
 
     def _get_actions(self, output: str):
-        if len(output) == 26:
-            logging.info(f'Using latin actions set for state {repr(self)}.')
+        length_to_actions_map = {
+            26: latin_26,
+            27: latin_27,
+            28: latin_28,
+            36: alphalatin,
+        }
 
-            return latin
-
-        elif len(output) == 36:
-            logging.info(f'Using alphalatin action set for state {repr(self)}.')
-
-            return alphalatin
-
-        else:
+        logging.info(
+            f'Length of output is {len(output)} for state {repr(self)}.'
+        )
+        try:
+            return length_to_actions_map[len(output)]
+        except KeyError:
             raise AlphabetLengthException(output)
 
     def _with_case(self, output_list: str, case: str):
@@ -103,7 +105,7 @@ class State:
         for action, output in zip(getattr(actions, case), outputs):
             logging.info(f'Mapping action {action} to output {output}.')
 
-            self.action_to_output_map[action] = output
+            self.action_to_output_map[self._to_unicode(action)] = output
 
         return self
 
@@ -195,45 +197,59 @@ class Script:
             has 2 sets of interchangeable letters, EG latin; cyrillic; greek;
             kana.
         """
-        if len(lower) != len(upper):
-            raise AlphabetLengthException(lower)
-
         self.lower = lower
         self.length = len(lower)
         if upper is not None:
             self.upper = upper
 
 
-latin = Script(
-    upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    lower='abcdefghijklmnopqrstuvwxyz',
-)
-""" An implementation of the latin script.
-"""
 
-
-alphalatin = Script(
-    lower=latin.lower + '1234567890',
-    upper=latin.upper + '&@#$%^<>()',
-)
-""" An implementation of the latin script including letters 1-9 and symbols
-&@#$%^<>() (the symbols of the JDvorak keylayout).
-"""
-
-
-actions_26_lower = latin.lower
-""" A string equal to the 26 letters of the lower case latin alphabet.
-"""
-actions_26_upper = latin.upper
+latin_26_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 """ A string equal to the 26 letters of the upper case latin alphabet.
 """
+latin_26_lower = 'abcdefghijklmnopqrstuvwxyz'
+""" A string equal to the 26 letters of the lower case latin alphabet.
+"""
 
-actions_36_lower = alphalatin.lower
+alphalatin_lower = latin_26_lower + '1234567890'
 """ A string equal to the 26 letters of the lower case latin alphabet, followed
 by the numbers 0-9.
 """
-actions_36_upper = alphalatin.upper
+alphalatin_upper = latin_26_upper + '&@#$%^<>()'
 """ A string equal to the 26 letters of the lower case latin alphabet, followed
 by the symbols &@#$%^<>() (the symbols of the JDvorak keylayout
+"""
+
+
+latin_26 = Script(
+    upper=latin_26_upper,
+    lower=latin_26_lower,
+)
+""" An implementation of the ISO basic latin script.
+"""
+
+
+latin_27 = Script(
+    upper=latin_26_upper,
+    lower=latin_26_lower + '\'',
+)
+""" An implementation of the ISO basic latin script, with «\'» included in the
+lower case.
+"""
+
+latin_28 = Script(
+    upper=latin_26_upper,
+    lower=latin_26_lower + '\'' + '\"',
+)
+""" An implementation of the ISO basic latin script, with «\'» and «\"» included
+in the lower case.
+"""
+
+alphalatin = Script(
+    lower=alphalatin_lower,
+    upper=alphalatin_upper,
+)
+""" An implementation of the latin script including letters 1-9 and symbols
+&@#$%^<>() (the symbols of the JDvorak keylayout).
 """
 
