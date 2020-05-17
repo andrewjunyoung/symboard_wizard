@@ -1,6 +1,6 @@
 """
 .. module:: keylayouts
-   :synopsis: A class representing the iso dvorak keylayout.
+   :synopsis: A class representing the iso JDvorak keylayout.
 
 .. moduleauthor:: Andrew J. Young
 
@@ -53,6 +53,10 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_rotated_upper',     # R
         'latin_extensions',        # x
         'latin_comma_below',       # ^, (!)
+        'latin_tilde_above',       # `
+        'latin_tilde_below',       # ^` (~)
+        'latin_bar',               # t
+        'latin_slash',             # ^t (T)
     ]
 
 
@@ -372,7 +376,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             37: Action("alt+?1"),
             38: Action("alt+h"),
             39: Action("alt+_", next_=states['latin_macron_above']),
-            40: Action("alt+?2"),
+            40: Action("alt+t", next_=states['latin_bar']),
             41: Action("alt+s"),
             42: Action("alt+\\", next_=states['latin_grave']),
             43: Action("∴"),
@@ -382,7 +386,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             47: Action('alt+v', next_=states['latin_hacek']),
             48: '&#x0009;',
             49: ' ',
-            50: Action("alt+`"),
+            50: Action("alt+`", next_=states['latin_tilde_above']),
             51: '&#x0008;',
             52: '&#x0003;',
             53: '&#x001B;',
@@ -484,7 +488,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             37: Action("Љ"),
             38: Action("Ј"),
             39: Action("alt+-", next_=states['latin_macron_below']),
-            40: Action("Ќ"),
+            40: Action("alt+T", next_=states['latin_slash']),
             41: Action("’"),
             42: Action("alt+|", next_=states['latin_grave_double']),
             43: Action("∵"),
@@ -494,7 +498,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             47: Action("action 12"),
             48: '&#x0009;',
             49: Action(" "),
-            50: '≈',
+            50: Action("alt+~", next_=states['latin_tilde_below']),
             51: '&#x0008;',
             52: '&#x0003;',
             53: '&#x001B;',

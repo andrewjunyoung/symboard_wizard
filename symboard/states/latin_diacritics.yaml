@@ -42,14 +42,14 @@ latin_umlaut:
   terminator: ¨
   upper: Ä,B̈,C̈,,Ë,,,Ḧ,Ï,J̈,K̈,L̈,M̈,N̈,Ö,P̈,Q̈,R̈,S̈,T̈,Ü,V̈,Ẅ,Ẍ,Ÿ,Z̈
   lower: ä,b̈,c̈,,ë,,,ḧ,ï,j̈,k̈,l̈,m̈,n̈,ö,p̈,q̈,r̈,s̈,ẗ,ü,v̈,ẅ,ẍ,ÿ,z̈
-latin_dot_above:
+latin_dot_below:
   terminator: ·
   upper: Ạ,Ḅ,C̣,Ḍ,Ẹ,F̣,G̣,Ḥ,Ị,J̣,Ḳ,Ḷ,Ṃ,Ṇ,Ọ,P̣,Q̣,Ṛ,Ṣ,Ṭ,Ụ,Ṿ,Ẉ,X̣,Ỵ,Ẓ
   lower: ạ,ḅ,c̣,ḍ,ẹ,f̣,g̣,ḥ,ị,j̣,ḳ,ḷ,ṃ,ṇ,ọ,p̣,q̣,ṛ,ṣ,ṭ,ụ,ṿ,ẉ,x̣,ỵ,ẓ
-latin_dot_below:
+latin_dot_above:
   terminator: ·
-  upper: Ȧ,Ḃ,Ċ,Ḋ,Ė,Ḟ,Ġ,Ḣ,,,K̇,L̇,Ṁ,Ṅ,Ȯ,Ṗ,Q̇,Ṙ,Ṡ,Ṫ,U̇,V̇,Ẇ,Ẋ,Ẏ,Ż
-  lower: ȧ,ḃ,ċ,ḋ,ė,ḟ,ġ,ḣ,,,k̇,l̇,ṁ,ṅ,ȯ,ṗ,q̇,ṙ,ṡ,ṫ,u̇,v̇,ẇ,ẋ,ẏ,ż
+  upper: Ȧ,Ḃ,Ċ,Ḋ,Ė,Ḟ,Ġ,Ḣ,İ,,K̇,L̇,Ṁ,Ṅ,Ȯ,Ṗ,Q̇,Ṙ,Ṡ,Ṫ,U̇,V̇,Ẇ,Ẋ,Ẏ,Ż
+  lower: ȧ,ḃ,ċ,ḋ,ė,ḟ,ġ,ḣ,ı,ȷ,k̇,l̇,ṁ,ṅ,ȯ,ṗ,q̇,ṙ,ṡ,ṫ,u̇,v̇,ẇ,ẋ,ẏ,ż
 
 ## Begin hooks {
 

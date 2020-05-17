@@ -78,6 +78,7 @@ class TestKeylayoutFileWriter(TestFileWriter):
 
             open_.assert_called_once_with(self.test_output_path, 'w+')
 
+    @patch(file_writers_path + '.OVERWRITE_OUTPUT', False)
     @patch(file_writers_path + '.exists')
     def test_write_throws_exception_if_the_file_exists(self, mock_exists):
         mock_exists.return_value = True
