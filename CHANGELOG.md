@@ -1,4 +1,4 @@
-## [0.4.0] - 2020-05-??
+## [0.4.0] - 2020-05-17
 
 ### Added
 - Support for "maps" inside states, where a state specified keys to output one
@@ -16,18 +16,36 @@
   as-is in state files. Normally "'" and other symbols need to be converted to
   unicode (&#x0027;), but now, they can be written as "'" in yaml (state)
   files and converted by Symboard into their unicode representation.
+  - Arrow keys (up; down; left; right)
+  - '
+  - "
 - A script for showing what states are inside your states directory, and some
   information about them each.
 - Support for states of length 27 and 28 (including «'» and «"»)
+- Data flow and dependency documentation
 
 ### Changed
 - Terminators are now optional properties to create a state, and default to
   DEFAULT\_STATE\_TERMINATOR if not provided.
 - Updated readme with tutorial on how to use symboard, vision, and a better
   overview.
+- Changed the behavior of keyboards to store the states that they use as strings
+  rather than states. This is one step to remove dependencies and make all code
+  execution handled by the orchestrator (which remains a work in progress).
+- Retroflex n and m now return eng and the equivalent m character. («ŋ», «ɱ»).
+  This is because these forms are more standard, and have better font support.
+- Migrated dependencies / dev / deploy away from pipenv; setup.py; SDist /
+  twine, and to poetry.
 
 ### Fixed
 - Now mocking symboard version for integration tests to pass
+- Various debugging changes on the JDvorak keyboard, including:
+  - Fixing shift + space output to be « »
+  - Greek modifier over G
+  - R should return big rotated letters
+  - . should access dot above; shift + . should access dot below
+  - JDvorak should be classed as a latin input method, so that other inputs can
+  be deleted.
 
 ## [0.3.0] - 2020-05-12
 
