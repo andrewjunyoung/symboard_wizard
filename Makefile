@@ -5,16 +5,16 @@ tree:
 	tree -I 'docs|bin|lib|venv|htmlcov|.coverage'
 
 tests:
-	python -m unittest discover -v
+	nosetests -v
 
 unit:
-	python -m unittest discover -v test/test_units
+	nosetests -v test/units
 
 integration:
-	python -m unittest discover -v test/test_integration
+	nosetests -v test/integration
 
 coverage:
-	coverage run -m unittest discover
+	nosetests -v --with-coverage --cover-package=symboard --cover-erase
 	coverage html --omit="venv/*"
 
 show_states:
