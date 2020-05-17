@@ -14,6 +14,7 @@ def main() -> None:
         [state.name, state.terminator, format_outputs(state)]
         for state in states.values()
     ]
+
     print(tabulate(data, headers=headers, tablefmt='orgtbl'))
 
 
