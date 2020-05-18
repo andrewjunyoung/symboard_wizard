@@ -24,3 +24,8 @@ jobs:
       - store_artifacts:
           path: htmlcov
 
+  deploy:
+    docker:
+      - image: circleci/python:3.7.5
+    steps:
+      - run: ls
