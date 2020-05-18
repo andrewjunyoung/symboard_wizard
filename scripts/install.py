@@ -1,11 +1,7 @@
 # Imports from third party packages.
 from argparse import ArgumentParser
-from tabulate import tabulate
-from typing import List
+from os import system
 import logging
-
-# Imports from the local package.
-from symboard.states import load_yaml
 
 
 def get_arg_parser() -> ArgumentParser:
@@ -19,16 +15,12 @@ def get_arg_parser() -> ArgumentParser:
         'states directory, and some info about each of these states.'
     )
 
+    parser.add_argument(
+        'input_path',
+        help='the keylayout file to install to the system',
+    )
+
     return parser
-
-
-def format_outputs(state):
-    """
-    Returns:
-        str: A concatenated list of all of the outputs in the given state's
-        action_to_output_map.
-    """
-    return ''.join(state.action_to_output_map.values())
 
 
 def main() -> None:
@@ -40,19 +32,17 @@ def main() -> None:
     arg_parser: ArgumentParser = get_arg_parser()
     args = arg_parser.parse_args()
 
-    logging.info(f'Collecting states from states directory.')
+    logging.info(f'Copying file to the keylayouts directory.')
 
-    states: dict = load_yaml()
+    input_path = args.input_path
+    output_path = '/Library/Keyboard\ Layouts'
 
-    headers: List[str] = ['Name', 'Terminator', 'Outputs']
-    data: List[list] = [
-        [state.name, state.terminator, format_outputs(state)]
-        for state in states.values()
-    ]
 
-    print(tabulate(data, headers=headers, tablefmt='orgtbl'))
+    system(f'sudo cp {input_path} {output_path}')
 
+    logging.info(
+        f'Done! Your keyboard is now be available to use on your operating system.'
+    )
 
 if __name__ == '__main__':
     main()
-
