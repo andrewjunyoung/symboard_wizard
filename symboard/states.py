@@ -13,10 +13,8 @@
 from os import walk
 import logging
 
-# Imports from third party packages.
-from yaml import safe_load
-
 # Imports from this package.
+from symboard.parsers import YamlFileParser
 from symboard.actions import State
 from settings import STATE_ATTRIBUTE_PRECEDENCE, STATES_DIR
 
@@ -38,8 +36,7 @@ def load_yaml():
 
             file_path = STATES_DIR + '/' + file_name
 
-            with open(file_path, 'r') as file_:
-                contents = safe_load(file_)
+            contents = YamlFileParser.parse(file_path)
 
             for name, attribs in contents.items():
                 new_state = State(
