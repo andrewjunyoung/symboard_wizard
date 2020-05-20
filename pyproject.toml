@@ -23,12 +23,8 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.6"  # TODO: This should be tested with tox.
 lxml = "^4.4.2"
-py = "^1.8.0"
-six = "^1.12.0"
-wcwidth = "^0.1.7"
-zipp = "^0.6.0"
 PyYAML = "^5.1.2"
-bleach = "^3.1.4"
+bleach = "^3.1.4"  # TODO: Check if needed.
 python-dotenv = "^0.13.0"
 tabulate = "^0.8.7"
 nose = "^1.3.7"
@@ -36,8 +32,8 @@ nose = "^1.3.7"
 [tool.poetry.dev-dependencies]
 isort = "^4.3.21"
 neovim = "^0.3.1"
-sexpdata = "^0.0.3"
-websocket-client = "^0.57.0"
+sexpdata = "^0.0.3"  # TODO: Check if needed.
+websocket-client = "^0.57.0"  # TODO: Check if needed.
 Sphinx = "^3.0.3"
 sphinx_rtd_theme = "^0.4.3"
 
