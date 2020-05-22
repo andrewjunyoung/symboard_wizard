@@ -8,7 +8,6 @@
 
 
 # Imports from third party packages.
-from yaml import safe_load
 from dataclasses import dataclass
 import logging
 from typing import List, Callable, Dict
