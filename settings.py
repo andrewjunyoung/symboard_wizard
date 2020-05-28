@@ -16,7 +16,7 @@ PACKAGE_NAME = 'symboard'
 """ The name of the package.
 """
 
-VERSION: str = '0.4.0'
+VERSION: str = '1.0.0'
 """ The current version of symboard being used, equivalent to a string
 <major_version>.<minor_version>.<patch>
 """
