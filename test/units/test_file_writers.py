@@ -12,7 +12,7 @@ from unittest.mock import patch, mock_open, Mock, MagicMock, PropertyMock
 import os.path
 
 # Package internal imports.
-from symboard.keylayouts.keylayouts import Keylayout
+from symboard.keylayout import Keylayout
 from settings import VERSION
 from symboard.file_writers import (
     FileWriter,

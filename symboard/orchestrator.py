@@ -14,6 +14,7 @@ import logging
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
 from symboard.keylayouts.builders import keylayout_from_spec
+from symboard.keylayout import KeylayoutFactory
 from symboard.states import load_yaml
 
 

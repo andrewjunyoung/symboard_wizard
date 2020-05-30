@@ -9,13 +9,13 @@
 
 # Imports from third party packages.
 from sys import modules
+import logging
 
 # Imports from this package.
 from symboard.errors import SpecificationException
-from symboard.keylayouts.iso_keylayout import IsoKeylayout
-from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
-from symboard.keylayouts.keylayouts import Keylayout
-from symboard.yaml_spec import OPTIONAL_PROPERTIES, NAME_TO_KEYLAYOUT_CLASS_MAP
+from symboard.yaml_spec import OPTIONAL_PROPERTIES
+from symboard.parsers import YamlFileParser
+from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX
 
 
 def _filter_none_elems_from_dict(dict_: dict):
@@ -46,26 +46,21 @@ def keylayout_from_spec(spec: dict):
             malformed.
     """
 
-    try:
-        # Keylayout class to init.
-        keylayout_class = _class_from_base_keylayout(spec['base_layout'])
+    # Get a base class instance
+    keylayout_base = _class_from_base_keylayout(spec['base_layout'])
 
-        # Non optional init arguments.
-        id_ = spec['id']
-        group = spec['group']
+    # Non optional init arguments.
+    keylayout_base.id_ = spec['id']
+    keylayout.group = spec['group']
 
-        # Optional init arguments.
-        optional_kwargs = {
-            key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
-        }
-        kwargs = _filter_none_elems_from_dict(optional_kwargs)
-
-        return keylayout_class(group, id_, **kwargs)
-    except:
-        raise SpecificationException()
+    # TODO: Optional init arguments.
+    #optional_kwargs = {
+    #    key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
+    #}
+    #kwargs = _filter_none_elems_from_dict(optional_kwargs)
 
 
-def _class_from_base_keylayout(base_keylayout: str) ->  Keylayout:
+def _class_from_base_keylayout(base_keylayout: str):
     """
     Args:
         base_keylayout (str): The name of the base_keylayout to use.
@@ -80,9 +75,11 @@ def _class_from_base_keylayout(base_keylayout: str) ->  Keylayout:
             spec.
     """
 
-    # This is much faster than checking if base_keylayout is an elem.
-    try:
-        return globals()[NAME_TO_KEYLAYOUT_CLASS_MAP[base_keylayout]]
-    except:
-        raise SpecificationException()#'base_keylayout', base_keyboard)
+    file_path = f'{KEYLAYOUTS_DIR}/{base_keylayout}.{KEYLAYOUTS_FILE_SUFFIX}'
+
+    spec = YamlFileParser.parse(file_path)
+
+    logging.info(f'here: {spec}')
+
+    return KeylayoutFactory.from_dict(spec)
 

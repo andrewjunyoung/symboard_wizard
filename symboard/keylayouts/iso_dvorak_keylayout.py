@@ -11,7 +11,7 @@
 from typing import Dict, List, Union
 
 # Imports from this package.
-from symboard.keylayouts.keylayouts import Keylayout
+from symboard.keylayout import Keylayout
 
 
 class IsoDvorakKeylayout(Keylayout):
@@ -20,8 +20,7 @@ class IsoDvorakKeylayout(Keylayout):
     keyboards.
     """
 
-    _DEFAULT_NAME: str = 'Dvorak keyboard (iso)'
-    name: str = _DEFAULT_NAME
+    name: str = 'Dvorak keyboard (iso)'
 
     default_index: int = 6
 
@@ -33,7 +32,7 @@ class IsoDvorakKeylayout(Keylayout):
         group: int,
         id_: int,
         maxout: int = 1,
-        name: str = _DEFAULT_NAME,
+        name: str = IsoDvorakKeylayout.name,
         default_index: int = 0
     ):
         super(IsoDvorakKeylayout, self).__init__(

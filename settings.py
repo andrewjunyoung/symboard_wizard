@@ -33,6 +33,20 @@ OVERWRITE_OUTPUT: bool = False
 when trying to do this.
 """
 
+# } Package settings
+# Keylayouts settings {
+
+KEYLAYOUTS_DIR = 'symboard/keylayouts'
+""" The relative path to the directory containing definitions of keylayouts.
+These states can be pre-defined by the Symboard project, or added by users.
+"""
+
+KEYLAYOUTS_FILE_SUFFIX = 'yaml'
+""" The default suffix used by keylayout specifications inside the keylayouts
+directory.
+"""
+
+# } Keylayouts settings
 # States settings {
 
 STATES_DIR = 'symboard/states'
@@ -86,7 +100,6 @@ representations are included in this map (EG «\'», but not «a»).
 
 
 # } States settings
-# } Package settings
 # Import using dotenv {
 
 from dotenv import load_dotenv

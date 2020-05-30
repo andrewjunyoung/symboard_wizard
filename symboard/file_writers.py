@@ -25,7 +25,7 @@ import logging
 from symboard.errors import (
     WriteException, FileExistsException, KeylayoutNoneException
 )
-from symboard.keylayouts.keylayouts import Keylayout, Action
+from symboard.keylayout import Keylayout, Action
 from settings import VERSION, DEFAULT_OUTPUT_PATH, OVERWRITE_OUTPUT
 
 

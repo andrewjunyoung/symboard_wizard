@@ -10,21 +10,20 @@
 
 # Imports from third party packages.
 from typing import Dict, List, Union
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 # Imports from the local package.
 from symboard.actions import Action
+from symboard.parsers import YamlFileParser
 
 
+@dataclass
 class Keylayout:
     """ A generic implementation of a keylayout, which should be inherited from
     by other keylayouts. It defines all the attributes and functions common to
     all keylayouts.
 
     Attributes:
-        _DEFAULT_NAME (str): The default name for a keyboard, if no name is
-            provided.
-
         group (int): The group number for the keyboard.
         id_ (int): The unique ID number for the keyboard, which should be some
             random number in the range [..].
@@ -54,20 +53,32 @@ class Keylayout:
     """
 
     # Universal settings
-    group: int = 126
-    id_: int = -19341
+    group: int = 126  # TODO: require?
+    id_: int = -19341  # TODO: require?
     name: str = 'Untitled'
-    maxout: int = 1
+    maxout: int = 1  # TODO: fix this? Input validation?
     default_index: int = 0
 
     # These settings are configured by the child classes of «Keylayout».
-    layouts: List[Dict[str, str]] = []
-    key_map_select: Dict[int, str] = {}
-    key_map: dict = {}
+    layouts: List[Dict[str, str]] = field(
+        init=True, repr=False, compare=True, default_factory=list,
+    )
+    key_map_select: Dict[int, str] = field(
+        init=True, repr=False, compare=True, default_factory=dict,
+    )
+    key_map: dict = field(
+        init=True, repr=False, compare=True, default_factory=dict,
+    )
 
-    actions: set = set()
-    used_states: list = list()
-    states_list: list = list()
+    actions: set = field(
+        init=False, repr=False, compare=False, default_factory=set,
+    )
+    used_states: list = field(
+        init=False, repr=False, compare=False, default_factory=list,
+    )
+    states_list: list = field(
+        init=False, repr=False, compare=False, default_factory=list,
+    )
 
     def keyboard_attributes(self):
         """
@@ -102,18 +113,42 @@ class Keylayout:
     def __str__(self):
         return 'Keylayout({}, (id: {}))'.format(self.name, self.id_)
 
-    def __init__(
-        self,
-        group: int,
-        id_: int,
-        maxout: int = 1,
-        name: str = _DEFAULT_NAME,
-        default_index: int = 0
-    ):
-        self.group = group
-        self.id_ = id_
-        self.maxout = maxout
-        self.name = name
-        self.default_index = default_index
-        self.set_actions_from_key_map()
+
+class KeylayoutFactory:
+    """ A class to create Keylayout object instances out of a variety of
+    different formats.
+    """
+    def from_dict(contents: dict) -> Keylayout:
+        """ Creates a keylayout from a dict. This dict can come from json or
+        yaml files, for example. This dict should follow the specification for
+        input dicts (for either yaml or json).
+
+        Args:
+            contents (dict): The dict to parse a keylayout from.
+        """
+        default_index = contents.get('default_index')
+        group = contents.get('group')
+        id_ = contents.get('id')
+        maxout = contents.get('maxout')
+        name = contents.get('name')
+
+        key_map_select = contents['key_map_select']
+        key_map = contents['key_map']
+        # Note that this is in a list because of how the spec-writing
+        # specification is defined.
+        layouts = [contents['layouts']]
+
+        return Keylayout(
+            name = name,
+            id_ = id_,
+            maxout = maxout,
+            group = group,
+            default_index = default_index,
+        ).with_layouts(
+            layouts
+        ).with_key_map(
+            key_map
+        ).with_key_map_select(
+            key_map_select
+        )
 
