@@ -15,6 +15,7 @@ import logging
 from symboard.errors import SpecificationException
 from symboard.yaml_spec import OPTIONAL_PROPERTIES
 from symboard.parsers import YamlFileParser
+from symboard.keylayout import KeylayoutFactory
 from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX
 
 
@@ -49,6 +50,8 @@ def keylayout_from_spec(spec: dict):
     # Get a base class instance
     keylayout_base = _class_from_base_keylayout(spec['base_layout'])
 
+    logging.info(f'here: {keylayout_base}')
+
     # Non optional init arguments.
     keylayout_base.id_ = spec['id']
     keylayout.group = spec['group']
@@ -78,8 +81,6 @@ def _class_from_base_keylayout(base_keylayout: str):
     file_path = f'{KEYLAYOUTS_DIR}/{base_keylayout}.{KEYLAYOUTS_FILE_SUFFIX}'
 
     spec = YamlFileParser.parse(file_path)
-
-    logging.info(f'here: {spec}')
 
     return KeylayoutFactory.from_dict(spec)
 

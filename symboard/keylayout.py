@@ -110,6 +110,18 @@ class Keylayout:
             states[state_name] for state_name in self.states_list
         ]
 
+    def with_layouts(self, layouts):
+        self.layouts = layouts
+        return self
+
+    def with_key_map(self, key_map):
+        self.key_map = key_map
+        return self
+
+    def with_key_map_select(self, key_map_select):
+        self.key_map_select = key_map_select
+        return self
+
     def __str__(self):
         return 'Keylayout({}, (id: {}))'.format(self.name, self.id_)
 
