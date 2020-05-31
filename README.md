@@ -33,7 +33,7 @@ dream keyboard in a logical format close to plain English.
 When we say it's *easy to edit*, we mean that you can change it with little time
 or difficulty, even for big bulky changes like supporting a whole new language.
 
-when we say it's *easy to extend*, we mean that if Symboard doesn't have a
+When we say it's *easy to extend*, we mean that if Symboard doesn't have a
 feature built in, it won't take long to add it yourself.
 
 # Vision
@@ -108,8 +108,8 @@ source ./scripts/install <path_to_your_keylayout>
 
 <img src="docs/res/input_sources_menu.png" alt="Input sources menu" width="600"/>
 
-1. Search for your keyboard layout. It's most likely to appear under others», at
-   the bottom of the list.
+1. Search for your keyboard layout. It's most likely to appear under «others»,
+   at the bottom of the list.
 
 <img src="docs/res/click_add.png" alt="Searching for your keyboard" width="600"/>
 
