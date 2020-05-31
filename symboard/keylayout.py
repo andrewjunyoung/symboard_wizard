@@ -11,11 +11,14 @@
 # Imports from third party packages.
 from typing import Dict, List, Union
 from dataclasses import dataclass, field
+import logging
 
 # Imports from the local package.
 from symboard.actions import Action
 from symboard.parsers import YamlFileParser
-
+from symboard.yaml_spec import OPTIONAL_PROPERTIES
+from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX
+from symboard.utils.collections import filter_none_elems_from_dict
 
 @dataclass
 class Keylayout:
@@ -130,7 +133,7 @@ class KeylayoutFactory:
     """ A class to create Keylayout object instances out of a variety of
     different formats.
     """
-    def from_dict(contents: dict) -> Keylayout:
+    def from_dict(self, contents: dict) -> Keylayout:
         """ Creates a keylayout from a dict. This dict can come from json or
         yaml files, for example. This dict should follow the specification for
         input dicts (for either yaml or json).
@@ -163,4 +166,39 @@ class KeylayoutFactory:
         ).with_key_map_select(
             key_map_select
         )
+
+    def _load_keylayout_yaml(self, base_layout: str) -> Keylayout:
+        """ TODO
+        """
+        logging.info(f'Creating base keylayout from {base_layout}.')
+        file_path = f'{KEYLAYOUTS_DIR}/{base_layout}.{KEYLAYOUTS_FILE_SUFFIX}'
+        spec = YamlFileParser.parse(file_path)
+        return self.from_dict(spec)
+
+    def _overwrite_arguments_from_spec(self, keylayout: Keylayout, spec: dict) -> None:
+        """ TODO
+        """
+        logging.info(f'Adding non optional arguments from spec.')
+        keylayout.id_ = spec['id']
+        keylayout.group = spec['group']
+
+        logging.info(f'Adding optional arguments from spec.')
+        optional_kwargs = {
+            key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
+        }
+        kwargs = filter_none_elems_from_dict(optional_kwargs)
+
+    def from_spec(self, spec: dict) -> Keylayout:
+        """ Given a dictionary with the specifications (specs) of a keyboard, tries
+        to create a keylayout class meeting these specs.
+
+        Args:
+            spec (dict): The full spec of the desired keylayout.
+
+        Returns:
+            keylayout: The keylayout meeting the full spec.
+        """
+        keylayout = self._load_keylayout_yaml(spec['base_layout'])
+        self._overwrite_arguments_from_spec(keylayout, spec)
+        return keylayout
 

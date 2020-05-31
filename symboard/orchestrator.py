@@ -13,7 +13,6 @@ import logging
 # Imports from the local package.
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
-from symboard.keylayouts.builders import keylayout_from_spec
 from symboard.keylayout import KeylayoutFactory
 from symboard.states import load_yaml
 
@@ -47,7 +46,8 @@ class Orchestrator:
 
         logging.info(f'Creating the keyboard object from the specification.')
 
-        keylayout = keylayout_from_spec(keylayout_spec)
+        keylayout_factory = KeylayoutFactory()
+        keylayout = keylayout_factory.from_spec(keylayout_spec)
         keylayout.create_used_states(states)
 
         logging.info(f'Trying to write the keylayout to disk at {output_path}.')
