@@ -1,9 +1,9 @@
 name: Iso keylayout
 default_index: 6
 maxout: 1
-layouts:  # Should all be inside a [] as a dict {} with these k:v pairs.
+layouts:
   first: '0'  # Types differ
-  last: '17'
+  last: '17'  # Types differ
   mapSet: ANSI
   modifiers: Modifiers
 key_map_select:  # TODO: Simplify
