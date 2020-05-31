@@ -48,19 +48,21 @@ def keylayout_from_spec(spec: dict):
     """
 
     # Get a base class instance
+    logging.info(f'Creating base keylayout {spec["base_layout"]}.')
     keylayout_base = _class_from_base_keylayout(spec['base_layout'])
-
-    logging.info(f'here: {keylayout_base}')
+    logging.info(f'Successfully created base keylayout {keylayout_base}.')
 
     # Non optional init arguments.
     keylayout_base.id_ = spec['id']
-    keylayout.group = spec['group']
+    keylayout_base.group = spec['group']
 
     # TODO: Optional init arguments.
-    #optional_kwargs = {
-    #    key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
-    #}
-    #kwargs = _filter_none_elems_from_dict(optional_kwargs)
+    optional_kwargs = {
+        key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
+    }
+    kwargs = _filter_none_elems_from_dict(optional_kwargs)
+
+    return keylayout_base
 
 
 def _class_from_base_keylayout(base_keylayout: str):

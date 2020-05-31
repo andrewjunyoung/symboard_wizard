@@ -4,7 +4,7 @@
 '''
 
 # Imports from third party packages.
-from unittest import TestCase
+from unittest import TestCase, skip
 from unittest.mock import patch, Mock, MagicMock
 from unittest import main as unittest_main
 from os import remove, getenv
@@ -12,9 +12,6 @@ import logging
 
 # Imports from the local package.
 from test.utils import FILE_WRITERS_PATH, RES_DIR
-from symboard.keylayouts.iso_keylayout import IsoKeylayout
-from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
-from symboard.keylayouts.iso_jdvorak_keylayout import IsoJDvorakKeylayout
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.states import load_yaml
 
@@ -109,15 +106,17 @@ class KeyboardIntegrationTests:
             self.assertEqual(expected, actual)
 
 
+@skip
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
             RES_DIR + 'iso.keylayout',
-            IsoKeylayout,
+            'IsoKeylayout',
             FILE_DELETION_ENV_VAR='KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 
+@skip
 class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
@@ -127,6 +126,7 @@ class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest)
             FILE_DELETION_ENV_VAR='KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
+@skip
 class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(

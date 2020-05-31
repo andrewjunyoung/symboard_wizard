@@ -2,8 +2,8 @@ name: Iso keylayout
 default_index: 6
 maxout: 1
 layouts:  # Should all be inside a [] as a dict {} with these k:v pairs.
-  first: 0  # Types differ
-  last: 17
+  first: '0'  # Types differ
+  last: '17'
   mapSet: ANSI
   modifiers: Modifiers
 key_map_select:  # TODO: Simplify
@@ -65,8 +65,8 @@ key_map:  # TODO: Simplify
     39: '&#x0027;'
     40: 'k'
     41: ';'
-    42: '\\'
-    43: ''
+    42: '\'
+    43: ','
     44: '/'
     45: 'n'
     46: 'm'
@@ -355,8 +355,8 @@ key_map:  # TODO: Simplify
     39: '&#x0027;'
     40: 'k'
     41: ';'
-    42: '\\'
-    43: ''
+    42: '\'
+    43: ','
     44: '/'
     45: 'n'
     46: 'm'
@@ -458,8 +458,8 @@ key_map:  # TODO: Simplify
     39: '&#x0027;'
     40: 'K'
     41: ';'
-    42: '\\'
-    43: ''
+    42: '\'
+    43: ','
     44: '/'
     45: 'N'
     46: 'M'
