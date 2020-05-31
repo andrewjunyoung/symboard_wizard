@@ -18,4 +18,4 @@ coverage:
 	coverage html --omit="venv/*"
 
 show_states:
-	python scripts/show_states.py
+	python symboard/scripts/show_states.py

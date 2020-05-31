@@ -100,7 +100,7 @@ specify.
 1. Copy your keylayout file into the keylayouts directory. To do this, run the
 following code inside the Symboard project directory:
 ```
-source ./scripts/install <path_to_your_keylayout>
+source ./symboard/scripts/install <path_to_your_keylayout>
 ```
 
 1. Open System Preferences and navigate to «keyboard» > «input sources». Click
