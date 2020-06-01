@@ -36,20 +36,26 @@ when trying to do this.
 # } Package settings
 # Keylayouts settings {
 
-KEYLAYOUTS_DIR = 'symboard/keylayouts'
+KEYLAYOUTS_DIR: str = f'{PACKAGE_NAME}/keylayouts'
 """ The relative path to the directory containing definitions of keylayouts.
 These states can be pre-defined by the Symboard project, or added by users.
 """
 
-KEYLAYOUTS_FILE_SUFFIX = 'yaml'
+KEYLAYOUTS_FILE_SUFFIX: str = 'yaml'
 """ The default suffix used by keylayout specifications inside the keylayouts
 directory.
 """
 
+OPTIONAL_PROPERTIES: List[str] = [
+    'maxout',
+    'name',
+    'default_index',
+]
+
 # } Keylayouts settings
 # States settings {
 
-STATES_DIR = 'symboard/states'
+STATES_DIR: str = f'{PACKAGE_NAME}/states'
 """ The relative path to the directory containing definitions of states. These
 states can be pre-defined by the Symboard project, or added by users.
 """
@@ -104,7 +110,7 @@ representations are included in this map (EG «\'», but not «a»).
 
 from dotenv import load_dotenv
 # Explicitly providing path to '.env', with verbosity.
-env_path = './.env.pub'
+env_path: str = './.env.pub'
 load_dotenv(dotenv_path=env_path, verbose=True)
 
 # } Import using dotenv

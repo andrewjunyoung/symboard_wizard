@@ -1,8 +1,17 @@
-## [0.5.0] - 2020-05-??
+## [1.0.0] - 2020-06-??
 
 ### Added
 - States to JDvorak:
   - alt+e to link to latin\_e state
+- *States*
+  - Latin strikethrough
+- Flexible imports of keylayout files.
+- KEYLAYOUTS\_DIR and KEYLAYOUTS\_FILE\_SUFFIX to support extensible keylayout
+  file imports from different data formats (currently just yaml).
+
+### Changed
+- Changed base keylayouts to yaml representations, and keylayout classes to be
+  dataclasses
 
 ## [0.4.0] - 2020-05-17
 
