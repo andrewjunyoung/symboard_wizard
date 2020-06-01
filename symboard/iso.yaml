@@ -1,5 +1,5 @@
 iso_keylayout:
-  default_name: Iso keyboard
+  default_name: Iso keylayout
   default_index: 6
   layouts:
     first: 0

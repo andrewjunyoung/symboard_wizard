@@ -1,6 +1,6 @@
 '''
 @author: Andrew J. Young
-@description: Integratino tests for the keylayouts supported by symboard.
+@description: Integration tests for the keylayouts supported by symboard.
 '''
 
 # Imports from third party packages.
@@ -14,19 +14,22 @@ import logging
 from test.utils import FILE_WRITERS_PATH, RES_DIR
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.states import load_yaml
+from symboard.keylayout import KeylayoutFactory
 
 
 DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'
 OVERWRITE_TEST_OUTPUT_FILES = 'OVERWRITE_TEST_OUTPUT_FILES'
 
+keylayout_factory = KeylayoutFactory()
+
 
 class KeyboardIntegrationTests:
     class IntegrationTest(TestCase):
         def _setUp(
-            self, EXPECTED_OUTPUT_PATH, class_, id_ = -19341, DEFAULT_INDEX = 6,
+            self, base_layout, id_ = -19341, DEFAULT_INDEX = 6,
             FILE_DELETION_ENV_VAR = DEFAULT_FILE_DELETION_ENV_VAR,
         ):
-            self.EXPECTED_OUTPUT_PATH = EXPECTED_OUTPUT_PATH
+            self.EXPECTED_OUTPUT_PATH = f'{RES_DIR}{base_layout}.keylayout'
             self.ACTUAL_OUTPUT_PATH = 'actual' + str(self.__class__.__name__) \
                 + '.keylayout'
 
@@ -34,12 +37,12 @@ class KeyboardIntegrationTests:
             self.ID = id_
             self.DEFAULT_INDEX = DEFAULT_INDEX
 
-            self.class_ = class_
-            self.keylayout = self.class_(
-                self.GROUP,
-                self.ID,
-                default_index = self.DEFAULT_INDEX,
-            )
+            self.keylayout = keylayout_factory.from_spec({
+                'base_layout': base_layout,
+                'group': self.GROUP,
+                'id': self.ID,
+                'default_index': self.DEFAULT_INDEX,
+            })
             self.keylayout_xml_file_writer = KeylayoutXMLFileWriter()
 
             self.maxDiff = 1000
@@ -106,32 +109,27 @@ class KeyboardIntegrationTests:
             self.assertEqual(expected, actual)
 
 
-@skip
 class TestIsoKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
-            RES_DIR + 'iso.keylayout',
-            'IsoKeylayout',
+            'iso',
             FILE_DELETION_ENV_VAR='KEEP_ISO_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
 
-@skip
 class TestIsoDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
-            RES_DIR + 'iso_dvorak.keylayout',
-            IsoDvorakKeylayout,
+            'iso_dvorak',
             id_ = -5586,
             FILE_DELETION_ENV_VAR='KEEP_ISO_DVORAK_INTEGRATION_TEST_OUTPUT_FILE',
         )
 
-@skip
+@skip('Todo: migrate iso JDvorak to yaml.')
 class TestIsoJDvorakKeyboardIntegration(KeyboardIntegrationTests.IntegrationTest):
     def setUp(self):
         self._setUp(
-            RES_DIR + 'iso_jdvorak.keylayout',
-            IsoJDvorakKeylayout,
+            'iso_jdvorak',
             id_  = -31708,
             DEFAULT_INDEX = 4,
             FILE_DELETION_ENV_VAR='KEEP_ISO_JDVORAK_INTEGRATION_TEST_OUTPUT_FILE',

@@ -1,9 +1,12 @@
 # Imports from third party packages.
-from unittest import TestCase, skip
+from unittest import TestCase
 from unittest import main as unittest_main
 
 # Imports from the local package.
 from symboard.keylayout import KeylayoutFactory
+
+
+keylayout_factory = KeylayoutFactory()
 
 
 class TestKeylayout(TestCase):
@@ -16,7 +19,7 @@ class TestKeylayout(TestCase):
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.keylayout_factory = KeylayoutFactory()
+        self.keylayout_factory = keylayout_factory
         self.spec = {
             'base_layout': base_layout,
             'group': self.GROUP,
