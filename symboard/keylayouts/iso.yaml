@@ -1,5 +1,5 @@
 name: Iso keylayout
-default_index: 6
+default_index: 0
 maxout: 1
 layouts:
   first: '0'  # Types differ

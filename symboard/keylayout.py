@@ -16,8 +16,7 @@ import logging
 # Imports from the local package.
 from symboard.actions import Action
 from symboard.parsers import YamlFileParser
-from symboard.yaml_spec import OPTIONAL_PROPERTIES
-from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX
+from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX, OPTIONAL_PROPERTIES
 from symboard.utils.collections import filter_none_elems_from_dict
 
 @dataclass
@@ -187,6 +186,8 @@ class KeylayoutFactory:
             key: spec.get(key, None) for key in OPTIONAL_PROPERTIES
         }
         kwargs = filter_none_elems_from_dict(optional_kwargs)
+
+        keylayout.__dict__.update(kwargs)
 
     def from_spec(self, spec: dict) -> Keylayout:
         """ Given a dictionary with the specifications (specs) of a keyboard, tries

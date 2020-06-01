@@ -3,28 +3,29 @@ from unittest import TestCase, skip
 from unittest import main as unittest_main
 
 # Imports from the local package.
-from symboard.keylayout import Keylayout
+from symboard.keylayout import KeylayoutFactory
 
 
 class TestKeylayout(TestCase):
-    def _setUp(self, class_):
+    __test__ = False
+
+    def _setUp(self, base_layout):
         self.GROUP = 1
         self.ID = 2
         self.NAME = '3'
         self.MAXOUT = 4
         self.DEFAULT_INDEX = 5
 
-        self.class_ = class_
-        self.keylayout = self.class_(
-            self.GROUP,
-            self.ID,
-            maxout = self.MAXOUT,
-            name = self.NAME,
-            default_index = self.DEFAULT_INDEX,
-        )
-
-    def setUp(self):
-        self._setUp(Keylayout)
+        self.keylayout_factory = KeylayoutFactory()
+        self.spec = {
+            'base_layout': base_layout,
+            'group': self.GROUP,
+            'id': self.ID,
+            'name': self.NAME,
+            'maxout': self.MAXOUT,
+            'default_index': self.DEFAULT_INDEX,
+        }
+        self.keylayout = self.keylayout_factory.from_spec(self.spec)
 
     def test_keylayout_init_with_all_properties_provided(self):
         keylayout = self.keylayout
@@ -36,10 +37,9 @@ class TestKeylayout(TestCase):
         self.assertEqual(keylayout.default_index, self.DEFAULT_INDEX)
 
     def test_keylayout_init_without_default_index(self):
-        keylayout = Keylayout(
-            self.GROUP, self.ID,
-            maxout = self.MAXOUT, name = self.NAME
-        )
+        spec = self.spec.copy()
+        del spec['default_index']
+        keylayout = self.keylayout_factory.from_spec(spec)
 
         self.assertEqual(keylayout.group, self.GROUP)
         self.assertEqual(keylayout.id_, self.ID)
@@ -48,10 +48,9 @@ class TestKeylayout(TestCase):
         self.assertEqual(keylayout.default_index, 0)
 
     def test_keylayout_init_without_maxout(self):
-        keylayout = Keylayout(
-            self.GROUP, self.ID,
-            name = self.NAME, default_index = self.DEFAULT_INDEX
-        )
+        spec = self.spec.copy()
+        del spec['maxout']
+        keylayout = self.keylayout_factory.from_spec(spec)
 
         self.assertEqual(keylayout.group, self.GROUP)
         self.assertEqual(keylayout.id_, self.ID)
@@ -60,7 +59,7 @@ class TestKeylayout(TestCase):
         self.assertEqual(keylayout.default_index, self.DEFAULT_INDEX)
 
     def test_keylayout_str(self):
-        expected = 'Keylayout({}, (id: {}))'.format(self.NAME, self.ID)
+        expected = f'Keylayout({self.NAME}, (id: {self.ID}))'
         actual = str(self.keylayout)
 
         self.assertEqual(expected, actual)
@@ -76,29 +75,21 @@ class TestKeylayout(TestCase):
 
         self.assertEqual(expected, actual)
 
-    def _test_keylayout_str(self, class_name):
-        expected = '{}({}, (id: {}))'.format(class_name, self.NAME, self.ID)
-        actual = str(self.keylayout)
 
-        self.assertEqual(expected, actual)
-
-
-@skip('todo')
 class TestIsoKeylayout(TestKeylayout):
+    __test__ = True
+
     def setUp(self):
-        self._setUp('IsoKeylayout')
-
-    def test_keylayout_str(self):
-        self._test_keylayout_str('IsoKeylayout')
+        self._setUp('iso')
 
 
-@skip('todo')
 class TestIsoDvorakKeylayout(TestKeylayout):
-    def setUp(self):
-        self._setUp(IsoDvorakKeylayout)
+    __test__ = True
 
-    def test_keylayout_str(self):
-        self._test_keylayout_str('IsoDvorakKeylayout')
+    def setUp(self):
+        self._setUp('iso_dvorak')
+
+# TODO: iso_jdvorak
 
 
 if __name__ == '__main__':
