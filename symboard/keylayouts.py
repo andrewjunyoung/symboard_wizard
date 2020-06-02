@@ -174,7 +174,17 @@ class KeylayoutFactory:
         )
 
     def _load_keylayout_yaml(self, base_layout: str) -> Keylayout:
-        """ TODO
+        """ Given a base_layout, loads the corresponding yaml spec from memory,
+        parses it, and returns the instantiated keylayout created from that
+        spec.
+
+        Args:
+            base_layout (str): The name of the bas keylayout to use. This is
+            also the file name used by the yaml spec (excluding the file
+            extension).
+
+        Returns:
+            Keylayout: A Keylayout instance created from the given spec.
         """
         logging.info(f'Creating base keylayout from {base_layout}.')
         file_path = f'{KEYLAYOUTS_DIR}/{base_layout}.{KEYLAYOUTS_FILE_SUFFIX}'
@@ -182,7 +192,18 @@ class KeylayoutFactory:
         return self.from_dict(spec)
 
     def _overwrite_arguments_from_spec(self, keylayout: Keylayout, spec: dict) -> None:
-        """ TODO
+        """ Given a keylayout and a spec, overwrites the properties of
+        the keylayout with those defined in the spec, both optional and non
+        optional.
+
+        Args:
+            keylayout (Keylayout): The keylayout to overwrite the properties of.
+            spec (dict): The specification to use defining the properties to
+            ovewrite.
+
+        Raises:
+            KeyError: If any of the non optional arguments do not appear in the
+            spec. These are: «id»; «group».
         """
         logging.info(f'Adding non optional arguments from spec.')
         keylayout.id_ = spec['id']

@@ -2,8 +2,8 @@ name: Iso keylayout
 default_index: 0
 maxout: 1
 layouts:
-  first: '0'  # Types differ
-  last: '17'  # Types differ
+  first: 0
+  last: 17
   mapSet: ANSI
   modifiers: Modifiers
 key_map_select:  # TODO: Simplify

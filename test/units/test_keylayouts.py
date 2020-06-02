@@ -4,6 +4,7 @@ from unittest import main as unittest_main
 
 # Imports from the local package.
 from symboard.keylayouts import KeylayoutFactory
+from symboard.utils.collections import convert_items_to_str
 
 
 keylayout_factory = KeylayoutFactory()
@@ -77,6 +78,23 @@ class TestKeylayout(TestCase):
         actual = self.keylayout.keyboard_attributes()
 
         self.assertEqual(expected, actual)
+
+    def test_layouts_converted_to_str(self):
+        # TODO: Mock Keylayout object creation.
+        layouts = {
+            'int_val': 1,
+            'str_val': 'value',
+        }
+
+        spec = {
+            'key_map': None,
+            'key_map_select': None,
+            'layouts': layouts,
+        }
+
+        keylayout = self.keylayout_factory.from_dict(spec)
+
+        self.assertEqual(keylayout.layouts, [convert_items_to_str(layouts)])
 
 
 class TestIsoKeylayout(TestKeylayout):

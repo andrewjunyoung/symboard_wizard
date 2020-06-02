@@ -2,8 +2,8 @@ name: Dvorak keylayout (iso)
 default_index: 0
 maxout: 1
 layouts:
-  first: '0'
-  last: '17'
+  first: 0
+  last: 17
   mapSet: ANSI
   modifiers: Modifiers
 key_map_select:
