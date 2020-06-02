@@ -13,7 +13,7 @@ import logging
 # Imports from the local package.
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.parsers import YamlFileParser
-from symboard.keylayout import KeylayoutFactory
+from symboard.keylayouts import KeylayoutFactory
 from symboard.states import load_yaml
 
 

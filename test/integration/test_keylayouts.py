@@ -14,7 +14,7 @@ import logging
 from test.utils import FILE_WRITERS_PATH, RES_DIR
 from symboard.file_writers import KeylayoutXMLFileWriter
 from symboard.states import load_yaml
-from symboard.keylayout import KeylayoutFactory
+from symboard.keylayouts import KeylayoutFactory
 
 
 DEFAULT_FILE_DELETION_ENV_VAR = 'KEEP_INTEGRATION_TEST_OUTPUT_FILE'

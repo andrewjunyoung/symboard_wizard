@@ -3,7 +3,7 @@ from unittest import TestCase
 from unittest import main as unittest_main
 
 # Imports from the local package.
-from symboard.keylayout import KeylayoutFactory
+from symboard.keylayouts import KeylayoutFactory
 
 
 keylayout_factory = KeylayoutFactory()
