@@ -1,900 +1,1171 @@
-"""
-.. module:: keylayouts
-   :synopsis: A class representing the iso JDvorak keylayout.
-
-.. moduleauthor:: Andrew J. Young
-
-"""
-
-
-# Imports from third party packages.
-from typing import Dict, List, Union
-
-# Imports from this package.
-from symboard.keylayouts.iso_dvorak_keylayout import IsoDvorakKeylayout
-from symboard.keylayout import Action
-from symboard.states import states
-
-
-class IsoJDvorakKeylayout(IsoDvorakKeylayout):
-    """ An implementation of the dvorak keyboard layout (keylayout) which
-    is able to produce an installable dvorak keyboard that works on iso
-    keyboards.
-    """
-
-    default_index: int = 4
-    states_list: list = [
-        'latin_acute',             # /
-        'latin_acute_double',      # ^/ (*)
-        'latin_breve',             # u
-        'latin_breve_inverted',    # ^u (U)
-        'latin_cedilla',           # z
-        'latin_circumflex_above',  # ^  (6)
-        'latin_circumflex_below',  # ^^ (^6)
-        'latin_dot_above',         # .
-        'latin_dot_below',         # ^. (?)
-        'latin_grave',             # \
-        'latin_grave_double',      # ^\ (|)
-        'latin_hacek',             # v
-        'latin_hook_above',        # 7
-        'latin_hook_palatal',      # j
-        'latin_hook_retroflex',    # ^j (J)
-        'latin_horn',              # ,
-        'latin_macron_above',      # -  (_)
-        'latin_macron_below',      # ^- (-)
-        'latin_ogonek',            # c
-        'latin_ring_above',        # o
-        'latin_ring_below',        # ^o (O)
-        'latin_umlaut',            # :  (;)
-        'arrows_basic_dvorak',     # 1
-        'latin_rotated_lower',     # r
-        'latin_rotated_upper',     # R
-        'latin_extensions',        # x
-        'latin_comma_below',       # ^, (!)
-        'latin_tilde_above',       # `
-        'latin_tilde_below',       # ^` (~)
-        'latin_bar',               # t
-        'latin_e',                 # e
-        'latin_slash',             # ^t (T)
-        'cyrillic',                # C
-        'greek',                   # G
-    ]
-
-
-    def __str__(self):
-        return 'IsoJDvorakKeylayout({}, (id: {}))'.format(self.name, self.id_)
-
-    def __init__(
-        self,
-        group: int,
-        id_: int,
-        maxout: int = 2,
-        name: str = 'JDvorak keyboard (iso)',
-        default_index: int = 4
-    ):
-        super(IsoJDvorakKeylayout, self).__init__(
-            group, id_, maxout, name=name, default_index=default_index
-        )
-
-    layouts: List[Dict[str, str]] = [
-        {
-            'first': '0',
-            'last': '0',
-            'mapSet': 'ANSI',  # Yes, this is correct for iso too!
-            'modifiers': 'commonModifiers',
-        },
-    ]
-
-    key_map_select: Dict[int, Union[str, List[str]]] = {
-        0: ['anyShift? caps? command'],
-        1: ['anyShift caps?',
-            'anyShift? caps',
-        ],
-        2: ['anyOption',
-            'caps anyOption command?',
-            'caps? anyOption command',
-        ],
-        3: ['anyShift caps? anyOption command?'],
-        4: ['',
-            'caps anyOption? command?',
-        ],
-        5: ['anyOption? command'],
-        6: ['anyShift? caps? anyOption? anyControl',
-            'anyShift? anyOption? command? anyControl',
-            'anyShift caps anyOption command',
-            'anyShift caps command anyControl',
-            'caps anyOption command anyControl',
-            'anyShift caps anyOption command anyControl',
-            'anyShift caps anyOption? command anyControl',
-            'anyShift? caps anyOption command anyControl',
-            'caps? anyOption? command? anyControl',
-        ]
-    }
-
-    key_map = {
-        0: {
-            0: 'a',
-            1: 'o',
-            2: 'e',
-            3: 'u',
-            4: 'd',
-            5: 'i',
-            6: '&#x0027;',
-            7: 'q',
-            8: 'j',
-            9: 'k',
-            10: '§',
-            11: 'x',
-            12: ';',
-            13: ',',
-            14: '.',
-            15: 'p',
-            16: 'f',
-            17: 'y',
-            18: '1',
-            19: '2',
-            20: '3',
-            21: '4',
-            22: '6',
-            23: '5',
-            24: ']',
-            25: '9',
-            26: '7',
-            27: '[',
-            28: '8',
-            29: '0',
-            30: '=',
-            31: 'r',
-            32: 'g',
-            33: '/',
-            34: 'c',
-            35: 'l',
-            36: '&#x000D;',
-            37: 'n',
-            38: 'h',
-            39: '-',
-            40: 't',
-            41: 's',
-            42: '\\',
-            43: 'w',
-            44: 'z',
-            45: 'b',
-            46: 'm',
-            47: 'v',
-            48: '&#x0009;',
-            49: ' ',
-            50: '`',
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '&#x001D;',
-            67: '*',
-            69: '+',
-            70: '&#x001C;',
-            71: '&#x001B;',
-            72: '&#x001F;',
-            75: '/',
-            76: '&#x0003;',
-            77: '&#x001E;',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        1: {
-            0: Action("A"),
-            1: Action("O"),
-            2: Action("E"),
-            3: Action("U"),
-            4: Action("D"),
-            5: Action("I"),
-            6: Action("&#x0022;"),
-            7: Action("Q"),
-            8: Action("J"),
-            9: Action("K"),
-            10: '·',
-            11: Action("X"),
-            12: Action(":"),
-            13: '!',
-            14: Action("?"),
-            15: Action("P"),
-            16: Action("F"),
-            17: Action("Y"),
-            18: '&#x0026;',
-            19: '@',
-            20: '#',
-            21: '$',
-            22: Action("^"),
-            23: '%',
-            24: '}',
-            25: '(',
-            26: '&#x003C;',
-            27: '{',
-            28: '&#x003E;',
-            29: ')',
-            30: '+',
-            31: Action("R"),
-            32: Action("G"),
-            33: '*',
-            34: Action("C"),
-            35: Action("L"),
-            36: '&#x000D;',
-            37: Action("N"),
-            38: Action("H"),
-            39: '-',
-            40: Action("T"),
-            41: Action("S"),
-            42: Action('|'),
-            43: Action("W"),
-            44: Action("Z"),
-            45: Action("B"),
-            46: Action("M"),
-            47: Action("V"),
-            48: '&#x0009;',
-            49: ' ',
-            50: '~',
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '*',
-            67: '*',
-            69: '+',
-            70: '+',
-            71: '&#x001B;',
-            72: '=',
-            75: '/',
-            76: '&#x0003;',
-            77: '/',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        2: {
-            0: 'alt+a',
-            1: Action("alt+o", next_=states['latin_ring_above']),
-            2: Action("alt+e", next_=states['latin_e']),
-            3: Action("alt+u", next_=states['latin_breve']),
-            4: Action("alt+d"),
-            5: Action("alt+i"),
-            6: Action("acute"),
-            7: Action("×"),
-            8: Action("alt+j", next_=states['latin_hook_palatal']),
-            9: Action("√"),
-            10: '□',
-            11: Action("alt+x", next_=states['latin_extensions']),
-            12: Action("alt+;", next_=states['latin_umlaut']),
-            13: Action("alt+,", next_=states['latin_horn']),
-            14: Action("alt+.", next_=states['latin_dot_above']),
-            15: Action("dot"),
-            16: Action("action 2"),
-            17: Action("action 1"),
-            18: Action('alt+1', next_=states['arrows_basic_dvorak']),
-            19: '',
-            20: '',
-            21: '',
-            22: Action('alt+6', next_=states['latin_circumflex_above']),
-            23: '',
-            24: '»',
-            25: '&#x000D;',
-            26: Action('alt+7', next_=states['latin_hook_above']),
-            27: '«',
-            28: '',
-            29: '',
-            30: '',
-            31: Action("alt+r", next_=states['latin_rotated_lower']),
-            32: Action("alt+g"),
-            33: Action("alt+/", next_=states['latin_acute']),
-            34: Action("alt+c", next_=states['latin_ogonek']),
-            35: Action("!"),
-            36: '&#x000D;',
-            37: Action("alt+?1"),
-            38: Action("alt+h"),
-            39: Action("alt+_", next_=states['latin_macron_above']),
-            40: Action("alt+t", next_=states['latin_bar']),
-            41: Action("alt+s"),
-            42: Action("alt+\\", next_=states['latin_grave']),
-            43: Action("∴"),
-            44: Action("alt+z", next_=states['latin_cedilla']),
-            45: Action("∫"),
-            46: Action("∮"),
-            47: Action('alt+v', next_=states['latin_hacek']),
-            48: '&#x0009;',
-            49: ' ',
-            50: Action("alt+`", next_=states['latin_tilde_above']),
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '&#x001D;',
-            67: '*',
-            69: '+',
-            70: '&#x001C;',
-            71: '&#x001B;',
-            72: '&#x001F;',
-            75: '/',
-            76: '&#x0003;',
-            77: '&#x001E;',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        3: {
-            0: Action("α"),
-            1: Action("alt+O", next_=states['latin_ring_below']),
-            2: Action("action 5"),
-            3: Action("alt+U", next_=states['latin_breve_inverted']),
-            4: Action("Ґ"),
-            5: Action("action 7"),
-            6: Action("action"),
-            7: Action("action 8"),
-            8: Action("alt+J", next_=states['latin_hook_retroflex']),
-            9: Action("action 9"),
-            10: '',
-            11: Action("action 10"),
-            12: Action("± 1"),
-            13: Action("alt+!", next_=states['latin_comma_below']),
-            14: Action("alt+?", next_=states['latin_dot_below']),
-            15: Action("®"),
-            16: '',
-            17: Action("Ћ"),
-            18: '',
-            19: '',
-            20: '',
-            21: '',
-            22: Action('alt+^', next_=states['latin_circumflex_below']),
-            23: '',
-            24: '',
-            25: '',
-            26: '≤',
-            27: '—',
-            28: '≥',
-            29: '∞',
-            30: '≠',
-            31: Action("alt+R", next_=states['latin_rotated_upper']),
-            32: Action("alt+G", next_=states['greek']),
-            33: Action("alt+*", next_=states['latin_acute_double']),
-            34: Action("alt+C", next_=states['cyrillic']),
-            35: Action("’ 1"),
-            36: '&#x000D;',
-            37: Action("Љ"),
-            38: Action("Ј"),
-            39: Action("alt+-", next_=states['latin_macron_below']),
-            40: Action("alt+T", next_=states['latin_slash']),
-            41: Action("’"),
-            42: Action("alt+|", next_=states['latin_grave_double']),
-            43: Action("∵"),
-            44: Action("action 13"),
-            45: Action("β"),
-            46: Action("action 11"),
-            47: Action("action 12"),
-            48: '&#x0009;',
-            49: Action(" "),
-            50: Action("alt+~", next_=states['latin_tilde_below']),
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '*',
-            67: '*',
-            69: '+',
-            70: '+',
-            71: '&#x001B;',
-            72: '=',
-            75: '/',
-            76: '&#x0003;',
-            77: '/',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        4: {
-            0: Action("a"),
-            1: Action("o"),
-            2: Action("e"),
-            3: Action("u"),
-            4: Action("d"),
-            5: Action("i"),
-            6: Action("&#x0027;"),
-            7: Action("q"),
-            8: Action("j"),
-            9: Action("k"),
-            10: '±',
-            11: Action("x"),
-            12: Action(";"),
-            13: Action(","),
-            14: Action("."),
-            15: Action("p"),
-            16: Action("f"),
-            17: Action("y"),
-            18: Action('1'),
-            19: Action('2'),
-            20: Action('3'),
-            21: Action('4'),
-            22: Action("6"),
-            23: Action('5'),
-            24: ']',
-            25: Action('9'),
-            26: Action('7'),
-            27: '[',
-            28: Action('8'),
-            29: Action('0'),
-            30: '=',
-            31: Action("r"),
-            32: Action("g"),
-            33: '/',
-            34: Action("c"),
-            35: Action("l"),
-            36: '&#x000D;',
-            37: Action("n"),
-            38: Action("h"),
-            39: Action("_"),
-            40: Action("t"),
-            41: Action("s"),
-            42: '\\',
-            43: Action("w"),
-            44: Action("z"),
-            45: Action("b"),
-            46: Action("m"),
-            47: Action("v"),
-            48: '&#x0009;',
-            49: Action(" "),
-            50: '`',
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '&#x001D;',
-            67: '*',
-            69: '+',
-            70: '&#x001C;',
-            71: '&#x001B;',
-            72: '&#x001F;',
-            75: '/',
-            76: '&#x0003;',
-            77: '&#x001E;',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        5: {
-            0: 'a',
-            1: 'o',
-            2: 'e',
-            3: 'u',
-            4: 'd',
-            5: 'i',
-            6: '&#x0027;',
-            7: 'q',
-            8: 'j',
-            9: 'k',
-            10: '',
-            11: 'x',
-            12: ';',
-            13: ',',
-            14: '.',
-            15: 'p',
-            16: 'f',
-            17: 'y',
-            18: '1',
-            19: '2',
-            20: '3',
-            21: '4',
-            22: '6',
-            23: '5',
-            24: ']',
-            25: '9',
-            26: '7',
-            27: '[',
-            28: '8',
-            29: '0',
-            30: '=',
-            31: 'r',
-            32: 'g',
-            33: '/',
-            34: 'c',
-            35: 'l',
-            36: '&#x000D;',
-            37: 'n',
-            38: 'h',
-            39: '-',
-            40: 't',
-            41: 's',
-            42: '\\',
-            43: 'w',
-            44: 'z',
-            45: 'b',
-            46: 'm',
-            47: 'v',
-            48: '&#x0009;',
-            49: ' ',
-            50: '`',
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '&#x001D;',
-            67: '*',
-            69: '+',
-            70: '&#x001C;',
-            71: '&#x001B;',
-            72: '&#x001F;',
-            75: '/',
-            76: '&#x0003;',
-            77: '&#x001E;',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-        6: {
-            0: '&#x0001;',
-            1: '&#x0013;',
-            2: '&#x0009;',
-            3: '&#x0006;',
-            4: '',
-            5: '&#x0007;',
-            6: '&#x001A;',
-            7: '&#x0018;',
-            8: '',
-            9: '&#x000B;',
-            10: '',
-            11: '',
-            12: '&#x0011;',
-            13: '&#x0017;',
-            14: '',
-            15: '&#x001E;',
-            16: '&#x001D;',
-            17: '&#x0014;',
-            18: '',
-            19: '',
-            20: '3',
-            21: '4',
-            22: '6',
-            23: '5',
-            24: '+',
-            25: '9',
-            26: '7',
-            27: '&#x001F;',
-            28: '8',
-            29: '0',
-            30: '',
-            31: '&#x000F;',
-            32: '&#x0015;',
-            33: '',
-            34: '&#x0003;',
-            35: '&#x000C;',
-            36: '&#x000D;',
-            37: '&#x001F;',
-            38: '&#x0008;',
-            39: '',
-            40: '',
-            41: '',
-            42: '',
-            43: ',',
-            44: '/',
-            45: '&#x001C;',
-            46: '&#x000D;',
-            47: '.',
-            48: '&#x0009;',
-            49: ' ',
-            50: '',
-            51: '&#x0008;',
-            52: '&#x0003;',
-            53: '&#x001B;',
-            64: '&#x0010;',
-            65: ',',
-            66: '&#x001D;',
-            67: '*',
-            69: '+',
-            70: '&#x001C;',
-            71: '&#x001B;',
-            72: '&#x001F;',
-            75: '/',
-            76: '&#x0003;',
-            77: '&#x001E;',
-            78: '-',
-            79: '&#x0010;',
-            80: '&#x0010;',
-            81: '=',
-            82: '0',
-            83: '7',
-            84: '8',
-            85: '9',
-            86: '4',
-            87: '5',
-            88: '6',
-            89: '1',
-            91: '2',
-            92: '3',
-            96: '&#x0010;',
-            97: '&#x0010;',
-            98: '&#x0010;',
-            99: '&#x0010;',
-            100: '&#x0010;',
-            101: '&#x0010;',
-            102: '&#x0010;',
-            103: '&#x0010;',
-            104: '&#x0010;',
-            105: '&#x0010;',
-            106: '&#x0010;',
-            107: '&#x0010;',
-            108: '&#x0010;',
-            109: '&#x0010;',
-            110: '&#x0010;',
-            111: '&#x0010;',
-            112: '&#x0010;',
-            113: '&#x0010;',
-            114: '&#x0005;',
-            115: '&#x0001;',
-            116: '&#x000B;',
-            117: '&#x007F;',
-            118: '&#x0010;',
-            119: '&#x0004;',
-            120: '&#x0010;',
-            121: '&#x000C;',
-            122: '&#x0010;',
-            123: '&#x001C;',
-            124: '&#x001D;',
-            125: '&#x001F;',
-            126: '&#x001E;',
-        },
-    }
+name: JDvorak keylayout (iso)
+default_index: 4
+maxout: 2
+layouts:
+  first: '0'
+  last: '0'
+  mapSet: ANSI
+  modifiers: commonModifiers
+states:
+  - latin_acute             # /
+  - latin_acute_double      # ^/ (*)
+  - latin_breve             # u
+  - latin_breve_inverted    # ^u (U)
+  - latin_cedilla           # z
+  - latin_circumflex_above  # ^  (6)
+  - latin_circumflex_below  # ^^ (^6)
+  - latin_dot_above         # .
+  - latin_dot_below         # ^. (?)
+  - latin_grave             # \
+  - latin_grave_double      # ^\ (|)
+  - latin_hacek             # v
+  - latin_hook_above        # 7
+  - latin_hook_palatal      # j
+  - latin_hook_retroflex    # ^j (J)
+  - latin_horn              # ,
+  - latin_macron_above      # -  (_)
+  - latin_macron_below      # ^- (-)
+  - latin_ogonek            # c
+  - latin_ring_above        # o
+  - latin_ring_below        # ^o (O)
+  - latin_umlaut            # :  (;)
+  - arrows_basic_dvorak     # 1
+  - latin_rotated_lower     # r
+  - latin_rotated_upper     # R
+  - latin_extensions        # x
+  - latin_comma_below       # ^, (!)
+  - latin_tilde_above       # `
+  - latin_tilde_below       # ^` (~)
+  - latin_bar               # t
+  - latin_e                 # e
+  - latin_slash             # ^t (T)
+  - cyrillic                # C
+  - greek                   # G
+key_map_select:
+  0:
+    - 'anyShift? caps? command'
+  1:
+    - 'anyShift caps?'
+    - 'anyShift? caps'
+  2:
+     - 'anyOption'
+     - 'caps anyOption command?'
+     - 'caps? anyOption command'
+  3:
+    - 'anyShift caps? anyOption command?'
+  4:
+    - ''
+    - 'caps anyOption? command?'
+  5:
+    - 'anyOption? command'
+  6:
+    - 'anyShift? caps? anyOption? anyControl'
+    - 'anyShift? anyOption? command? anyControl'
+    - 'anyShift caps anyOption command'
+    - 'anyShift caps command anyControl'
+    - 'caps anyOption command anyControl'
+    - 'anyShift caps anyOption command anyControl'
+    - 'anyShift caps anyOption? command anyControl'
+    - 'anyShift? caps anyOption command anyControl'
+    - 'caps? anyOption? command? anyControl'
+key_map:
+  0:
+    0: 'a'
+    1: 'o'
+    2: 'e'
+    3: 'u'
+    4: 'd'
+    5: 'i'
+    6: '&#x0027;'
+    7: 'q'
+    8: 'j'
+    9: 'k'
+    10: '§'
+    11: 'x'
+    12: ';'
+    13: ','
+    14: '.'
+    15: 'p'
+    16: 'f'
+    17: 'y'
+    18: '1'
+    19: '2'
+    20: '3'
+    21: '4'
+    22: '6'
+    23: '5'
+    24: ']'
+    25: '9'
+    26: '7'
+    27: '['
+    28: '8'
+    29: '0'
+    30: '='
+    31: 'r'
+    32: 'g'
+    33: '/'
+    34: 'c'
+    35: 'l'
+    36: '&#x000D;'
+    37: 'n'
+    38: 'h'
+    39: '-'
+    40: 't'
+    41: 's'
+    42: '\\'
+    43: 'w'
+    44: 'z'
+    45: 'b'
+    46: 'm'
+    47: 'v'
+    48: '&#x0009;'
+    49: ' '
+    50: '`'
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '&#x001D;'
+    67: '*'
+    69: '+'
+    70: '&#x001C;'
+    71: '&#x001B;'
+    72: '&#x001F;'
+    75: '/'
+    76: '&#x0003;'
+    77: '&#x001E;'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  1:
+    0:
+      action:
+        name: A
+    1:
+      action:
+        name: O
+    2:
+      action:
+        name: E
+    3:
+      action:
+        name: U
+    4:
+      action:
+        name: D
+    5:
+      action:
+        name: I
+    6:
+      action:
+        name: &#x0022;
+    7:
+      action:
+        name: Q
+    8:
+      action:
+        name: J
+    9:
+      action:
+        name: K
+    10: '·'
+    11:
+      action:
+        name: X
+    12:
+      action:
+        name: :
+    13: '!'
+    14:
+      action:
+        name: ?
+    15:
+      action:
+        name: P
+    16:
+      action:
+        name: F
+    17:
+      action:
+        name: Y
+    18: '&#x0026;'
+    19: '@'
+    20: '#'
+    21: '$'
+    22:
+      action:
+        name: ^
+    23: '%'
+    24: '}'
+    25: '('
+    26: '&#x003C;'
+    27: '{'
+    28: '&#x003E;'
+    29: ')'
+    30: '+'
+    31:
+      action:
+        name: R
+    32:
+      action:
+        name: G
+    33: '*'
+    34:
+      action:
+        name: C
+    35:
+      action:
+        name: L
+    36: '&#x000D;'
+    37:
+      action:
+        name: N
+    38:
+      action:
+        name: H
+    39: '-'
+    40:
+      action:
+        name: T
+    41:
+      action:
+        name: S
+    42:
+      action:
+        name: |
+    43:
+      action:
+        name: W
+    44:
+      action:
+        name: Z
+    45:
+      action:
+        name: B
+    46:
+      action:
+        name: M
+    47:
+      action:
+        name: V
+    48: '&#x0009;'
+    49: ' '
+    50: '~'
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '*'
+    67: '*'
+    69: '+'
+    70: '+'
+    71: '&#x001B;'
+    72: '='
+    75: '/'
+    76: '&#x0003;'
+    77: '/'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  2:
+    0: 'alt+a'
+    1:
+      action:
+        name: alt+o
+        next: latin_ring_above
+    2:
+      action:
+        name: alt+e
+        next: latin_e
+    3:
+      action:
+        name: alt+u
+        next: latin_breve
+    4:
+      action:
+        name: alt+d
+    5:
+      action:
+        name: alt+i
+    6:
+      action:
+        name: acute
+    7:
+      action:
+        name: ×
+    8:
+      action:
+        name: alt+j
+        next: latin_hook_palatal
+    9:
+      action:
+        name: √
+    10: '□'
+    11:
+      action:
+        name: alt+x
+        next: latin_extensions
+    12:
+      action:
+        name: alt+;
+        next: latin_umlaut
+    13:
+      action:
+        name: alt+,
+        next: latin_horn
+    14:
+      action:
+        name: alt+.
+        next: latin_dot_above
+    15:
+      action:
+        name: dot
+    16:
+      action:
+        name: action 2
+    17:
+      action:
+        name: action 1
+    18:
+      action:
+        name: alt+1
+        next: arrows_basic_dvorak
+    19: ''
+    20: ''
+    21: ''
+    22:
+      action:
+        name: alt+6
+        next: latin_circumflex_above
+    23: ''
+    24: '»'
+    25: '&#x000D;'
+    26:
+      action:
+        name: alt+7
+        next: latin_hook_above
+    27: '«'
+    28: ''
+    29: ''
+    30: ''
+    31:
+      action:
+        name: alt+r
+        next: latin_rotated_lower
+    32:
+      action:
+        name: alt+g
+    33:
+      action:
+        name: alt+/
+        next: latin_acute
+    34:
+      action:
+        name: alt+c
+        next: latin_ogonek
+    35:
+      action:
+        name: !
+    36: '&#x000D;'
+    37:
+      action:
+        name: alt+?1
+    38:
+      action:
+        name: alt+h
+    39:
+      action:
+        name: alt+_
+        next: latin_macron_above
+    40:
+      action:
+        name: alt+t
+        next: latin_bar
+    41:
+      action:
+        name: alt+s
+    42:
+      action:
+        name: alt+\\
+        next: latin_grave
+    43:
+      action:
+        name: ∴
+    44:
+      action:
+        name: alt+z
+        next: latin_cedilla
+    45:
+      action:
+        name: ∫
+    46:
+      action:
+        name: ∮
+    47:
+      action:
+        name: alt+v
+        next: latin_hacek
+    48: '&#x0009;'
+    49: ' '
+    50:
+      action:
+        name: alt+`
+        next: latin_tilde_above
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '&#x001D;'
+    67: '*'
+    69: '+'
+    70: '&#x001C;'
+    71: '&#x001B;'
+    72: '&#x001F;'
+    75: '/'
+    76: '&#x0003;'
+    77: '&#x001E;'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  3:
+    0:
+      action:
+        name: α
+    1:
+      action:
+        name: alt+O
+        next: latin_ring_below
+    2:
+      action:
+        name: action 5
+    3:
+      action:
+        name: alt+U
+        next: latin_breve_inverted
+    4:
+      action:
+        name: Ґ
+    5:
+      action:
+        name: action 7
+    6:
+      action:
+        name: action
+    7:
+      action:
+        name: action 8
+    8:
+      action:
+        name: alt+J
+        next: latin_hook_retroflex
+    9:
+      action:
+        name: action 9
+    10: ''
+    11:
+      action:
+        name: action 10
+    12:
+      action:
+        name: ± 1
+    13:
+      action:
+        name: alt+!
+        next: latin_comma_below
+    14:
+      action:
+        name: alt+?
+        next: latin_dot_below
+    15:
+      action:
+        name: ®
+    16: ''
+    17:
+      action:
+        name: Ћ
+    18: ''
+    19: ''
+    20: ''
+    21: ''
+    22:
+      action:
+        name: alt+^
+        next: latin_circumflex_below
+    23: ''
+    24: ''
+    25: ''
+    26: '≤'
+    27: '—'
+    28: '≥'
+    29: '∞'
+    30: '≠'
+    31:
+      action:
+        name: alt+R
+        next: latin_rotated_upper
+    32:
+      action:
+        name: alt+G
+        next: greek
+    33:
+      action:
+        name: alt+*
+        next: latin_acute_double
+    34:
+      action:
+        name: alt+C
+        next: cyrillic
+    35:
+      action:
+        name: ’ 1
+    36: '&#x000D;'
+    37:
+      action:
+        name: Љ
+    38:
+      action:
+        name: Ј
+    39:
+      action:
+        name: alt+-
+        next: latin_macron_below
+    40:
+      action:
+        name: alt+T
+        next: latin_slash
+    41:
+      action:
+        name: ’
+    42:
+      action:
+        name: alt+|
+        next: latin_grave_double
+    43:
+      action:
+        name: ∵
+    44:
+      action:
+        name: action 13
+    45:
+      action:
+        name: β
+    46:
+      action:
+        name: action 11
+    47:
+      action:
+        name: action 12
+    48: '&#x0009;'
+    49:
+      action:
+        name: " "
+    50:
+      action:
+        name: alt+~
+        next: latin_tilde_below
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '*'
+    67: '*'
+    69: '+'
+    70: '+'
+    71: '&#x001B;'
+    72: '='
+    75: '/'
+    76: '&#x0003;'
+    77: '/'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  4:
+    0:
+      action:
+        name: a
+    1:
+      action:
+        name: o
+    2:
+      action:
+        name: e
+    3:
+      action:
+        name: u
+    4:
+      action:
+        name: d
+    5:
+      action:
+        name: i
+    6:
+      action:
+        name: &#x0027;
+    7:
+      action:
+        name: q
+    8:
+      action:
+        name: j
+    9:
+      action:
+        name: k
+    10: '±'
+    11:
+      action:
+        name: x
+    12:
+      action:
+        name: ;
+    13:
+      action:
+        name: ,
+    14:
+      action:
+        name: .
+    15:
+      action:
+        name: p
+    16:
+      action:
+        name: f
+    17:
+      action:
+        name: y
+    18:
+      action:
+        name: 1
+    19:
+      action:
+        name: 2
+    20:
+      action:
+        name: 3
+    21:
+      action:
+        name: 4
+    22:
+      action:
+        name: 6
+    23:
+      action:
+        name: 5
+    24: ']'
+    25:
+      action:
+        name: 9
+    26:
+      action:
+        name: 7
+    27: '['
+    28:
+      action:
+        name: 8
+    29:
+      action:
+        name: 0
+    30: '='
+    31:
+      action:
+        name: r
+    32:
+      action:
+        name: g
+    33: '/'
+    34:
+      action:
+        name: c
+    35:
+      action:
+        name: l
+    36: '&#x000D;'
+    37:
+      action:
+        name: n
+    38:
+      action:
+        name: h
+    39:
+      action:
+        name: _
+    40:
+      action:
+        name: t
+    41:
+      action:
+        name: s
+    42: '\\'
+    43:
+      action:
+        name: w
+    44:
+      action:
+        name: z
+    45:
+      action:
+        name: b
+    46:
+      action:
+        name: m
+    47:
+      action:
+        name: v
+    48: '&#x0009;'
+    49:
+      action:
+        name:
+    50: '`'
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '&#x001D;'
+    67: '*'
+    69: '+'
+    70: '&#x001C;'
+    71: '&#x001B;'
+    72: '&#x001F;'
+    75: '/'
+    76: '&#x0003;'
+    77: '&#x001E;'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  5:
+    0: 'a'
+    1: 'o'
+    2: 'e'
+    3: 'u'
+    4: 'd'
+    5: 'i'
+    6: '&#x0027;'
+    7: 'q'
+    8: 'j'
+    9: 'k'
+    10: ''
+    11: 'x'
+    12: ';'
+    13: ','
+    14: '.'
+    15: 'p'
+    16: 'f'
+    17: 'y'
+    18: '1'
+    19: '2'
+    20: '3'
+    21: '4'
+    22: '6'
+    23: '5'
+    24: ']'
+    25: '9'
+    26: '7'
+    27: '['
+    28: '8'
+    29: '0'
+    30: '='
+    31: 'r'
+    32: 'g'
+    33: '/'
+    34: 'c'
+    35: 'l'
+    36: '&#x000D;'
+    37: 'n'
+    38: 'h'
+    39: '-'
+    40: 't'
+    41: 's'
+    42: '\\'
+    43: 'w'
+    44: 'z'
+    45: 'b'
+    46: 'm'
+    47: 'v'
+    48: '&#x0009;'
+    49: ' '
+    50: '`'
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '&#x001D;'
+    67: '*'
+    69: '+'
+    70: '&#x001C;'
+    71: '&#x001B;'
+    72: '&#x001F;'
+    75: '/'
+    76: '&#x0003;'
+    77: '&#x001E;'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
+  6:
+    0: '&#x0001;'
+    1: '&#x0013;'
+    2: '&#x0009;'
+    3: '&#x0006;'
+    4: ''
+    5: '&#x0007;'
+    6: '&#x001A;'
+    7: '&#x0018;'
+    8: ''
+    9: '&#x000B;'
+    10: ''
+    11: ''
+    12: '&#x0011;'
+    13: '&#x0017;'
+    14: ''
+    15: '&#x001E;'
+    16: '&#x001D;'
+    17: '&#x0014;'
+    18: ''
+    19: ''
+    20: '3'
+    21: '4'
+    22: '6'
+    23: '5'
+    24: '+'
+    25: '9'
+    26: '7'
+    27: '&#x001F;'
+    28: '8'
+    29: '0'
+    30: ''
+    31: '&#x000F;'
+    32: '&#x0015;'
+    33: ''
+    34: '&#x0003;'
+    35: '&#x000C;'
+    36: '&#x000D;'
+    37: '&#x001F;'
+    38: '&#x0008;'
+    39: ''
+    40: ''
+    41: ''
+    42: ''
+    43: ','
+    44: '/'
+    45: '&#x001C;'
+    46: '&#x000D;'
+    47: '.'
+    48: '&#x0009;'
+    49: ' '
+    50: ''
+    51: '&#x0008;'
+    52: '&#x0003;'
+    53: '&#x001B;'
+    64: '&#x0010;'
+    65: ','
+    66: '&#x001D;'
+    67: '*'
+    69: '+'
+    70: '&#x001C;'
+    71: '&#x001B;'
+    72: '&#x001F;'
+    75: '/'
+    76: '&#x0003;'
+    77: '&#x001E;'
+    78: '-'
+    79: '&#x0010;'
+    80: '&#x0010;'
+    81: '='
+    82: '0'
+    83: '7'
+    84: '8'
+    85: '9'
+    86: '4'
+    87: '5'
+    88: '6'
+    89: '1'
+    91: '2'
+    92: '3'
+    96: '&#x0010;'
+    97: '&#x0010;'
+    98: '&#x0010;'
+    99: '&#x0010;'
+    100: '&#x0010;'
+    101: '&#x0010;'
+    102: '&#x0010;'
+    103: '&#x0010;'
+    104: '&#x0010;'
+    105: '&#x0010;'
+    106: '&#x0010;'
+    107: '&#x0010;'
+    108: '&#x0010;'
+    109: '&#x0010;'
+    110: '&#x0010;'
+    111: '&#x0010;'
+    112: '&#x0010;'
+    113: '&#x0010;'
+    114: '&#x0005;'
+    115: '&#x0001;'
+    116: '&#x000B;'
+    117: '&#x007F;'
+    118: '&#x0010;'
+    119: '&#x0004;'
+    120: '&#x0010;'
+    121: '&#x000C;'
+    122: '&#x0010;'
+    123: '&#x001C;'
+    124: '&#x001D;'
+    125: '&#x001F;'
+    126: '&#x001E;'
 
