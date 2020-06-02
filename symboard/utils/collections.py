@@ -22,3 +22,4 @@ def convert_items_to_str(dict_: dict) -> dict:
         A new dict with all keys and values of <dict_> but cast to strings.
     """
     return {str(k): str(v) for k, v in dict_.items()}
+

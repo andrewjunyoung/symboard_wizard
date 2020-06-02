@@ -14,10 +14,17 @@ from dataclasses import dataclass, field
 import logging
 
 # Imports from the local package.
+from settings import (
+    KEYLAYOUTS_DIR,
+    KEYLAYOUTS_FILE_SUFFIX,
+    OPTIONAL_PROPERTIES,
+)
 from symboard.actions import Action
 from symboard.parsers import YamlFileParser
-from settings import KEYLAYOUTS_DIR, KEYLAYOUTS_FILE_SUFFIX, OPTIONAL_PROPERTIES
-from symboard.utils.collections import filter_none_elems_from_dict
+from symboard.utils.collections import (
+    filter_none_elems_from_dict,
+    convert_items_to_str,
+)
 
 @dataclass
 class Keylayout:
@@ -150,7 +157,7 @@ class KeylayoutFactory:
         key_map = contents['key_map']
         # Note that this is in a list because of how the spec-writing
         # specification is defined.
-        layouts = [contents['layouts']]
+        layouts = [convert_items_to_str(contents['layouts'])]
 
         return Keylayout(
             name = name,
