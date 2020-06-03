@@ -78,15 +78,8 @@ class Keylayout:
     key_map: dict = field(
         init=True, repr=False, compare=True, default_factory=dict,
     )
-
-    actions: set = field(
-        init=False, repr=False, compare=False, default_factory=set,
-    )
-    used_states: list = field(
-        init=False, repr=False, compare=False, default_factory=list,
-    )
-    states_list: list = field(
-        init=False, repr=False, compare=False, default_factory=list,
+    states: list = field(
+        init=True, repr=False, compare=True, default_factory=list,
     )
 
     def keyboard_attributes(self):
@@ -106,17 +99,11 @@ class Keylayout:
             'maxout': str(self.maxout),
         }
 
-    def set_actions_from_key_map(self):
+    def _set_actions(self):
         self.actions = [
-            output
-            for index in self.key_map.values()
-            for key, output in index.items()
-            if isinstance(output, Action)
-        ]
-
-    def create_used_states(self, states) -> bool:
-        self.used_states = [
-            states[state_name] for state_name in self.states_list
+            Action(i, key, output)
+            for i, layer in enumerate(self.key_map.values())
+            for key, output in layer.items()
         ]
 
     def with_layouts(self, layouts):
@@ -125,6 +112,8 @@ class Keylayout:
 
     def with_key_map(self, key_map):
         self.key_map = key_map
+        if key_map:
+            self._set_actions()
         return self
 
     def with_key_map_select(self, key_map_select):

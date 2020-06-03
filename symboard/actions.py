@@ -152,16 +152,21 @@ class Action:
     """ A data class which stores information about a keylayout action.
 
     Properties:
-        id_ (str): The identifier string (name) for the action.
+        id (str): The identifier string (name) for the action.
         next_ (State, optional): The state which the keylayout should be in once
             the action occurs. This is used to enter, change, and remain in
             states.
     """
-    id_: str = None
+    index: int = None
+    key: int = None
+    name: str = None
     next_: State = None
 
-    def __init__(self, id_, next_=None):
-        self.id_ = id_
+    def __init__(self, index: int, key: int, name: str, next_=None):
+        self.index = index
+        self.key = key
+        self.name = name
+        self.id = f'({str(index)},{str(key)},{name})'
         if next_ is not None:
             self.next_ = next_
 

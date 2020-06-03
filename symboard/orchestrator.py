@@ -48,7 +48,6 @@ class Orchestrator:
 
         keylayout_factory = KeylayoutFactory()
         keylayout = keylayout_factory.from_spec(keylayout_spec)
-        keylayout.create_used_states(states)
 
         logging.info(f'Trying to write the keylayout to disk at {output_path}.')
 

@@ -83,8 +83,6 @@ class KeyboardIntegrationTests:
             mock_datetime.strftime.return_value = '2019-12-07 21:54:51 (UTC)'
             datetime.now = MagicMock(return_value=mock_datetime)
 
-            self.keylayout.create_used_states(self.states)
-
             # Execution.
             self.keylayout_xml_file_writer.write(
                 self.keylayout, OUTPUT_PATH

@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 .. module:: file_writers
    :synopsis: This file contains the definitions of classes which write to the
@@ -114,15 +111,14 @@ class KeylayoutFileWriter(FileWriter):
             else:
                 raise FileExistsException(output_path)
 
-        try:
-            contents = self.contents(keylayout)
+        contents = self.contents(keylayout)
 
-            logging.info(f'Writing disk contents at {output_path}.')
+        logging.info(f'Writing disk contents at {output_path}.')
 
-            with open(output_path, 'w+') as file_:
-                file_.write(contents)
-        except:
-            raise WriteException(output_path)
+        with open(output_path, 'w+') as file_:
+            file_.write(contents)
+        #except:
+        #    raise WriteException(output_path)
 
 
 class KeylayoutXMLFileWriter(KeylayoutFileWriter):
@@ -162,7 +158,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
         self._key_map_set(keylayout, keyboard_elem)
         if len(keylayout.actions) > 0:
             self._actions(keylayout, keyboard_elem)
-        if len(keylayout.used_states) > 0:
+        if len(keylayout.states) > 0:
             self._terminators(keylayout, keyboard_elem)
 
         ''' Right. So the authors of the «XML» package assumed, wrongly, that we
@@ -197,12 +193,13 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             TagNotFoundException: If the object_ is neither a string nor an
             Action, and hence a tag is unable to be generated.
         """
-        if isinstance(object_, str):
-            return 'output'
-        elif isinstance(object_, Action):
-            return 'action'
-        else:
-            raise TagNotFoundException(object_)
+        return 'action'
+        #if isinstance(object_, str):
+        #    return 'output'
+        #elif isinstance(object_, Action):
+        #    return 'action'
+        #else:
+        #    raise TagNotFoundException(object_)
 
     def _get_output(self, object_: object):
         """ Returns the output for when a key is pressed, based off «object_»
@@ -217,12 +214,13 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             CouldNotGetOutputException: If the output from <object_> could not
             be resolved (IE <object_> is not a string or an Action).
         """
-        if isinstance(object_, str):
-            return object_
-        elif isinstance(object_, Action):
-            return object_.id_
-        else:
-            raise CouldNotGetOutputException(object_)
+        return object_.id
+        #if isinstance(object_, str):
+        #    return object_
+        #elif isinstance(object_, Action):
+        #    return object_.id
+        #else:
+        #    raise CouldNotGetOutputException(object_)
 
     def _keyboard(self, keylayout: Keylayout) -> Element:
         """
@@ -373,7 +371,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
                     'key',
                     {
                         'code': str(code),
-                        self._get_tag(output): self._get_output(output)
+                        self._get_tag(output): f'({i},{str(code)},{output})'
                     },
                 )
 
@@ -420,10 +418,12 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             tag has children with the tag «when». Each of these tags specifies
             the output when the action accurs in a particular state.
         """
-        if keylayout.used_states is None:
+        logging.info(f'Creating an action element for {action}.')
+
+        if keylayout.states is None:
             return
 
-        action_id = action.id_
+        action_id = action.id
         next_state = action.next_
 
         action_elem: Element = sub_element(
@@ -436,10 +436,10 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             next_state_name = next_state.name
             self._when_elem(action_elem, 'none', 'next', next_state_name)
         else:
-            output = action_id
+            output = action.name
             self._when_elem(action_elem, 'none', 'output', output)
 
-        for state in keylayout.used_states:
+        for state in keylayout.states:
             # Add an output for the "none" state, including possible dead keys.
             if action_id in state.action_to_output_map.keys():
                 self._when_elem(
@@ -469,7 +469,7 @@ class KeylayoutXMLFileWriter(KeylayoutFileWriter):
             keyboard, 'terminators'
         )
 
-        for state in keylayout.used_states:
+        for state in keylayout.states:
             self._when_elem(
                 terminators_elem, state.name, 'output', state.terminator
             )
