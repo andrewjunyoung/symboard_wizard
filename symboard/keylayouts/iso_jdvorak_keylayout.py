@@ -57,6 +57,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
         'latin_bar',               # t
         'latin_e',                 # e
         'latin_slash',             # ^t (T)
+        'perso_arabic_basic',      # A
         'cyrillic',                # C
         'greek',                   # G
     ]
@@ -450,7 +451,7 @@ class IsoJDvorakKeylayout(IsoDvorakKeylayout):
             126: '&#x001E;',
         },
         3: {
-            0: Action("α"),
+            0: Action("alt+A", next_=states['perso_arabic_basic']),
             1: Action("alt+O", next_=states['latin_ring_below']),
             2: Action("action 5"),
             3: Action("alt+U", next_=states['latin_breve_inverted']),
