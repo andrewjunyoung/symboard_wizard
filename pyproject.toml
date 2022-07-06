@@ -22,7 +22,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"  # TODO: This should be tested with tox.
-lxml = "^4.4.2"
+lxml = "^4.9.1"
 PyYAML = "^5.1.2"
 bleach = "^3.1.4"  # TODO: Check if needed.
 python-dotenv = "^0.13.0"
